@@ -1,12 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import StartScreen from './screens/stack/StartScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Colors from './assets/colors';
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar style='light' />
+      <View style={styles.safeArea}></View>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName='Start'
+          screenOptions={{
+            title: 'Climate Mind',
+            headerStyle: { backgroundColor: Colors.startScreenBackgroundDark },
+            headerTintColor: 'white',
+            headerTitleAlign: 'center',
+          }}
+        >
+          <Stack.Screen name='Start' component={StartScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
 
@@ -17,4 +37,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  safeArea: {
+    // height: 60,
+    backgroundColor: Colors.startScreenBackgroundDark,
+  },
 });
+
+export default App;
