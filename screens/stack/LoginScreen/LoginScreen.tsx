@@ -1,6 +1,6 @@
 import { Button, Text } from 'react-native';
-import { useAppDispatch } from '../../store/hooks';
-import { login } from '../../store/authSlice';
+import { useAppDispatch } from '../../../store/hooks';
+import { login } from '../../../store/authSlice';
 
 function LoginScreen() {
   const dispatch = useAppDispatch();

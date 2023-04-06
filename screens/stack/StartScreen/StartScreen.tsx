@@ -1,10 +1,10 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import Colors from '../../assets/colors';
+import Colors from '../../../assets/colors';
 
-import PageTitle from '../../components/PageTitle';
+import PageTitle from '../../../components/PageTitle';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../navigation/RootStackNavigation';
+import { RootStackParams } from '../../../navigation/RootStackNavigation';
 
 type Props = NativeStackScreenProps<RootStackParams, 'StartScreen'>;
 
@@ -19,8 +19,9 @@ function StartScreen({ navigation }: Props) {
   
   return (
     <>
-      <View style={[styles.container, styles.topHalf]}>
+      <View style={[styles.container, { backgroundColor: Colors.startScreenBackgroundBright }]}>
         <PageTitle>Inspire others to take action!</PageTitle>
+
         <Pressable style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]} onPress={navigateToPreQuizScreen}>
           <Text style={styles.buttonText}>GET STARTED</Text>
         </Pressable>
@@ -28,21 +29,23 @@ function StartScreen({ navigation }: Props) {
         <Pressable onPress={navigateToLoginScreen}>
           <Text style={[styles.text, { fontWeight: 'bold' }]}>Already a member? Login here</Text>
         </Pressable>
+
         <Text style={styles.text}>
           Climate change affects us all. And to inspire sufficient action, we must talk about it
           much more.
         </Text>
+        
         <Text style={styles.text}>
           Climate Mind makes it easy to have effective conversations with your friends and family.
         </Text>
       </View>
 
-      <View style={[styles.container, styles.bottomHalf]}>
+      <View style={[styles.container, { backgroundColor: Colors.startScreenBackgroundDark }]}>
         <Text style={styles.whiteText}>
           We use proven social science to connect climate change to what people care about and help
           find solutions they like.
         </Text>
-        <Image source={require('../../assets/ConnectTheDots.png')} style={styles.image} />
+        <Image source={require('../../../assets/ConnectTheDots.png')} style={styles.image} />
       </View>
     </>
   );
@@ -54,12 +57,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-  },
-  topHalf: {
-    backgroundColor: Colors.startScreenBackgroundBright,
-  },
-  bottomHalf: {
-    backgroundColor: Colors.startScreenBackgroundDark,
   },
   button: {
     backgroundColor: 'white',

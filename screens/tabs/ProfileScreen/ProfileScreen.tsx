@@ -1,6 +1,6 @@
 import { Button, Text } from 'react-native';
-import { useAppDispatch } from '../../store/hooks';
-import { logout } from '../../store/authSlice';
+import { useAppDispatch } from '../../../store/hooks';
+import { logout } from '../../../store/authSlice';
 
 function ProfileScreen() {
   const dispatch = useAppDispatch();

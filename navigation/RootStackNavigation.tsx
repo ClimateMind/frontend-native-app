@@ -1,14 +1,14 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Stack screens
-import StartScreen from '../screens/stack/StartScreen';
-import LoginScreen from '../screens/stack/LoginScreen';
-import PreQuizScreen from '../screens/stack/PreQuizScreen';
-import QuizScreen from '../screens/stack/QuizScreen';
-import SubmitSetOneScreen from '../screens/stack/SubmitSetOneScreen';
-import SubmitSetTwoScreen from '../screens/stack/SubmitSetTwoScreen';
-import PersonalValuesScreenNewUser from '../screens/stack/PersonalValuesScreenNewUser';
-import SignUpScreen from '../screens/stack/SignUpScreen';
+import StartScreen from '../screens/stack/StartScreen/StartScreen';
+import LoginScreen from '../screens/stack/LoginScreen/LoginScreen';
+import PreQuizScreen from '../screens/stack/PreQuizScreen/PreQuizScreen';
+import QuizScreen from '../screens/stack/QuizScreen/QuizScreen';
+import SubmitSetOneScreen from '../screens/stack/SubmitSetOneScreen/SubmitSetOneScreen';
+import SubmitSetTwoScreen from '../screens/stack/SubmitSetTwoScreen/SubmitSetTwoScreen';
+import PersonalValuesScreenNewUser from '../screens/stack/PersonalValuesScreenNewUser/PersonalValuesScreenNewUser';
+import SignUpScreen from '../screens/stack/SignUpScreen/SignUpScreen';
 
 export type RootStackParams = {
   StartScreen: undefined;

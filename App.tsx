@@ -10,7 +10,7 @@ import { store } from './store/store';
 
 // Navigation
 import { NavigationContainer } from '@react-navigation/native';
-import DrawerNavigation from './navigation/DrawerNavigation';
+import DrawerNavigation from './navigation/DrawerNavigation/DrawerNavigation';
 
 function App() {  
   return (

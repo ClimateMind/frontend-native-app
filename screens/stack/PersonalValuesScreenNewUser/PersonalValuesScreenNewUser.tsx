@@ -1,5 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../App';
+import { RootStackParams } from '../../../navigation/RootStackNavigation';
+
 import { Button, Text } from 'react-native';
 
 type Props = NativeStackScreenProps<RootStackParams, 'PersonalValuesScreenNewUser'>;

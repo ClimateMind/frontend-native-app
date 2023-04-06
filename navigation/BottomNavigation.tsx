@@ -1,11 +1,11 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 // Tab Screens
-import ProfileScreen from "../screens/tabs/ProfileScreen";
-import ClimateFeedScreen from "../screens/tabs/ClimateFeedScreen";
-import SolutionsFeedScreen from "../screens/tabs/SolutionsFeedScreen";
-import MythsFeedScreen from "../screens/tabs/MythsFeedScreen";
-import ConversationsIntroScreen from "../screens/tabs/ConversationsIntroScreen";
+import ProfileScreen from "../screens/tabs/ProfileScreen/ProfileScreen";
+import ClimateFeedScreen from "../screens/tabs/ClimateFeedScreen/ClimateFeedScreen";
+import SolutionsFeedScreen from "../screens/tabs/SolutionsFeedScreen/SolutionsFeedScreen";
+import MythsFeedScreen from "../screens/tabs/MythsFeedScreen/MythsFeedScreen";
+import ConversationsIntroScreen from "../screens/tabs/ConversationsIntroScreen/ConversationsIntroScreen";
 
 export type BottomNavigationParams = {
   ProfileScreen: undefined;
