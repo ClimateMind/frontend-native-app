@@ -3,16 +3,31 @@ import Colors from '../../assets/colors';
 
 import PageTitle from '../../components/PageTitle';
 
-const StartScreen = () => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '../../navigation/RootStackNavigation';
+
+type Props = NativeStackScreenProps<RootStackParams, 'StartScreen'>;
+
+function StartScreen({ navigation }: Props) {
+  function navigateToLoginScreen() {
+    navigation.navigate('LoginScreen');
+  }
+
+  function navigateToPreQuizScreen() {
+    navigation.navigate('PreQuizScreen');
+  }
+  
   return (
     <>
       <View style={[styles.container, styles.topHalf]}>
         <PageTitle>Inspire others to take action!</PageTitle>
-        <Pressable style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]}>
+        <Pressable style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]} onPress={navigateToPreQuizScreen}>
           <Text style={styles.buttonText}>GET STARTED</Text>
         </Pressable>
 
-        <Text style={[styles.text, { fontWeight: 'bold' }]}>Already a member? Login here</Text>
+        <Pressable onPress={navigateToLoginScreen}>
+          <Text style={[styles.text, { fontWeight: 'bold' }]}>Already a member? Login here</Text>
+        </Pressable>
         <Text style={styles.text}>
           Climate change affects us all. And to inspire sufficient action, we must talk about it
           much more.

@@ -1,44 +1,31 @@
+
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import StartScreen from './screens/stack/StartScreen';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StyleSheet, View } from 'react-native';
+
 import Colors from './assets/colors';
 
-const Stack = createNativeStackNavigator();
+// Redux
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
-function App() {
+// Navigation
+import { NavigationContainer } from '@react-navigation/native';
+import DrawerNavigation from './navigation/DrawerNavigation';
+
+function App() {  
   return (
-    <>
+    <Provider store={store}>
       <StatusBar style='light' />
       <View style={styles.safeArea}></View>
       <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName='Start'
-          screenOptions={{
-            title: 'Climate Mind',
-            headerStyle: { backgroundColor: Colors.startScreenBackgroundDark },
-            headerTintColor: 'white',
-            headerTitleAlign: 'center',
-          }}
-        >
-          <Stack.Screen name='Start' component={StartScreen} />
-        </Stack.Navigator>
+        <DrawerNavigation />
       </NavigationContainer>
-    </>
+    </Provider>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  safeArea: {
-    // height: 60,
+safeArea: {
     backgroundColor: Colors.startScreenBackgroundDark,
   },
 });
