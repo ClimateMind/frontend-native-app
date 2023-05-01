@@ -36,4 +36,6 @@ Platform | Link
  The easier one is to run it on your own device. Install the Expo app and scan the QR code in the terminal where you entered `npm start`.
  Running it in an emulator requires to setup the emulator with Android Studio (Android) or xCode (iOS).
  
- 
+<h2>Resources</h2>
+Further informations about the backend, the routes and respones of the rest api: <br />
+https://climatemind.stoplight.io/docs/climatemind-backend/094340c5296a9-climate-mind
