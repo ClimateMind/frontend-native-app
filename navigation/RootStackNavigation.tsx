@@ -14,7 +14,7 @@ export type RootStackParams = {
   StartScreen: undefined;
   LoginScreen: undefined;
   PreQuizScreen: undefined;
-  QuizScreen: undefined;
+  QuizScreen: { questionSet: 1 | 2 };
   SubmitSetOneScreen: undefined;
   SubmitSetTwoScreen: undefined;
   PersonalValuesScreenNewUser: undefined;

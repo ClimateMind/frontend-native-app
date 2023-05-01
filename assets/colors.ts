@@ -1,6 +1,6 @@
 const Colors = {
-  startScreenBackgroundBright: '#39f5ad',
-  startScreenBackgroundDark: '#07373b',
+  themeBright: 'rgba(138, 213, 204, 0.6)',
+  themeDark: '#07373b',
 };
 
 export default Colors;

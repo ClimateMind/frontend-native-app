@@ -10,4 +10,8 @@ async function openUrl(url: string) {
   }
 }
 
-export { openUrl };
+function capitalizeFirstLetter(string: string) {
+  return string[0].toUpperCase() + string.slice(1);
+}
+
+export { openUrl, capitalizeFirstLetter };

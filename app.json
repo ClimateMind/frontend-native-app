@@ -1,10 +1,11 @@
 {
   "expo": {
-    "name": "frontend-native-app",
-    "slug": "frontend-native-app",
+    "name": "Climate Mind",
+    "slug": "climate-mind",
     "version": "1.0.0",
     "orientation": "portrait",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
     "splash": {
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
@@ -12,8 +13,19 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android": {
+      "versionCode": 1,
+      "package": "org.climatemind.app"
+    },
     "ios": {
-      "supportsTablet": true
+      "buildNumber": "1.0.0",
+      "supportsTablet": true,
+      "bundleIdentifier": "org.climatemind.app"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d3f6d39c-a2f2-412d-9434-6cb0e2739ebc"
+      }
     }
   }
 }

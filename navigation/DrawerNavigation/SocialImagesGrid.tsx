@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     margin: 5,
-    backgroundColor: Colors.startScreenBackgroundBright,
+    backgroundColor: Colors.themeBright,
     borderRadius: 1000,
   },
 });

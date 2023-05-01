@@ -1,20 +1,22 @@
 import { DrawerToggleButton, createDrawerNavigator } from '@react-navigation/drawer';
 import CustomDrawerContent from './CustomDrawerContent';
 
+import { useAppSelector } from '../../store/hooks';
 import Colors from '../../assets/colors';
 
 // Drawer Screens
 import RootStackNavigation from '../RootStackNavigation';
 import BottomNavigation from '../BottomNavigation';
-import PrivacyPolicyScreen from '../../screens/drawer/PrivacyPolicyScreen/PrivacyPolicyScreen';
-import PersonalValuesScreen from '../../screens/drawer/PersonalValuesScreen/PersonalValuesScreen';
-import { useAppSelector } from '../../store/hooks';
+import PersonalValuesScreen from '../../screens/drawer/PersonalValuesScreen';
+import QuizScreen from '../../screens/stack/QuizScreen/QuizScreen';
+import ConversationsScreen from '../../screens/tabs/ConversationsScreen/ConversationsScreen';
 
 export type DrawerNavigationParams = {
   RootStackNavigation: undefined;
   BottomNavigation: undefined;
-  PrivacyPolicyScreen: undefined;
   PersonalValuesScreen: undefined;
+  QuizScreen: { questionSet: 1 | 2 };
+  ConversationsScreen: undefined;
 };
 
 const Drawer = createDrawerNavigator<DrawerNavigationParams>();
@@ -29,7 +31,7 @@ function DrawerNavigation() {
       screenOptions={{
         drawerPosition: 'right',
         title: 'Climate Mind',
-        headerStyle: { backgroundColor: Colors.startScreenBackgroundDark },
+        headerStyle: { backgroundColor: Colors.themeDark },
         headerTintColor: 'white',
         headerTitleAlign: 'center',
         headerLeft: () => null,
@@ -38,8 +40,9 @@ function DrawerNavigation() {
     >
       {!isLoggedIn && <Drawer.Screen name='RootStackNavigation' component={RootStackNavigation} />}
       {isLoggedIn && <Drawer.Screen name='BottomNavigation' component={BottomNavigation} />}
-      <Drawer.Screen name='PrivacyPolicyScreen' component={PrivacyPolicyScreen} />
       {isLoggedIn && <Drawer.Screen name='PersonalValuesScreen' component={PersonalValuesScreen} />}
+      {isLoggedIn && <Drawer.Screen name='QuizScreen' component={QuizScreen} />}
+      {isLoggedIn && <Drawer.Screen name='ConversationsScreen' component={ConversationsScreen} />}
     </Drawer.Navigator>
   );
 }
