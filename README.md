@@ -37,5 +37,5 @@ Platform | Link
  Running it in an emulator requires to setup the emulator with Android Studio (Android) or xCode (iOS).
  
 <h2>Resources</h2>
-Further informations about the backend, the routes and respones of the rest api: <br />
+Further informations about the backend, the routes and responses of the rest api: <br />
 https://climatemind.stoplight.io/docs/climatemind-backend/094340c5296a9-climate-mind
