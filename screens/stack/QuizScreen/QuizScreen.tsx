@@ -38,23 +38,28 @@ function QuizScreen({ route, navigation }: Props) {
     // Fetch the questions on page load
     apiClient.getQuestions().then(result => setQuestionSets(result));
   }, []);
+
+  useEffect(() => {
+    // If the user answered all 10 questions, he will be navigated to the next screen
+    if (route.params.questionSet === 1 && currentQuestionNumber === 11) {
+      setCurrentQuestionNumber(1);
+      navigation.navigate('SubmitSetOneScreen');
+    }
+
+    if (route.params.questionSet === 2 && currentQuestionNumber === 11) {
+      setCurrentQuestionNumber(1);
+      navigation.navigate('SubmitSetTwoScreen');
+    }
+  }, [currentQuestionNumber]);
+
+  // If the user answered all 10 questions, he will be navigated to the next screen and we don't want to show anything
+  if ((route.params.questionSet === 1 && currentQuestionNumber === 11) || (route.params.questionSet === 2 && currentQuestionNumber === 11)) {
+    return null;
+  }
   
   // While we are fetching the questions from the backend, show a loading spinner to the user
   if (questionSets === undefined) {
     return <ActivityIndicator size='large' color='black' style={{ marginTop: 100 }} />
-  }
-
-  // If the user answered all 10 questions, he will be navigated to the next screen
-  if (route.params.questionSet === 1 && currentQuestionNumber === 11) {
-    setCurrentQuestionNumber(1);
-    navigation.navigate('SubmitSetOneScreen');
-    return null;
-  }
-
-  if (route.params.questionSet === 2 && currentQuestionNumber === 11) {
-    setCurrentQuestionNumber(1);
-    navigation.navigate('SubmitSetTwoScreen');
-    return null;
   }
 
   // Display the next question for the user
