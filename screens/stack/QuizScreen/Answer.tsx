@@ -10,7 +10,7 @@ interface AnswerProps {
 
 function Answer({ index, text, onSelect }: AnswerProps) {
   return (
-    <View style={styles.questionsContainer}>
+    <View style={styles.questionsContainer} >
       <Pressable
         onPress={() => onSelect(index)}
         style={[styles.answerContainer]}
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 5,
     padding: 15,
+    height:65
   },
   answerText: {
     fontWeight: 'bold',
