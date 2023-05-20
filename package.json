@@ -17,7 +17,7 @@
     "@reduxjs/toolkit": "^1.9.3",
     "@types/react-redux": "^7.1.25",
     "axios": "^1.4.0",
-    "expo": "~48.0.9",
+    "expo": "~48.0.17",
     "expo-clipboard": "~4.1.2",
     "expo-splash-screen": "~0.18.2",
     "expo-status-bar": "~1.4.4",
