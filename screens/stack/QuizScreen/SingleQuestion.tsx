@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   question: {
-    height: 100,
+    minHeight: 120,
     marginVertical: 20,
     fontSize: 16,
     fontWeight: 'bold',
