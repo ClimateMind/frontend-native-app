@@ -36,7 +36,7 @@ function MythsFeedScreen({ navigation }: Props) {
               <PageTitle>Climate change myths</PageTitle>
             </View>
             <Text style={styles.text}>
-              Arm yourself with information to challenge these common maths and be part of the
+              Arm yourself with information to challenge these common myths and be part of the
               solution to fight climate change!
             </Text>
           </>
