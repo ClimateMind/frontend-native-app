@@ -11,6 +11,7 @@ import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import useApiClient from '../../../hooks/useApiClient';
 import PasswordResetModal from './PasswordResetModal';
 import Colors from '../../../assets/colors';
+import { AxiosError } from 'axios';
 
 function LoginScreen() {
   const apiClient = useApiClient();
@@ -18,26 +19,28 @@ function LoginScreen() {
   
   const recaptcha = useRef<RecaptchaHandles>(null);
 
-  const onExpire = () => {
-      console.warn('expired!');
-  }
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
   async function onLogin(token: string) {
-    console.log(token)
-    const result = await apiClient.postLogin(email, password, token);
+    try {
+      const result = await apiClient.postLogin(email, password, token);
 
-    if (result !== undefined) {
-      dispatch(login({
-        accessToken: result.access_token,
-        firstName: result.user.first_name,
-        lastName: result.user.last_name,
-        email: result.user.email,
-        userId: result.user.user_uuid,
-        quizId: result.user.quiz_id,
-      }));
+      if (result !== undefined) {
+        dispatch(login({
+          accessToken: result.access_token,
+          firstName: result.user.first_name,
+          lastName: result.user.last_name,
+          email: result.user.email,
+          userId: result.user.user_uuid,
+          quizId: result.user.quiz_id,
+        }));
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        console.log(`Status: ${error.response?.status}`);
+        console.log(`Error: ${error.response?.data.error}`);
+      }
     }
   }
   
@@ -82,7 +85,7 @@ function LoginScreen() {
             siteKey={RECAPTCHA_SITE_KEY}
             baseUrl={WEB_URL}
             onVerify={(token: string) => onLogin(token)}
-            onExpire={onExpire}
+            onExpire={() => {}}
             size="normal"
           />
 

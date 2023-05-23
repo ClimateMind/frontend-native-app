@@ -104,16 +104,12 @@ function useApiClient() {
   }
 
   async function postLogin(email: string, password: string, recaptchaToken: string) {
-    try {
-      const response = await axios.post<responses.Login>(
-        API_URL + '/login',
-        { email, password, recaptchaToken },
-      )
+    const response = await axios.post<responses.Login>(
+      API_URL + '/login',
+      { email, password, recaptchaToken },
+    )
 
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    return response.data;
   }
 
   async function postPasswordResetLink(email: string) {
