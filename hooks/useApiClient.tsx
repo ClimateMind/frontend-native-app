@@ -72,6 +72,10 @@ function useApiClient() {
     if (!sessionId) {
       throw new Error('Missing sessionId')
     }
+
+    if (quizId === '') {
+      throw new Error('Missing quizId')
+    }
     
     try {
       const response = await axios.get<responses.GetPersonalValues>(

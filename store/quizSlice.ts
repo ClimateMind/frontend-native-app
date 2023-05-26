@@ -23,13 +23,29 @@ export const quizSlice = createSlice({
       action: PayloadAction<{ questionSet: 1 | 2; questionId: number; answerId: number }>
     ) => {
       if (action.payload.questionSet === 1) {
+        // If the question is already answered, remove it from the array
+        if (state.quizAnswers.SetOne.find((x) => x.questionId === action.payload.questionId)) {
+          state.quizAnswers.SetOne = state.quizAnswers.SetOne.filter(
+            (x) => x.questionId !== action.payload.questionId
+          );
+        }
+        
+        // Add the new answer to the array
         state.quizAnswers.SetOne.push({
           questionId: action.payload.questionId,
           answerId: action.payload.answerId
         });
       } else if (action.payload.questionSet === 2) {
+        // If the question is already answered, remove it from the array
+        if (state.quizAnswers.SetTwo.find((x) => x.questionId === action.payload.questionId + 10)) {
+          state.quizAnswers.SetTwo = state.quizAnswers.SetTwo.filter(
+            (x) => x.questionId !== action.payload.questionId + 10
+          );
+        }
+        
+        // Add the new answer to the array
         state.quizAnswers.SetTwo.push({
-          questionId: action.payload.questionId,
+          questionId: action.payload.questionId + 10,
           answerId: action.payload.answerId
         });
       }
