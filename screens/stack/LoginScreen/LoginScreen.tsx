@@ -26,7 +26,6 @@ function LoginScreen() {
   const [password, setPassword] = useState('');
   
   async function onLogin(token: string) {
-    console.log(token)
     const result = await apiClient.postLogin(email, password, token);
 
     if (result !== undefined) {
