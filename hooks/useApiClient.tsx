@@ -248,6 +248,18 @@ function useApiClient() {
 
     return response.data;
   }
+
+  async function deleteConversation(conversationId: string) {
+    await axios.delete(
+      API_URL + '/conversation/' + conversationId,
+      {
+        headers: {
+          'X-Session-Id': sessionId,
+          'Authorization': 'Bearer ' + user.accessToken,
+        },
+      },
+    );      
+  }
   
   return {
     postSession,
@@ -268,6 +280,7 @@ function useApiClient() {
 
     createConversationInvite,
     getAllConversations,
+    deleteConversation,    
   };
 }
 
