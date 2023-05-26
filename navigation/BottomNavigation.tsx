@@ -44,14 +44,6 @@ function BottomNavigation() {
           tabBarIcon: () => <Entypo name="home" size={24} color="black" />
         }}
       />
-      {/* <Tabs.Screen
-        name='ClimateFeedScreen'
-        component={ClimateFeedScreen}
-        options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: () => <Entypo name="home" size={24} color="black" />
-        }}
-      /> */}
       <Tabs.Screen
         name='SolutionsFeedStack'
         component={SolutionsFeedStack}
