@@ -53,21 +53,18 @@ function LoginScreen() {
          
         }
 
-      switch (error.response?.status) {
-          case 400:
-            switch(error.response?.data.error){
-              case 'Email and password must be included in the request body.':
-                console.log('Email and password must be included in the request body.')
-                case 'Email, password and recaptcha must be included in the request body.':
-                console.log('Email, password and recaptcha must be included in the request body.')
-                case 'Recaptcha token must be included in the request body.':
-                console.log('Recaptcha token must be included in the request body.')
-                default:
-                console.log('error')
-            }
-              default:
-                console.log('error')
-      }
+        if(error.response?.status === 400){
+          if( error.response.data.error === 'Email and password must be included in the request body.'){
+            console.log('Email and password must be included in the request body.')
+          }else if (error.response.data.error === 'Email, password and recaptcha must be included in the request body.'){
+            console.log('Email, password and recaptcha must be included in the request body.')
+          }
+          else if (error.response.data.error === 'Recaptcha token must be included in the request body.'){
+            console.log('Recaptcha token must be included in the request body.')
+          }
+         
+        }
+
     }
       }    
   }
