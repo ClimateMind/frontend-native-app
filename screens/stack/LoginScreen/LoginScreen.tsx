@@ -23,6 +23,7 @@ function LoginScreen() {
   const [password, setPassword] = useState('');
   
   async function onLogin(token: string) {
+
     try {
       const result = await apiClient.postLogin(email, password, token);
       
@@ -52,6 +53,7 @@ function LoginScreen() {
           }
          
         }
+
 
         if(error.response?.status === 400){
           if( error.response.data.error === 'Email and password must be included in the request body.'){
