@@ -23,6 +23,7 @@ function LoginScreen() {
   const [password, setPassword] = useState('');
   
   async function onLogin(token: string) {
+
     try {
       const result = await apiClient.postLogin(email, password, token);
       
@@ -52,6 +53,7 @@ function LoginScreen() {
           }
          
         }
+
 
       switch (error.response?.status) {
           case 400:
