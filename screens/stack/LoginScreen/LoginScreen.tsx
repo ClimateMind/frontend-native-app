@@ -12,7 +12,7 @@ import useApiClient from '../../../hooks/useApiClient';
 import PasswordResetModal from './PasswordResetModal';
 import Colors from '../../../assets/colors';
 import { AxiosError } from 'axios';
-
+import Toast from 'react-native-root-toast'
 function LoginScreen() {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
@@ -25,7 +25,7 @@ function LoginScreen() {
   async function onLogin(token: string) {
     try {
       const result = await apiClient.postLogin(email, password, token);
-
+      
       if (result !== undefined) {
         dispatch(login({
           accessToken: result.access_token,
@@ -40,8 +40,36 @@ function LoginScreen() {
       if (error instanceof AxiosError) {
         console.log(`Status: ${error.response?.status}`);
         console.log(`Error: ${error.response?.data.error}`);
+
+        if(error.response?.status === 401){
+          if( error.response.data.error === 'Wrong email or password. Try again.'){
+            Toast.show('Wrong email or password. Try again.', {
+              duration: Toast.durations.LONG,
+              backgroundColor: '#BDFADC',
+              textColor: '#000000',
+              opacity: 1,
+            });
+          }
+         
+        }
+
+      switch (error.response?.status) {
+          case 400:
+            switch(error.response?.data.error){
+              case 'Email and password must be included in the request body.':
+                console.log('Email and password must be included in the request body.')
+                case 'Email, password and recaptcha must be included in the request body.':
+                console.log('Email, password and recaptcha must be included in the request body.')
+                case 'Recaptcha token must be included in the request body.':
+                console.log('Recaptcha token must be included in the request body.')
+                default:
+                console.log('error')
+            }
+              default:
+                console.log('error')
       }
     }
+      }    
   }
   
   // Password Reset Request Modal
@@ -87,6 +115,16 @@ function LoginScreen() {
             onVerify={(token: string) => onLogin(token)}
             onExpire={() => {}}
             size="normal"
+            onError={(err) => {
+              console.log(err)
+              if(err === null)
+                  Toast.show('Captcha did not succeed.', {
+                    duration: Toast.durations.LONG,
+                    backgroundColor: '#BDFADC',
+                    textColor: '#000000',
+                    opacity: 1,
+                  });
+            }}
           />
 
           <SimpleWhiteButton text="LOG IN" onPress={() => recaptcha.current?.open()} />
