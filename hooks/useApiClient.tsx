@@ -8,8 +8,6 @@ import ClimateEffect from '../types/ClimateEffect';
 import Solution from '../types/Solution';
 import Myth from '../types/Myth';
 
-console.log(API_URL)
-
 function useApiClient() {
   const sessionId = useAppSelector((state) => state.auth.sessionId);
   const quizId = useAppSelector((state) => state.auth.user.quizId);
@@ -72,6 +70,10 @@ function useApiClient() {
     if (!sessionId) {
       throw new Error('Missing sessionId')
     }
+
+    if (quizId === '') {
+      throw new Error('Missing quizId')
+    }
     
     try {
       const response = await axios.get<responses.GetPersonalValues>(
@@ -95,8 +97,6 @@ function useApiClient() {
         API_URL + '/register',
         { firstName, lastName, email, password, quizId },
       );
-      console.log('Register')
-      console.log(response);
       return response.data;
     } catch (error) {
       console.log(error);
