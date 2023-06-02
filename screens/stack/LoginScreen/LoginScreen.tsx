@@ -39,8 +39,8 @@ function LoginScreen() {
       }
     } catch (error) {
       if (error instanceof AxiosError) {
-        console.log(`Status: ${error.response?.status}`);
-        console.log(`Error: ${error.response?.data.error}`);
+        // console.log(`Status: ${error.response?.status}`);
+        // console.log(`Error: ${error.response?.data.error}`);
 
         if(error.response?.status === 401){
           if( error.response.data.error === 'Wrong email or password. Try again.'){
@@ -56,12 +56,12 @@ function LoginScreen() {
 
 
         if(error.response?.status === 400){
-          if( error.response.data.error === 'Email and password must be included in the request body.'){
+          if( error.response?.data.error === 'Email and password must be included in the request body.'){
             console.log('Email and password must be included in the request body.')
-          }else if (error.response.data.error === 'Email, password and recaptcha must be included in the request body.'){
+          }else if (error.response?.data.error === 'Email, password and recaptcha must be included in the request body.'){
             console.log('Email, password and recaptcha must be included in the request body.')
           }
-          else if (error.response.data.error === 'Recaptcha token must be included in the request body.'){
+          else if (error.response?.data.error === 'Recaptcha token must be included in the request body.'){
             console.log('Recaptcha token must be included in the request body.')
           }
          
