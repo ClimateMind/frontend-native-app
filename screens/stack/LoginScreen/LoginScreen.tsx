@@ -12,7 +12,9 @@ import useApiClient from '../../../hooks/useApiClient';
 import PasswordResetModal from './PasswordResetModal';
 import Colors from '../../../assets/colors';
 import { AxiosError } from 'axios';
-import Toast from 'react-native-root-toast'
+import Toast from 'react-native-root-toast';
+
+
 function LoginScreen() {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
@@ -42,9 +44,20 @@ function LoginScreen() {
         // console.log(`Status: ${error.response?.status}`);
         // console.log(`Error: ${error.response?.data.error}`);
 
+        // if(error.response?.status === 401){
+        //   if( error.response.data.error === 'Wrong email or password. Try again.'){
+        //     Toast.show('Wrong email or password. Try again.', {
+        //       duration: Toast.durations.LONG,
+        //       backgroundColor: '#BDFADC',
+        //       textColor: '#000000',
+        //       opacity: 1,
+        //     });
+        //   }
+         
+        // }
         if(error.response?.status === 401){
-          if( error.response.data.error === 'Wrong email or password. Try again.'){
-            Toast.show('Wrong email or password. Try again.', {
+          if( error.response.data.error){
+            Toast.show(error.response.data.error, {
               duration: Toast.durations.LONG,
               backgroundColor: '#BDFADC',
               textColor: '#000000',
@@ -54,18 +67,25 @@ function LoginScreen() {
          
         }
 
-
         if(error.response?.status === 400){
-          if( error.response?.data.error === 'Email and password must be included in the request body.'){
-            console.log('Email and password must be included in the request body.')
-          }else if (error.response?.data.error === 'Email, password and recaptcha must be included in the request body.'){
-            console.log('Email, password and recaptcha must be included in the request body.')
-          }
-          else if (error.response?.data.error === 'Recaptcha token must be included in the request body.'){
-            console.log('Recaptcha token must be included in the request body.')
-          }
-         
+          if(error.response?.data.error){
+            console.log(error.response?.data.error)
         }
+
+    }
+
+        // if(error.response?.status === 400){
+        //   if( error.response?.data.error === 'Email and password must be included in the request body.'){
+        //     console.log('Email and password must be included in the request body.')
+        //   }else if (error.response?.data.error === 'Email, password and recaptcha must be included in the request body.'){
+        //     console.log('Email, password and recaptcha must be included in the request body.')
+        //   }
+        //   else if (error.response?.data.error === 'Recaptcha token must be included in the request body.'){
+        //     console.log('Recaptcha token must be included in the request body.')
+        //   }
+         
+        // }
+        
 
     }
       }    
