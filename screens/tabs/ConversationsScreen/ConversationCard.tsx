@@ -14,6 +14,16 @@ interface Props {
 function ConversationCard({ conversation }: Props) {
   const [expanded, setExpanded] = useState(false);
   
+  const userBName = conversation.userB.name;
+  const headerText = [
+    `Invited ${userBName} to talk`,
+    `Prepare to talk with ${userBName}`,
+    `Prepare to talk with ${userBName}`,
+    `Ready to talk with ${userBName}`,
+    `Talked with ${userBName}`,
+    `Talked with ${userBName}`,`Invited ${userBName} to talk`,
+  ];
+  
   function copyLink() {
     Clipboard.setStringAsync(WEB_URL + '/landing/' + conversation.conversationId);
   }
@@ -25,7 +35,7 @@ function ConversationCard({ conversation }: Props) {
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <Text>Invited User to talk</Text>
+        <Text>{headerText[conversation.state]}</Text>
         {expanded && <Pressable onPress={copyLink}><Text>COPY LINK</Text></Pressable>}
       </View>
 
