@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Modal, Pressable, StyleSheet, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+
 import PageTitle from '../../../components/PageTitle';
 import ConversationsIntroCard from './ConversationsIntroCard';
 import ConversationCard from './ConversationCard';
@@ -16,6 +17,10 @@ interface Props {
 function ConversationsDrawer({ open, onClose }: Props) {
   const apiClient = useApiClient();
   const [allConversations, setAllConversations] = useState<GetAllConversations[]>([]);
+  
+  function onDeleteConversation(conversationId: string) {
+    setAllConversations(current => current.filter(conversation => conversation.conversationId !== conversationId));
+  }
   
   useEffect(() => {
     apiClient.getAllConversations()
@@ -35,8 +40,6 @@ function ConversationsDrawer({ open, onClose }: Props) {
           <PageTitle>Ongoing Conversations</PageTitle>
         </View>
 
-        
-
         {allConversations === undefined && <ActivityIndicator size='large' color='black' style={{ marginTop: 100 }} />}
         <View>
         {allConversations && (
@@ -47,7 +50,7 @@ function ConversationsDrawer({ open, onClose }: Props) {
               </View>
             }
             data={allConversations}
-            renderItem={(item) => <View style={{ margin: 10 }}><ConversationCard conversation={item.item} /></View>}
+            renderItem={(item) => <View style={{ margin: 10 }}><ConversationCard conversation={item.item} onDelete={onDeleteConversation} /></View>}
             keyExtractor={(item) => item.conversationId}
             style={{ marginBottom: 30 }}
           />
