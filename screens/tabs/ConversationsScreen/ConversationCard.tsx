@@ -20,8 +20,6 @@ function ConversationCard({ conversation, onDelete }: Props) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   
   const userBName = conversation.userB.name;
-  
-  const userBName = conversation.userB.name;
   const headerText = [
     `Invited ${userBName} to talk`,
     `Prepare to talk with ${userBName}`,
@@ -45,11 +43,12 @@ function ConversationCard({ conversation, onDelete }: Props) {
   }
   
   return (
-    <View style={styles.container}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <Text>{headerText[conversation.state]}</Text>
-        {expanded && <Pressable onPress={copyLink}><Text>COPY LINK</Text></Pressable>}
-      </View>
+    <>
+      <View style={styles.container}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text>{headerText[conversation.state]}</Text>
+          {expanded && <Pressable onPress={copyLink}><Text>COPY LINK</Text></Pressable>}
+        </View>
 
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Text style={{ fontWeight: 'bold', fontSize: 18, marginBottom: 5 }}>{conversation.userB.name}</Text>
