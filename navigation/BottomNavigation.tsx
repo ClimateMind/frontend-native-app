@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { useAppSelector } from '../store/hooks';
 
 // Tab Screens
@@ -33,15 +33,21 @@ function BottomNavigation() {
         component={ProfileScreen}
         options={{
           tabBarLabel: 'Profile',
-          tabBarIcon: () => <Text>{user.firstName[0] + user.lastName[0]}</Text>
+          tabBarIcon: ({color}) => <Text style={{fontSize: 20, color:color,fontWeight:'bold'}}>{user.firstName[0] + user.lastName[0]}</Text>,
+          tabBarActiveTintColor: '#07373b',
+          tabBarInactiveTintColor: '#77AAAF',
         }}
+
+        
       />
       <Tabs.Screen
         name='ClimateFeedStack'
         component={ClimateFeedStack}
         options={{
           tabBarLabel: 'Home',
-          tabBarIcon: () => <Entypo name="home" size={24} color="black" />
+          tabBarIcon: ({color}) => <Entypo name="home" size={24} color={color} />,
+          tabBarActiveTintColor: '#07373b',
+          tabBarInactiveTintColor: '#77AAAF',
         }}
       />
       <Tabs.Screen
@@ -49,7 +55,9 @@ function BottomNavigation() {
         component={SolutionsFeedStack}
         options={{
           tabBarLabel: 'Actions',
-          tabBarIcon: () => <MaterialIcons name="lightbulb" size={24} color="black" />
+          tabBarIcon: ({color}) => <Ionicons name="bulb-sharp" size={24} color={color} />,
+          tabBarActiveTintColor: '#07373b',
+          tabBarInactiveTintColor: '#77AAAF',
         }}
       />
       <Tabs.Screen
@@ -57,7 +65,9 @@ function BottomNavigation() {
         component={MythsFeedStack}
         options={{
           tabBarLabel: 'Myths',
-          tabBarIcon: () => <Ionicons name="md-chatbox-ellipses-sharp" size={24} color="black" />
+          tabBarIcon: ({color}) => <MaterialCommunityIcons name="chat-alert" size={24} color={color} />,
+          tabBarActiveTintColor: '#07373b',
+          tabBarInactiveTintColor: '#77AAAF',
         }}
       />
       <Tabs.Screen
@@ -65,7 +75,9 @@ function BottomNavigation() {
         component={ConversationsStack}
         options={{
           tabBarLabel: 'Talk',
-          tabBarIcon: () => <Entypo name="chat" size={24} color="black" />
+          tabBarIcon: ({color}) => <Entypo name="chat" size={24} color={color} />,
+          tabBarActiveTintColor: '#07373b',
+          tabBarInactiveTintColor: '#77AAAF',
         }}
       />
     </Tabs.Navigator>
