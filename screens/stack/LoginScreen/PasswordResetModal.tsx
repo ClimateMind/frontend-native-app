@@ -19,7 +19,9 @@ function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
     apiClient.postPasswordResetLink(email);
     Toast.show('Email sent!', {
       duration: Toast.durations.LONG,
-      backgroundColor: 'green',
+      backgroundColor: '#BDFADC',
+      textColor: '#000000',
+      opacity: 1,
     });
     onSubmit();
   }
