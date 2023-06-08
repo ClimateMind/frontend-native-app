@@ -5,7 +5,7 @@ import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { StatusBar } from 'expo-status-bar';
-import { Text, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import useApiClient from './hooks/useApiClient';
 import Colors from './assets/colors';
@@ -70,8 +70,7 @@ function Root() {
   if (isTryingToLogin) {
     return null;
   }
-  
-  
+   
   return (
     <>
       <StatusBar style='light' />
@@ -86,8 +85,6 @@ function Root() {
 function App() {  
   const [fontsLoaded] = useFonts({
     'nunito-medium': require('./assets/fonts/Nunito-Medium.ttf'),
-    
-    
   });
 
   const onLayoutRootView = useCallback(async () => {
