@@ -36,6 +36,15 @@ function BottomNavigation() {
           tabBarIcon: ({color}) => <Text style={{fontSize: 20, color:color,fontWeight:'bold'}}>{user.firstName[0] + user.lastName[0]}</Text>,
           tabBarActiveTintColor: '#07373b',
           tabBarInactiveTintColor: '#77AAAF',
+          tabBarLabelStyle:{
+            marginBottom:5,
+            fontFamily: 'nunito-medium'
+          
+           },
+           tabBarIconStyle:{
+            marginTop:5,
+           },
+           
         }}
 
         
@@ -48,6 +57,16 @@ function BottomNavigation() {
           tabBarIcon: ({color}) => <Entypo name="home" size={24} color={color} />,
           tabBarActiveTintColor: '#07373b',
           tabBarInactiveTintColor: '#77AAAF',
+          tabBarLabelStyle:{
+            marginBottom:5,
+            fontFamily: 'nunito-medium'
+           
+          
+           },
+           tabBarIconStyle:{
+            marginTop:5,
+           }
+           
         }}
       />
       <Tabs.Screen
@@ -55,9 +74,19 @@ function BottomNavigation() {
         component={SolutionsFeedStack}
         options={{
           tabBarLabel: 'Actions',
-          tabBarIcon: ({color}) => <Ionicons name="bulb-sharp" size={24} color={color} />,
+          tabBarIcon: ({color}) => <Ionicons name="bulb-sharp" size={24} color={color}/>,
           tabBarActiveTintColor: '#07373b',
           tabBarInactiveTintColor: '#77AAAF',
+          tabBarLabelStyle:{
+            marginBottom:5,
+            fontFamily: 'nunito-medium'
+          
+           },
+           tabBarIconStyle:{
+            marginTop:5,
+           }
+          
+          
         }}
       />
       <Tabs.Screen
@@ -68,6 +97,15 @@ function BottomNavigation() {
           tabBarIcon: ({color}) => <MaterialCommunityIcons name="chat-alert" size={24} color={color} />,
           tabBarActiveTintColor: '#07373b',
           tabBarInactiveTintColor: '#77AAAF',
+          tabBarLabelStyle:{
+            marginBottom:5,
+            fontFamily: 'nunito-medium'
+          
+           },
+           tabBarIconStyle:{
+            marginTop:5,
+           }
+           
         }}
       />
       <Tabs.Screen
@@ -78,6 +116,16 @@ function BottomNavigation() {
           tabBarIcon: ({color}) => <Entypo name="chat" size={24} color={color} />,
           tabBarActiveTintColor: '#07373b',
           tabBarInactiveTintColor: '#77AAAF',
+          tabBarLabelStyle:{
+            marginBottom:5,
+            fontFamily: 'nunito-medium'
+          
+           },
+           tabBarIconStyle:{
+            marginTop:5,
+           }
+         
+           
         }}
       />
     </Tabs.Navigator>
