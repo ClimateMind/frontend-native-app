@@ -104,16 +104,12 @@ function useApiClient() {
   }
 
   async function postLogin(email: string, password: string, recaptchaToken: string) {
-    try {
-      const response = await axios.post<responses.Login>(
-        API_URL + '/login',
-        { email, password, recaptchaToken },
-      )
+    const response = await axios.post<responses.Login>(
+      API_URL + '/login',
+      { email, password, recaptchaToken },
+    )
 
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    return response.data;
   }
 
   async function postPasswordResetLink(email: string) {
@@ -248,6 +244,18 @@ function useApiClient() {
 
     return response.data;
   }
+
+  async function deleteConversation(conversationId: string) {
+    await axios.delete(
+      API_URL + '/conversation/' + conversationId,
+      {
+        headers: {
+          'X-Session-Id': sessionId,
+          'Authorization': 'Bearer ' + user.accessToken,
+        },
+      },
+    );      
+  }
   
   return {
     postSession,
@@ -268,6 +276,7 @@ function useApiClient() {
 
     createConversationInvite,
     getAllConversations,
+    deleteConversation,    
   };
 }
 
