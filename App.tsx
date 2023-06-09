@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
@@ -8,6 +9,9 @@ import { StyleSheet, View } from 'react-native';
 
 import useApiClient from './hooks/useApiClient';
 import Colors from './assets/colors';
+
+// Fonts
+import { useFonts } from 'expo-font';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -27,6 +31,8 @@ function Root() {
   const dispatch = useAppDispatch();
   const sessionId = useAppSelector(state => state.auth.sessionId);
   const [isTryingToLogin, setIsTryingToLogin] = useState(true);
+ 
+
   
   useEffect(() => {
     async function isUserLoggedIn() {
@@ -64,7 +70,7 @@ function Root() {
   if (isTryingToLogin) {
     return null;
   }
-  
+   
   return (
     <>
       <StatusBar style='light' />
@@ -77,6 +83,19 @@ function Root() {
 }
 
 function App() {  
+  const [fontsLoaded] = useFonts({
+    'nunito-medium': require('./assets/fonts/Nunito-Medium.ttf'),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <Provider store={store}>
       <RootSiblingParent>
