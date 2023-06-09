@@ -5,11 +5,6 @@ import Svg, { Path, Text, Circle, Line } from 'react-native-svg';
 type Props = {
   data: number[],
   size: number,
-  strokeColor: string,
-  strokeWidth: number,
-  labelColor: string,
-  axisColor: string,
-  axisLabelColor: string,
   labels: string[],
 };
 
@@ -25,8 +20,13 @@ type Axis = {
 };
 
 function RadarChart(props: Props) {
-  const { data, size, strokeColor, strokeWidth, labelColor, axisColor, axisLabelColor, labels } = props;
+  const { data, size, labels } = props;
 
+  const strokeColor = "#61dafb";
+  const strokeWidth = 2;
+  const axisColor="#000";
+  const axisLabelColor="#666";
+  
   const center = size / 2;
   const radius = size / 2 - 50;
   const angle = (2 * Math.PI) / data.length;
