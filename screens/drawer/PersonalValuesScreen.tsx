@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 
 import Colors from '../../assets/colors';
@@ -56,7 +56,8 @@ function PersonalValuesScreen({ navigation }: Props) {
         <PageTitle>Your Personal Value Web</PageTitle>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <RadarChart
-            size={300}
+            // The -40 comes from the padding of the parent view (20 on each side)
+            size={Dimensions.get('window').width - 40}
             data={personalValues.valueScores.map(value => value.score)}
             labels={personalValues.valueScores.map(value => value.personalValue)}
           />
