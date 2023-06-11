@@ -45,7 +45,7 @@ function RadarChart(props: Props) {
     const a = angle * index;
     const x = center + radius * Math.sin(a);
     const y = center - radius * Math.cos(a);
-    const labelOffset = 20;
+    const labelOffset = 25;
     const labelPoint = {
       x: center + (radius + labelOffset) * Math.sin(a),
       y: center - (radius + labelOffset) * Math.cos(a),
