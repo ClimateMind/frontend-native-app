@@ -12,7 +12,7 @@ import PageTitle from '../../../components/PageTitle';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import PersonalValueCard from './PersonalValueCard';
 
-import RadarChart from './RadarChart';
+import RadarChart from '../../../components/RadarChart';
 import Colors from '../../../assets/colors';
 
 type Props = NativeStackScreenProps<RootStackParams, 'PersonalValuesScreenNewUser'>;
@@ -49,7 +49,7 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
   
   return (
     <ScrollView>
-      <View style={styles.blueArea}>
+      <View style={[styles.padding, styles.blueArea]}>
         <PageTitle>This is your Climate Personality</PageTitle>
 
         <View style={styles.valueCard}>
@@ -61,28 +61,20 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
         <View style={styles.valueCard}>
           <PersonalValueCard nr={3} value={personalValues.personalValues[2]} />
         </View>
-
       </View>
 
-      <View style={styles.orangeArea}>
+      <View style={[styles.padding, styles.whiteArea]}>
         <PageTitle>Your Personal Value Web</PageTitle>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <RadarChart
-            data={personalValues.valueScores.map(value => value.score)}
             size={300}
-            strokeColor="#61dafb"
-            strokeWidth={2}
-            labelColor="#61dafb"
-            axisColor="#ccc"
-            axisLabelColor="#666"
+            data={personalValues.valueScores.map(value => value.score)}
             labels={personalValues.valueScores.map(value => value.personalValue)}
           />
         </View>
-        
       </View>
       
-
-      <View style={styles.greenArea}>
+      <View style={[styles.padding, styles.blueArea]}>
         <PageTitle>Get started</PageTitle>
         <Text style={[styles.boldText, { marginTop: 30 }]}>Explore how climate change impacts you personally and relates to your values</Text>
         <Text style={styles.boldText}>Discover climate solutions tailored to you</Text>
@@ -97,24 +89,18 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
           <Text style={styles.boldText}>RETAKE QUIZ</Text>
         </Pressable>
       </View>
-
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   blueArea: {
-    backgroundColor: Colors.themeBright
-    
-    ,
-    padding: 20,
-  },
-  orangeArea: {
-    backgroundColor: 'white',
-    padding: 20,
-  },
-  greenArea: {
     backgroundColor: Colors.themeBright,
+  },
+  whiteArea: {
+    backgroundColor: 'black',
+  },
+  padding: {
     padding: 20,
   },
   boldText: {

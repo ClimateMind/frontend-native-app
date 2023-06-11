@@ -5,11 +5,6 @@ import Svg, { Path, Text, Circle, Line } from 'react-native-svg';
 type Props = {
   data: number[],
   size: number,
-  strokeColor: string,
-  strokeWidth: number,
-  labelColor: string,
-  axisColor: string,
-  axisLabelColor: string,
   labels: string[],
 };
 
@@ -25,8 +20,13 @@ type Axis = {
 };
 
 function RadarChart(props: Props) {
-  const { data, size, strokeColor, strokeWidth, labelColor, axisColor, axisLabelColor, labels } = props;
+  const { data, size, labels } = props;
 
+  const strokeColor = "#61dafb";
+  const strokeWidth = 2;
+  const axisColor="#000";
+  const axisLabelColor="#666";
+  
   const center = size / 2;
   const radius = size / 2 - 50;
   const angle = (2 * Math.PI) / data.length;
@@ -45,12 +45,36 @@ function RadarChart(props: Props) {
     const a = angle * index;
     const x = center + radius * Math.sin(a);
     const y = center - radius * Math.cos(a);
-    const labelOffset = 15;
+    const labelOffset = 25;
     const labelPoint = {
       x: center + (radius + labelOffset) * Math.sin(a),
       y: center - (radius + labelOffset) * Math.cos(a),
     };
-    return { point1: { x: center, y: center }, point2: { x, y }, labelPoint };
+
+    // Adjust label position if it exceeds the bounds
+    let labelX = labelPoint.x;
+    let labelY = labelPoint.y;
+
+    // Check if label exceeds the X bounds
+    if (labelPoint.x < labelOffset) {
+      labelX = labelOffset;
+    } else if (labelPoint.x > size - labelOffset) {
+      labelX = size - labelOffset;
+    }
+
+    // Check if label exceeds the Y bounds
+    if (labelPoint.y < labelOffset) {
+      labelY = labelOffset;
+    } else if (labelPoint.y > size - labelOffset) {
+      labelY = size - labelOffset;
+    }
+
+    return {
+      point1: { x: center, y: center },
+      point2: { x, y },
+      labelPoint: { x: labelX, y: labelY },
+    };
+
   });
 
   const webLines = [];
