@@ -1,31 +1,59 @@
 import axios from 'axios';
 import { API_URL } from '@env';
 
-import { useAppSelector } from '../store/hooks';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
 import * as requests from '../api/requests';
 import * as responses from '../api/responses';
 import ClimateEffect from '../types/ClimateEffect';
 import Solution from '../types/Solution';
 import Myth from '../types/Myth';
 
+import jwtDecode from 'jwt-decode';
+import { setAuthToken } from '../store/authSlice';
+
+const validateToken = (token: string): boolean => {
+  try {
+    const decodedToken: { exp: number } = jwtDecode(token);
+    const expirationTime = decodedToken.exp * 1000; // Convert expiration time to milliseconds
+
+    const currentTimestamp = Date.now();
+    return currentTimestamp < expirationTime; // Return true if the token is not expired
+  } catch (error) {
+    console.error('Error decoding or validating token:', error);
+    return false; // Return false if there's an error in decoding or validating the token
+  }
+};
+
 function useApiClient() {
   const sessionId = useAppSelector((state) => state.auth.sessionId);
   const quizId = useAppSelector((state) => state.auth.user.quizId);
   const user = useAppSelector((state) => state.auth.user);
 
-  const climateApi = axios.create({
-    baseURL: API_URL,
-    headers: {
-      common: {
-        Authorization: 'Bearer undefined',
-        'Content-Type': 'application/json',
-      },
-    },
-  });
+  const dispatch = useAppDispatch();
+
+  async function apiCall<T>(method: string, endpoint: string, headers: { [key: string]: string }, data?: any) {
+    if (headers['Authorization']) {
+      const token = headers['Authorization'].split(' ')[1];
+      if (!validateToken(token)) {
+        const newToken = await postRefresh();
+        dispatch(setAuthToken(newToken.access_token))
+        headers['Authorization'] = 'Bearer ' + newToken.access_token;
+      }
+    }
+    
+    const response = await axios.request<T>({
+      url: API_URL + endpoint,
+      method,
+      headers,
+      data,
+    });
+  
+    return response;
+  }
 
   async function postSession() {
     try {
-      const response = await axios.post<responses.PostSession>(API_URL + '/session');
+      const response = await apiCall<responses.PostSession>('post', '/session', {});
       return response.data;
     } catch (error) {
       console.log(error);
@@ -34,36 +62,25 @@ function useApiClient() {
   }
 
   async function getQuestions() {
-    try {
-      const response = await climateApi.get<responses.GetQuestions>('/questions');
-
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await apiCall<responses.GetQuestions>('get', '/questions', {});
+    return response.data;
   }
 
-  async function postScores(quizAnswers: requests.PostScores) {
+  async function postScores(quizAnswers: requests.PostScores) {    
     if (!sessionId) {
       throw new Error('Missing sessionId')
     }
     
-    try {
-      const response = await axios.post<responses.PostScores>(
-        API_URL + '/scores',
-        { questionResponses: quizAnswers },
-        {
-          headers: {
-            'X-Session-Id': sessionId,
-          },
-        }
-      );
+    const response = await apiCall<responses.PostScores>(
+      'post',
+      '/scores',
+      {
+        'X-Session-Id': sessionId,
+      },
+      { questionResponses: quizAnswers }
+    );
 
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      return { quizId: '' };
-    }
+    return response.data;
   }
 
   async function getPersonalValues(quizId: string) {
@@ -75,49 +92,60 @@ function useApiClient() {
       throw new Error('Missing quizId')
     }
     
-    try {
-      const response = await axios.get<responses.GetPersonalValues>(
-        API_URL + '/personal_values?quizId=' + quizId,
-        {
-          headers: {
-            'X-Session-Id': sessionId,
-          },
-        }
-      );
-
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function postRegister({ firstName, lastName, email, password, quizId }: requests.PostRegister) {
-    try {
-      const response = await axios.post<responses.PostRegister>(
-        API_URL + '/register',
-        { firstName, lastName, email, password, quizId },
-      );
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function postLogin(email: string, password: string, recaptchaToken: string) {
-    const response = await axios.post<responses.Login>(
-      API_URL + '/login',
-      { email, password, recaptchaToken },
-    )
+    const response = await apiCall<responses.GetPersonalValues>(
+      'get',
+      '/personal_values?quizId=' + quizId,
+      {
+        'X-Session-Id': sessionId,
+      },
+    );
 
     return response.data;
   }
 
+  async function postRegister({ firstName, lastName, email, password, quizId }: requests.PostRegister) {
+    const response = await apiCall<responses.PostRegister>(
+      'post',
+      '/register',
+      {},
+      { firstName, lastName, email, password, quizId },
+    );
+
+    return response.data;
+  }
+
+  async function postLogin(email: string, password: string, recaptchaToken: string) {
+    const response = await apiCall<responses.Login>(
+      'post',
+      '/login',
+      {},
+      { email, password, recaptchaToken },
+    );
+
+    return response.data;
+  }
+
+  async function postRefresh() {
+    const response = await apiCall<{ access_token: string }>(
+      'post',
+      '/refresh',
+      {
+        'X-Session-Id': sessionId,
+        'Authorization': 'Bearer ' + user.accessToken,
+      },
+    );
+
+    console.log(response.data)
+    return response.data;
+  }
+
   async function postPasswordResetLink(email: string) {
-    try {
-      await axios.post(API_URL + '/password-reset', { email });
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await apiCall(
+      'post',
+      '/password-reset',
+      {},
+      { email },
+    );
   }
 
   async function getClimateFeed(): Promise<ClimateEffect[]> {
@@ -125,15 +153,18 @@ function useApiClient() {
       throw new Error('Missing sessionId')
     }
     
-    const response = await axios.get<{ climateEffects: ClimateEffect[] }>(
-      API_URL + '/feed?quizId=' + quizId,
+    if (quizId === '') {
+      throw new Error('Missing quizId')
+    }
+
+    const response = await apiCall<{ climateEffects: ClimateEffect[] }>(
+      'get',
+      '/feed?quizId=' + quizId,
       {
-        headers: {
-          'X-Session-Id': sessionId,
-        },
-      }
+        'X-Session-Id': sessionId,
+      },
     );
-    
+
     return response.data.climateEffects;
   }
 
@@ -141,14 +172,17 @@ function useApiClient() {
     if (!sessionId) {
       throw new Error('Missing sessionId')
     }
-    
-    const response = await axios.get<{ solutions: Solution[] }>(
-      API_URL + '/solutions?quizId=' + quizId,
+
+    if (quizId === '') {
+      throw new Error('Missing quizId')
+    }
+
+    const response = await apiCall<{ solutions: Solution[] }>(
+      'get',
+      '/solutions?quizId=' + quizId,
       {
-        headers: {
-          'X-Session-Id': sessionId,
-        },
-      }
+        'X-Session-Id': sessionId,
+      },
     );
 
     return response.data.solutions;
@@ -159,13 +193,12 @@ function useApiClient() {
       throw new Error('Missing sessionId')
     }
     
-    const response = await axios.get<{ myths: Myth[] }>(
-      API_URL + '/myths',
+    const response = await apiCall<{ myths: Myth[] }>(
+      'get',
+      '/myths',
       {
-        headers: {
-          'X-Session-Id': sessionId,
-        },
-      }
+        'X-Session-Id': sessionId,
+      },
     );
 
     return response.data.myths;
@@ -176,85 +209,77 @@ function useApiClient() {
       throw new Error('Missing sessionId')
     }
     
-    const response = await axios.get<{ myth: Myth }>(
-      API_URL + '/myths/' + mythIri,
+    const response = await apiCall<{ myth: Myth }>(
+      'get',
+      '/myths/' + mythIri,
       {
-        headers: {
-          'X-Session-Id': sessionId,
-        },
-      }
+        'X-Session-Id': sessionId,
+      },
     );
 
     return response.data.myth;
   }
 
   async function putPassword(currentPassword: string, newPassword: string, confirmNewPassword: string) {
-    await axios.put(
-      API_URL + '/user-account', {
-        currentPassword, newPassword, confirmNewPassword,
-      },
+    const response = await apiCall(
+      'put',
+      '/user-account',
       {
-        headers: {
-          'X-Session-Id': sessionId,
-          'Authorization': 'Bearer ' + user.accessToken,
-        },
+        'X-Session-Id': sessionId,
+        'Authorization': 'Bearer ' + user.accessToken,
       },
-    )
+      { currentPassword, newPassword, confirmNewPassword },
+    );
   }
   
   async function putEmail(newEmail: string, confirmEmail: string, password: string) {
-    await axios.put(
-      API_URL + '/email', {
-        newEmail, confirmEmail, password,
-      },
+    const response = await apiCall(
+      'put',
+      '/email',
       {
-        headers: {
-          'X-Session-Id': sessionId,
-          'Authorization': 'Bearer ' + user.accessToken,
-        },
+        'X-Session-Id': sessionId,
+        'Authorization': 'Bearer ' + user.accessToken,
       },
-    )
+      { newEmail, confirmEmail, password },
+    );
   }
 
   async function createConversationInvite(invitedUserName: string) {
-    const response = await axios.post<responses.CreateConversation>(
-      API_URL + '/conversation',
-      { invitedUserName },
+    const response = await apiCall<responses.CreateConversation>(
+      'post',
+      '/conversation',
       {
-        headers: {
-          'X-Session-Id': sessionId,
-          'Authorization': 'Bearer ' + user.accessToken,
-        },
+        'X-Session-Id': sessionId,
+        'Authorization': 'Bearer ' + user.accessToken,
       },
+      { invitedUserName },
     );
 
     return response.data;
   }
   
   async function getAllConversations() {
-    const response = await axios.get<{ conversations: responses.GetAllConversations[] }>(
-      API_URL + '/conversations',
+    const response = await apiCall<{ conversations: responses.GetAllConversations[] }>(
+      'get',
+      '/conversations',
       {
-        headers: {
-          'X-Session-Id': sessionId,
-          'Authorization': 'Bearer ' + user.accessToken,
-        },
+        'X-Session-Id': sessionId,
+        'Authorization': 'Bearer ' + user.accessToken,
       },
     );
-
+    
     return response.data;
   }
 
   async function deleteConversation(conversationId: string) {
-    await axios.delete(
-      API_URL + '/conversation/' + conversationId,
+    const response = await apiCall(
+      'delete',
+      '/conversation/' + conversationId,
       {
-        headers: {
-          'X-Session-Id': sessionId,
-          'Authorization': 'Bearer ' + user.accessToken,
-        },
+        'X-Session-Id': sessionId,
+        'Authorization': 'Bearer ' + user.accessToken,
       },
-    );      
+    );    
   }
   
   return {
@@ -264,6 +289,7 @@ function useApiClient() {
     getPersonalValues,
     postRegister,
     postLogin,
+    postRefresh,
     postPasswordResetLink,
 
     getClimateFeed,
