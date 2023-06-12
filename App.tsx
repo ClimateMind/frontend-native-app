@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
-import { useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import useApiClient from './hooks/useApiClient';
 import Colors from './assets/colors';
@@ -30,11 +29,20 @@ function Root() {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
   const sessionId = useAppSelector(state => state.auth.sessionId);
-  const [isTryingToLogin, setIsTryingToLogin] = useState(true);
- 
-
   
+  const [showOnboarding, setShowOnboarding] = useState(false);
+ 
   useEffect(() => {
+    async function firstTimeUsage() {
+      const firstTimeUsage = await AsyncStorage.getItem('firstTimeUsage');
+      if (firstTimeUsage === null) {
+        await AsyncStorage.setItem('firstTimeUsage', 'false');
+        return true;
+      }
+
+      return false;
+    }
+    
     async function isUserLoggedIn() {
       // Check if the user information is stored on the device
       const accessToken = await AsyncStorage.getItem('accessToken');
@@ -51,12 +59,19 @@ function Root() {
           email, userId, quizId,
         }))
       }
-
-      setIsTryingToLogin(false);
-      await SplashScreen.hideAsync();
     }
 
-    isUserLoggedIn();
+    firstTimeUsage()
+      .then(result => {
+        if (result) {
+          // If it's the first time the user opens the app, show the onboading screens
+          setShowOnboarding(true);
+          SplashScreen.hideAsync();
+        } else {
+          // Otherwise, check if the user is logged in
+          isUserLoggedIn().then(() => SplashScreen.hideAsync());
+        }
+      })
   }, [])
   
   useEffect(() => {
@@ -66,17 +81,14 @@ function Root() {
       }
     }
   })
-  
-  if (isTryingToLogin) {
-    return null;
-  }
-   
+     
   return (
     <>
       <StatusBar style='light' />
       <View style={styles.safeArea}></View>
       <NavigationContainer>
-        <DrawerNavigation />
+        {showOnboarding && <View style={{ flex: 1, backgroundColor: 'red'}}><Text>This is an Onboarding Screen</Text></View>}
+        {!showOnboarding && <DrawerNavigation />}
       </NavigationContainer>
     </>
   );
