@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
@@ -29,11 +28,9 @@ SplashScreen.preventAutoHideAsync();
 function Root() {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
-  const sessionId = useAppSelector(state => state.auth.sessionId);
+  const sessionId = useAppSelector((state) => state.auth.sessionId);
   const [isTryingToLogin, setIsTryingToLogin] = useState(true);
- 
 
-  
   useEffect(() => {
     async function isUserLoggedIn() {
       // Check if the user information is stored on the device
@@ -49,7 +46,7 @@ function Root() {
         dispatch(login({
           accessToken, firstName, lastName,
           email, userId, quizId,
-        }))
+        }));
       }
 
       setIsTryingToLogin(false);
@@ -57,23 +54,23 @@ function Root() {
     }
 
     isUserLoggedIn();
-  }, [])
-  
+  }, []);
+
   useEffect(() => {
-    if (sessionId === '') {{
-        apiClient.postSession()
-          .then(result => dispatch(setSessionId(result.sessionId)))
-      }
+    if (sessionId === '') {
+      apiClient
+        .postSession()
+        .then((result) => dispatch(setSessionId(result.sessionId)));
     }
-  })
-  
+  });
+
   if (isTryingToLogin) {
     return null;
   }
-   
+
   return (
     <>
-      <StatusBar style='light' />
+      <StatusBar style="light" />
       <View style={styles.safeArea}></View>
       <NavigationContainer>
         <DrawerNavigation />
@@ -82,7 +79,7 @@ function Root() {
   );
 }
 
-function App() {  
+function App() {
   const [fontsLoaded] = useFonts({
     'nunito-medium': require('./assets/fonts/Nunito-Medium.ttf'),
   });
