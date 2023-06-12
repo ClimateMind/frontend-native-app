@@ -12,7 +12,7 @@ import ClimateFeedStack from './ClimateFeedStack';
 import SolutionsFeedStack from './SolutionsFeedStack';
 import MythsFeedStack from './MythsFeedStack';
 import ConversationsStack from './ConversationsStack';
-import PersonalValuesScreen from '../screens/drawer/PersonalValuesScreen/PersonalValuesScreen';
+import PersonalValuesScreen from '../screens/tabs/PersonalValuesScreen/PersonalValuesScreen';
 
 export type BottomNavigationParams = {
   ProfileScreen: undefined;

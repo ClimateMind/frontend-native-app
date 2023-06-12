@@ -9,7 +9,7 @@ import useApiClient from '../../../hooks/useApiClient';
 import { GetPersonalValues } from '../../../api/responses';
 import PageTitle from '../../../components/PageTitle';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
-import PersonalValueCard from './PersonalValueCard';
+import PersonalValueCard from '../../../components/PersonalValueCard';
 
 import RadarChart from '../../../components/RadarChart';
 import Colors from '../../../assets/colors';

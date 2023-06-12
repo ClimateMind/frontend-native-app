@@ -6,9 +6,9 @@ import { BottomNavigationParams } from '../../../navigation/BottomNavigation';
 import Colors from '../../../assets/colors';
 import useApiClient from '../../../hooks/useApiClient';
 import { GetPersonalValues } from '../../../api/responses';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { useAppSelector } from '../../../store/hooks';
 import PageTitle from '../../../components/PageTitle';
-import PersonalValueCard from '../../stack/PersonalValuesScreenNewUser/PersonalValueCard';
+import PersonalValueCard from '../../../components/PersonalValueCard';
 import RadarChart from '../../../components/RadarChart';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -16,7 +16,6 @@ type Props = BottomTabScreenProps<BottomNavigationParams, 'PersonalValuesScreen'
 
 function PersonalValuesScreen({ navigation }: Props) {
   const apiClient = useApiClient();
-  const dispatch = useAppDispatch();
   const quizId = useAppSelector(state => state.auth.user.quizId);
   
   const scrollRef = useRef<ScrollView | null>(null);
