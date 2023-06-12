@@ -87,12 +87,6 @@ function App() {
     'nunito-medium': require('./assets/fonts/Nunito-Medium.ttf'),
   });
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
   if (!fontsLoaded) {
     return null;
   }
@@ -106,7 +100,7 @@ function App() {
 }
 
 const styles = StyleSheet.create({
-safeArea: {
+  safeArea: {
     backgroundColor: Colors.themeDark,
   },
 });
