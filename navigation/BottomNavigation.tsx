@@ -12,6 +12,7 @@ import ClimateFeedStack from './ClimateFeedStack';
 import SolutionsFeedStack from './SolutionsFeedStack';
 import MythsFeedStack from './MythsFeedStack';
 import ConversationsStack from './ConversationsStack';
+import PersonalValuesScreen from '../screens/drawer/PersonalValuesScreen/PersonalValuesScreen';
 
 export type BottomNavigationParams = {
   ProfileScreen: undefined;
@@ -19,6 +20,7 @@ export type BottomNavigationParams = {
   SolutionsFeedStack: undefined;
   MythsFeedStack: undefined;
   ConversationsStack: undefined;
+  PersonalValuesScreen: undefined;
 };
 
 const Tabs = createBottomTabNavigator<BottomNavigationParams>();
@@ -86,6 +88,15 @@ function BottomNavigation() {
           tabBarIcon: ({ color }) => <Entypo name="chat" size={24} color={color} />,
         }}
       />
+      <Tabs.Screen
+        name='PersonalValuesScreen'
+        component={PersonalValuesScreen}
+        options={{
+          // Hide screen from tab bar
+          tabBarButton: () => null,
+        }}
+      />
+      
     </Tabs.Navigator>
   );
 }

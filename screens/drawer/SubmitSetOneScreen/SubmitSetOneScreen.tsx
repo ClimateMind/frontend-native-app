@@ -1,22 +1,27 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../../navigation/RootStackNavigation';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { DrawerScreenProps } from '@react-navigation/drawer';
+import { DrawerNavigationParams } from '../../../navigation/DrawerNavigation/DrawerNavigation';
 
-import { Pressable, Text, View } from 'react-native';
-import { useEffect } from 'react';
 import PageTitle from '../../../components/PageTitle';
-import { StyleSheet } from 'react-native';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import Colors from '../../../assets/colors';
+import { useAppSelector } from '../../../store/hooks';
 
-type Props = NativeStackScreenProps<RootStackParams, 'SubmitSetOneScreen'>;
+type Props = DrawerScreenProps<DrawerNavigationParams, 'SubmitSetOneScreen'>;
 
 function SubmitSetOneScreen({ navigation }: Props) {
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
+  
   function navigateToQuizScreen() {
     navigation.navigate('QuizScreen', { questionSet: 2 });
   }
 
-  function navigateToPersonalValuesScreenNewUser() {
-    navigation.navigate('PersonalValuesScreenNewUser');
+  function navigateToPersonalValuesScreen() {
+    if (isLoggedIn) {
+      navigation.navigate('BottomNavigation', { screen: 'PersonalValuesScreen' });
+    } else {
+      navigation.navigate('RootStackNavigation');
+    }
   }
   
   return (
@@ -25,7 +30,7 @@ function SubmitSetOneScreen({ navigation }: Props) {
       
       <Text style={styles.boldText}>Do you want to carry on with another 10 questions or get your results now?</Text>
       
-      <Pressable onPress={navigateToPersonalValuesScreenNewUser}>
+      <Pressable onPress={navigateToPersonalValuesScreen}>
         <Text style={styles.boldText}>FIND OUT MY CLIMATE PERSONALITY</Text>
       </Pressable>
 

@@ -1,26 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
-import { useFocusEffect } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../../navigation/RootStackNavigation';
-
 import { ActivityIndicator, Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { BottomNavigationParams } from '../../../navigation/BottomNavigation';
+
+import Colors from '../../../assets/colors';
 import useApiClient from '../../../hooks/useApiClient';
 import { GetPersonalValues } from '../../../api/responses';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import PageTitle from '../../../components/PageTitle';
-import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
-import PersonalValueCard from './PersonalValueCard';
-
+import PersonalValueCard from '../../stack/PersonalValuesScreenNewUser/PersonalValueCard';
 import RadarChart from '../../../components/RadarChart';
-import Colors from '../../../assets/colors';
+import { useFocusEffect } from '@react-navigation/native';
 
-type Props = NativeStackScreenProps<RootStackParams, 'PersonalValuesScreenNewUser'>;
+type Props = BottomTabScreenProps<BottomNavigationParams, 'PersonalValuesScreen'>;
 
-function PersonalValuesScreenNewUser({ navigation }: Props) {
+function PersonalValuesScreen({ navigation }: Props) {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
   const quizId = useAppSelector(state => state.auth.user.quizId);
-
+  
   const scrollRef = useRef<ScrollView | null>(null);
   const [personalValues, setPersonalValues] = useState<GetPersonalValues>();
   
@@ -28,15 +26,11 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
     navigation.getParent()?.navigate('QuizScreen', { questionSet: 1 });
   }
 
-  function navigateToSignUpScreen() {
-    navigation.navigate('SignUpScreen');
-  }
-  
   useEffect(() => {
     if (!quizId) {
       return;
     }
-
+    
     apiClient.getPersonalValues(quizId)
       .then(result => setPersonalValues(result));
   }, [quizId]);
@@ -77,17 +71,8 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
           />
         </View>
       </View>
-      
-      <View style={[styles.padding, styles.blueArea]}>
-        <PageTitle>Get started</PageTitle>
-        <Text style={[styles.boldText, { marginTop: 30 }]}>Explore how climate change impacts you personally and relates to your values</Text>
-        <Text style={styles.boldText}>Discover climate solutions tailored to you</Text>
-        <Text style={styles.boldText}>Communicate the realities of climate change to others</Text>
-        <Text style={[styles.boldText, { marginBottom: 30 }]}>Set up your account and dive into effective conversations about climate change</Text>
-        <View style={{ marginBottom: 40 }}>
-          <SimpleWhiteButton text='DIVE IN' onPress={navigateToSignUpScreen} />
-        </View>
 
+      <View style={[styles.padding, styles.blueArea]}>
         <Text style={styles.boldText}>Not happy with your results?</Text>
         <Pressable onPress={retakeQuiz}>
           <Text style={styles.boldText}>RETAKE QUIZ</Text>
@@ -100,6 +85,7 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
 const styles = StyleSheet.create({
   blueArea: {
     backgroundColor: Colors.themeBright,
+    minHeight: 200,
   },
   whiteArea: {
     backgroundColor: 'white',
@@ -117,4 +103,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PersonalValuesScreenNewUser;
+export default PersonalValuesScreen;

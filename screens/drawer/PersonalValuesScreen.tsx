@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { DrawerScreenProps } from '@react-navigation/drawer';
+
 
 import Colors from '../../assets/colors';
 import useApiClient from '../../hooks/useApiClient';
@@ -10,9 +10,11 @@ import { resetQuizAnswers } from '../../store/quizSlice';
 import PageTitle from '../../components/PageTitle';
 import PersonalValueCard from '../stack/PersonalValuesScreenNewUser/PersonalValueCard';
 import RadarChart from '../../components/RadarChart';
-import { DrawerNavigationParams } from '../../navigation/DrawerNavigation/DrawerNavigation';
 
-type Props = DrawerScreenProps<DrawerNavigationParams, 'PersonalValuesScreen'>;
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { BottomNavigationParams } from '../../navigation/BottomNavigation';
+
+type Props = BottomTabScreenProps<BottomNavigationParams, 'PersonalValuesScreen'>;
 
 function PersonalValuesScreen({ navigation }: Props) {
   const apiClient = useApiClient();
@@ -23,7 +25,7 @@ function PersonalValuesScreen({ navigation }: Props) {
   
   function retakeQuiz() {
     dispatch(resetQuizAnswers());
-    navigation.navigate('QuizScreen', { questionSet: 1 });
+    navigation.getParent()?.navigate('QuizScreen', { questionSet: 1 });
   }
   
   useEffect(() => {
