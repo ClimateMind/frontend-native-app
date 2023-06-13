@@ -4,7 +4,7 @@ import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, SafeAreaView } from 'react-native';
 
 import useApiClient from './hooks/useApiClient';
 import Colors from './assets/colors';
@@ -79,6 +79,7 @@ function Root() {
       <StatusBar style="light" />
       <View style={styles.safeArea}></View>
       <NavigationContainer>
+        
         <DrawerNavigation />
       </NavigationContainer>
     </>
@@ -96,16 +97,22 @@ function App() {
   return (
     <Provider store={store}>
       <RootSiblingParent>
+      <SafeAreaView style={styles.container}>
         <Root />
+        </SafeAreaView>
       </RootSiblingParent>
     </Provider>
   );
 }
 
+
 const styles = StyleSheet.create({
   safeArea: {
     backgroundColor: Colors.themeDark,
   },
+  container:{
+    flex:1
+  }
 });
 
 export default App;
