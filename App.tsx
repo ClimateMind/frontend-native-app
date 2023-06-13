@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
@@ -31,7 +30,7 @@ function Root() {
   const dispatch = useAppDispatch();
 
   const [isTryingToLogin, setIsTryingToLogin] = useState(true);
-  
+
   useEffect(() => {
     async function isUserLoggedIn() {
       // Check if the user information is stored on the device
@@ -47,7 +46,7 @@ function Root() {
         dispatch(login({
           accessToken, firstName, lastName,
           email, userId, quizId,
-        }))
+        }));
       }
 
       setIsTryingToLogin(false);
@@ -55,8 +54,8 @@ function Root() {
     }
 
     isUserLoggedIn();
-  }, [])
-  
+  }, []);
+
   useEffect(() => {
     async function getSessionId() {
       const sessionId = await AsyncStorage.getItem('sessionId');
@@ -70,14 +69,14 @@ function Root() {
 
     getSessionId();
   }, [])
-  
+
   if (isTryingToLogin) {
     return null;
   }
-   
+
   return (
     <>
-      <StatusBar style='light' />
+      <StatusBar style="light" />
       <View style={styles.safeArea}></View>
       <NavigationContainer>
         <DrawerNavigation />
@@ -86,16 +85,10 @@ function Root() {
   );
 }
 
-function App() {  
+function App() {
   const [fontsLoaded] = useFonts({
     'nunito-medium': require('./assets/fonts/Nunito-Medium.ttf'),
   });
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
 
   if (!fontsLoaded) {
     return null;
@@ -110,7 +103,7 @@ function App() {
 }
 
 const styles = StyleSheet.create({
-safeArea: {
+  safeArea: {
     backgroundColor: Colors.themeDark,
   },
 });
