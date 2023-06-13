@@ -45,14 +45,14 @@ function ConversationsDrawer({ open, onClose }: Props) {
         {allConversations && (
           <FlatList
             ListHeaderComponent={
-              <View style={{ margin: 10 }}>
+              <View style={{ margin: 10}}>
                 <ConversationsIntroCard />
               </View>
             }
             data={allConversations}
             renderItem={(item) => <View style={{ margin: 10 }}><ConversationCard conversation={item.item} onDelete={onDeleteConversation} /></View>}
             keyExtractor={(item) => item.conversationId}
-            style={{ marginBottom: 30 }}
+            style={{marginBottom:30}}
           />
         )}
         </View>
@@ -66,6 +66,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.themeBright,
     flex: 1,
+    paddingBottom: 140,
+    paddingTop:10
   },
 });
 
