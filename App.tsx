@@ -28,7 +28,7 @@ SplashScreen.preventAutoHideAsync();
 function Root() {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
-  const sessionId = useAppSelector((state) => state.auth.sessionId);
+
   const [isTryingToLogin, setIsTryingToLogin] = useState(true);
 
   useEffect(() => {
@@ -57,12 +57,18 @@ function Root() {
   }, []);
 
   useEffect(() => {
-    if (sessionId === '') {
-      apiClient
-        .postSession()
-        .then((result) => dispatch(setSessionId(result.sessionId)));
+    async function getSessionId() {
+      const sessionId = await AsyncStorage.getItem('sessionId');
+      if (sessionId) {
+        dispatch(setSessionId(sessionId));
+      } else {
+        apiClient.postSession()
+          .then(result => dispatch(setSessionId(result.sessionId)))
+      }
     }
-  });
+
+    getSessionId();
+  }, [])
 
   if (isTryingToLogin) {
     return null;
