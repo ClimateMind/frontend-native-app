@@ -14,7 +14,7 @@ function ConversationsScreen() {
 
   const [recipient, setRecipient] = useState('');
   const [showConversationsDrawer, setShowConversationsDrawer] = useState(false);
-  
+
   async function createLink() {
     if (recipient === '') {
       return;
@@ -23,34 +23,33 @@ function ConversationsScreen() {
     const result = await apiClient.createConversationInvite(recipient);
     Clipboard.setStringAsync(WEB_URL + '/landing/' + result.conversationId);
   }
-  
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      
-      <KeyboardAvoidingView behavior='position' style={styles.mainSection}>
+      <KeyboardAvoidingView behavior="position" style={styles.mainSection}>
 
         <PageTitle>Start a Conversation</PageTitle>
         <Text style={styles.mainText}>
-          Create a personalized link for each person you want to talk to. Then share it, so they can
-          take the quiz, discover your shared values, and pick topics to talk about.
+          Create a personalized link for each person you want to talk to. Then
+          share it, so they can take the quiz, discover your shared values, and
+          pick topics to talk about.
         </Text>
         <Text style={styles.smallText}>We will send you an email when they agree to share their results with you!</Text>
 
         <Text style={styles.label}>Name of recipient</Text>
         <TextInput
           placeholder='Try "Peter Smith" or "Mom"'
-          autoCapitalize='sentences'
-          
+          autoCapitalize="sentences"
           autoCorrect={false}
           onChangeText={(value) => setRecipient(value)}
           style={styles.input}
         />
         <View style={{ width: '100%', alignSelf: 'center' }}>
-          <SimpleWhiteButton disabled={recipient === ''} text='CREATE LINK' onPress={createLink} />
+          <SimpleWhiteButton disabled={recipient === ''} text="CREATE LINK" onPress={createLink} />
         </View>
 
       </KeyboardAvoidingView>
-      
+
       <Pressable onPress={() => setShowConversationsDrawer(true)} style={styles.openDrawerButton}>
         <AntDesign name="up" size={24} color="black" />
         <Text style={{ fontWeight: 'bold' }}>Ongoing Conversations</Text>
