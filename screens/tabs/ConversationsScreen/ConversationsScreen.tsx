@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Dimensions, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Dimensions, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import * as Clipboard from 'expo-clipboard';
 import { WEB_URL } from '@env';
@@ -7,7 +7,7 @@ import { WEB_URL } from '@env';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import useApiClient from '../../../hooks/useApiClient';
 import ConversationsDrawer from './ConversationsDrawer';
-import Colors from '../../../assets/colors';
+import PageTitle from '../../../components/PageTitle';
 
 function ConversationsScreen() {
   const apiClient = useApiClient();
@@ -25,32 +25,40 @@ function ConversationsScreen() {
   }
   
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Start a conversation</Text>
-      <Text style={styles.mainText}>
-        Create a personalized link for each person you want to talk to. Then share it, so they can
-        take the quiz, discover your shared values, and pick topics to talk about.
-      </Text>
-      <Text style={styles.smallText}>We will send you an email when they agree to share their results with you!</Text>
+    <ScrollView contentContainerStyle={styles.container}>
+      
+      <KeyboardAvoidingView behavior='position' style={styles.mainSection}>
 
-      <Text style={styles.label}>Name of recipient </Text>
-      <TextInput
-        placeholder='Try "Peter Smith" or "Mom"'
-        autoCapitalize='sentences'
-        
-        autoCorrect={false}
-        onChangeText={(value) => setRecipient(value)}
-        style={styles.input}
-      />
-      <SimpleWhiteButton disabled={recipient === ''} text='CREATE LINK' onPress={createLink} />
+        <PageTitle>Start a Conversation</PageTitle>
+        <Text style={styles.mainText}>
+          Create a personalized link for each person you want to talk to. Then share it, so they can
+          take the quiz, discover your shared values, and pick topics to talk about.
+        </Text>
+        <Text style={styles.smallText}>We will send you an email when they agree to share their results with you!</Text>
 
+        <Text style={styles.label}>Name of recipient</Text>
+        <TextInput
+          placeholder='Try "Peter Smith" or "Mom"'
+          autoCapitalize='sentences'
+          
+          autoCorrect={false}
+          onChangeText={(value) => setRecipient(value)}
+          style={styles.input}
+        />
+        <View style={{ width: '100%', alignSelf: 'center' }}>
+          <SimpleWhiteButton disabled={recipient === ''} text='CREATE LINK' onPress={createLink} />
+        </View>
+
+      </KeyboardAvoidingView>
+      
       <Pressable onPress={() => setShowConversationsDrawer(true)} style={styles.openDrawerButton}>
-      <AntDesign name="up" size={24} color="black" />
+        <AntDesign name="up" size={24} color="black" />
         <Text style={{ fontWeight: 'bold' }}>Ongoing Conversations</Text>
       </Pressable>
 
       <ConversationsDrawer open={showConversationsDrawer} onClose={() => setShowConversationsDrawer(false)} />
-    </View>
+
+    </ScrollView>
   );
 }
 
@@ -59,13 +67,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 10,
     backgroundColor: 'white',
+    paddingHorizontal: 10,
+    paddingTop: 20,
   },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 24,
-    marginVertical: 10,
+  mainSection: {
+    flex: 1,
+    alignItems: 'center',
   },
   mainText: {
     fontWeight: '500',
@@ -82,8 +90,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   input: {
-    width: '100%',
-    alignSelf: 'flex-start',
+    alignSelf: 'stretch',
     marginVertical: 10,
     padding: 10,
     backgroundColor: 'white',
@@ -95,7 +102,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 5,
   },
   openDrawerButton: {
-    backgroundColor: Colors.themeBright,
+    backgroundColor: '#BBE6E2',
     width: Dimensions.get('screen').width,
     height: 100,
     marginTop: 'auto',
