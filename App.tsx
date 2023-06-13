@@ -4,7 +4,7 @@ import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 
 import useApiClient from './hooks/useApiClient';
 import Colors from './assets/colors';
@@ -16,7 +16,7 @@ import { useFonts } from 'expo-font';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { login, setSessionId } from './store/authSlice';
-import { useAppDispatch, useAppSelector } from './store/hooks';
+import { useAppDispatch } from './store/hooks';
 
 // Navigation
 import { NavigationContainer } from '@react-navigation/native';
@@ -77,9 +77,7 @@ function Root() {
   return (
     <>
       <StatusBar style="light" />
-      <View style={styles.safeArea}></View>
       <NavigationContainer>
-        
         <DrawerNavigation />
       </NavigationContainer>
     </>
@@ -97,22 +95,19 @@ function App() {
   return (
     <Provider store={store}>
       <RootSiblingParent>
-      <SafeAreaView style={styles.container}>
-        <Root />
+        <SafeAreaView style={styles.safeArea}>
+          <Root />
         </SafeAreaView>
       </RootSiblingParent>
     </Provider>
   );
 }
 
-
 const styles = StyleSheet.create({
-  safeArea: {
+  safeArea:{
+    flex:1,
     backgroundColor: Colors.themeDark,
   },
-  container:{
-    flex:1
-  }
 });
 
 export default App;
