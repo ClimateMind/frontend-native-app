@@ -69,15 +69,19 @@ export const authSlice = createSlice({
     },
     setSessionId: (state, action: PayloadAction<string>) => {
       state.sessionId = action.payload;
+      AsyncStorage.setItem('sessionId', action.payload);
     },
     setQuizId: (state, action: PayloadAction<string>) => {
       state.user.quizId = action.payload;
+    },
+    setAuthToken: (state, action: PayloadAction<string>) => {
+      state.user.accessToken = action.payload;
     },
   },
 });
 
 export const {
   login, logout,
-  setSessionId, setQuizId,
+  setSessionId, setQuizId, setAuthToken,
 } = authSlice.actions;
 export default authSlice.reducer;
