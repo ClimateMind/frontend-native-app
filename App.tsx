@@ -68,7 +68,7 @@ function Root() {
     }
 
     getSessionId();
-  }, [])
+  }, []);
 
   if (isTryingToLogin) {
     return null;
@@ -104,8 +104,8 @@ function App() {
 }
 
 const styles = StyleSheet.create({
-  safeArea:{
-    flex:1,
+  safeArea: {
+    flex: 1,
     backgroundColor: Colors.themeDark,
   },
 });
