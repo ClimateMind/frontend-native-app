@@ -30,29 +30,29 @@ function ConversationsDrawer({ open, onClose }: Props) {
   return (
     <Modal
       visible={open}
-      animationType='slide'
+      animationType="slide"
     >
       <View style={styles.container}>
-        <Pressable onPress={onClose} style={{ height: 100, alignItems: 'center' }}>
+        <Pressable onPress={onClose} style={{ height: 100, alignItems: "center" }}>
           <AntDesign name="down" size={24} color="black" style={{ padding: 20 }} />
         </Pressable>
         <View style={{ marginBottom: 20 }}>
           <PageTitle>Ongoing Conversations</PageTitle>
         </View>
 
-        {allConversations === undefined && <ActivityIndicator size='large' color='black' style={{ marginTop: 100 }} />}
+        {allConversations === undefined && <ActivityIndicator size="large" color="black" style={{ marginTop: 100 }} />}
         <View>
         {allConversations && (
           <FlatList
             ListHeaderComponent={
-              <View style={{ margin: 10}}>
+              <View style={{ margin: 10 }}>
                 <ConversationsIntroCard />
               </View>
             }
             data={allConversations}
             renderItem={(item) => <View style={{ margin: 10 }}><ConversationCard conversation={item.item} onDelete={onDeleteConversation} /></View>}
             keyExtractor={(item) => item.conversationId}
-            style={{marginBottom:30}}
+            style={{ marginBottom: 30 }}
           />
         )}
         </View>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.themeBright,
     flex: 1,
     paddingBottom: 140,
-    paddingTop:10
+    paddingTop: 10,
   },
 });
 
