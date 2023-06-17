@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import {  useState } from 'react';
+import Toast from 'react-native-root-toast';
 import {
   Dimensions,
   Pressable,
@@ -20,27 +21,48 @@ import Colors from '../../../assets/colors';
 
 function ConversationsScreen() {
   const apiClient = useApiClient();
-
   const [recipient, setRecipient] = useState('');
   const [showConversationsDrawer, setShowConversationsDrawer] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [copiedText, setCopiedText] = useState('');
-  async function createLink() {
-    if (recipient === '') {
-      return;
+
+  // Sets the link and then imediately gets the link and updates the copied text state so that it can be displayed on the modal
+    async function setLink() {
+      try {
+        if (recipient === '') {
+          return;
+        }
+        const result = await apiClient.createConversationInvite(recipient);
+        Clipboard.setStringAsync(WEB_URL + '/landing/' + result.conversationId);
+        getLink()
+        setModalVisible(true);
+      } catch (e) {
+        console.log(e);
+      }
     }
-  
 
-    const result = await apiClient.createConversationInvite(recipient);
-    Clipboard.setStringAsync(WEB_URL + '/landing/' + result.conversationId);
-   getLink()
-  }
+    async function getLink() {
+      try {
+        const getResult = await Clipboard.getStringAsync();
+        setCopiedText(getResult);
+      } catch (e) {
+        console.log(e);
+      }
+    }
 
-  async function getLink(){
-    const getResult = await Clipboard.getStringAsync();
-    setCopiedText(getResult);
-    setModalVisible(true);
-  }
+    //Pressing the copy button just closes the modal. This doesn't actually copy, it creates the illusion of copying to clipboard but because copying to clipboard has already been done in the above functions all this does is close the modal
+    function closeModal(){
+      setRecipient("")
+      setModalVisible(!true);
+        Toast.show('Copied to clipboard.',
+          {
+            duration: Toast.durations.LONG,
+            backgroundColor: '#09353C',
+            textColor: 'white',
+            opacity: 0.8,
+          }
+        ); 
+    }
 
   return (
     <View style={styles.container}>
@@ -49,23 +71,19 @@ function ConversationsScreen() {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
+          Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-          <Text style={styles.modalText}>Copy Link</Text>
-          <Text style={styles.modalText}>Unique for {recipient}</Text>
+        <View style={styles.centerModal}>
+          <View style={styles.modalCard}>
+            <Text style={styles.modalText}>Copy Link</Text>
+            <Text style={styles.modalText}>Unique for {recipient}</Text>
             <Text style={styles.modalText}>{copiedText}</Text>
-            <Pressable onPress={getLink}>
-              <Text>Copy</Text>
-              </Pressable>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
+           
+            <Pressable onPress={closeModal} style={styles.copyButton}>
+              
+              <Text style ={styles.modalText}>Copy</Text>
             </Pressable>
           </View>
         </View>
@@ -88,11 +106,12 @@ function ConversationsScreen() {
         autoCorrect={false}
         onChangeText={(value) => setRecipient(value)}
         style={styles.input}
+        value = {recipient}
       />
       <SimpleWhiteButton
         disabled={recipient === ''}
         text="CREATE LINK"
-        onPress={createLink}
+        onPress={setLink}
       />
 
       <Pressable
@@ -112,48 +131,26 @@ function ConversationsScreen() {
 }
 
 const styles = StyleSheet.create({
-  centeredView: {
+  centerModal: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
   },
-  modalView: {
-    margin: 20,
+  modalCard: {
+    padding: 20,
     backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
+    width: '90%',
+  },
+  copyButton: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
   },
   modalText: {
     marginBottom: 15,
-    textAlign: 'center',
+    textAlign: 'left',
   },
-  // all elements above are new for te
   container: {
     flex: 1,
     justifyContent: 'center',
