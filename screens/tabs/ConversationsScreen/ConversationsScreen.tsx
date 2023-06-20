@@ -36,20 +36,18 @@ function ConversationsScreen() {
         </Text>
         <Text style={styles.smallText}>We will send you an email when they agree to share their results with you!</Text>
 
-        <Text style={styles.label}>Name of recipient</Text>
+        <Text style={styles.label}>Name of recipient </Text>
         <TextInput
           placeholder='Try "Peter Smith" or "Mom"'
-          autoCapitalize="sentences"
+          autoCapitalize='sentences'
+          
           autoCorrect={false}
           onChangeText={(value) => setRecipient(value)}
           style={styles.input}
         />
-        <View style={{ width: '100%', alignSelf: 'center' }}>
-          <SimpleWhiteButton disabled={recipient === ''} text="CREATE LINK" onPress={createLink} />
-        </View>
-
+        <SimpleWhiteButton style={styles.createLinkButton} disabled={recipient === ''} text='CREATE LINK' onPress={createLink} />
       </KeyboardAvoidingView>
-
+        
       <Pressable onPress={() => setShowConversationsDrawer(true)} style={styles.openDrawerButton}>
         <AntDesign name="up" size={24} color="black" />
         <Text style={{ fontWeight: 'bold' }}>Ongoing Conversations</Text>
@@ -99,6 +97,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
+  },
+  createLinkButton: {
+    marginTop: 30,
+    marginBottom: 15,
+    minWidth: 160,
   },
   openDrawerButton: {
     backgroundColor: '#BBE6E2',

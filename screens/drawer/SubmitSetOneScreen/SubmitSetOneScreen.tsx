@@ -36,7 +36,7 @@ function SubmitSetOneScreen({ navigation }: Props) {
 
       <Text style={styles.boldText}>You will get better personalised results if you complete all 20 questions.</Text>
       
-      <SimpleWhiteButton text='Continue' onPress={navigateToQuizScreen} />
+      <SimpleWhiteButton style={styles.button} text='Continue' onPress={navigateToQuizScreen} />
     </View>
   );
 }
@@ -53,6 +53,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginVertical: 30,
+  },
+  button: {
+    marginTop: 30,
+    marginBottom: 15,
+    minWidth: 160,
   },
 });
 

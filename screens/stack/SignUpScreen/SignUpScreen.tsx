@@ -155,16 +155,7 @@ function SignUpScreen({ navigation }: Props) {
       />
       {!inputs.confirmPassword.isValid && <Text style={styles.errorText}>Passwords must match</Text>}
 
-      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-        <SimpleWhiteButton
-          text="CREATE ACCOUNT"
-          onPress={submitHandler}
-        />
-      </View>
-
-      {/* <Pressable>
-        <Text style={{ fontWeight: 'bold', textAlign: 'center' }}>SKIP</Text>
-      </Pressable> */}
+      <SimpleWhiteButton style={styles.button} text="CREATE ACCOUNT" onPress={submitHandler} />
     </View>
   );
 }
@@ -194,6 +185,12 @@ const styles = StyleSheet.create({
     marginTop: -5,
     marginBottom: 5,
     color: '#B0063D',
+  },
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 30,
+    marginBottom: 15,
   },
 });
 

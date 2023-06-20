@@ -30,7 +30,7 @@ function SubmitSetTwoScreen({ navigation }: Props) {
       
       <Text style={styles.boldText}>This is a ranking of the top three personal values that you deploy when making decisions.</Text>
 
-      <SimpleWhiteButton text='FIND OUT MY CLIMATE PERSONALITY' onPress={navigateToPersonalValuesScreen} />
+      <SimpleWhiteButton style={styles.button} text='FIND OUT MY CLIMATE PERSONALITY' onPress={navigateToPersonalValuesScreenNewUser} />
     </View>
   );
 }
@@ -47,6 +47,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginVertical: 30,
+  },
+  button: {
+    marginTop: 30,
+    marginBottom: 15,
+    minWidth: 160,
   },
 });
 

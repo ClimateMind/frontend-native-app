@@ -128,7 +128,7 @@ function LoginScreen() {
             }}
           />
 
-          <SimpleWhiteButton text="LOG IN" onPress={() => recaptcha.current?.open()} />
+          <SimpleWhiteButton style={styles.loginButton} text="LOG IN" onPress={() => recaptcha.current?.open()} />
 
           <PasswordResetModal show={showModal} onCancel={() => {setShowModal(false)}} onSubmit={() => setShowModal(false)} />
         </View>
@@ -146,6 +146,11 @@ const styles = StyleSheet.create({
   image: {
     width: 100,
     resizeMode: 'contain',
+  },
+  loginButton: {
+    marginTop: 30,
+    marginBottom: 15,
+    minWidth: 160,
   },
   boldText: {
     fontWeight: 'bold',

@@ -19,9 +19,9 @@ function ProfileScreen() {
     <View style={styles.container}>
       <PageTitle>{firstName}'s account</PageTitle>
 
-      <SimpleWhiteButton text='CHANGE PASSWORD' onPress={() => setShowPasswordModal(true)} />
-      <SimpleWhiteButton text='UPDATE EMAIL' onPress={() => setShowEmailModal(true)} />
-      <SimpleWhiteButton text='LOGOUT' onPress={() => dispatch(logout())} />
+      <SimpleWhiteButton style={{ marginTop: 20 }} text='CHANGE PASSWORD' onPress={() => setShowPasswordModal(true)} />
+      <SimpleWhiteButton style={{ marginTop: 20 }} text='UPDATE EMAIL' onPress={() => setShowEmailModal(true)} />
+      <SimpleWhiteButton style={{ marginTop: 20 }} text='LOGOUT' onPress={() => dispatch(logout())} />
 
       {showPasswordModal && <ChangePasswordModal show={showPasswordModal} onCancel={() => setShowPasswordModal(false)} onSubmit={() => setShowPasswordModal(false)} />}
       {showEmailModal && <UpdateEmailModal show={showEmailModal} onCancel={() => setShowEmailModal(false)} onSubmit={() => setShowEmailModal(false)} />}
