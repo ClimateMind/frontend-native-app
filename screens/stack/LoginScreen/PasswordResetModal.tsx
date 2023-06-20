@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import Toast from 'react-native-root-toast';
 
 import useApiClient from "../../../hooks/useApiClient";
+import { showSuccessToast } from '../../../components/ToastMessages';
 
 interface Props {
   show: boolean;
@@ -17,12 +17,7 @@ function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
   
   function onPasswordResetRequest() {
     apiClient.postPasswordResetLink(email);
-    Toast.show('Email sent!', {
-      duration: Toast.durations.LONG,
-      backgroundColor: '#BDFADC',
-      textColor: '#000000',
-      opacity: 1,
-    });
+    showSuccessToast('Email sent!');
     onSubmit();
   }
 
