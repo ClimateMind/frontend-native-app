@@ -1,4 +1,4 @@
-import {  useState } from 'react';
+import { useState } from 'react';
 import { Dimensions, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, Text, TextInput } from 'react-native';
 
 import { AntDesign } from '@expo/vector-icons';
@@ -24,10 +24,10 @@ function ConversationsScreen() {
     if (recipient === '') {
       return;
     }
-    
+
     try {
       const result = await apiClient.createConversationInvite(recipient);
-      setConversationLink(WEB_URL + '/landing/' + result.conversationId)
+      setConversationLink(WEB_URL + '/landing/' + result.conversationId);
 
       setShowCopyLinkModal(true);
     } catch (e) {
@@ -35,7 +35,7 @@ function ConversationsScreen() {
     }
   }
 
-  function closeModal(){
+  function closeModal() {
     setRecipient('');
     setShowCopyLinkModal(false);
   }
@@ -47,10 +47,10 @@ function ConversationsScreen() {
         <KeyboardAvoidingView behavior="position" style={styles.mainSection}>
           <PageTitle>Start a Conversation</PageTitle>
           <Text style={styles.mainText}>
-              Create a personalized link for each person you want to talk to. Then
-              share it, so they can take the quiz, discover your shared values, and
-              pick topics to talk about.
-            </Text>
+            Create a personalized link for each person you want to talk to. Then
+            share it, so they can take the quiz, discover your shared values, and
+            pick topics to talk about.
+          </Text>
           <Text style={styles.smallText}>We will send you an email when they agree to share their results with you!</Text>
 
           <Text style={styles.label}>Name of recipient</Text>
