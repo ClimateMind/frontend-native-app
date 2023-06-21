@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { API_URL } from '@env';
+import jwtDecode from 'jwt-decode';
+import Toast from 'react-native-root-toast';
 
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import * as requests from '../api/requests';
@@ -8,8 +10,7 @@ import ClimateEffect from '../types/ClimateEffect';
 import Solution from '../types/Solution';
 import Myth from '../types/Myth';
 
-import jwtDecode from 'jwt-decode';
-import { setAuthToken } from '../store/authSlice';
+import { logout } from '../store/authSlice';
 
 const validateToken = (token: string): boolean => {
   try {
@@ -35,9 +36,13 @@ function useApiClient() {
     if (headers['Authorization']) {
       const token = headers['Authorization'].split(' ')[1];
       if (!validateToken(token)) {
-        const newToken = await postRefresh();
-        dispatch(setAuthToken(newToken.access_token))
-        headers['Authorization'] = 'Bearer ' + newToken.access_token;
+        Toast.show('Session expired, please login again.', {
+          duration: Toast.durations.LONG,
+          backgroundColor: '#ED7878',
+          textColor: '#000000',
+          opacity: 1,
+        });
+        dispatch(logout());
       }
     }
     
