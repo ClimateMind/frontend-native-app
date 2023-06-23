@@ -30,7 +30,7 @@ function PreQuizScreen({ navigation }: Props) {
           There's no right or wrong answers!
         </Text>
 
-        <SimpleWhiteButton text='TAKE THE QUIZ' onPress={navigateToQuizScreen} />
+        <SimpleWhiteButton style={styles.button} text='TAKE THE QUIZ' onPress={navigateToQuizScreen} />
 
       </View>
       <View style={[styles.container, { backgroundColor: Colors.themeDark }]}>
@@ -66,6 +66,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 20,
+  },
+  button: {
+    marginTop: 30,
+    minWidth: 160,
   },
 });
 

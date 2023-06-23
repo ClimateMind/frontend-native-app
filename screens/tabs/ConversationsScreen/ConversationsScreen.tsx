@@ -62,11 +62,7 @@ function ConversationsScreen() {
             style={styles.input}
             value={recipient}
           />
-          <SimpleWhiteButton
-            disabled={recipient === ''}
-            text="CREATE LINK"
-            onPress={showModal}
-          />
+          <SimpleWhiteButton style={styles.createLinkButton} disabled={recipient === ''} text='CREATE LINK' onPress={createLink} />
         </KeyboardAvoidingView>
 
         <Pressable onPress={() => setShowConversationsDrawer(true)} style={styles.openDrawerButton}>
@@ -129,6 +125,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
+  },
+  createLinkButton: {
+    marginTop: 30,
+    marginBottom: 15,
+    minWidth: 160,
   },
   openDrawerButton: {
     backgroundColor: '#BBE6E2',
