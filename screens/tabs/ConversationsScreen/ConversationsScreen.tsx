@@ -1,56 +1,89 @@
 import { useState } from 'react';
-import { Dimensions, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import * as Clipboard from 'expo-clipboard';
-import { WEB_URL } from '@env';
+import { Dimensions, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, Text, TextInput } from 'react-native';
 
+import { AntDesign } from '@expo/vector-icons';
+
+import { WEB_URL } from '@env';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import useApiClient from '../../../hooks/useApiClient';
 import ConversationsDrawer from './ConversationsDrawer';
-import Colors from '../../../assets/colors';
+import PageTitle from '../../../components/PageTitle';
+import CopyLinkModal from './CopyLinkModal';
+import { showErrorToast } from '../../../components/ToastMessages';
 
 function ConversationsScreen() {
   const apiClient = useApiClient();
-
   const [recipient, setRecipient] = useState('');
   const [showConversationsDrawer, setShowConversationsDrawer] = useState(false);
-  
-  async function createLink() {
+
+  const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
+  const [conversationLink, setConversationLink] = useState('');
+
+  /** Create the conversation link and show the modal to copy it */
+  async function showModal() {
     if (recipient === '') {
       return;
     }
 
-    const result = await apiClient.createConversationInvite(recipient);
-    Clipboard.setStringAsync(WEB_URL + '/landing/' + result.conversationId);
+    try {
+      const result = await apiClient.createConversationInvite(recipient);
+      setConversationLink(WEB_URL + '/landing/' + result.conversationId);
+
+      setShowCopyLinkModal(true);
+    } catch (e) {
+      showErrorToast('Error creating link. Please try again later.');
+    }
   }
-  
+
+  function closeModal() {
+    setRecipient('');
+    setShowCopyLinkModal(false);
+  }
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Start a conversation</Text>
-      <Text style={styles.mainText}>
-        Create a personalized link for each person you want to talk to. Then share it, so they can
-        take the quiz, discover your shared values, and pick topics to talk about.
-      </Text>
-      <Text style={styles.smallText}>We will send you an email when they agree to share their results with you!</Text>
+    <>
+      <ScrollView contentContainerStyle={styles.container}>
 
-      <Text style={styles.label}>Name of recipient </Text>
-      <TextInput
-        placeholder='Try "Peter Smith" or "Mom"'
-        autoCapitalize='sentences'
-        
-        autoCorrect={false}
-        onChangeText={(value) => setRecipient(value)}
-        style={styles.input}
+        <KeyboardAvoidingView behavior="position" style={styles.mainSection}>
+          <PageTitle>Start a Conversation</PageTitle>
+          <Text style={styles.mainText}>
+            Create a personalized link for each person you want to talk to. Then
+            share it, so they can take the quiz, discover your shared values, and
+            pick topics to talk about.
+          </Text>
+          <Text style={styles.smallText}>We will send you an email when they agree to share their results with you!</Text>
+
+          <Text style={styles.label}>Name of recipient</Text>
+          <TextInput
+            placeholder='Try "Peter Smith" or "Mom"'
+            autoCapitalize="sentences"
+            autoCorrect={false}
+            onChangeText={(value) => setRecipient(value)}
+            style={styles.input}
+            value={recipient}
+          />
+          <SimpleWhiteButton style={styles.createLinkButton} disabled={recipient === ''} text='CREATE LINK' onPress={createLink} />
+        </KeyboardAvoidingView>
+
+        <Pressable onPress={() => setShowConversationsDrawer(true)} style={styles.openDrawerButton}>
+          <AntDesign name="up" size={24} color="black" />
+          <Text style={{ fontWeight: 'bold' }}>Ongoing Conversations</Text>
+        </Pressable>
+
+        <ConversationsDrawer
+          open={showConversationsDrawer}
+          onClose={() => setShowConversationsDrawer(false)}
+        />
+
+      </ScrollView>
+
+      <CopyLinkModal
+        show={showCopyLinkModal}
+        recipient={recipient}
+        link={conversationLink}
+        onClose={closeModal}
       />
-      <SimpleWhiteButton disabled={recipient === ''} text='CREATE LINK' onPress={createLink} />
-
-      <Pressable onPress={() => setShowConversationsDrawer(true)} style={styles.openDrawerButton}>
-      <AntDesign name="up" size={24} color="black" />
-        <Text style={{ fontWeight: 'bold' }}>Ongoing Conversations</Text>
-      </Pressable>
-
-      <ConversationsDrawer open={showConversationsDrawer} onClose={() => setShowConversationsDrawer(false)} />
-    </View>
+    </>
   );
 }
 
@@ -59,13 +92,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 10,
     backgroundColor: 'white',
+    paddingHorizontal: 10,
+    paddingTop: 20,
   },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 24,
-    marginVertical: 10,
+  mainSection: {
+    flex: 1,
+    alignItems: 'center',
   },
   mainText: {
     fontWeight: '500',
@@ -82,8 +115,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   input: {
-    width: '100%',
-    alignSelf: 'flex-start',
+    alignSelf: 'stretch',
     marginVertical: 10,
     padding: 10,
     backgroundColor: 'white',
@@ -94,8 +126,13 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
   },
+  createLinkButton: {
+    marginTop: 30,
+    marginBottom: 15,
+    minWidth: 160,
+  },
   openDrawerButton: {
-    backgroundColor: Colors.themeBright,
+    backgroundColor: '#BBE6E2',
     width: Dimensions.get('screen').width,
     height: 100,
     marginTop: 'auto',

@@ -29,10 +29,9 @@ function ConversationsIntroScreen({ navigation }: Props) {
       <Text style={styles.header}>Step 3: Inspire</Text>
       <Text style={styles.smallText}>Motivate the other person with solutions they find attractive.</Text>
       <BulletListItem textStyle={styles.smallText}>Climate Mind has you covered for this one too!</BulletListItem>
-      
-      <View style={styles.button}>
-        <SimpleWhiteButton text='START TALKING WITH PEOPLE' onPress={() => { navigation.navigate('ConversationsScreen') }} />
-      </View>
+
+      <SimpleWhiteButton style={styles.button} text='START TALKING WITH PEOPLE' onPress={() => { navigation.navigate('ConversationsScreen') }} />
+
     </ScrollView>
   );
 }
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   button: {
-    marginTop: 20,
+    marginTop: 30,
     marginBottom: 100,
   },
 });

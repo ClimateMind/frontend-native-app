@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react';
 import { Dimensions, Image, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
-import Toast from 'react-native-root-toast';
 import { AxiosError } from 'axios';
 import Recaptcha, { RecaptchaHandles } from 'react-native-recaptcha-that-works';
 import { WEB_URL, RECAPTCHA_SITE_KEY } from '@env';
@@ -14,6 +13,7 @@ import PageTitle from '../../../components/PageTitle';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import PasswordResetModal from './PasswordResetModal';
 import Colors from '../../../assets/colors';
+import { showErrorToast } from '../../../components/ToastMessages';
 
 function LoginScreen() {
   const apiClient = useApiClient();
@@ -26,16 +26,8 @@ function LoginScreen() {
   const [password, setPassword] = useState('');
 
   async function onLogin(token: string) {
-    if (email === '' || password === '') {
-      Toast.show('Please enter your username and password',
-        {
-          duration: Toast.durations.LONG,
-          backgroundColor: '#ED7878',
-          textColor: '#000000',
-          opacity: 1,
-        }
-      );
-      
+    if (email === '' || password === '') {      
+      showErrorToast('Please enter your username and password');
       return;
     }
 
@@ -56,15 +48,7 @@ function LoginScreen() {
       }
     } catch (error) {
       if (error instanceof AxiosError) {
-        Toast.show(
-          error.response?.data.error ?? 'Unexpected Error. Please try again.',
-          {
-            duration: Toast.durations.LONG,
-            backgroundColor: '#ED7878',
-            textColor: '#000000',
-            opacity: 1,
-          }
-        );
+        showErrorToast(error.response?.data.error ?? 'Unexpected Error. Please try again.');
 
         if (error.response?.status === 400) {
           if (error.response?.data.error) {
@@ -117,18 +101,10 @@ function LoginScreen() {
             onVerify={(token: string) => onLogin(token)}
             onExpire={() => {}}
             size="normal"
-            onError={(err) => {
-              if (err === null)
-                Toast.show('Captcha did not succeed.', {
-                  duration: Toast.durations.LONG,
-                  backgroundColor: '#ED7878',
-                  textColor: '#000000',
-                  opacity: 1,
-                });
-            }}
+            onError={(err) => { err ?? showErrorToast('Captcha did not load.') }}
           />
 
-          <SimpleWhiteButton text="LOG IN" onPress={() => recaptcha.current?.open()} />
+          <SimpleWhiteButton style={styles.loginButton} text="LOG IN" onPress={() => recaptcha.current?.open()} />
 
           <PasswordResetModal show={showModal} onCancel={() => {setShowModal(false)}} onSubmit={() => setShowModal(false)} />
         </View>
@@ -146,6 +122,11 @@ const styles = StyleSheet.create({
   image: {
     width: 100,
     resizeMode: 'contain',
+  },
+  loginButton: {
+    marginTop: 30,
+    marginBottom: 15,
+    minWidth: 160,
   },
   boldText: {
     fontWeight: 'bold',

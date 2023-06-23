@@ -1,10 +1,10 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 import useApiClient from './hooks/useApiClient';
 import Colors from './assets/colors';
@@ -16,7 +16,7 @@ import { useFonts } from 'expo-font';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { login, setSessionId } from './store/authSlice';
-import { useAppDispatch, useAppSelector } from './store/hooks';
+import { useAppDispatch } from './store/hooks';
 
 // Navigation
 import { NavigationContainer } from '@react-navigation/native';
@@ -28,10 +28,12 @@ SplashScreen.preventAutoHideAsync();
 function Root() {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
+
   const sessionId = useAppSelector(state => state.auth.sessionId);
-  
+
   const [showOnboarding, setShowOnboarding] = useState(false);
- 
+  const [isTryingToLogin, setIsTryingToLogin] = useState(true);
+
   useEffect(() => {
     async function firstTimeUsage() {
       const firstTimeUsage = await AsyncStorage.getItem('firstTimeUsage');
@@ -57,7 +59,7 @@ function Root() {
         dispatch(login({
           accessToken, firstName, lastName,
           email, userId, quizId,
-        }))
+        }));
       }
     }
 
@@ -73,19 +75,22 @@ function Root() {
         }
       })
   }, [])
-  
+
   useEffect(() => {
-    if (sessionId === '') {{
+    async function getSessionId() {
+      const sessionId = await AsyncStorage.getItem('sessionId');
+      if (sessionId) {
+        dispatch(setSessionId(sessionId));
+      } else {
         apiClient.postSession()
           .then(result => dispatch(setSessionId(result.sessionId)))
       }
     }
   })
-     
+
   return (
     <>
-      <StatusBar style='light' />
-      <View style={styles.safeArea}></View>
+      <StatusBar style="light" />
       <NavigationContainer>
         {showOnboarding && <View style={{ flex: 1, backgroundColor: 'red'}}><Text>This is an Onboarding Screen</Text></View>}
         {!showOnboarding && <DrawerNavigation />}
@@ -94,16 +99,10 @@ function Root() {
   );
 }
 
-function App() {  
+function App() {
   const [fontsLoaded] = useFonts({
     'nunito-medium': require('./assets/fonts/Nunito-Medium.ttf'),
   });
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
 
   if (!fontsLoaded) {
     return null;
@@ -111,14 +110,17 @@ function App() {
   return (
     <Provider store={store}>
       <RootSiblingParent>
-        <Root />
+        <SafeAreaView style={styles.safeArea}>
+          <Root />
+        </SafeAreaView>
       </RootSiblingParent>
     </Provider>
   );
 }
 
 const styles = StyleSheet.create({
-safeArea: {
+  safeArea: {
+    flex: 1,
     backgroundColor: Colors.themeDark,
   },
 });

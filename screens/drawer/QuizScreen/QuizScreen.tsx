@@ -1,20 +1,22 @@
 import { ActivityIndicator } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../../navigation/RootStackNavigation';
+import { DrawerScreenProps } from '@react-navigation/drawer';
+import { DrawerNavigationParams } from '../../../navigation/DrawerNavigation/DrawerNavigation';
 
 import SingleQuestion from './SingleQuestion';
 import { useEffect, useState } from 'react';
-import { useAppDispatch } from '../../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { addQuizAnswer } from '../../../store/quizSlice';
 import { GetQuestions } from '../../../api/responses';
 import useApiClient from '../../../hooks/useApiClient';
+import { setQuizId } from '../../../store/authSlice';
 
-type Props = NativeStackScreenProps<RootStackParams, 'QuizScreen'>;
+type Props = DrawerScreenProps<DrawerNavigationParams, 'QuizScreen'>;
 
 function QuizScreen({ route, navigation }: Props) {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
   
+  const quizAnswers = useAppSelector(state => state.quiz.quizAnswers);
   const [questionSets, setQuestionSets] = useState<GetQuestions>();
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState(1);
 
@@ -40,14 +42,21 @@ function QuizScreen({ route, navigation }: Props) {
   }, []);
 
   useEffect(() => {
+    async function submitAnswers() {
+      const result = await apiClient.postScores(quizAnswers);
+      dispatch(setQuizId(result.quizId));
+    }
+    
     // If the user answered all 10 questions, he will be navigated to the next screen
     if (route.params.questionSet === 1 && currentQuestionNumber === 11) {
       setCurrentQuestionNumber(1);
+      submitAnswers();
       navigation.navigate('SubmitSetOneScreen');
     }
 
     if (route.params.questionSet === 2 && currentQuestionNumber === 11) {
       setCurrentQuestionNumber(1);
+      submitAnswers();
       navigation.navigate('SubmitSetTwoScreen');
     }
   }, [currentQuestionNumber]);

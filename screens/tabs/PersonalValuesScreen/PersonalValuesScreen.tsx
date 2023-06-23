@@ -1,35 +1,42 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { DrawerScreenProps } from '@react-navigation/drawer';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { BottomNavigationParams } from '../../../navigation/BottomNavigation';
 
-import Colors from '../../assets/colors';
-import useApiClient from '../../hooks/useApiClient';
-import { GetPersonalValues } from '../../api/responses';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { resetQuizAnswers } from '../../store/quizSlice';
-import PageTitle from '../../components/PageTitle';
-import PersonalValueCard from '../stack/PersonalValuesScreenNewUser/PersonalValueCard';
-import RadarChart from '../../components/RadarChart';
-import { DrawerNavigationParams } from '../../navigation/DrawerNavigation/DrawerNavigation';
+import Colors from '../../../assets/colors';
+import useApiClient from '../../../hooks/useApiClient';
+import { GetPersonalValues } from '../../../api/responses';
+import { useAppSelector } from '../../../store/hooks';
+import PageTitle from '../../../components/PageTitle';
+import PersonalValueCard from '../../../components/PersonalValueCard';
+import RadarChart from '../../../components/RadarChart';
+import { useFocusEffect } from '@react-navigation/native';
 
-type Props = DrawerScreenProps<DrawerNavigationParams, 'PersonalValuesScreen'>;
+type Props = BottomTabScreenProps<BottomNavigationParams, 'PersonalValuesScreen'>;
 
 function PersonalValuesScreen({ navigation }: Props) {
   const apiClient = useApiClient();
-  const dispatch = useAppDispatch();
   const quizId = useAppSelector(state => state.auth.user.quizId);
   
+  const scrollRef = useRef<ScrollView | null>(null);
   const [personalValues, setPersonalValues] = useState<GetPersonalValues>();
   
   function retakeQuiz() {
-    dispatch(resetQuizAnswers());
-    navigation.navigate('QuizScreen', { questionSet: 1 });
+    navigation.getParent()?.navigate('QuizScreen', { questionSet: 1 });
   }
-  
+
   useEffect(() => {
+    if (!quizId) {
+      return;
+    }
+    
     apiClient.getPersonalValues(quizId)
       .then(result => setPersonalValues(result));
   }, [quizId]);
+
+  useFocusEffect(() => {
+    scrollRef.current?.scrollTo({ y: 0, animated: false });
+  })
   
   // While we are fetching the personal values from the backend, show a loading spinner to the user
   if (personalValues === undefined) {
@@ -37,7 +44,7 @@ function PersonalValuesScreen({ navigation }: Props) {
   }
   
   return (
-    <ScrollView>
+    <ScrollView ref={scrollRef}>
       <View style={[styles.padding, styles.blueArea]}>
         <PageTitle>This is your Climate Personality</PageTitle>
 

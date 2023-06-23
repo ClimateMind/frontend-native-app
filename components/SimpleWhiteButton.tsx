@@ -1,15 +1,27 @@
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleProp, StyleSheet, Text, ViewStyle } from 'react-native';
 
 type Props = {
   text: string;
   onPress: () => void;
   disabled?: boolean;
-}
+  style?: StyleProp<ViewStyle>;
+};
 
-function SimpleWhiteButton({ text, onPress, disabled=false }: Props) {
-  return <Pressable disabled={disabled} style={({ pressed }) => [styles.button, pressed && styles.buttonPressed, disabled && styles.buttonDisabled]} onPress={onPress}>
-  <Text style={styles.buttonText}>{text}</Text>
-</Pressable>
+function SimpleWhiteButton({ text, onPress, disabled = false, style = {} }: Props) {
+  return (
+    <Pressable
+      disabled={disabled}
+      style={({ pressed }) => [
+        styles.button,
+        pressed && styles.buttonPressed,
+        disabled && styles.buttonDisabled,
+        style,
+      ]}
+      onPress={onPress}
+    >
+      <Text style={styles.buttonText}>{text}</Text>
+    </Pressable>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -19,11 +31,8 @@ const styles = StyleSheet.create({
     borderColor: '#39f5ad',
     borderWidth: 1,
     height: 50,
-    minWidth: 160,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
-    marginBottom: 15,
     paddingHorizontal: 20,
   },
   buttonPressed: {

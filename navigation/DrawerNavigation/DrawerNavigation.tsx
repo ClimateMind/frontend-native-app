@@ -7,15 +7,17 @@ import Colors from '../../assets/colors';
 // Drawer Screens
 import RootStackNavigation from '../RootStackNavigation';
 import BottomNavigation from '../BottomNavigation';
-import PersonalValuesScreen from '../../screens/drawer/PersonalValuesScreen';
-import QuizScreen from '../../screens/stack/QuizScreen/QuizScreen';
 import ConversationsScreen from '../../screens/tabs/ConversationsScreen/ConversationsScreen';
+import QuizScreen from '../../screens/drawer/QuizScreen/QuizScreen';
+import SubmitSetOneScreen from '../../screens/drawer/SubmitSetOneScreen/SubmitSetOneScreen';
+import SubmitSetTwoScreen from '../../screens/drawer/SubmitSetTwoScreen/SubmitSetTwoScreen';
 
 export type DrawerNavigationParams = {
   RootStackNavigation: undefined;
-  BottomNavigation: undefined;
-  PersonalValuesScreen: undefined;
+  BottomNavigation: { screen: string };
   QuizScreen: { questionSet: 1 | 2 };
+  SubmitSetOneScreen: undefined;
+  SubmitSetTwoScreen: undefined;
   ConversationsScreen: undefined;
 };
 
@@ -40,9 +42,10 @@ function DrawerNavigation() {
     >
       {!isLoggedIn && <Drawer.Screen name='RootStackNavigation' component={RootStackNavigation} />}
       {isLoggedIn && <Drawer.Screen name='BottomNavigation' component={BottomNavigation} />}
-      {isLoggedIn && <Drawer.Screen name='PersonalValuesScreen' component={PersonalValuesScreen} />}
-      {isLoggedIn && <Drawer.Screen name='QuizScreen' component={QuizScreen} />}
       {isLoggedIn && <Drawer.Screen name='ConversationsScreen' component={ConversationsScreen} />}
+      <Drawer.Screen name='QuizScreen' component={QuizScreen} />
+      <Drawer.Screen name='SubmitSetOneScreen' component={SubmitSetOneScreen} />
+      <Drawer.Screen name='SubmitSetTwoScreen' component={SubmitSetTwoScreen} />
     </Drawer.Navigator>
   );
 }

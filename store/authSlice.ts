@@ -69,15 +69,29 @@ export const authSlice = createSlice({
     },
     setSessionId: (state, action: PayloadAction<string>) => {
       state.sessionId = action.payload;
+      AsyncStorage.setItem('sessionId', action.payload);
     },
     setQuizId: (state, action: PayloadAction<string>) => {
       state.user.quizId = action.payload;
+    },
+    setAuthToken: (state, action: PayloadAction<string>) => {
+      state.user.accessToken = action.payload;
+    },
+    clearAll: () => {
+      AsyncStorage.removeItem('accessToken');
+      AsyncStorage.removeItem('firstName');
+      AsyncStorage.removeItem('lastName');
+      AsyncStorage.removeItem('email');
+      AsyncStorage.removeItem('userId');
+      AsyncStorage.removeItem('quizId');
+      AsyncStorage.removeItem('sessionId');
     },
   },
 });
 
 export const {
   login, logout,
-  setSessionId, setQuizId,
+  setSessionId, setQuizId, setAuthToken,
+  clearAll,
 } = authSlice.actions;
 export default authSlice.reducer;
