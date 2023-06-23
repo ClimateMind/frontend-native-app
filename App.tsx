@@ -16,7 +16,7 @@ import { useFonts } from 'expo-font';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { login, setSessionId } from './store/authSlice';
-import { useAppDispatch } from './store/hooks';
+import { useAppDispatch, useAppSelector } from './store/hooks';
 
 // Navigation
 import { NavigationContainer } from '@react-navigation/native';
@@ -28,11 +28,9 @@ SplashScreen.preventAutoHideAsync();
 function Root() {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
-
   const sessionId = useAppSelector(state => state.auth.sessionId);
 
   const [showOnboarding, setShowOnboarding] = useState(false);
-  const [isTryingToLogin, setIsTryingToLogin] = useState(true);
 
   useEffect(() => {
     async function firstTimeUsage() {
@@ -77,11 +75,7 @@ function Root() {
   }, [])
 
   useEffect(() => {
-    async function getSessionId() {
-      const sessionId = await AsyncStorage.getItem('sessionId');
-      if (sessionId) {
-        dispatch(setSessionId(sessionId));
-      } else {
+    if (!sessionId) {{
         apiClient.postSession()
           .then(result => dispatch(setSessionId(result.sessionId)))
       }
