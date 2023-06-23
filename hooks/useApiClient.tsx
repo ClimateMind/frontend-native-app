@@ -286,6 +286,20 @@ function useApiClient() {
       },
     );    
   }
+
+  async function putSingleConversation(data: requests.PutSingleConversation) {
+    try {
+      const response = await apiCall(
+        'put',
+        '/conversation/' + data.conversationId,
+        {
+          'X-Session-Id': sessionId,
+          'Authorization': 'Bearer ' + user.accessToken,
+        },
+        data.updatedConversation,
+      );
+    } catch {}
+  }
   
   return {
     postSession,
@@ -308,6 +322,7 @@ function useApiClient() {
     createConversationInvite,
     getAllConversations,
     deleteConversation,    
+    putSingleConversation,
   };
 }
 

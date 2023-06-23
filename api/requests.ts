@@ -10,3 +10,12 @@ export type PostRegister = {
   password: string;
   quizId: string;
 }
+
+export type PutSingleConversation = {
+  conversationId: string;
+  updatedConversation: {
+    state?: number;
+    receiverName?: string;
+    userARating?: number;
+  }
+}

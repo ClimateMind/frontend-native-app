@@ -24,7 +24,7 @@ function StartScreen({ navigation }: Props) {
         <Image style={styles.image} source={require('../../../assets/cm-logo.png')} />
         <PageTitle>Inspire others to take action!</PageTitle>
 
-        <SimpleWhiteButton text='GET STARTED' onPress={navigateToPreQuizScreen} />
+        <SimpleWhiteButton style={styles.button} text='GET STARTED' onPress={navigateToPreQuizScreen} />
 
         <Pressable onPress={navigateToLoginScreen}>
           <Text style={[styles.text, { fontWeight: 'bold' }]}>Already a member? Login here</Text>
@@ -62,6 +62,11 @@ const styles = StyleSheet.create({
   image: {
     width: 100,
     resizeMode: 'contain',
+  },
+  button: {
+    marginTop: 30,
+    marginBottom: 15,
+    minWidth: 160,
   },
   text: {
     textAlign: 'center',
