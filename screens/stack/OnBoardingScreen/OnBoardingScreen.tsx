@@ -1,12 +1,4 @@
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Dimensions,
-} from 'react-native';
-
+import {Pressable, StyleSheet, Text, View, Image, Dimensions} from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../../navigation/RootStackNavigation';
 import { useState } from 'react';
@@ -15,9 +7,10 @@ import { MaterialIcons } from '@expo/vector-icons';
 type Props = NativeStackScreenProps<RootStackParams, 'OnBoardingScreen'>;
 
 function OnBoardingScreen({ navigation }: Props) {
+
   const [index, setindex] = useState(0);
 
-  function navigateToPreQuizScreen() {
+  function navigateToStartScreen() {
     navigation.navigate('StartScreen');
   }
 
@@ -44,11 +37,11 @@ function OnBoardingScreen({ navigation }: Props) {
     },
   ];
 
-  function rightNavigation() {
-    index >= 3 ? navigateToPreQuizScreen() : setindex(index + 1);
+  function nextScreen() {
+   index >= 3 ? navigateToStartScreen() : setindex(index + 1);
   }
 
-  function leftNavigation() {
+  function previousScreen() {
     index < 1 ? setindex(0) : setindex(index - 1);
   }
 
@@ -57,12 +50,12 @@ function OnBoardingScreen({ navigation }: Props) {
       <Image style={styles.images} source={screens[index].uri} />
       <Text style={styles.text}>{screens[index].text}</Text>
       <View style={styles.navIcons}>
-        <Pressable onPress={() => leftNavigation()}>
+        <Pressable onPress={() => previousScreen()}>
           {index !== 0 && (
             <MaterialIcons name="arrow-back-ios" size={32} color="black" />
           )}
         </Pressable>
-        <Pressable onPress={() => rightNavigation()}>
+        <Pressable onPress={() => nextScreen()}>
           <MaterialIcons name="arrow-forward-ios" size={32} color="black" />
         </Pressable>
       </View>
