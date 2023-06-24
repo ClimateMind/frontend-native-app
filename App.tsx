@@ -21,6 +21,7 @@ import { useAppDispatch, useAppSelector } from './store/hooks';
 // Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import DrawerNavigation from './navigation/DrawerNavigation/DrawerNavigation';
+import RootStackNavigation from './navigation/RootStackNavigation';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -86,7 +87,8 @@ function Root() {
     <>
       <StatusBar style="light" />
       <NavigationContainer>
-        {showOnboarding && <View style={{ flex: 1, backgroundColor: 'red'}}><Text>This is an Onboarding Screen</Text></View>}
+        {showOnboarding && <RootStackNavigation /> }
+        
         {!showOnboarding && <DrawerNavigation />}
       </NavigationContainer>
     </>
@@ -96,6 +98,7 @@ function Root() {
 function App() {
   const [fontsLoaded] = useFonts({
     'nunito-medium': require('./assets/fonts/Nunito-Medium.ttf'),
+    'nunito-bold': require('./assets/fonts/Nunito-Bold.ttf')
   });
 
   if (!fontsLoaded) {
