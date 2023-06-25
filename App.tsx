@@ -4,7 +4,7 @@ import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
 import useApiClient from './hooks/useApiClient';
 import Colors from './assets/colors';
@@ -21,7 +21,7 @@ import { useAppDispatch, useAppSelector } from './store/hooks';
 // Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import DrawerNavigation from './navigation/DrawerNavigation/DrawerNavigation';
-import RootStackNavigation from './navigation/RootStackNavigation';
+import OnBoardingScreen from './screens/onboarding/OnBoardingScreen';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -87,8 +87,7 @@ function Root() {
     <>
       <StatusBar style="light" />
       <NavigationContainer>
-        {showOnboarding && <RootStackNavigation /> }
-        
+        {showOnboarding && <OnBoardingScreen onCompleted={() => setShowOnboarding(false)} /> }
         {!showOnboarding && <DrawerNavigation />}
       </NavigationContainer>
     </>
