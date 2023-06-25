@@ -73,12 +73,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#D0EEEB',
   },
   images: {
-    marginTop:40,
+    marginTop:38,
     resizeMode: 'contain',
     width: '100%',
-    height: '45%',
-    
-
+    height: '48%',
   },
   text: {
     flex: 2,
