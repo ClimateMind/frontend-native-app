@@ -1,4 +1,4 @@
-import {Pressable, StyleSheet, Text, View, Image, Dimensions} from 'react-native';
+import { Pressable, StyleSheet, Text, View, Image, Dimensions} from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../../navigation/RootStackNavigation';
 import { useState } from 'react';
@@ -18,22 +18,18 @@ function OnBoardingScreen({ navigation }: Props) {
     {
       text: 'Explore how climate change impacts you personally and relates to your values.',
       uri: require('../../../assets/onboarding/onboarding1.png'),
-      id: 1,
     },
     {
       text: 'Stay informed on climate trends and developments to better understand the impacts of climate change.',
       uri: require('../../../assets/onboarding/onboarding2.png'),
-      id: 2,
     },
     {
       text: 'Discover climate solutions tailored to you.',
       uri: require('../../../assets/onboarding/onboarding3.png'),
-      id: 3,
     },
     {
       text: 'Start a conversation with a friend about climate change.',
       uri: require('../../../assets/onboarding/onboarding4.png'),
-      id: 4,
     },
   ];
 
