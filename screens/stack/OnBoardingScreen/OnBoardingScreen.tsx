@@ -87,8 +87,6 @@ const styles = StyleSheet.create({
   text: {
     flex: 2,
     alignItems:'flex-start',
-    border:1,
-    borderColor:'red',
     paddingLeft: 45,
     paddingRight: 45,
     textAlign: 'left',
