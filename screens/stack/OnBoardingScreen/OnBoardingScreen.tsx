@@ -77,18 +77,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#D0EEEB',
   },
   images: {
+    marginTop:40,
     resizeMode: 'contain',
     width: '100%',
-    height: '50%',
-    paddingTop:20,
+    height: '45%',
+    
 
   },
   text: {
     flex: 2,
-    alignItems:'center',
-    paddingTop:20,
-    paddingLeft: 37,
-    paddingRight: 37,
+    alignItems:'flex-start',
+    border:1,
+    borderColor:'red',
+    paddingLeft: 45,
+    paddingRight: 45,
     textAlign: 'left',
     fontFamily: 'nunito-bold',
     fontSize: 16,  
