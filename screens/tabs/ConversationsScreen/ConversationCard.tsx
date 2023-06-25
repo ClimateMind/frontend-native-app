@@ -60,7 +60,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
   return (
     <>
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }]}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text>{headerText[conversationState]}</Text>
           {expanded && <Pressable onPress={copyLink}><Text>COPY LINK</Text></Pressable>}
@@ -108,7 +108,6 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
     borderRadius: 10,
     elevation: 5,
     justifyContent: 'center',

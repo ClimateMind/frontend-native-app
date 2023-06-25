@@ -32,7 +32,7 @@ function LoginScreen() {
     }
 
     try {
-      const result = await apiClient.postLogin(email, password, token);
+      const result = await apiClient.postLogin(email.trim(), password, token);
 
       if (result !== undefined) {
         dispatch(
