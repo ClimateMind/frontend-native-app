@@ -4,7 +4,7 @@ import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
 import useApiClient from './hooks/useApiClient';
 import Colors from './assets/colors';
@@ -16,11 +16,12 @@ import { useFonts } from 'expo-font';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { login, setSessionId } from './store/authSlice';
-import { useAppDispatch } from './store/hooks';
+import { useAppDispatch, useAppSelector } from './store/hooks';
 
 // Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import DrawerNavigation from './navigation/DrawerNavigation/DrawerNavigation';
+import OnBoardingScreen from './screens/onboarding/OnBoardingScreen';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -28,10 +29,21 @@ SplashScreen.preventAutoHideAsync();
 function Root() {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
+  const sessionId = useAppSelector(state => state.auth.sessionId);
 
-  const [isTryingToLogin, setIsTryingToLogin] = useState(true);
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
+    async function firstTimeUsage() {
+      const firstTimeUsage = await AsyncStorage.getItem('firstTimeUsage');
+      if (firstTimeUsage === null) {
+        await AsyncStorage.setItem('firstTimeUsage', 'false');
+        return true;
+      }
+
+      return false;
+    }
+    
     async function isUserLoggedIn() {
       // Check if the user information is stored on the device
       const accessToken = await AsyncStorage.getItem('accessToken');
@@ -48,37 +60,35 @@ function Root() {
           email, userId, quizId,
         }));
       }
-
-      setIsTryingToLogin(false);
-      await SplashScreen.hideAsync();
     }
 
-    isUserLoggedIn();
-  }, []);
+    firstTimeUsage()
+      .then(result => {
+        if (result) {
+          // If it's the first time the user opens the app, show the onboading screens
+          setShowOnboarding(true);
+          SplashScreen.hideAsync();
+        } else {
+          // Otherwise, check if the user is logged in
+          isUserLoggedIn().then(() => SplashScreen.hideAsync());
+        }
+      })
+  }, [])
 
   useEffect(() => {
-    async function getSessionId() {
-      const sessionId = await AsyncStorage.getItem('sessionId');
-      if (sessionId) {
-        dispatch(setSessionId(sessionId));
-      } else {
+    if (!sessionId) {{
         apiClient.postSession()
           .then(result => dispatch(setSessionId(result.sessionId)))
       }
     }
-
-    getSessionId();
-  }, []);
-
-  if (isTryingToLogin) {
-    return null;
-  }
+  })
 
   return (
     <>
       <StatusBar style="light" />
       <NavigationContainer>
-        <DrawerNavigation />
+        {showOnboarding && <OnBoardingScreen onCompleted={() => setShowOnboarding(false)} /> }
+        {!showOnboarding && <DrawerNavigation />}
       </NavigationContainer>
     </>
   );
@@ -87,6 +97,7 @@ function Root() {
 function App() {
   const [fontsLoaded] = useFonts({
     'nunito-medium': require('./assets/fonts/Nunito-Medium.ttf'),
+    'nunito-bold': require('./assets/fonts/Nunito-Bold.ttf')
   });
 
   if (!fontsLoaded) {
