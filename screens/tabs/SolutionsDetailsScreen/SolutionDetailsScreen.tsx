@@ -10,7 +10,7 @@ import MythsFeedCard from '../MythsFeedScreen/MythsFeedCard';
 
 type Props = NativeStackScreenProps<SolutionsFeedStackParams, 'SolutionDetailsScreen'>;
 
-function SolutionDetailsScreen({ route, navigation }: Props) {
+function SolutionDetailsScreen({ route }: Props) {
   const apiClient = useApiClient();
   const solution = route.params.solution;
   

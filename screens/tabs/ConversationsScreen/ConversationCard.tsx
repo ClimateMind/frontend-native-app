@@ -13,7 +13,6 @@ import ViewSelectedTopicsButton from './ViewSelectedTopicsButton';
 import YesWeTalkedButton from './YesWeTalkedButton';
 import ConversationRating from './ConversationRating';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
-import ShowSelectedTopicsButton from './ViewSelectedTopicsModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
 
 interface Props {

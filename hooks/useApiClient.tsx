@@ -145,7 +145,7 @@ function useApiClient() {
   }
 
   async function postPasswordResetLink(email: string) {
-    const response = await apiCall(
+    await apiCall(
       'post',
       '/password-reset',
       {},
@@ -226,7 +226,7 @@ function useApiClient() {
   }
 
   async function putPassword(currentPassword: string, newPassword: string, confirmNewPassword: string) {
-    const response = await apiCall(
+    await apiCall(
       'put',
       '/user-account',
       {
@@ -238,7 +238,7 @@ function useApiClient() {
   }
   
   async function putEmail(newEmail: string, confirmEmail: string, password: string) {
-    const response = await apiCall(
+    await apiCall(
       'put',
       '/email',
       {
@@ -277,7 +277,7 @@ function useApiClient() {
   }
 
   async function deleteConversation(conversationId: string) {
-    const response = await apiCall(
+    await apiCall(
       'delete',
       '/conversation/' + conversationId,
       {
@@ -289,7 +289,7 @@ function useApiClient() {
 
   async function putSingleConversation(data: requests.PutSingleConversation) {
     try {
-      const response = await apiCall(
+      await apiCall(
         'put',
         '/conversation/' + data.conversationId,
         {
