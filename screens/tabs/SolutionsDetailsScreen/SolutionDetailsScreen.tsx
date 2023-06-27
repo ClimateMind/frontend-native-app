@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SolutionsFeedStackParams } from '../../../navigation/SolutionsFeedStack';
 import ActionCardHeader from '../ClimateFeedScreen/ActionCardHeader';

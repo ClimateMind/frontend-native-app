@@ -1,3 +1,9 @@
+import Alignment from "../types/Alignment";
+import ClimateEffect2 from "../types/ClimateEffect2";
+import ClimateEffect3 from "../types/ClimateEffect3";
+import Solution2 from "../types/Solution2";
+import ClimateSolution from "../types/Solution3";
+
 export type PostSession = {
   sessionId: string;
 };
@@ -69,3 +75,20 @@ export type GetAllConversations = {
   conversationTimestamp: string;
   alignmentScoresId: string;
 }
+
+export type GetAlignmentScores = {
+  userAName: string;
+  userBName: string;
+  overallSimilarityScore: number;
+  topMatchPercent: number;
+  valueAlignment: Alignment[];
+}
+
+export type GetSelectedTopics = {
+  climateEffects: ClimateEffect2[];
+  climateSolutions: ClimateSolution[];
+}
+
+export type GetSharedImpactDetails = ClimateEffect3;
+
+export type GetSharedSolutionDetails = Solution2;

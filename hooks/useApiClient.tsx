@@ -300,6 +300,86 @@ function useApiClient() {
       );
     } catch {}
   }
+
+  async function getAlignmentScores(alignmentScoresId: string): Promise<responses.GetAlignmentScores> {
+    if (!sessionId) {
+      throw new Error('Missing sessionId')
+    }
+
+    if (!alignmentScoresId) {
+      throw new Error('Missing alignmentScoresId')
+    }
+    
+    const response = await apiCall<responses.GetAlignmentScores>(
+      'get',
+      '/alignment/' + alignmentScoresId,
+      {
+        'X-Session-Id': sessionId,
+      },
+    );
+
+    return response.data;
+  }
+  
+  async function getSelectedTopics(conversationId: string): Promise<responses.GetSelectedTopics> {
+    if (!sessionId) {
+      throw new Error('Missing sessionId')
+    }
+
+    if (!conversationId) {
+      throw new Error('Missing conversationId')
+    }
+
+    const response = await apiCall<responses.GetSelectedTopics>(
+      'get',
+      '/conversation/' + conversationId + '/topics',
+      {
+        'X-Session-Id': sessionId,
+      },
+    );
+
+    return response.data;
+  }      
+  
+  async function getSharedImpactDetails(impactId: string): Promise<responses.GetSharedImpactDetails> {
+    if (!sessionId) {
+      throw new Error('Missing sessionId')
+    }
+
+    if (!impactId) {
+      throw new Error('Missing impactId')
+    }
+
+    const response = await apiCall<responses.GetSharedImpactDetails>(
+      'get',
+      '/alignment/shared-impact/' + impactId,
+      {
+        'X-Session-Id': sessionId,
+      },
+    );
+
+    return response.data;
+  }
+  
+  async function getSharedSolutionDetails(solutionId: string): Promise<responses.GetSharedSolutionDetails> {
+    if (!sessionId) {
+      throw new Error('Missing sessionId')
+    }
+
+    if (!solutionId) {
+      throw new Error('Missing solutionId')
+    }
+
+    const response = await apiCall<responses.GetSharedSolutionDetails>(
+      'get',
+      '/alignment/shared-solution/' + solutionId,
+      {
+        'X-Session-Id': sessionId,
+      },
+    );
+
+    return response.data;
+  }
   
   return {
     postSession,
@@ -323,6 +403,11 @@ function useApiClient() {
     getAllConversations,
     deleteConversation,    
     putSingleConversation,
+
+    getAlignmentScores,
+    getSelectedTopics,
+    getSharedImpactDetails,
+    getSharedSolutionDetails,
   };
 }
 

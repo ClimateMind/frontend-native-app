@@ -10,7 +10,7 @@ import DetailsSourcesTab from '../../../components/DetailsSourcesTabs';
 
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateDetailsScreen'>;
 
-function ClimateDetailsScreen({ route, navigation }: Props) {
+function ClimateDetailsScreen({ route }: Props) {
   const climateEffect = route.params.climateEffect;
   const [selectedTab, setSelectedTab] = useState(0);
 
