@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
     columnGap: 12,
-    borderColor: Colors.startScreenBackgroundBright,
+    borderColor: Colors.themeBright,
     borderRadius: 5,
     borderWidth: 1,
     paddingVertical: 8,

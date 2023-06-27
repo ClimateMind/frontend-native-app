@@ -4,7 +4,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../../navigation/RootStackNavigation';
 
 import { ActivityIndicator, Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { useAppSelector } from '../../../store/hooks';
 import useApiClient from '../../../hooks/useApiClient';
 import { GetPersonalValues } from '../../../api/responses';
 import PageTitle from '../../../components/PageTitle';
@@ -18,7 +18,6 @@ type Props = NativeStackScreenProps<RootStackParams, 'PersonalValuesScreenNewUse
 
 function PersonalValuesScreenNewUser({ navigation }: Props) {
   const apiClient = useApiClient();
-  const dispatch = useAppDispatch();
   const quizId = useAppSelector(state => state.auth.user.quizId);
 
   const scrollRef = useRef<ScrollView | null>(null);

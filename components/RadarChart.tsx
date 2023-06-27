@@ -41,7 +41,7 @@ function RadarChart(props: Props) {
   });
 
   // Calculate axes and axis labels
-  const axes: Axis[] = dataPoints.map((point, index) => {
+  const axes: Axis[] = dataPoints.map((_, index) => {
     const a = angle * index;
     const x = center + radius * Math.sin(a);
     const y = center - radius * Math.cos(a);
@@ -79,7 +79,7 @@ function RadarChart(props: Props) {
 
   const webLines = [];
   for (let i = 1; i <= 5; i++) {
-    const webPoints = dataPoints.map((point, index) => {
+    const webPoints = dataPoints.map((_, index) => {
       const r = (i / 5) * radius;
       const a = angle * index;
       const x = center + r * Math.sin(a);

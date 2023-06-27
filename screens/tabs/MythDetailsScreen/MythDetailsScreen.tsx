@@ -8,7 +8,7 @@ import DetailsSourcesTab from '../../../components/DetailsSourcesTabs';
 
 type Props = NativeStackScreenProps<MythsFeedStackParams, 'MythDetailsScreen'>;
 
-function MythDetailsScreen({ route, navigation }: Props) {
+function MythDetailsScreen({ route }: Props) {
   const myth = route.params.myth;
   const [selectedTab, setSelectedTab] = useState(0);
   

@@ -1,7 +1,4 @@
-import { Alert, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../../navigation/RootStackNavigation';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import PageTitle from '../../../components/PageTitle';
@@ -11,9 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { login } from '../../../store/authSlice';
 import Colors from '../../../assets/colors';
 
-type Props = NativeStackScreenProps<RootStackParams, 'SignUpScreen'>;
-
-function SignUpScreen({ navigation }: Props) {  
+function SignUpScreen() {  
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
   const quizId = useAppSelector(state => state.auth.user.quizId);
