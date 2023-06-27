@@ -1,5 +1,4 @@
 import { Image, StyleProp, ImageStyle } from "react-native";
-// import FastImage from 'react-native-fast-image'
 
 interface Props {
   valueName: string;
