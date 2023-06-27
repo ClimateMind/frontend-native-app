@@ -30,7 +30,7 @@ function SubmitSetTwoScreen({ navigation }: Props) {
       
       <Text style={styles.boldText}>This is a ranking of the top three personal values that you deploy when making decisions.</Text>
 
-      <SimpleWhiteButton style={styles.button} text='FIND OUT MY CLIMATE PERSONALITY' onPress={navigateToPersonalValuesScreenNewUser} />
+      <SimpleWhiteButton style={styles.button} text='FIND OUT MY CLIMATE PERSONALITY' onPress={navigateToPersonalValuesScreen} />
     </View>
   );
 }
