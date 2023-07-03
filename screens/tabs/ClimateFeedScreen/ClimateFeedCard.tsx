@@ -1,8 +1,9 @@
-import { Pressable, StyleSheet } from "react-native";
-import { Image, Text, View } from "react-native";
+import { Image, Pressable, Text, StyleSheet, View } from "react-native";
+
 import ClimateEffect from "../../../types/ClimateEffect";
-import ActionCardHeader from "./ActionCardHeader";
 import { capitalizeFirstLetter } from "../../../utils";
+import RelatedPersonalValuesChips from "../../../components/RelatedPersonalValuesChips";
+import ActionCardHeader from "./ActionCardHeader";
 
 interface Props {
   climateEffect: ClimateEffect;
@@ -15,6 +16,8 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
       <Text style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</Text>
       {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
       <Text style={styles.text}>{climateEffect.effectShortDescription}</Text>
+
+      <RelatedPersonalValuesChips relatedPersonalValues={climateEffect.relatedPersonalValues ?? []}/>
 
       <Pressable onPress={() => onLearnMore(climateEffect)}>
         <Text style={styles.button}>LEARN MORE</Text>
