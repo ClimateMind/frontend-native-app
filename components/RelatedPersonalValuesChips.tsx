@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from 'react-native';
 
 interface Props {
   relatedPersonalValues: string[];
@@ -7,8 +7,10 @@ interface Props {
 function RelatedPersonalValuesChips({ relatedPersonalValues }: Props) {
   return (
     <View style={styles.chipsContainer}>
-      {relatedPersonalValues.map(value => (
-        <Text key={value} style={styles.chip}>{value}</Text>
+      {relatedPersonalValues.map((value) => (
+        <Text key={value} style={styles.chip}>
+          {value}
+        </Text>
       ))}
     </View>
   );

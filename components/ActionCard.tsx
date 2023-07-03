@@ -1,18 +1,20 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-import Solution from "../types/Solution";
-import ActionCardHeader from "../screens/tabs/ClimateFeedScreen/ActionCardHeader";
+import Solution from '../types/Solution';
+import ActionCardHeader from '../screens/tabs/ClimateFeedScreen/ActionCardHeader';
 
 interface Props {
   solution: Solution;
   color?: string;
 }
 
-function ActionCard({ solution, color='#FDED6D' }: Props) {
+function ActionCard({ solution, color = '#FDED6D' }: Props) {
   return (
     <View style={{ backgroundColor: color }}>
       <ActionCardHeader effectSolution={solution} />
-      {solution.imageUrl !== null && <Image style={styles.image} source={{uri: solution.imageUrl}} />}
+      {solution.imageUrl !== null && (
+        <Image style={styles.image} source={{ uri: solution.imageUrl }} />
+      )}
 
       <Text style={styles.description}>{solution.shortDescription}</Text>
       <Pressable>
