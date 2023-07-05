@@ -2,23 +2,23 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-const texts = [
-  'Identify your personal values and how they relate to climate change impacts.',
-  'Gain insights on the growing impacts of climate change.',
-  'Discover climate solutions tailored to you.',
-  'Start a guided conversation with a friend about climate change.',
-]
-
-const headers = [
-  'Explore Values', 'Learn Impacts', 'Find Solutions', 'Take Action'
-]
-
 const images = [
   require('../../assets/onboarding/onboarding1.png'),
   require('../../assets/onboarding/onboarding2.png'),
   require('../../assets/onboarding/onboarding3.png'),
   require('../../assets/onboarding/onboarding4.png'),
-]
+];
+
+const headers = [
+  'Explore Values', 'Learn Impacts', 'Find Solutions', 'Take Action',
+];
+
+const texts = [
+  'Identify your personal values and how they relate to climate change impacts.',
+  'Gain insights on the growing impacts of climate change.',
+  'Discover climate solutions tailored to you.',
+  'Start a guided conversation with a friend about climate change.',
+];
 
 interface Props {
   onCompleted: () => void;
@@ -45,7 +45,7 @@ function OnBoardingScreen({ onCompleted }: Props) {
     <View style={styles.container}>
       <View style={styles.contentArea}>
         <Image style={styles.image} source={images[currentScreen]} />
-        <Text style ={styles.headerText}>{headers[currentScreen]}</Text>
+        <Text style={styles.headerText}>{headers[currentScreen]}</Text>
         <Text style={styles.text}>{texts[currentScreen]}</Text>
       </View>
       <View style={styles.navIcons}>
@@ -75,11 +75,11 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height / 2.7,
     alignSelf: 'center',
   },
-  headerText:{
-    fontSize:24,
-    fontFamily: 'nunito-bold', 
-    textAlign:'center',
-    paddingVertical:20
+  headerText: {
+    fontSize: 24,
+    fontFamily: 'nunito-bold',
+    textAlign: 'center',
+    paddingVertical: 20,
   },
   text: {
     fontFamily: 'nunito-bold',
