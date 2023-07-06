@@ -7,7 +7,7 @@ import PreQuizScreen from '../screens/stack/PreQuizScreen/PreQuizScreen';
 import PersonalValuesScreenNewUser from '../screens/stack/PersonalValuesScreenNewUser/PersonalValuesScreenNewUser';
 import SignUpScreen from '../screens/stack/SignUpScreen/SignUpScreen';
 
-export type RootStackParams = {
+export type StackParams = {
   StartScreen: undefined;
   LoginScreen: undefined;
   PreQuizScreen: undefined;
@@ -15,21 +15,21 @@ export type RootStackParams = {
   SignUpScreen: undefined;
 };
 
-const Stack = createNativeStackNavigator<RootStackParams>();
+const Stack = createNativeStackNavigator<StackParams>();
 
-function RootStackNavigation() {
+function StackNavigation() {
   return (
     <Stack.Navigator
-      initialRouteName='StartScreen'
+      initialRouteName="StartScreen"
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name='StartScreen' component={StartScreen} />
-      <Stack.Screen name='LoginScreen' component={LoginScreen} />
-      <Stack.Screen name='PreQuizScreen' component={PreQuizScreen} />
-      <Stack.Screen name='PersonalValuesScreenNewUser' component={PersonalValuesScreenNewUser} />
-      <Stack.Screen name='SignUpScreen' component={SignUpScreen} />
+      <Stack.Screen name="StartScreen" component={StartScreen} />
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      <Stack.Screen name="PreQuizScreen" component={PreQuizScreen} />
+      <Stack.Screen name="PersonalValuesScreenNewUser" component={PersonalValuesScreenNewUser} />
+      <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
     </Stack.Navigator>
   );
 }
 
-export default RootStackNavigation;
+export default StackNavigation;

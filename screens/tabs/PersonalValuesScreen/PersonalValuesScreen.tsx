@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { BottomNavigationParams } from '../../../navigation/BottomNavigation';
+import { BottomTabsNavigationParams } from '../../../navigation/BottomTabsNavigation';
 
 import Colors from '../../../assets/colors';
 import useApiClient from '../../../hooks/useApiClient';
@@ -12,7 +12,7 @@ import PersonalValueCard from '../../../components/PersonalValueCard';
 import RadarChart from '../../../components/RadarChart';
 import { useFocusEffect } from '@react-navigation/native';
 
-type Props = BottomTabScreenProps<BottomNavigationParams, 'PersonalValuesScreen'>;
+type Props = BottomTabScreenProps<BottomTabsNavigationParams, 'PersonalValuesScreen'>;
 
 function PersonalValuesScreen({ navigation }: Props) {
   const apiClient = useApiClient();

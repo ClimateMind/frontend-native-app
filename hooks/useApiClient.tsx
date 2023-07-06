@@ -148,7 +148,9 @@ function useApiClient() {
     await apiCall(
       'post',
       '/password-reset',
-      {},
+      {
+        'X-Session-Id': sessionId,
+      },
       { email },
     );
   }
@@ -225,7 +227,7 @@ function useApiClient() {
     return response.data.myth;
   }
 
-  async function putPassword(currentPassword: string, newPassword: string, confirmNewPassword: string) {
+  async function putPassword(currentPassword: string, newPassword: string, confirmPassword: string) {
     await apiCall(
       'put',
       '/user-account',
@@ -233,7 +235,7 @@ function useApiClient() {
         'X-Session-Id': sessionId,
         'Authorization': 'Bearer ' + user.accessToken,
       },
-      { currentPassword, newPassword, confirmNewPassword },
+      { currentPassword, newPassword, confirmPassword },
     );
   }
   

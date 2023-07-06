@@ -1,27 +1,27 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import ClimateFeedScreen from "../screens/tabs/ClimateFeedScreen/ClimateFeedScreen";
-import ClimateDetailsScreen from "../screens/tabs/ClimateDetailsScreen/ClimateDetailsScreen";
+import ClimateFeedScreen from '../screens/tabs/ClimateFeedScreen/ClimateFeedScreen';
+import ClimateDetailsScreen from '../screens/tabs/ClimateDetailsScreen/ClimateDetailsScreen';
 
-import ClimateEffect from "../types/ClimateEffect";
+import ClimateEffect from '../types/ClimateEffect';
 
 export type ClimateFeedStackParams = {
   ClimateFeedScreen: undefined;
   ClimateDetailsScreen: { climateEffect: ClimateEffect };
-}
+};
 
 const Stack = createNativeStackNavigator<ClimateFeedStackParams>();
 
 function ClimateFeedStack() {
   return (
     <Stack.Navigator
-      initialRouteName='ClimateFeedScreen'
+      initialRouteName="ClimateFeedScreen"
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name='ClimateFeedScreen' component={ClimateFeedScreen} />
-      <Stack.Screen name='ClimateDetailsScreen' component={ClimateDetailsScreen} />
+      <Stack.Screen name="ClimateFeedScreen" component={ClimateFeedScreen} />
+      <Stack.Screen name="ClimateDetailsScreen" component={ClimateDetailsScreen} />
     </Stack.Navigator>
-  )
+  );
 }
 
 export default ClimateFeedStack;

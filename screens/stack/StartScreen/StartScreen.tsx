@@ -4,10 +4,10 @@ import Colors from '../../../assets/colors';
 import PageTitle from '../../../components/PageTitle';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../../navigation/RootStackNavigation';
+import { StackParams } from '../../../navigation/StackNavigation';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 
-type Props = NativeStackScreenProps<RootStackParams, 'StartScreen'>;
+type Props = NativeStackScreenProps<StackParams, 'StartScreen'>;
 
 function StartScreen({ navigation }: Props) {
   function navigateToLoginScreen() {

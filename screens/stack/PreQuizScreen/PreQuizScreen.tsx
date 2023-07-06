@@ -2,11 +2,11 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Colors from '../../../assets/colors';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../../navigation/RootStackNavigation';
+import { StackParams } from '../../../navigation/StackNavigation';
 
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 
-type Props = NativeStackScreenProps<RootStackParams, 'PreQuizScreen'>;
+type Props = NativeStackScreenProps<StackParams, 'PreQuizScreen'>;
 
 function PreQuizScreen({ navigation }: Props) {
   function navigateToQuizScreen() {

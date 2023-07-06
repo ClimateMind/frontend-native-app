@@ -31,6 +31,7 @@ function ConversationsDrawer({ open, onClose }: Props) {
     <Modal
       visible={open}
       animationType="slide"
+      onRequestClose={onClose}
     >
       <View style={styles.container}>
         <Pressable onPress={onClose} style={{ height: 100, alignItems: "center" }}>

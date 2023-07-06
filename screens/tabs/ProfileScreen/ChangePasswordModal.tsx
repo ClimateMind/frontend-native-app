@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import useApiClient from '../../../hooks/useApiClient';
+import { showErrorToast, showSuccessToast } from '../../../components/ToastMessages';
 
 interface Props {
   show: boolean;
@@ -32,8 +33,22 @@ function ChangePasswordModal({ show, onSubmit, onCancel }: Props) {
   }
   
   function submitButtonHandler() {
-    apiClient.putPassword(currentPassword, newPassword, confirmNewPassword);
-    onSubmit();
+    apiClient.putPassword(currentPassword, newPassword, confirmNewPassword)
+      .then(() => {
+        showSuccessToast('Password changed successfully');
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmNewPassword('');
+        onSubmit();
+      })
+      .catch(error => {
+        console.log(error.response.status)
+        if (error.response.status === 403) {
+          showErrorToast('Current password is incorrect');
+        } else {
+          showErrorToast(error.response.data.message ?? 'Something went wrong, please try again later');
+        }
+      });
   }
   
   return (
