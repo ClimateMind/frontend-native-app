@@ -14,9 +14,9 @@ const headers = [
 ];
 
 const texts = [
-  'Identify your personal values and how they relate to climate change impacts.',
+  'Identify your personal values and how they relate to the impacts of climate change.',
   'Gain insights on the growing impacts of climate change.',
-  'Discover climate solutions tailored to you.',
+  'Discover climate solutions tailored to you and others.',
   'Start a guided conversation with a friend about climate change.',
 ];
 
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   headerText: {
-    fontSize: 24,
+    fontSize: 32,
     fontFamily: 'nunito-bold',
     textAlign: 'center',
     paddingVertical: 20,
@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'nunito-bold',
     fontSize: 16,
+    textAlign: 'center',
     paddingHorizontal: 60,
   },
   navIcons: {
