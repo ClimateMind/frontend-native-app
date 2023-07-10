@@ -24,7 +24,7 @@ interface Props {
   onCompleted: () => void;
 }
 
-function OnBoardingScreen({ onCompleted }: Props) {
+function OnBoardingScreens({ onCompleted }: Props) {
   const [currentScreen, setCurrentScreen] = useState(0);
 
   function nextScreen() {
@@ -99,4 +99,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OnBoardingScreen;
+export default OnBoardingScreens;
