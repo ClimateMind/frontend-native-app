@@ -25,7 +25,7 @@ export type BottomTabsNavigationParams = {
 
 const Tabs = createBottomTabNavigator<BottomTabsNavigationParams>();
 
-function BottomNavigation() {
+function BottomTabsNavigation() {
   const user = useAppSelector((state) => state.auth.user);
 
   return (
@@ -101,4 +101,4 @@ function BottomNavigation() {
   );
 }
 
-export default BottomNavigation;
+export default BottomTabsNavigation;
