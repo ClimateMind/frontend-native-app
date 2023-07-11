@@ -10,6 +10,7 @@ import BottomTabsNavigation from '../BottomTabsNavigation';
 import QuizScreen from '../../screens/drawer/QuizScreen/QuizScreen';
 import SubmitSetOneScreen from '../../screens/drawer/SubmitSetOneScreen/SubmitSetOneScreen';
 import SubmitSetTwoScreen from '../../screens/drawer/SubmitSetTwoScreen/SubmitSetTwoScreen';
+import ConversationsScreen from '../../screens/tabs/ConversationsScreen/ConversationsScreen';
 
 export type DrawerNavigationParams = {
   StackNavigation: undefined;
@@ -41,6 +42,7 @@ function DrawerNavigation() {
     >
       {!isLoggedIn && <Drawer.Screen name='StackNavigation' component={StackNavigation} />}
       {isLoggedIn && <Drawer.Screen name='BottomTabsNavigation' component={BottomTabsNavigation} />}
+      {isLoggedIn && <Drawer.Screen name='ConversationsScreen' component={ConversationsScreen} />}
       <Drawer.Screen name='QuizScreen' component={QuizScreen} />
       <Drawer.Screen name='SubmitSetOneScreen' component={SubmitSetOneScreen} />
       <Drawer.Screen name='SubmitSetTwoScreen' component={SubmitSetTwoScreen} />
