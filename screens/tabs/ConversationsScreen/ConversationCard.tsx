@@ -14,6 +14,7 @@ import YesWeTalkedButton from './YesWeTalkedButton';
 import ConversationRating from './ConversationRating';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
+import { Shadow } from 'react-native-shadow-2';
 
 interface Props {
   conversation: GetAllConversations;
@@ -70,12 +71,14 @@ function ConversationCard({ conversation, onDelete }: Props) {
   }, [conversation.state]);
 
   return (
+      <Shadow style ={{width:'100%'}}>
       <View style={[styles.container, { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }]}>
+        
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text>{headerText[conversationState]}</Text>
           {expanded && <Pressable onPress={copyLink}><Text>COPY LINK</Text></Pressable>}
         </View>
-
+       
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0}}>
         <Text style={{ fontWeight: 'bold', fontSize: 18, marginBottom: 5 }}>{conversation.userB.name}</Text>
         {expanded && <Pressable>
@@ -115,13 +118,14 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
       <DeleteConversationModal show={showDeleteModal} userBName={userBName} onCancel={() => setShowDeleteModal(false)} onConfirm={deleteConversation} />
     </View>
+    </Shadow>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
-    elevation: 5,
+    // elevation: 5,
     justifyContent: 'center',
     padding: 15,
   },
