@@ -12,6 +12,7 @@ type ClimateEffect = {
   actionHeadline: string;
   isPossiblyLocal: 0 | 1;
   effectSpecificMythIRIs: string[];
+  relatedPersonalValues?: string[];
 }
 
 export default ClimateEffect;
