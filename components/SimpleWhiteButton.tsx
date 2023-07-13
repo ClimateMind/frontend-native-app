@@ -1,4 +1,5 @@
-import { Pressable, StyleProp, StyleSheet, Text, ViewStyle } from 'react-native';
+import { Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import ButtonText from './TextStyles/ButtonText';
 
 type Props = {
   text: string;
@@ -19,7 +20,7 @@ function SimpleWhiteButton({ text, onPress, disabled = false, style = {} }: Prop
       ]}
       onPress={onPress}
     >
-      <Text style={styles.buttonText}>{text}</Text>
+      <ButtonText style={styles.buttonText}>{text}</ButtonText>
     </Pressable>
   );
 }

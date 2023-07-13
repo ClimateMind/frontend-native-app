@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
 
 import Solution2 from "../../../types/Solution2";
 import { capitalizeFirstLetter } from "../../../utils";
+import LabelText from "../../../components/TextStyles/LabelText";
+import BodyText from "../../../components/TextStyles/BodyText";
 
 interface Props {
   effectSolution: Solution2;
@@ -18,8 +20,8 @@ function ActionCardHeader({ effectSolution, color='#FDED6D' }: Props) {
         {effectSolution.solutionType[1] === 'adaptation' && <Foundation name="shield" size={24} color="black" />}
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.actionType}>{effectSolution.solutionType[0].toUpperCase()} ACTION</Text>
-        <Text style={styles.title}>{capitalizeFirstLetter(effectSolution.solutionTitle)}</Text>
+        <LabelText style={{ fontSize: 10 }}>{effectSolution.solutionType[0].toUpperCase()} ACTION</LabelText>
+        <BodyText style={styles.title}>{capitalizeFirstLetter(effectSolution.solutionTitle)}</BodyText>
       </View>
     </View>
   );
@@ -40,14 +42,7 @@ const styles = StyleSheet.create({
     width: '90%',
     gap: -5,
   },
-  actionType: {
-    fontWeight: 'bold',
-    fontSize: 10,
-    letterSpacing: 1,
-  },
   title: {
-    fontWeight: '400',
-    fontSize: 18,
     width: '90%',
   },
 });

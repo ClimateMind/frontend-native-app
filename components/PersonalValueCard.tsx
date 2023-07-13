@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
+
+import Headline4 from "./TextStyles/Headline4";
+import BodyText from "./TextStyles/BodyText";
+import LabelText from "./TextStyles/LabelText";
+import ButtonText from "./TextStyles/ButtonText";
 import PersonalValueIcon from "./PersonalValueIcon";
 
 interface Props {
@@ -22,20 +27,20 @@ function PersonalValueCard({ nr, value }: Props) {
   return (
     <View style={styles.card}>
 
-      <Text style={[styles.boldText, { fontSize: 12 }]}>NO.{nr}</Text>
-      <Text style={[styles.boldText, { fontSize: 20 }]}>{capitalizeFirstLetter(value.name)}</Text>
+      <LabelText>NO.{nr.toString()}</LabelText>
+      <Headline4 style={{ textAlign: 'left', fontSize: 18, paddingTop: 4 }}>{capitalizeFirstLetter(value.name)}</Headline4>
 
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
         <PersonalValueIcon valueName={value.name} style={styles.image} />
       </View>
       
-      <Text style={[styles.boldText, { marginTop: 10, marginBottom: 10 }]}>{value.shortDescription}</Text>
+      <BodyText style={{ marginVertical: 10 }}>{value.shortDescription}</BodyText>
 
-      {expanded && <Text style={styles.boldText}>{value.description}</Text>}
+      {expanded && <BodyText>{value.description}</BodyText>}
 
       <Pressable onPress={() => setExpanded(prev => !prev)} style={{ marginTop: 20 }}>
-        {!expanded && <Text style={styles.boldText}>MORE</Text>}
-        {expanded && <Text style={styles.boldText}>LESS</Text>}
+        {!expanded && <ButtonText style={styles.moreLessButton}>MORE</ButtonText>}
+        {expanded && <ButtonText style={styles.moreLessButton}>LESS</ButtonText>}
       </Pressable>
       
     </View>
@@ -47,9 +52,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 5,
     padding: 10,
+    width: '100%',
   },
-  boldText: {
-    fontWeight: 'bold',
+  moreLessButton: {
+    textAlign: 'left',
+    paddingVertical: 8,
   },
   image: {
     marginVertical: 10,

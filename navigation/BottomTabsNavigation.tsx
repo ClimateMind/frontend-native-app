@@ -1,4 +1,3 @@
-import { Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -13,6 +12,7 @@ import SolutionsFeedStack from './SolutionsFeedStack';
 import MythsFeedStack from './MythsFeedStack';
 import ConversationsStack from './ConversationsStack';
 import PersonalValuesScreen from '../screens/tabs/PersonalValuesScreen/PersonalValuesScreen';
+import Headline3 from '../components/TextStyles/Headline3';
 
 export type BottomTabsNavigationParams = {
   ProfileScreen: undefined;
@@ -36,7 +36,7 @@ function BottomTabsNavigation() {
         tabBarInactiveTintColor: '#77AAAF',
         tabBarLabelStyle: {
           marginBottom: 5,
-          fontFamily: 'nunito-medium',
+          fontFamily: 'nunito',
         },
         tabBarStyle: {
           height: 55,
@@ -50,9 +50,9 @@ function BottomTabsNavigation() {
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color }) => (
-            <Text style={{ fontSize: 20, color, fontWeight: 'bold' }}>
+            <Headline3 style={{ color }}>
               {user.firstName[0] + user.lastName[0]}
-            </Text>
+            </Headline3>
           ),
         }}
       />

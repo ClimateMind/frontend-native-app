@@ -1,5 +1,7 @@
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
+
 import Colors from '../../assets/colors';
+import ButtonText from '../../components/TextStyles/ButtonText';
 
 type Props = {
   text: string;
@@ -11,7 +13,9 @@ function DrawerButton({ text, icon, onPress }: Props) {
   return (
     <Pressable onPress={onPress} style={({pressed}) => [styles.button, pressed ? styles.buttonPressed : null]}>
       {icon}
-      <Text>{text}</Text>
+      <View style={{ justifyContent: 'center' }}>
+        <ButtonText style={{ paddingVertical: 8 }}>{text}</ButtonText>
+      </View>
     </Pressable>
   );
 }

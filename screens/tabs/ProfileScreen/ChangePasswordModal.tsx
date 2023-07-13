@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import useApiClient from '../../../hooks/useApiClient';
 import { showErrorToast, showSuccessToast } from '../../../components/ToastMessages';
+import Headline4 from '../../../components/TextStyles/Headline4';
 
 interface Props {
   show: boolean;
@@ -58,7 +59,7 @@ function ChangePasswordModal({ show, onSubmit, onCancel }: Props) {
     >
       <View style={styles.centerModal}>
         <View style={styles.card}>
-          <Text style={styles.cardHeader}>Change your password</Text>
+          <Headline4 style={styles.cardHeader}>Change your password</Headline4>
 
           <TextInput
             placeholder="Current password"
@@ -107,8 +108,8 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   cardHeader: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    textAlign: 'left',
+    marginBottom: 10,
   },
   textInput: {
     borderBottomColor: 'grey',

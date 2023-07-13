@@ -3,10 +3,10 @@ import { StyleSheet, View } from 'react-native';
 
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { logout } from '../../../store/authSlice';
-import PageTitle from '../../../components/PageTitle';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import ChangePasswordModal from './ChangePasswordModal';
 import UpdateEmailModal from './UpdateEmailModal';
+import Headline1 from '../../../components/TextStyles/Headline1';
 
 function ProfileScreen() {
   const dispatch = useAppDispatch();
@@ -17,7 +17,7 @@ function ProfileScreen() {
   
   return (
     <View style={styles.container}>
-      <PageTitle>{firstName}'s account</PageTitle>
+      <Headline1 style={{ padding: 8, marginTop: 20 }}>{firstName}'s account</Headline1>
 
       <SimpleWhiteButton style={{ marginTop: 20 }} text='CHANGE PASSWORD' onPress={() => setShowPasswordModal(true)} />
       <SimpleWhiteButton style={{ marginTop: 20 }} text='UPDATE EMAIL' onPress={() => setShowEmailModal(true)} />

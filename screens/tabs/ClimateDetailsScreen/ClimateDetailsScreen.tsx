@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Image, ScrollView, Text, View } from 'react-native';
+import { Image, ScrollView, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ClimateFeedStackParams } from '../../../navigation/ClimateFeedStack';
@@ -7,6 +7,9 @@ import { StyleSheet } from 'react-native';
 import { capitalizeFirstLetter } from '../../../utils';
 import ActionCard from '../../../components/ActionCard';
 import DetailsSourcesTab from '../../../components/DetailsSourcesTabs';
+import BodyText from '../../../components/TextStyles/BodyText';
+import CaptionText from '../../../components/TextStyles/CaptionText';
+import LabelText from '../../../components/TextStyles/LabelText';
 
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateDetailsScreen'>;
 
@@ -16,26 +19,25 @@ function ClimateDetailsScreen({ route }: Props) {
 
   return (
     <ScrollView style={{ backgroundColor: 'white' }}>
-      <Text style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</Text>
+      <BodyText style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</BodyText>
       {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
 
       <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
 
       {selectedTab === 0 && <View>
-        <Text style={styles.description}>{climateEffect.effectDescription}</Text>
+        <CaptionText style={styles.description}>{climateEffect.effectDescription}</CaptionText>
         {climateEffect.effectSolutions.map(solution => <View style={styles.actionCard} key={solution.solutionTitle}><ActionCard solution={solution} /></View>)}
       </View>}
 
-      {selectedTab === 1 && climateEffect.effectSources.map(source => <View key={source} style={styles.links}><Text style={styles.link}>{source}</Text></View>)}
+      {selectedTab === 1 && climateEffect.effectSources.map(source => <View key={source} style={styles.links}><LabelText style={styles.link}>{source}</LabelText></View>)}
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    padding: 10,
+    padding: 15,
+    paddingVertical: 20,
   },
   image: {
     width: '100%',
@@ -43,16 +45,17 @@ const styles = StyleSheet.create({
   },
   description: {
     letterSpacing: 1,
-    padding: 10,
+    lineHeight: 20,
+    padding: 20,
   },
   actionCard: {
-    margin: 10,
+    marginVertical: 20,
   },
   links: {
     padding: 10,
   },
   link: {
-    fontWeight: 'bold',
+    paddingHorizontal: 20,
     textDecorationLine: 'underline',
     lineHeight: 20,
   },

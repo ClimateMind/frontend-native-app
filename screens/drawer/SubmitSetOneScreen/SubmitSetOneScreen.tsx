@@ -1,11 +1,14 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { DrawerNavigationParams } from '../../../navigation/DrawerNavigation/DrawerNavigation';
 
-import PageTitle from '../../../components/PageTitle';
-import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import Colors from '../../../assets/colors';
 import { useAppSelector } from '../../../store/hooks';
+
+import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
+import Headline1 from '../../../components/TextStyles/Headline1';
+import BodyText from '../../../components/TextStyles/BodyText';
+import ButtonText from '../../../components/TextStyles/ButtonText';
 
 type Props = DrawerScreenProps<DrawerNavigationParams, 'SubmitSetOneScreen'>;
 
@@ -26,15 +29,15 @@ function SubmitSetOneScreen({ navigation }: Props) {
   
   return (
     <View style={styles.container}>
-      <PageTitle>Woah! You are doing great!</PageTitle>
+      <Headline1 style={{ padding: 8 }}>Woah! You are doing great!</Headline1>
       
-      <Text style={styles.boldText}>Do you want to carry on with another 10 questions or get your results now?</Text>
+      <BodyText style={styles.bodyText}>Do you want to carry on with another 10 questions or get your results now?</BodyText>
       
       <Pressable onPress={navigateToPersonalValuesScreen}>
-        <Text style={styles.boldText}>FIND OUT MY CLIMATE PERSONALITY</Text>
+        <ButtonText style={{ padding: 8, textAlign: 'center' }}>FIND OUT MY CLIMATE PERSONALITY</ButtonText>
       </Pressable>
 
-      <Text style={styles.boldText}>You will get better personalised results if you complete all 20 questions.</Text>
+      <BodyText style={styles.bodyText}>You will get better personalised results if you complete all 20 questions.</BodyText>
       
       <SimpleWhiteButton style={styles.button} text='Continue' onPress={navigateToQuizScreen} />
     </View>
@@ -49,8 +52,7 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: Colors.themeBright,
   },
-  boldText: {
-    fontWeight: 'bold',
+  bodyText: {
     textAlign: 'center',
     marginVertical: 30,
   },

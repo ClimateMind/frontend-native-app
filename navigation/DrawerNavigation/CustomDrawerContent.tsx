@@ -39,7 +39,7 @@ function CustomDrawerContent({ navigation }: Props) {
 
         {/* Login / Logout and Feedback button beneath the social images */}
         <View style={{ margin: 10, marginTop: 30, marginLeft: 20 }}>
-          {!isLoggedIn && <DrawerButton text='LOGIN' icon={<MaterialIcons name="login" size={24} color="black" />} onPress={() => navigation.navigate('LoginScreen')} />}
+          {!isLoggedIn && <DrawerButton text='LOG IN' icon={<MaterialIcons name="login" size={24} color="black" />} onPress={() => navigation.navigate('LoginScreen')} />}
           {isLoggedIn && <DrawerButton text='LOGOUT' icon={<MaterialIcons name="logout" size={24} color="black" />} onPress={onLogout} />}
         </View>
         <View style={{ margin: 10, marginLeft: 20 }}>
@@ -57,8 +57,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   textButton: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'nunito-bold',
     paddingHorizontal: 25,
     paddingVertical: 15,
   },
