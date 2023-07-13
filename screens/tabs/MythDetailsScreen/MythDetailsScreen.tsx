@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MythsFeedStackParams } from '../../../navigation/MythsFeedStack';
-import { StyleSheet } from 'react-native';
+
 import DetailsSourcesTab from '../../../components/DetailsSourcesTabs';
+import LabelText from '../../../components/TextStyles/LabelText';
+import BodyText from '../../../components/TextStyles/BodyText';
+import CaptionText from '../../../components/TextStyles/CaptionText';
 
 type Props = NativeStackScreenProps<MythsFeedStackParams, 'MythDetailsScreen'>;
 
@@ -13,42 +16,34 @@ function MythDetailsScreen({ route }: Props) {
   const [selectedTab, setSelectedTab] = useState(0);
   
   return (
-    <ScrollView style={{ backgroundColor: 'white', padding: 10 }}>
-      <Text style={[styles.smallText, { color: '#B00620' }]}>MYTH</Text>
-      <Text style={[styles.largeText, { color: '#B00620' }]}>{myth.mythTitle}</Text>
-      <Text style={[styles.smallText, { color: '#00A85F' }]}>TRUTH</Text>
-      <Text style={[styles.largeText, { color: '#00A85F' }]}>{myth.mythRebuttal}</Text>
+    <ScrollView style={{ backgroundColor: 'white', padding: 20 }}>
+      <LabelText style={{ color: '#B00620', marginTop: 10 }}>MYTH</LabelText>
+      <BodyText style={{ color: '#B00620', letterSpacing: 1.3, fontStyle: 'italic' }}>{myth.mythTitle}</BodyText>
+      <LabelText style={{ color: '#00A85F', marginTop: 40 }}>TRUTH</LabelText>
+      <BodyText style={{ color: '#00A85F', letterSpacing: 1.3 }}>{myth.mythRebuttal}</BodyText>
+
       
       <View style={styles.tabBar}>
         <DetailsSourcesTab detailsTabName='Flawed Logic' onTabChanged={(tab) => setSelectedTab(tab)} />
       </View>
 
-      {selectedTab === 0 && <Text style={styles.description}>{myth.faultyLogicDescription}</Text>}
+      {selectedTab === 0 && <CaptionText style={styles.description}>{myth.faultyLogicDescription}</CaptionText>}
 
-      {selectedTab === 1 && myth.mythSources.map(source => <Text key={source} style={styles.link}>{source}</Text>)}
+      {selectedTab === 1 && myth.mythSources.map(source => <LabelText key={source} style={styles.link}>{source}</LabelText>)}
 
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  smallText: {
-    letterSpacing: 1,
-    fontSize: 10,
-    marginTop: 30,
-  },
-  largeText: {
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
   tabBar: {
     marginVertical: 20,
   },
   description: {
     letterSpacing: 1,
+    lineHeight: 20,
   },
   link: {
-    fontWeight: 'bold',
     textDecorationLine: 'underline',
     lineHeight: 20,
   },

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Dimensions, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, Text, TextInput } from 'react-native';
+import { Dimensions, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, TextInput } from 'react-native';
 
 import { AntDesign } from '@expo/vector-icons';
 
@@ -7,9 +7,12 @@ import { WEB_URL } from '@env';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import useApiClient from '../../../hooks/useApiClient';
 import ConversationsDrawer from './ConversationsDrawer';
-import PageTitle from '../../../components/PageTitle';
 import CopyLinkModal from './CopyLinkModal';
 import { showErrorToast } from '../../../components/ToastMessages';
+import LabelText from '../../../components/TextStyles/LabelText';
+import Headline2 from '../../../components/TextStyles/Headline2';
+import BodyText from '../../../components/TextStyles/BodyText';
+import CaptionText from '../../../components/TextStyles/CaptionText';
 
 function ConversationsScreen() {
   const apiClient = useApiClient();
@@ -45,15 +48,15 @@ function ConversationsScreen() {
       <ScrollView contentContainerStyle={styles.container}>
 
         <KeyboardAvoidingView behavior="position" style={styles.mainSection}>
-          <PageTitle>Start a Conversation</PageTitle>
-          <Text style={styles.mainText}>
+          <Headline2>Start a Conversation</Headline2>
+          <BodyText style={styles.center}>
             Create a personalized link for each person you want to talk to. Then
             share it, so they can take the quiz, discover your shared values, and
             pick topics to talk about.
-          </Text>
-          <Text style={styles.smallText}>We will send you an email when they agree to share their results with you!</Text>
+          </BodyText>
+          <CaptionText style={styles.center}>We will send you an email when they agree to share their results with you!</CaptionText>
 
-          <Text style={styles.label}>Name of recipient</Text>
+          <LabelText style={styles.label}>Name of recipient</LabelText>
           <TextInput
             placeholder='Try "Peter Smith" or "Mom"'
             autoCapitalize="sentences"
@@ -67,7 +70,7 @@ function ConversationsScreen() {
 
         <Pressable onPress={() => setShowConversationsDrawer(true)} style={styles.openDrawerButton}>
           <AntDesign name="up" size={24} color="black" />
-          <Text style={{ fontWeight: 'bold' }}>Ongoing Conversations</Text>
+          <BodyText style={{ fontWeight: 'bold', letterSpacing: 1.2 }}>Ongoing Conversations</BodyText>
         </Pressable>
 
         <ConversationsDrawer
@@ -93,24 +96,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    paddingHorizontal: 10,
+    paddingHorizontal: 30,
     paddingTop: 20,
   },
   mainSection: {
     flex: 1,
     alignItems: 'center',
   },
-  mainText: {
-    fontWeight: '500',
+  center: {
     textAlign: 'center',
     marginVertical: 10,
   },
-  smallText: {
-    fontSize: 12,
-    textAlign: 'center',
-  },
   label: {
-    fontWeight: 'bold',
     alignSelf: 'flex-start',
     marginTop: 30,
   },
@@ -130,6 +127,8 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 15,
     minWidth: 160,
+    width: 200,
+    alignSelf: 'center',
   },
   openDrawerButton: {
     backgroundColor: '#BBE6E2',

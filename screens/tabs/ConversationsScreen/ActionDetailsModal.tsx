@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { Image, Modal, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image, Modal, ScrollView, StyleSheet, View } from "react-native";
 
 import ClimateEffect2 from "../../../types/ClimateEffect2";
 import ClimateEffect3 from "../../../types/ClimateEffect3";
 import { capitalizeFirstLetter } from "../../../utils";
 import DetailsSourcesTab from "../../../components/DetailsSourcesTabs";
 import useApiClient from "../../../hooks/useApiClient";
+import BodyText from "../../../components/TextStyles/BodyText";
+import CaptionText from "../../../components/TextStyles/CaptionText";
+import LabelText from "../../../components/TextStyles/LabelText";
 
 interface Props {
   open: boolean;
@@ -40,16 +43,16 @@ function ActionDetailsModal({ open, action, onClose }: Props) {
       <View style={styles.container}>
         <ScrollView style={{ width: '100%' }}>
 
-          <Text style={styles.title}>{capitalizeFirstLetter(actionDetails.effectTitle)}</Text>
+          <BodyText style={styles.title}>{capitalizeFirstLetter(actionDetails.effectTitle)}</BodyText>
           {actionDetails.imageUrl !== null && <Image style={styles.image} source={{uri: actionDetails.imageUrl}} />}
 
           <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
 
           {selectedTab === 0 && <View>
-            <Text style={styles.description}>{actionDetails.longDescription}</Text>
+            <CaptionText style={styles.text}>{actionDetails.longDescription}</CaptionText>
           </View>}
 
-          {selectedTab === 1 && actionDetails.effectSources.map(source => <View key={source} style={styles.links}><Text style={styles.link}>{source}</Text></View>)}
+          {selectedTab === 1 && actionDetails.effectSources.map(source => <View key={source} style={styles.links}><LabelText style={styles.link}>{source}</LabelText></View>)}
 
         </ScrollView>
       </View>
@@ -66,27 +69,25 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: '3%',
     borderRadius: 10,
-    borderWidth: 1,
     elevation: 5,
   },
   title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    padding: 10,
+    padding: 20,
   },
   image: {
     width: '100%',
     height: 250,
   },
-  description: {
+  text: {
     letterSpacing: 1,
-    padding: 10,
+    lineHeight: 20,
+    padding: 20,
   },
   links: {
     padding: 10,
   },
   link: {
-    fontWeight: 'bold',
+    paddingHorizontal: 20,
     textDecorationLine: 'underline',
     lineHeight: 20,
   },

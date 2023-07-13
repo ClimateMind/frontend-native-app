@@ -1,27 +1,30 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
+
+import Headline4 from '../../../components/TextStyles/Headline4';
+import BodyText from '../../../components/TextStyles/BodyText';
 
 function ConversationsIntroCard() {
   const [expanded, setExpanded] = useState(true);
   
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>How to talk about Climate Change</Text>
+      <Headline4 style={{ marginBottom: 10 }}>How to talk about Climate Change</Headline4>
 
       {expanded && <>
-        <Text style={styles.subtitle}>Step 1: Bond</Text>
-        <Text style={styles.text}>Start your conversation by bonding over similar personal values and interests.</Text>
-        <Text style={styles.text}>Climate Mind helps with this by giving you a special link to the values questionnaire to share with others before you chat.</Text>
+        <Headline4 style={styles.subtitle}>Step 1: Bond</Headline4>
+        <BodyText style={styles.text}>Start your conversation by bonding over similar personal values and interests.</BodyText>
+        <BodyText style={styles.text}>Climate Mind helps with this by giving you a special link to the values questionnaire to share with others before you chat.</BodyText>
 
-        <Text style={styles.subtitle}>Step 2: Relate</Text>
-        <Text style={styles.text}>Connect the dots for others on how your shared values relate to climate change.</Text>
+        <Headline4 style={styles.subtitle}>Step 2: Relate</Headline4>
+        <BodyText style={styles.text}>Connect the dots for others on how your shared values relate to climate change.</BodyText>
         
-        <Text style={styles.subtitle}>Step 3: Inspire</Text>
-        <Text style={styles.text}>Motivate the other person with solutions they find attractive.</Text>
+        <Headline4 style={styles.subtitle}>Step 3: Inspire</Headline4>
+        <BodyText style={styles.text}>Motivate the other person with solutions they find attractive.</BodyText>
       </>}
 
       <Pressable onPress={() => setExpanded(current => !current)} style={styles.moreLessButton}>
-        <Text style={{ letterSpacing: 1, fontWeight: 'bold' }}>{expanded ? 'LESS' : 'MORE'}</Text>
+        <BodyText style={{ letterSpacing: 1, fontWeight: 'bold' }}>{expanded ? 'LESS' : 'MORE'}</BodyText>
       </Pressable>
     </View>
   );
@@ -36,19 +39,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 15,
   },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
   subtitle: {
-    fontWeight: 'bold',
-    fontSize: 14,
     paddingVertical: 10,
   },
   text: {
     textAlign: 'center',
     letterSpacing: 1,
     paddingVertical: 5,
+    fontSize: 14,
   },
   moreLessButton: {
     alignSelf: 'flex-end',

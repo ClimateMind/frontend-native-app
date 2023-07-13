@@ -1,18 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
+import { ActivityIndicator, Dimensions, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StackParams } from '../../../navigation/StackNavigation';
 
-import { ActivityIndicator, Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { useAppSelector } from '../../../store/hooks';
+import Colors from '../../../assets/colors';
 import useApiClient from '../../../hooks/useApiClient';
+import { useAppSelector } from '../../../store/hooks';
 import { GetPersonalValues } from '../../../api/responses';
-import PageTitle from '../../../components/PageTitle';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import PersonalValueCard from '../../../components/PersonalValueCard';
-
 import RadarChart from '../../../components/RadarChart';
-import Colors from '../../../assets/colors';
+import Headline1 from '../../../components/TextStyles/Headline1';
+import BodyText from '../../../components/TextStyles/BodyText';
+import CaptionText from '../../../components/TextStyles/CaptionText';
+import ButtonText from '../../../components/TextStyles/ButtonText';
 
 type Props = NativeStackScreenProps<StackParams, 'PersonalValuesScreenNewUser'>;
 
@@ -52,7 +54,7 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
   return (
     <ScrollView>
       <View style={[styles.section, styles.blueArea]}>
-        <PageTitle>This is your Climate Personality</PageTitle>
+        <Headline1 style={styles.headlines}>This is your Climate Personality</Headline1>
 
         <View style={styles.valueCard}>
           <PersonalValueCard nr={1} value={personalValues.personalValues[0]} />
@@ -66,7 +68,7 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
       </View>
 
       <View style={[styles.section, styles.whiteArea]}>
-        <PageTitle>Your Personal Value Web</PageTitle>
+        <Headline1 style={styles.headlines}>Your Personal Value Web</Headline1>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <RadarChart
             // The -40 comes from the padding of the parent view (20 on each side)
@@ -78,17 +80,17 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
       </View>
       
       <View style={[styles.section, styles.blueArea]}>
-        <PageTitle>Get started</PageTitle>
-        <Text style={[styles.boldText, { marginTop: 30 }]}>Explore how climate change impacts you personally and relates to your values</Text>
-        <Text style={styles.boldText}>Discover climate solutions tailored to you</Text>
-        <Text style={styles.boldText}>Communicate the realities of climate change to others</Text>
-        <Text style={[styles.boldText, { marginBottom: 30 }]}>Set up your account and dive into effective conversations about climate change</Text>
+        <Headline1 style={styles.headlines}>Get started</Headline1>
+        <BodyText style={styles.boldText}>Explore how climate change impacts you personally and relates to your values</BodyText>
+        <BodyText style={styles.boldText}>Discover climate solutions tailored to you</BodyText>
+        <BodyText style={styles.boldText}>Communicate the realities of climate change to others</BodyText>
+        <BodyText style={[styles.boldText, { marginBottom: 30 }]}>Set up your account and dive into effective conversations about climate change</BodyText>
         
         <SimpleWhiteButton style={styles.button} text='DIVE IN' onPress={navigateToSignUpScreen} />
 
-        <Text style={styles.boldText}>Not happy with your results?</Text>
+        <CaptionText style={styles.boldText}>Not happy with your results?</CaptionText>
         <Pressable onPress={retakeQuiz}>
-          <Text style={styles.boldText}>RETAKE QUIZ</Text>
+          <ButtonText style={{ letterSpacing: 0, marginBottom: 60 }}>RETAKE QUIZ</ButtonText>
         </Pressable>
       </View>
     </ScrollView>
@@ -107,13 +109,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  headlines: {
+    paddingVertical: 8,
+    marginVertical: 20,
+  },
   boldText: {
-    fontWeight: 'bold',
     marginVertical: 15,
     textAlign: 'center',
   },
   valueCard: {
     marginVertical: 20,
+    width: '100%',
   },
   button: {
     marginTop: 30,

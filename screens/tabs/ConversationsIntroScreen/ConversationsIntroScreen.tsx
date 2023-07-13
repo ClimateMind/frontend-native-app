@@ -1,34 +1,30 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ConversationsStackParams } from '../../../navigation/ConversationsStack';
 
-import PageTitle from '../../../components/PageTitle';
-import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
+import Headline2 from '../../../components/TextStyles/Headline2';
+import BodyText from '../../../components/TextStyles/BodyText';
 import BulletListItem from '../../../components/BulletListItem';
+import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 
 type Props = NativeStackScreenProps<ConversationsStackParams, 'ConversationsIntroScreen'>;
 
 function ConversationsIntroScreen({ navigation }: Props) {
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.title}>
-        <PageTitle>How to talk about Climate Change...</PageTitle>
-      </View>
+      <Headline2 style={styles.marginBottom}>How to talk about Climate Change</Headline2>
 
-      <Text style={styles.smallText}>Talking about climate change is the most effective way to take action.</Text>
-
-      <Text style={styles.header}>Step 1: Bond</Text>
-      <Text style={styles.smallText}>Start your conversation by bonding over similarities in personal values and interests.</Text>
-      <BulletListItem textStyle={styles.smallText}>Climate Mind helps with this by giving you a special link to the values questionnaire to share with others before you chat.</BulletListItem>
-
-      <Text style={styles.header}>Step 2: Connect</Text>
-      <Text style={styles.smallText}>Connect the dots for others on how your shared values relate to climate change.</Text>
-      <BulletListItem textStyle={styles.smallText}>Climate Mind will find the connections so you don’t have to!</BulletListItem>
+      <BodyText style={styles.marginBottom}>Climate change is a global issue, and your contribution matters!</BodyText>
       
-      <Text style={styles.header}>Step 3: Inspire</Text>
-      <Text style={styles.smallText}>Motivate the other person with solutions they find attractive.</Text>
-      <BulletListItem textStyle={styles.smallText}>Climate Mind has you covered for this one too!</BulletListItem>
+      <BodyText style={styles.marginBottom}>You don't need to be an expert to talk about climate change. Follow these easy steps to start having effective conversations:</BodyText>
+      
+      <BulletListItem>Reach out to a friend</BulletListItem>
+      <BulletListItem>They'll pick an article to talk about with you</BulletListItem>
+      <BulletListItem>Use the article to start a conversation</BulletListItem>
+      <BulletListItem textStyle={styles.marginBottom}>Tell us how it went!</BulletListItem>
+
+      <BodyText style={styles.marginBottom}>When you have conversations with others, you take part in a network of people around the world who are working together to find solutions.</BodyText>
 
       <SimpleWhiteButton style={styles.button} text='START TALKING WITH PEOPLE' onPress={() => { navigation.navigate('ConversationsScreen') }} />
 
@@ -40,20 +36,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgba(138, 213, 204, 0.4)',
-    paddingVertical: 20,
-    paddingHorizontal: 10,
+    paddingTop: 50,
+    paddingHorizontal: 50,
   },
-  title: {
-    marginVertical: 20,
-  },
-  header: {
-    fontWeight: 'bold',
-    fontSize: 26,
-    paddingVertical: 20,
-  },
-  smallText: {
-    fontWeight: 'bold',
-    paddingVertical: 5,
+  marginBottom: {
+    marginBottom: 30,
   },
   button: {
     marginTop: 30,

@@ -17,8 +17,11 @@ SplashScreen.preventAutoHideAsync();
 
 function App() {
   const [fontsLoaded] = useFonts({
-    'nunito-medium': require('./assets/fonts/Nunito-Medium.ttf'),
+    'nunito': require('./assets/fonts/Nunito-Regular.ttf'),
+    'nunito-italic': require('./assets/fonts/Nunito-Italic.ttf'),
     'nunito-bold': require('./assets/fonts/Nunito-Bold.ttf'),
+    'nunito-extra-bold': require('./assets/fonts/Nunito-ExtraBold.ttf'),
+    'nunito-black': require('./assets/fonts/Nunito-Black.ttf'),
   });
 
   if (!fontsLoaded) {

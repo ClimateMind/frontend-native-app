@@ -1,9 +1,11 @@
-import { Image, Pressable, Text, StyleSheet, View } from 'react-native';
-
-import ClimateEffect from '../../../types/ClimateEffect';
-import { capitalizeFirstLetter } from '../../../utils';
-import RelatedPersonalValuesChips from '../../../components/RelatedPersonalValuesChips';
-import ActionCardHeader from './ActionCardHeader';
+import { Pressable, StyleSheet } from "react-native";
+import { Image, View } from "react-native";
+import ClimateEffect from "../../../types/ClimateEffect";
+import ActionCardHeader from "./ActionCardHeader";
+import { capitalizeFirstLetter } from "../../../utils";
+import BodyText from "../../../components/TextStyles/BodyText";
+import CaptionText from "../../../components/TextStyles/CaptionText";
+import ButtonText from "../../../components/TextStyles/ButtonText";
 
 interface Props {
   climateEffect: ClimateEffect;
@@ -13,14 +15,13 @@ interface Props {
 function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
   return (
     <View style={styles.card}>
-      <Text style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</Text>
-      {climateEffect.imageUrl !== null && <Image style={styles.image} source={{ uri: climateEffect.imageUrl }} />}
-      <Text style={styles.text}>{climateEffect.effectShortDescription}</Text>
+      <BodyText style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</BodyText>
+      {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
 
-      <RelatedPersonalValuesChips relatedPersonalValues={climateEffect.relatedPersonalValues ?? []} />
+      <CaptionText style={styles.text}>{climateEffect.effectShortDescription}</CaptionText>
 
       <Pressable onPress={() => onLearnMore(climateEffect)}>
-        <Text style={styles.button}>LEARN MORE</Text>
+        <ButtonText style={styles.button}>LEARN MORE</ButtonText>
       </Pressable>
 
       <ActionCardHeader effectSolution={climateEffect.effectSolutions[0]} />
@@ -34,24 +35,23 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    padding: 10,
+    padding: 20,
   },
   image: {
     width: '100%',
     height: 250,
   },
   text: {
-    fontWeight: 'bold',
-    padding: 10,
+    letterSpacing: 1,
+    lineHeight: 20,
+    padding: 20,
   },
   button: {
-    marginTop: 20,
     marginBottom: 10,
-    fontWeight: 'bold',
-    padding: 10,
-    letterSpacing: 1,
+    paddingLeft: 20,
+    paddingVertical: 20,
+    textAlign: 'left',
+    fontSize: 12,
   },
 });
 

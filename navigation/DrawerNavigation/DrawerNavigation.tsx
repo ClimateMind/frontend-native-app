@@ -33,6 +33,7 @@ function DrawerNavigation() {
       screenOptions={{
         drawerPosition: 'right',
         title: 'Climate Mind',
+        headerTitleStyle: { fontFamily: 'nunito-bold' },
         headerStyle: { backgroundColor: Colors.themeDark },
         headerTintColor: 'white',
         headerTitleAlign: 'center',

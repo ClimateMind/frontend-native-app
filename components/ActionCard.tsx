@@ -1,7 +1,9 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from "react-native";
 
-import Solution from '../types/Solution';
-import ActionCardHeader from '../screens/tabs/ClimateFeedScreen/ActionCardHeader';
+import Solution from "../types/Solution";
+import ActionCardHeader from "../screens/tabs/ClimateFeedScreen/ActionCardHeader";
+import BodyText from "./TextStyles/BodyText";
+import ButtonText from "./TextStyles/ButtonText";
 
 interface Props {
   solution: Solution;
@@ -16,9 +18,9 @@ function ActionCard({ solution, color = '#FDED6D' }: Props) {
         <Image style={styles.image} source={{ uri: solution.imageUrl }} />
       )}
 
-      <Text style={styles.description}>{solution.shortDescription}</Text>
+      <BodyText style={styles.description}>{solution.shortDescription}</BodyText>
       <Pressable>
-        <Text style={styles.button}>LEARN MORE</Text>
+        <ButtonText style={styles.button}>LEARN MORE</ButtonText>
       </Pressable>
     </View>
   );
@@ -30,16 +32,16 @@ const styles = StyleSheet.create({
     height: 250,
   },
   description: {
-    letterSpacing: 1,
-    fontWeight: 'bold',
-    padding: 10,
+    letterSpacing: 1.3,
+    fontSize: 15,
+    lineHeight: 23,
+    padding: 20,
   },
   button: {
-    marginTop: 20,
-    marginBottom: 10,
-    fontWeight: 'bold',
-    padding: 10,
-    letterSpacing: 1,
+    paddingTop: 25,
+    paddingBottom: 20,
+    paddingLeft: 20,
+    textAlign: 'left',
   },
 });
 

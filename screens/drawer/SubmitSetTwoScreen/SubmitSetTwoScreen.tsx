@@ -1,11 +1,13 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { DrawerNavigationParams } from '../../../navigation/DrawerNavigation/DrawerNavigation';
 
-import PageTitle from '../../../components/PageTitle';
-import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import Colors from '../../../assets/colors';
 import { useAppSelector } from '../../../store/hooks';
+
+import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
+import Headline1 from '../../../components/TextStyles/Headline1';
+import BodyText from '../../../components/TextStyles/BodyText';
 
 type Props = DrawerScreenProps<DrawerNavigationParams, 'SubmitSetTwoScreen'>;
 
@@ -22,13 +24,13 @@ function SubmitSetTwoScreen({ navigation }: Props) {
 
   return (
     <View style={styles.container}>
-      <PageTitle>Woohoo! Good Job!</PageTitle>
+      <Headline1 style={{ padding: 8 }}>Woohoo! Good Job!</Headline1>
       
-      <Text style={styles.boldText}>With the questions you just answered I can predict your Climate Personality.</Text>
+      <BodyText style={styles.bodyText}>With the questions you just answered I can predict your Climate Personality.</BodyText>
       
       <Image style={{ marginVertical: 30 }} source={require('../../../assets/reward-personalities.png')} />
       
-      <Text style={styles.boldText}>This is a ranking of the top three personal values that you deploy when making decisions.</Text>
+      <BodyText style={styles.bodyText}>This is a ranking of the top three personal values that you deploy when making decisions.</BodyText>
 
       <SimpleWhiteButton style={styles.button} text='FIND OUT MY CLIMATE PERSONALITY' onPress={navigateToPersonalValuesScreen} />
     </View>
@@ -43,8 +45,7 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: Colors.themeBright,
   },
-  boldText: {
-    fontWeight: 'bold',
+  bodyText: {
     textAlign: 'center',
     marginVertical: 30,
   },

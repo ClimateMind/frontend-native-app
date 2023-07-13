@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Dimensions, Image, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Dimensions, Image, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { AxiosError } from 'axios';
 import Recaptcha, { RecaptchaHandles } from 'react-native-recaptcha-that-works';
 import { WEB_URL, RECAPTCHA_SITE_KEY } from '@env';
@@ -8,12 +8,14 @@ import { useAppDispatch } from '../../../store/hooks';
 import { login } from '../../../store/authSlice';
 import useApiClient from '../../../hooks/useApiClient';
 import useLogger from '../../../hooks/useLogger';
-import PageTitle from '../../../components/PageTitle';
 
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import PasswordResetModal from './PasswordResetModal';
 import Colors from '../../../assets/colors';
 import { showErrorToast } from '../../../components/ToastMessages';
+import Headline2 from '../../../components/TextStyles/Headline2';
+import BodyText from '../../../components/TextStyles/BodyText';
+import LabelText from '../../../components/TextStyles/LabelText';
 
 function LoginScreen() {
   const apiClient = useApiClient();
@@ -67,9 +69,9 @@ function LoginScreen() {
       <KeyboardAvoidingView behavior="padding">
         <View style={styles.container}>
           <Image style={styles.image} source={require("../../../assets/cm-logo.png")} />
-          <PageTitle>Climate Mind</PageTitle>
+          <Headline2>Climate Mind</Headline2>
 
-          <Text style={styles.boldText}>Sign In</Text>
+          <BodyText style={styles.marginVertical}>Sign In</BodyText>
 
           <TextInput
             placeholder="Email"
@@ -88,9 +90,9 @@ function LoginScreen() {
           />
 
           <View style={{ flexDirection: 'row' }}>
-            <Text style={[styles.boldText, { marginRight: 20 }]}>Forgot your password?</Text>
-            <Pressable onPress={() => setShowModal(true)}>
-              <Text style={[styles.boldText, { textDecorationLine: "underline"}]}>Send reset link</Text>
+            <BodyText style={[styles.marginVertical, { marginRight: 20 }]}>Forgot your password?</BodyText>
+            <Pressable onPress={() => setShowModal(true)} style={{ justifyContent: 'center' }} >
+              <LabelText style={[styles.marginVertical, { textDecorationLine: "underline" }]}>Send reset link</LabelText>
             </Pressable>
           </View>
 
@@ -128,8 +130,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     minWidth: 160,
   },
-  boldText: {
-    fontWeight: 'bold',
+  marginVertical: {
     marginVertical: 30,
   },
   input: {

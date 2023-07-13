@@ -1,7 +1,11 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import PersonalValueIcon from "./PersonalValueIcon";
-import { capitalizeFirstLetter } from "../utils";
 import { useState } from "react";
+import { Pressable, StyleSheet, View } from "react-native";
+import { capitalizeFirstLetter } from "../utils";
+
+import Headline3 from "./TextStyles/Headline3";
+import ButtonText from "./TextStyles/ButtonText";
+import BodyText from "./TextStyles/BodyText";
+import PersonalValueIcon from "./PersonalValueIcon";
 
 interface Props {
   name: string;
@@ -18,16 +22,16 @@ function PersonalValueCardSmall({ name, shortDescription, percentage }: Props) {
         <PersonalValueIcon valueName={name} style={styles.image} />
 
         <View>
-          <Text style={styles.headerText}>{capitalizeFirstLetter(name)}</Text>
-          <Text style={styles.headerText}>{percentage}% match</Text>
+          <Headline3>{capitalizeFirstLetter(name)}</Headline3>
+          <Headline3>{percentage.toString()}% match</Headline3>
         </View>
 
-        <Pressable onPress={() => setExpanded(prev => !prev)} style={{ width: 60 }}>
-          <Text style={styles.moreCloseText}>{expanded ? "CLOSE" : "MORE"}</Text>
+        <Pressable onPress={() => setExpanded(prev => !prev)} style={{ width: 70 }}>
+          <ButtonText style={styles.moreCloseText}>{expanded ? "CLOSE" : "MORE"}</ButtonText>
         </Pressable>
       </View>
 
-      {expanded && <Text style={styles.shortDescription}>{shortDescription}</Text>}
+      {expanded && <BodyText style={styles.shortDescription}>{shortDescription}</BodyText>}
     </View>
   );
 }
@@ -50,19 +54,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-start',
   },
-  headerText: {
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
   moreCloseText: {
-    fontWeight: 'bold',
-    letterSpacing: 1.1,
-    fontSize: 14,
+    paddingVertical: 8,
   },
   shortDescription: {
-    fontWeight: 'bold',
-    marginTop: 10,
-  }
+    padding: 20,
+  },
 });
 
 export default PersonalValueCardSmall;

@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import LabelText from './TextStyles/LabelText';
 
 interface Props {
   detailsTabName?: string;
@@ -14,12 +15,12 @@ function DetailsSourcesTab({ onTabChanged, detailsTabName='Details' }: Props) {
   return (
     <View style={styles.tabBar}>
       <Pressable style={[styles.tabButton, selectedTab === 0 ? styles.tabButtonActive : styles.tabButtonInactive ]} onPress={() => {setSelectedTab(0); onTabChanged(0)}}>
-        <MaterialCommunityIcons name="clipboard-text-outline" size={24} color="black" />
-        <Text>{detailsTabName}</Text>
+        <MaterialCommunityIcons name="clipboard-text" size={20} color="black" />
+        <LabelText style={{ padding: 5 }}>{detailsTabName}</LabelText>
       </Pressable>
       <Pressable style={[styles.tabButton, selectedTab === 1 ? styles.tabButtonActive : styles.tabButtonInactive ]} onPress={() => {setSelectedTab(1); onTabChanged(1)}}>
-        <AntDesign name="filetext1" size={24} color="black" />
-        <Text>Sources</Text>
+        <FontAwesome name="file-text" size={20} color="black" />
+        <LabelText style={{ padding: 5 }}>Sources</LabelText>
       </Pressable>
   </View>
   );

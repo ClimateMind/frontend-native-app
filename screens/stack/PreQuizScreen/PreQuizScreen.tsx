@@ -1,10 +1,12 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, View } from 'react-native';
 import Colors from '../../../assets/colors';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StackParams } from '../../../navigation/StackNavigation';
 
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
+import Headline3 from '../../../components/TextStyles/Headline3';
+import BodyText from '../../../components/TextStyles/BodyText';
 
 type Props = NativeStackScreenProps<StackParams, 'PreQuizScreen'>;
 
@@ -18,25 +20,25 @@ function PreQuizScreen({ navigation }: Props) {
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <View style={[styles.container, { backgroundColor: Colors.themeBright }]}>
 
-        <Text style={styles.titleText}>First, what do you care about?</Text>
+        <Headline3 style={styles.titleText}>First, what do you care about?</Headline3>
 
-        <Text style={styles.text}>
+        <BodyText style={styles.text}>
           Take this short quiz about personal values so we can help you find common
           ground and topics for your conversations.
-        </Text>
+        </BodyText>
         
-        <Text style={styles.text}>
+        <BodyText style={styles.text}>
           Read each statement and decide how much like it you are or not. Don't worry!
           There's no right or wrong answers!
-        </Text>
+        </BodyText>
 
         <SimpleWhiteButton style={styles.button} text='TAKE THE QUIZ' onPress={navigateToQuizScreen} />
 
       </View>
       <View style={[styles.container, { backgroundColor: Colors.themeDark }]}>
-        <Text style={styles.whiteText}>
+        <BodyText style={styles.whiteText}>
           Personal values are key for effective climate conversations.
-        </Text>
+        </BodyText>
         
         <Image source={require('../../../assets/cm-logo-mint.png')} />
       </View>
@@ -52,8 +54,6 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   titleText: {
-    fontSize: 24,
-    fontWeight: 'bold',
     marginBottom: 20,
   },
   text: {
@@ -63,9 +63,7 @@ const styles = StyleSheet.create({
   whiteText: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 50,
   },
   button: {
     marginTop: 30,

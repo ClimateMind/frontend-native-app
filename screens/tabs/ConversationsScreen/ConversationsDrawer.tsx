@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Modal, Pressable, StyleSheet, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
-import PageTitle from '../../../components/PageTitle';
 import ConversationsIntroCard from './ConversationsIntroCard';
 import ConversationCard from './ConversationCard';
 import { GetAllConversations } from '../../../api/responses';
 import useApiClient from '../../../hooks/useApiClient';
 import Colors from '../../../assets/colors';
+import Headline2 from '../../../components/TextStyles/Headline2';
 
 interface Props {
   open: boolean;
@@ -38,7 +38,7 @@ function ConversationsDrawer({ open, onClose }: Props) {
           <AntDesign name="down" size={24} color="black" style={{ padding: 20 }} />
         </Pressable>
         <View style={{ marginBottom: 20 }}>
-          <PageTitle>Ongoing Conversations</PageTitle>
+          <Headline2>Ongoing Conversations</Headline2>
         </View>
 
         {allConversations === undefined && <ActivityIndicator size="large" color="black" style={{ marginTop: 100 }} />}

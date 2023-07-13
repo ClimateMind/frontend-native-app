@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { Modal, Pressable, StyleSheet, View } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 
-import PageTitle from "../../../components/PageTitle";
 import PersonalValueCardSmall from "../../../components/PersonalValueCardSmall";
 import ViewSelectedTopicsButton from "./ViewSelectedTopicsButton";
 import { GetAllConversations } from "../../../api/responses";
 import useApiClient from "../../../hooks/useApiClient";
 import Alignment from "../../../types/Alignment";
+import Headline1 from "../../../components/TextStyles/Headline1";
+import ButtonText from "../../../components/TextStyles/ButtonText";
+import BodyText from "../../../components/TextStyles/BodyText";
 
 interface Props {
   open: boolean;
@@ -51,19 +53,19 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
       <View style={styles.container}>
         <Pressable style={styles.backButtonContainer} onPress={onClose}>
           <Ionicons name="chevron-back-outline" size={24} color="#A347FF" />
-          <Text style={styles.backButtonText}>BACK</Text>
+          <ButtonText style={styles.backButtonText}>BACK</ButtonText>
         </Pressable>
         
-        <PageTitle>Your shared core values!</PageTitle>
+        <Headline1 style={{ padding: 8 }}>Your shared core values!</Headline1>
 
-        <Text style={styles.subheader}>How do your values align with {userBName}'s?</Text>
-        <Text style={styles.text}>Understanding your shared core values will help you identify how to tackle climate topics and solutions with friends.</Text>
+        <BodyText style={styles.subheader}>How do your values align with {userBName}'s?</BodyText>
+        <BodyText style={styles.text}>Understanding your shared core values will help you identify how to tackle climate topics and solutions with friends.</BodyText>
 
-        <Text style={styles.subheader}>Top Shared Core Value</Text>
+        <BodyText style={styles.subheader}>Top Shared Core Value</BodyText>
         <PersonalValueCardSmall name={topSharedValue.name} shortDescription={topSharedValue.shortDescription} percentage={topSharedValue.score} />
 
-        <Text style={styles.subheader}>Overall Similarity</Text>
-        <Text style={styles.percentage}>{topSharedValue.score}%</Text>
+        <BodyText style={styles.subheader}>Overall Similarity</BodyText>
+        <Headline1 style={styles.percentage}>{topSharedValue.score.toString()}%</Headline1>
 
         <ViewSelectedTopicsButton conversationId={conversation.conversationId} conversationState={2} style={{ marginTop: 50 }} onClick={onViewTopics} />
       </View>
@@ -86,10 +88,9 @@ const styles = StyleSheet.create({
   },
   backButtonText: {
     marginLeft: 10,
+    paddingTop: 8,
   },
   subheader: {
-    fontSize: 16,
-    letterSpacing: 1.1,
     textAlign: 'center',
     marginVertical: 20,
   },
@@ -98,8 +99,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   percentage: {
-    fontSize: 36,
-    fontWeight: 'bold',
+    padding: 8,
   },
 });
 

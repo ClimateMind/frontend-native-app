@@ -1,8 +1,12 @@
 import { Pressable, StyleSheet } from "react-native";
-import { Image, Text, View } from "react-native";
+import { Image, View } from "react-native";
 
 import { capitalizeFirstLetter } from "../../../utils";
 import Solution from "../../../types/Solution";
+import BodyText from "../../../components/TextStyles/BodyText";
+import LabelText from "../../../components/TextStyles/LabelText";
+import CaptionText from "../../../components/TextStyles/CaptionText";
+import ButtonText from "../../../components/TextStyles/ButtonText";
 
 interface Props {
   solution: Solution;
@@ -12,13 +16,16 @@ interface Props {
 function SolutionsFeedCard({ solution, onLearnMore }: Props) {
   return (
     <View style={styles.card}>
-      <Text style={styles.actionType}>{solution.solutionType.toUpperCase()} ACTION</Text>
-      <Text style={styles.title}>{capitalizeFirstLetter(solution.solutionTitle)}</Text>
+      <View style={styles.headingContainer}>
+        <LabelText style={styles.actionType}>{solution.solutionType.toUpperCase()} ACTION</LabelText>
+        <BodyText style={styles.title}>{capitalizeFirstLetter(solution.solutionTitle)}</BodyText>
+      </View>
+
       {solution.imageUrl !== null && <Image style={styles.image} source={{uri: solution.imageUrl}} />}
-      <Text style={styles.text}>{solution.shortDescription}</Text>
+      <CaptionText style={styles.text}>{solution.shortDescription}</CaptionText>
 
       <Pressable onPress={() => onLearnMore(solution)}>
-        <Text style={styles.button}>MORE</Text>
+        <ButtonText style={styles.button}>MORE</ButtonText>
       </Pressable>
     </View>
   );
@@ -29,16 +36,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 5,
   },
+  headingContainer: {
+    paddingHorizontal: 5,
+    paddingVertical: 10,
+  },
   actionType: {
-    fontWeight: 'bold',
-    fontSize: 10,
-    letterSpacing: 1,
+    fontSize: 8,
     marginTop: 5,
     paddingHorizontal: 10,
   },
   title: {
-    fontSize: 18,
-    fontWeight: 'bold',
     paddingHorizontal: 10,
     marginBottom: 10,
   },
@@ -47,15 +54,16 @@ const styles = StyleSheet.create({
     height: 250,
   },
   text: {
-    fontWeight: 'bold',
-    padding: 10,
+    letterSpacing: 1,
+    lineHeight: 20,
+    padding: 20,
   },
   button: {
-    marginTop: 20,
     marginBottom: 10,
-    fontWeight: 'bold',
-    padding: 10,
-    letterSpacing: 1,
+    paddingLeft: 20,
+    paddingVertical: 20,
+    textAlign: 'left',
+    fontSize: 12,
   },
 });
 

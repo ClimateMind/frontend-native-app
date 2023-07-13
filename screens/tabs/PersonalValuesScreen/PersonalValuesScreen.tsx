@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Dimensions, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { BottomTabsNavigationParams } from '../../../navigation/BottomTabsNavigation';
 
@@ -7,10 +7,12 @@ import Colors from '../../../assets/colors';
 import useApiClient from '../../../hooks/useApiClient';
 import { GetPersonalValues } from '../../../api/responses';
 import { useAppSelector } from '../../../store/hooks';
-import PageTitle from '../../../components/PageTitle';
 import PersonalValueCard from '../../../components/PersonalValueCard';
 import RadarChart from '../../../components/RadarChart';
 import { useFocusEffect } from '@react-navigation/native';
+import Headline2 from '../../../components/TextStyles/Headline2';
+import CaptionText from '../../../components/TextStyles/CaptionText';
+import ButtonText from '../../../components/TextStyles/ButtonText';
 
 type Props = BottomTabScreenProps<BottomTabsNavigationParams, 'PersonalValuesScreen'>;
 
@@ -46,7 +48,7 @@ function PersonalValuesScreen({ navigation }: Props) {
   return (
     <ScrollView ref={scrollRef}>
       <View style={[styles.padding, styles.blueArea]}>
-        <PageTitle>This is your Climate Personality</PageTitle>
+        <Headline2 style={{ padding: 8 }}>This is your Climate Personality</Headline2>
 
         <View style={styles.valueCard}>
           <PersonalValueCard nr={1} value={personalValues.personalValues[0]} />
@@ -60,7 +62,7 @@ function PersonalValuesScreen({ navigation }: Props) {
       </View>
 
       <View style={[styles.padding, styles.whiteArea]}>
-        <PageTitle>Your Personal Value Web</PageTitle>
+        <Headline2 style={{ padding: 8 }}>Your Personal Value Web</Headline2>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <RadarChart
             // The -40 comes from the padding of the parent view (20 on each side)
@@ -72,9 +74,9 @@ function PersonalValuesScreen({ navigation }: Props) {
       </View>
 
       <View style={[styles.padding, styles.blueArea]}>
-        <Text style={styles.boldText}>Not happy with your results?</Text>
+        <CaptionText style={styles.text}>Not happy with your results?</CaptionText>
         <Pressable onPress={retakeQuiz}>
-          <Text style={styles.boldText}>RETAKE QUIZ</Text>
+          <ButtonText style={[styles.text, { padding: 8 }]}>RETAKE QUIZ</ButtonText>
         </Pressable>
       </View>
     </ScrollView>
@@ -92,8 +94,7 @@ const styles = StyleSheet.create({
   padding: {
     padding: 20,
   },
-  boldText: {
-    fontWeight: 'bold',
+  text: {
     textAlign: 'center',
     marginVertical: 15,
   },
