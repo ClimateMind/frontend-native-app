@@ -14,9 +14,9 @@ const headers = [
 ];
 
 const texts = [
-  'Identify your personal values and how they relate to the impacts of climate change.',
+  'Identify your personal values and how they relate to climate change impacts.',
   'Gain insights on the growing impacts of climate change.',
-  'Discover climate solutions tailored to you and others.',
+  'Discover climate solutions tailored to you.',
   'Start a guided conversation with a friend about climate change.',
 ];
 
@@ -24,7 +24,7 @@ interface Props {
   onCompleted: () => void;
 }
 
-function OnBoardingScreen({ onCompleted }: Props) {
+function OnBoardingScreens({ onCompleted }: Props) {
   const [currentScreen, setCurrentScreen] = useState(0);
 
   function nextScreen() {
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   headerText: {
-    fontSize: 32,
+    fontSize: 24,
     fontFamily: 'nunito-bold',
     textAlign: 'center',
     paddingVertical: 20,
@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'nunito-bold',
     fontSize: 16,
-    textAlign: 'center',
     paddingHorizontal: 60,
   },
   navIcons: {
@@ -100,4 +99,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OnBoardingScreen;
+export default OnBoardingScreens;

@@ -45,14 +45,14 @@ function useApiClient() {
         dispatch(logout());
       }
     }
-    
+
     const response = await axios.request<T>({
       url: API_URL + endpoint,
       method,
       headers,
       data,
     });
-  
+
     return response;
   }
 
@@ -75,7 +75,7 @@ function useApiClient() {
     if (!sessionId) {
       throw new Error('Missing sessionId')
     }
-    
+
     const response = await apiCall<responses.PostScores>(
       'post',
       '/scores',
@@ -96,7 +96,7 @@ function useApiClient() {
     if (quizId === '') {
       throw new Error('Missing quizId')
     }
-    
+
     const response = await apiCall<responses.GetPersonalValues>(
       'get',
       '/personal_values?quizId=' + quizId,
@@ -148,7 +148,9 @@ function useApiClient() {
     await apiCall(
       'post',
       '/password-reset',
-      {},
+      {
+        'X-Session-Id': sessionId,
+      },
       { email },
     );
   }
@@ -157,7 +159,7 @@ function useApiClient() {
     if (!sessionId) {
       throw new Error('Missing sessionId')
     }
-    
+
     if (quizId === '') {
       throw new Error('Missing quizId')
     }
@@ -197,7 +199,7 @@ function useApiClient() {
     if (!sessionId) {
       throw new Error('Missing sessionId')
     }
-    
+
     const response = await apiCall<{ myths: Myth[] }>(
       'get',
       '/myths',
@@ -213,7 +215,7 @@ function useApiClient() {
     if (!sessionId) {
       throw new Error('Missing sessionId')
     }
-    
+
     const response = await apiCall<{ myth: Myth }>(
       'get',
       '/myths/' + mythIri,
@@ -225,7 +227,7 @@ function useApiClient() {
     return response.data.myth;
   }
 
-  async function putPassword(currentPassword: string, newPassword: string, confirmNewPassword: string) {
+  async function putPassword(currentPassword: string, newPassword: string, confirmPassword: string) {
     await apiCall(
       'put',
       '/user-account',
@@ -233,10 +235,10 @@ function useApiClient() {
         'X-Session-Id': sessionId,
         'Authorization': 'Bearer ' + user.accessToken,
       },
-      { currentPassword, newPassword, confirmNewPassword },
+      { currentPassword, newPassword, confirmPassword },
     );
   }
-  
+
   async function putEmail(newEmail: string, confirmEmail: string, password: string) {
     await apiCall(
       'put',
@@ -262,7 +264,7 @@ function useApiClient() {
 
     return response.data;
   }
-  
+
   async function getAllConversations() {
     const response = await apiCall<{ conversations: responses.GetAllConversations[] }>(
       'get',
@@ -272,7 +274,7 @@ function useApiClient() {
         'Authorization': 'Bearer ' + user.accessToken,
       },
     );
-    
+
     return response.data;
   }
 
@@ -309,7 +311,7 @@ function useApiClient() {
     if (!alignmentScoresId) {
       throw new Error('Missing alignmentScoresId')
     }
-    
+
     const response = await apiCall<responses.GetAlignmentScores>(
       'get',
       '/alignment/' + alignmentScoresId,
@@ -340,7 +342,7 @@ function useApiClient() {
 
     return response.data;
   }      
-  
+
   async function getSharedImpactDetails(impactId: string): Promise<responses.GetSharedImpactDetails> {
     if (!sessionId) {
       throw new Error('Missing sessionId')
@@ -360,7 +362,7 @@ function useApiClient() {
 
     return response.data;
   }
-  
+
   async function getSharedSolutionDetails(solutionId: string): Promise<responses.GetSharedSolutionDetails> {
     if (!sessionId) {
       throw new Error('Missing sessionId')
@@ -380,7 +382,7 @@ function useApiClient() {
 
     return response.data;
   }
-  
+
   return {
     postSession,
     getQuestions,

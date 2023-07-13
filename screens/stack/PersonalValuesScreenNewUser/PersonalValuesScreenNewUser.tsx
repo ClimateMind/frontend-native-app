@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../../navigation/RootStackNavigation';
+import { StackParams } from '../../../navigation/StackNavigation';
 
 import { ActivityIndicator, Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useAppSelector } from '../../../store/hooks';
@@ -14,7 +14,7 @@ import PersonalValueCard from '../../../components/PersonalValueCard';
 import RadarChart from '../../../components/RadarChart';
 import Colors from '../../../assets/colors';
 
-type Props = NativeStackScreenProps<RootStackParams, 'PersonalValuesScreenNewUser'>;
+type Props = NativeStackScreenProps<StackParams, 'PersonalValuesScreenNewUser'>;
 
 function PersonalValuesScreenNewUser({ navigation }: Props) {
   const apiClient = useApiClient();

@@ -1,9 +1,9 @@
 import { Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Entypo } from '@expo/vector-icons';
-
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 import { useAppSelector } from '../store/hooks';
 
 // Tab Screens
@@ -14,7 +14,7 @@ import MythsFeedStack from './MythsFeedStack';
 import ConversationsStack from './ConversationsStack';
 import PersonalValuesScreen from '../screens/tabs/PersonalValuesScreen/PersonalValuesScreen';
 
-export type BottomNavigationParams = {
+export type BottomTabsNavigationParams = {
   ProfileScreen: undefined;
   ClimateFeedStack: undefined;
   SolutionsFeedStack: undefined;
@@ -23,9 +23,9 @@ export type BottomNavigationParams = {
   PersonalValuesScreen: undefined;
 };
 
-const Tabs = createBottomTabNavigator<BottomNavigationParams>();
+const Tabs = createBottomTabNavigator<BottomTabsNavigationParams>();
 
-function BottomNavigation() {
+function BottomTabsNavigation() {
   const user = useAppSelector((state) => state.auth.user);
 
   return (
@@ -101,4 +101,4 @@ function BottomNavigation() {
   );
 }
 
-export default BottomNavigation;
+export default BottomTabsNavigation;

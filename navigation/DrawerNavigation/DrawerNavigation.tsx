@@ -5,16 +5,16 @@ import { useAppSelector } from '../../store/hooks';
 import Colors from '../../assets/colors';
 
 // Drawer Screens
-import RootStackNavigation from '../RootStackNavigation';
-import BottomNavigation from '../BottomNavigation';
-import ConversationsScreen from '../../screens/tabs/ConversationsScreen/ConversationsScreen';
+import StackNavigation from '../StackNavigation';
+import BottomTabsNavigation from '../BottomTabsNavigation';
 import QuizScreen from '../../screens/drawer/QuizScreen/QuizScreen';
 import SubmitSetOneScreen from '../../screens/drawer/SubmitSetOneScreen/SubmitSetOneScreen';
 import SubmitSetTwoScreen from '../../screens/drawer/SubmitSetTwoScreen/SubmitSetTwoScreen';
+import ConversationsScreen from '../../screens/tabs/ConversationsScreen/ConversationsScreen';
 
 export type DrawerNavigationParams = {
-  RootStackNavigation: undefined;
-  BottomNavigation: { screen: string };
+  StackNavigation: undefined;
+  BottomTabsNavigation: { screen: string };
   QuizScreen: { questionSet: 1 | 2 };
   SubmitSetOneScreen: undefined;
   SubmitSetTwoScreen: undefined;
@@ -28,7 +28,7 @@ function DrawerNavigation() {
   
   return (
     <Drawer.Navigator
-      initialRouteName='RootStackNavigation'
+      initialRouteName='StackNavigation'
       drawerContent={CustomDrawerContent}
       screenOptions={{
         drawerPosition: 'right',
@@ -40,8 +40,8 @@ function DrawerNavigation() {
         headerRight: () => <DrawerToggleButton tintColor='white' />,
       }}  
     >
-      {!isLoggedIn && <Drawer.Screen name='RootStackNavigation' component={RootStackNavigation} />}
-      {isLoggedIn && <Drawer.Screen name='BottomNavigation' component={BottomNavigation} />}
+      {!isLoggedIn && <Drawer.Screen name='StackNavigation' component={StackNavigation} />}
+      {isLoggedIn && <Drawer.Screen name='BottomTabsNavigation' component={BottomTabsNavigation} />}
       {isLoggedIn && <Drawer.Screen name='ConversationsScreen' component={ConversationsScreen} />}
       <Drawer.Screen name='QuizScreen' component={QuizScreen} />
       <Drawer.Screen name='SubmitSetOneScreen' component={SubmitSetOneScreen} />

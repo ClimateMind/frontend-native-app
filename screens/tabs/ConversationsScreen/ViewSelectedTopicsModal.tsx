@@ -29,6 +29,8 @@ function ViewSelectedTopicsModal({ open, conversation, onClose }: Props) {
   const [showSolutionDetails, setShowSolutionDetails] = useState(false);
   
   useEffect(() => {
+    if (conversation.state < 2) return;
+    
     apiClient.getSelectedTopics(conversation.conversationId)
       .then(response => {
         setClimateEffect(response.climateEffects[0]);

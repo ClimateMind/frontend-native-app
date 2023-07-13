@@ -14,9 +14,9 @@ function SubmitSetTwoScreen({ navigation }: Props) {
   
   function navigateToPersonalValuesScreen() {
     if (isLoggedIn) {
-      navigation.navigate('BottomNavigation', { screen: 'PersonalValuesScreen' });
+      navigation.navigate('BottomTabsNavigation', { screen: 'PersonalValuesScreen' });
     } else {
-      navigation.navigate('RootStackNavigation');
+      navigation.navigate('StackNavigation');
     }
   }
 
