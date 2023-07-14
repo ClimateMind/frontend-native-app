@@ -14,18 +14,13 @@ import YesWeTalkedButton from './YesWeTalkedButton';
 import ConversationRating from './ConversationRating';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
-import { Shadow } from 'react-native-shadow-2';
+import Card_Shadow from '../../../shadow-presets/Card_Shadow';
 
 interface Props {
   conversation: GetAllConversations;
   onDelete: (conversationId: string) => void;
 }
 
-interface ShadowProps {
-  offset: [number, number];
-  distance: number;
-  startColor: string;
-}
 function ConversationCard({ conversation, onDelete }: Props) {
   const apiClient = useApiClient();
   
@@ -76,7 +71,9 @@ function ConversationCard({ conversation, onDelete }: Props) {
   }, [conversation.state]);
 
   return (
-      <Shadow style ={{alignSelf: 'stretch'}} {...ShadowPresets.container}>
+      // <Shadow style ={{alignSelf: 'stretch'}} {...ShadowPresets.container}>
+
+      <Card_Shadow>
       <View style={[styles.container, { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }]}>
         
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -123,7 +120,9 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
       <DeleteConversationModal show={showDeleteModal} userBName={userBName} onCancel={() => setShowDeleteModal(false)} onConfirm={deleteConversation} />
     </View>
-    </Shadow>
+    {/* </Shadow> */}
+
+    </Card_Shadow>
   );
 }
 
@@ -160,12 +159,5 @@ const styles = StyleSheet.create({
   },
 });
 
-const ShadowPresets: { container: ShadowProps } = {
-  container: {
-    offset: [0, 5],
-    distance: 10,
-    startColor: '#0002',
-  },
-};
 
 export default ConversationCard;
