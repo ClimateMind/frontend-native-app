@@ -20,6 +20,11 @@ interface Props {
   conversation: GetAllConversations;
   onDelete: (conversationId: string) => void;
 }
+interface ShadowProps {
+  offset: [number, number];
+  distance: number;
+  startColor: string;
+}
 
 function ConversationCard({ conversation, onDelete }: Props) {
   const apiClient = useApiClient();
@@ -71,7 +76,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
   }, [conversation.state]);
 
   return (
-      <Shadow style ={{width:'100%'}}>
+      <Shadow style ={{width:'100%'}} {...ShadowPresets.container}>
       <View style={[styles.container, { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }]}>
         
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -151,5 +156,13 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
 });
+
+const ShadowPresets: { container: ShadowProps } = {
+  container: {
+    offset: [0, 5],
+    distance: 10,
+    startColor: '#0002',
+  },
+};
 
 export default ConversationCard;
