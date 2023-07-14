@@ -67,7 +67,7 @@ function NavigationRoot() {
           .then(result => dispatch(setSessionId(result.sessionId)))
       }
     }
-  })
+  }, []);
 
   return (
     <>
