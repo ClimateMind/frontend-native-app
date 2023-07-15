@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 5,
     padding: 20,
-    // elevation: 5
   },
   image: {
     alignSelf: 'flex-end',

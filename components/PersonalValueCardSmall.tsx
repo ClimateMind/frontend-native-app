@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     width: '100%',
-    // elevation: 5,
+  
   },
   image: {
     resizeMode: 'contain',

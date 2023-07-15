@@ -5,6 +5,7 @@ interface ShadowProps {
   offset: [number, number];
   distance: number;
   startColor: string;
+ 
 }
 
 interface Props {
@@ -21,9 +22,10 @@ function Button_Shadow({ children }: Props) {
 }
 const ShadowPresets: { container: ShadowProps } = {
   container: {
-    offset: [0, 3],
-    distance: 5,
-    startColor: '#0002',
+    offset: [0, 1],
+    distance: 100,
+    startColor: '#0004',
+   
   },
 };
 

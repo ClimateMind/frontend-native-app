@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Dimensions, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, Text, TextInput } from 'react-native';
+import { Dimensions, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { AntDesign } from '@expo/vector-icons';
 
@@ -10,6 +10,7 @@ import ConversationsDrawer from './ConversationsDrawer';
 import PageTitle from '../../../components/PageTitle';
 import CopyLinkModal from './CopyLinkModal';
 import { showErrorToast } from '../../../components/ToastMessages';
+import Input_Shadow from '../../../shadow-presets/Input_Shadow';
 
 function ConversationsScreen() {
   const apiClient = useApiClient();
@@ -54,6 +55,9 @@ function ConversationsScreen() {
           <Text style={styles.smallText}>We will send you an email when they agree to share their results with you!</Text>
 
           <Text style={styles.label}>Name of recipient</Text>
+          <View style ={{ marginVertical: 10,}}>
+            <Input_Shadow>
+
           <TextInput
             placeholder='Try "Peter Smith" or "Mom"'
             autoCapitalize="sentences"
@@ -62,6 +66,10 @@ function ConversationsScreen() {
             style={styles.input}
             value={recipient}
           />
+
+        </Input_Shadow>
+          </View>
+
           <SimpleWhiteButton style={styles.createLinkButton} disabled={recipient === ''} text='CREATE LINK' onPress={showModal} />
         </KeyboardAvoidingView>
 
@@ -116,11 +124,9 @@ const styles = StyleSheet.create({
   },
   input: {
     alignSelf: 'stretch',
-    marginVertical: 10,
     padding: 10,
     backgroundColor: 'white',
     fontWeight: 'bold',
-    elevation: 2,
     borderBottomColor: 'black',
     borderBottomWidth: 1,
     borderTopLeftRadius: 5,

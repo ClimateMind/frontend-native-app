@@ -12,7 +12,7 @@ interface Props {
   style?: StyleProp<TextStyle>; // Accepts custom styles
 }
 
-function Card_Shadow({ children }: Props) {
+function Input_Shadow({ children }: Props) {
   return (
     <Shadow {...ShadowPresets.container} style={{ alignSelf: 'stretch' }}>
       {children}
@@ -21,10 +21,10 @@ function Card_Shadow({ children }: Props) {
 }
 const ShadowPresets: { container: ShadowProps } = {
   container: {
-    offset: [0, 5],
-    distance: 10,
-    startColor: '#0002',
+    offset: [0, 1],
+    distance: 1,
+    startColor: '#0004',
   },
 };
 
-export default Card_Shadow;
+export default Input_Shadow;
