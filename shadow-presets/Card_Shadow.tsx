@@ -8,7 +8,7 @@ interface ShadowProps {
 }
 
 interface Props {
-  children: any;
+  children: JSX.Element[] | JSX.Element;
   style?: StyleProp<TextStyle>; // Accepts custom styles
 }
 

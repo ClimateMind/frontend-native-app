@@ -6,6 +6,7 @@ import { ConversationsStackParams } from '../../../navigation/ConversationsStack
 import PageTitle from '../../../components/PageTitle';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import BulletListItem from '../../../components/BulletListItem';
+import Button_Shadow from '../../../shadow-presets/Button_Shadow';
 
 type Props = NativeStackScreenProps<ConversationsStackParams, 'ConversationsIntroScreen'>;
 
@@ -29,9 +30,11 @@ function ConversationsIntroScreen({ navigation }: Props) {
       <Text style={styles.header}>Step 3: Inspire</Text>
       <Text style={styles.smallText}>Motivate the other person with solutions they find attractive.</Text>
       <BulletListItem textStyle={styles.smallText}>Climate Mind has you covered for this one too!</BulletListItem>
-
-      <SimpleWhiteButton style={styles.button} text='START TALKING WITH PEOPLE' onPress={() => { navigation.navigate('ConversationsScreen') }} />
-
+      <View style={styles.button}>
+      <Button_Shadow>
+      <SimpleWhiteButton  text='START TALKING WITH PEOPLE' onPress={() => { navigation.navigate('ConversationsScreen') }} />
+      </Button_Shadow>
+      </View>
     </ScrollView>
   );
 }

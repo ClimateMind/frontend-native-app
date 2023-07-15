@@ -3,6 +3,7 @@ import { Image, Pressable, Text, StyleSheet, View } from "react-native";
 import ClimateEffect2 from "../../../types/ClimateEffect2";
 import { capitalizeFirstLetter } from "../../../utils";
 import RelatedPersonalValuesChips from "../../../components/RelatedPersonalValuesChips";
+import Card_Shadow from "../../../shadow-presets/Card_Shadow";
 
 interface Props {
   climateEffect: ClimateEffect2;
@@ -11,6 +12,7 @@ interface Props {
 
 function ActionCard({ climateEffect, onLearnMore }: Props) {   
   return (
+    <Card_Shadow>
     <View style={styles.card}>
       <Text style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</Text>
       <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />
@@ -23,6 +25,7 @@ function ActionCard({ climateEffect, onLearnMore }: Props) {
       </Pressable>
 
     </View>
+    </Card_Shadow>
   );
 }
 

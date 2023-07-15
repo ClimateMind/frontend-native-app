@@ -6,6 +6,7 @@ import PageTitle from '../../../components/PageTitle';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import Colors from '../../../assets/colors';
 import { useAppSelector } from '../../../store/hooks';
+import Button_Shadow from '../../../shadow-presets/Button_Shadow';
 
 type Props = DrawerScreenProps<DrawerNavigationParams, 'SubmitSetOneScreen'>;
 
@@ -35,8 +36,11 @@ function SubmitSetOneScreen({ navigation }: Props) {
       </Pressable>
 
       <Text style={styles.boldText}>You will get better personalised results if you complete all 20 questions.</Text>
-      
-      <SimpleWhiteButton style={styles.button} text='Continue' onPress={navigateToQuizScreen} />
+     <View style={styles.button}>
+      <Button_Shadow>
+      <SimpleWhiteButton  text='Continue' onPress={navigateToQuizScreen} />
+      </Button_Shadow>
+      </View>
     </View>
   );
 }

@@ -3,6 +3,7 @@ import { Image, Text, View } from "react-native";
 
 import { capitalizeFirstLetter } from "../../../utils";
 import Solution from "../../../types/Solution";
+import Card_Shadow from "../../../shadow-presets/Card_Shadow";
 
 interface Props {
   solution: Solution;
@@ -11,6 +12,7 @@ interface Props {
 
 function SolutionsFeedCard({ solution, onLearnMore }: Props) {
   return (
+    <Card_Shadow>
     <View style={styles.card}>
       <Text style={styles.actionType}>{solution.solutionType.toUpperCase()} ACTION</Text>
       <Text style={styles.title}>{capitalizeFirstLetter(solution.solutionTitle)}</Text>
@@ -21,6 +23,7 @@ function SolutionsFeedCard({ solution, onLearnMore }: Props) {
         <Text style={styles.button}>MORE</Text>
       </Pressable>
     </View>
+    </Card_Shadow>
   );
 }
 

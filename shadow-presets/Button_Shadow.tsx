@@ -8,21 +8,21 @@ interface ShadowProps {
 }
 
 interface Props {
-  children: any;
+  children: JSX.Element[] | JSX.Element;
   style?: StyleProp<TextStyle>; // Accepts custom styles
 }
 
 function Button_Shadow({ children }: Props) {
   return (
-    <Shadow {...ShadowPresets.container} style={{ alignSelf: 'stretch' }}>
+    <Shadow {...ShadowPresets.container} style={{ alignSelf: 'stretch'}}>
       {children}
     </Shadow>
   );
 }
 const ShadowPresets: { container: ShadowProps } = {
   container: {
-    offset: [0, 5],
-    distance: 10,
+    offset: [0, 3],
+    distance: 5,
     startColor: '#0002',
   },
 };

@@ -9,6 +9,7 @@ type Props = {
 
 function SimpleWhiteButton({ text, onPress, disabled = false, style = {} }: Props) {
   return (
+    
     <Pressable
       disabled={disabled}
       style={({ pressed }) => [

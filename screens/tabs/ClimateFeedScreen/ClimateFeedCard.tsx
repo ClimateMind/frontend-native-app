@@ -4,6 +4,7 @@ import ClimateEffect from '../../../types/ClimateEffect';
 import { capitalizeFirstLetter } from '../../../utils';
 import RelatedPersonalValuesChips from '../../../components/RelatedPersonalValuesChips';
 import ActionCardHeader from './ActionCardHeader';
+import Card_Shadow from '../../../shadow-presets/Card_Shadow';
 
 interface Props {
   climateEffect: ClimateEffect;
@@ -12,6 +13,7 @@ interface Props {
 
 function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
   return (
+    <Card_Shadow>
     <View style={styles.card}>
       <Text style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</Text>
       {climateEffect.imageUrl !== null && <Image style={styles.image} source={{ uri: climateEffect.imageUrl }} />}
@@ -25,6 +27,7 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
 
       <ActionCardHeader effectSolution={climateEffect.effectSolutions[0]} />
     </View>
+    </Card_Shadow>
   );
 }
 
