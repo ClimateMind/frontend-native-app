@@ -2,6 +2,7 @@ import { Pressable, StyleSheet } from "react-native";
 import { Text, View } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import Myth from "../../../types/Myth";
+import Card_Shadow from "../../../shadow-presets/Card_Shadow";
 
 interface Props {
   myth: Myth;
@@ -10,6 +11,7 @@ interface Props {
 
 function MythsFeedCard({ myth, onLearnMore }: Props) {
   return (
+    <Card_Shadow>
     <View style={styles.card}>
       <Ionicons style={styles.image} name="chatbox-ellipses-sharp" size={24} color="black" />
       <Text style={[styles.smallText, { color: '#B00620' }]}>MYTH</Text>
@@ -22,6 +24,7 @@ function MythsFeedCard({ myth, onLearnMore }: Props) {
       </Pressable>}
       
     </View>
+    </Card_Shadow>
   );
 }
 
@@ -30,7 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 5,
     padding: 20,
-    elevation: 5
+    // elevation: 5
   },
   image: {
     alignSelf: 'flex-end',

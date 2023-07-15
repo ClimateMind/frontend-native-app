@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import PersonalValueIcon from "./PersonalValueIcon";
+import Card_Shadow from "../shadow-presets/Card_Shadow";
 
 interface Props {
   nr: number;
@@ -20,6 +21,7 @@ function PersonalValueCard({ nr, value }: Props) {
   }
 
   return (
+    <Card_Shadow>
     <View style={styles.card}>
 
       <Text style={[styles.boldText, { fontSize: 12 }]}>NO.{nr}</Text>
@@ -39,6 +41,7 @@ function PersonalValueCard({ nr, value }: Props) {
       </Pressable>
       
     </View>
+    </Card_Shadow>
   );
 }
 

@@ -2,6 +2,7 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import Solution from '../types/Solution';
 import ActionCardHeader from '../screens/tabs/ClimateFeedScreen/ActionCardHeader';
+import Card_Shadow from '../shadow-presets/Card_Shadow';
 
 interface Props {
   solution: Solution;
@@ -10,6 +11,7 @@ interface Props {
 
 function ActionCard({ solution, color = '#FDED6D' }: Props) {
   return (
+    <Card_Shadow>
     <View style={{ backgroundColor: color }}>
       <ActionCardHeader effectSolution={solution} />
       {solution.imageUrl !== null && (
@@ -21,6 +23,7 @@ function ActionCard({ solution, color = '#FDED6D' }: Props) {
         <Text style={styles.button}>LEARN MORE</Text>
       </Pressable>
     </View>
+    </Card_Shadow>
   );
 }
 

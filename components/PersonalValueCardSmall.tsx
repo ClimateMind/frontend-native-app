@@ -14,7 +14,7 @@ function PersonalValueCardSmall({ name, shortDescription, percentage }: Props) {
   const [expanded, setExpanded] = useState(false);
   
   return (
-  
+  <Card_Shadow>
     <View style={styles.card}>
       <View style={styles.header}>
         <PersonalValueIcon valueName={name} style={styles.image} />
@@ -31,6 +31,7 @@ function PersonalValueCardSmall({ name, shortDescription, percentage }: Props) {
 
       {expanded && <Text style={styles.shortDescription}>{shortDescription}</Text>}
     </View>
+    </Card_Shadow>
   );
 }
 
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     width: '100%',
-    elevation: 5,
+    // elevation: 5,
   },
   image: {
     resizeMode: 'contain',

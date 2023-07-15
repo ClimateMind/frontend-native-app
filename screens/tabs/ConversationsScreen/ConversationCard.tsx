@@ -233,9 +233,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     padding: 15,
-    offset: [0, 5],
-    distance: 10,
-    startColor: '#0002',
   },
   text: {
     letterSpacing: 1,

@@ -6,6 +6,7 @@ import ClimateEffect3 from "../../../types/ClimateEffect3";
 import { capitalizeFirstLetter } from "../../../utils";
 import DetailsSourcesTab from "../../../components/DetailsSourcesTabs";
 import useApiClient from "../../../hooks/useApiClient";
+import Card_Shadow from "../../../shadow-presets/Card_Shadow";
 
 interface Props {
   open: boolean;
@@ -37,6 +38,7 @@ function ActionDetailsModal({ open, action, onClose }: Props) {
       animationType="fade"
       onRequestClose={onClose}
     >
+<Card_Shadow>
       <View style={styles.container}>
         <ScrollView style={{ width: '100%' }}>
 
@@ -53,6 +55,7 @@ function ActionDetailsModal({ open, action, onClose }: Props) {
 
         </ScrollView>
       </View>
+      </Card_Shadow>
     </Modal>
   );
 }
@@ -67,7 +70,7 @@ const styles = StyleSheet.create({
     marginTop: '3%',
     borderRadius: 10,
     borderWidth: 1,
-    elevation: 5,
+    // elevation: 5,
   },
   title: {
     fontSize: 18,
