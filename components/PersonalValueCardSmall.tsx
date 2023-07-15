@@ -2,6 +2,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import PersonalValueIcon from "./PersonalValueIcon";
 import { capitalizeFirstLetter } from "../utils";
 import { useState } from "react";
+import Card_Shadow from "../shadow-presets/Card_Shadow";
 
 interface Props {
   name: string;
@@ -13,6 +14,7 @@ function PersonalValueCardSmall({ name, shortDescription, percentage }: Props) {
   const [expanded, setExpanded] = useState(false);
   
   return (
+  
     <View style={styles.card}>
       <View style={styles.header}>
         <PersonalValueIcon valueName={name} style={styles.image} />

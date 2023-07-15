@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-
+import Card_Shadow from '../../../shadow-presets/Card_Shadow';
 function ConversationsIntroCard() {
   const [expanded, setExpanded] = useState(true);
   
   return (
+<Card_Shadow>
     <View style={styles.container}>
       <Text style={styles.title}>How to talk about Climate Change</Text>
 
@@ -24,6 +25,7 @@ function ConversationsIntroCard() {
         <Text style={{ letterSpacing: 1, fontWeight: 'bold' }}>{expanded ? 'LESS' : 'MORE'}</Text>
       </Pressable>
     </View>
+    </Card_Shadow>
   );
 }
 
@@ -31,7 +33,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     borderRadius: 10,
-    elevation: 5,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 15,
