@@ -3,7 +3,7 @@ import { Image, Pressable, Text, StyleSheet, View } from "react-native";
 import ClimateEffect2 from "../../../types/ClimateEffect2";
 import { capitalizeFirstLetter } from "../../../utils";
 import RelatedPersonalValuesChips from "../../../components/RelatedPersonalValuesChips";
-import Card_Shadow from "../../../shadow-presets/Card_Shadow";
+import Card_Shadow from "../../../ShadowStyles/Card_Shadow";
 
 interface Props {
   climateEffect: ClimateEffect2;

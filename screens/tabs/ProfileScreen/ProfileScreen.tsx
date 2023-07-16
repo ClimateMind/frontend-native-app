@@ -7,7 +7,7 @@ import PageTitle from '../../../components/PageTitle';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import ChangePasswordModal from './ChangePasswordModal';
 import UpdateEmailModal from './UpdateEmailModal';
-import Button_Shadow from '../../../shadow-presets/Button_Shadow';
+import Button_Shadow from '../../../ShadowStyles/Button_Shadow';
 
 function ProfileScreen() {
   const dispatch = useAppDispatch();

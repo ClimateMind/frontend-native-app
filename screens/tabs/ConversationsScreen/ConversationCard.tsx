@@ -14,7 +14,7 @@ import YesWeTalkedButton from './YesWeTalkedButton';
 import ConversationRating from './ConversationRating';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
-import Card_Shadow from '../../../shadow-presets/Card_Shadow';
+import Card_Shadow from '../../../ShadowStyles/Card_Shadow';
 
 interface Props {
   conversation: GetAllConversations;

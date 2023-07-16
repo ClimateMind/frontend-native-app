@@ -2,7 +2,7 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import Solution from '../types/Solution';
 import ActionCardHeader from '../screens/tabs/ClimateFeedScreen/ActionCardHeader';
-import Card_Shadow from '../shadow-presets/Card_Shadow';
+import Card_Shadow from '../ShadowStyles/Card_Shadow';
 
 interface Props {
   solution: Solution;

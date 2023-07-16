@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import Card_Shadow from '../../../shadow-presets/Card_Shadow';
+import Card_Shadow from '../../../ShadowStyles/Card_Shadow';
 function ConversationsIntroCard() {
   const [expanded, setExpanded] = useState(true);
   

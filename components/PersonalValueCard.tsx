@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import PersonalValueIcon from "./PersonalValueIcon";
-import Card_Shadow from "../shadow-presets/Card_Shadow";
+import Card_Shadow from "../ShadowStyles/Card_Shadow";
 
 interface Props {
   nr: number;

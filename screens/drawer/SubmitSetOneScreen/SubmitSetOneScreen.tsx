@@ -6,7 +6,7 @@ import PageTitle from '../../../components/PageTitle';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import Colors from '../../../assets/colors';
 import { useAppSelector } from '../../../store/hooks';
-import Button_Shadow from '../../../shadow-presets/Button_Shadow';
+import Button_Shadow from '../../../ShadowStyles/Button_Shadow';
 
 type Props = DrawerScreenProps<DrawerNavigationParams, 'SubmitSetOneScreen'>;
 

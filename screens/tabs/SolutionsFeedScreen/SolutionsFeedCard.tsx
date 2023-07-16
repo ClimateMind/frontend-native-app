@@ -3,7 +3,7 @@ import { Image, Text, View } from "react-native";
 
 import { capitalizeFirstLetter } from "../../../utils";
 import Solution from "../../../types/Solution";
-import Card_Shadow from "../../../shadow-presets/Card_Shadow";
+import Card_Shadow from "../../../ShadowStyles/Card_Shadow";
 
 interface Props {
   solution: Solution;

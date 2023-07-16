@@ -2,7 +2,7 @@ import { Pressable, StyleSheet } from "react-native";
 import { Text, View } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import Myth from "../../../types/Myth";
-import Card_Shadow from "../../../shadow-presets/Card_Shadow";
+import Card_Shadow from "../../../ShadowStyles/Card_Shadow";
 
 interface Props {
   myth: Myth;

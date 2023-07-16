@@ -1,11 +1,10 @@
-import { Shadow } from 'react-native-shadow-2';
 import { StyleProp, TextStyle } from 'react-native';
+import { Shadow } from 'react-native-shadow-2';
 
 interface ShadowProps {
   offset: [number, number];
   distance: number;
   startColor: string;
- 
 }
 
 interface Props {
@@ -22,9 +21,9 @@ function Button_Shadow({ children }: Props) {
 }
 const ShadowPresets: { container: ShadowProps } = {
   container: {
-    offset: [0, 1],
-    distance: 100,
-    startColor: '#0004',
+    offset: [0, 2],
+    distance: 5,
+    startColor: '#0003',
    
   },
 };

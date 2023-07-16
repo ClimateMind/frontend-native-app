@@ -1,5 +1,5 @@
-import { Shadow } from 'react-native-shadow-2';
 import { StyleProp, TextStyle } from 'react-native';
+import { Shadow } from 'react-native-shadow-2';
 
 interface ShadowProps {
   offset: [number, number];

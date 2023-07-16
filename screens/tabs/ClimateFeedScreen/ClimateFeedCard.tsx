@@ -4,7 +4,7 @@ import ClimateEffect from '../../../types/ClimateEffect';
 import { capitalizeFirstLetter } from '../../../utils';
 import RelatedPersonalValuesChips from '../../../components/RelatedPersonalValuesChips';
 import ActionCardHeader from './ActionCardHeader';
-import Card_Shadow from '../../../shadow-presets/Card_Shadow';
+import Card_Shadow from '../../../ShadowStyles/Card_Shadow';
 
 interface Props {
   climateEffect: ClimateEffect;

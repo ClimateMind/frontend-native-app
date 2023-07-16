@@ -10,7 +10,7 @@ import ConversationsDrawer from './ConversationsDrawer';
 import PageTitle from '../../../components/PageTitle';
 import CopyLinkModal from './CopyLinkModal';
 import { showErrorToast } from '../../../components/ToastMessages';
-import Input_Shadow from '../../../shadow-presets/Input_Shadow';
+import Input_Shadow from '../../../ShadowStyles/Input_Shadow';
 
 function ConversationsScreen() {
   const apiClient = useApiClient();

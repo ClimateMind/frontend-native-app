@@ -6,7 +6,7 @@ import ClimateEffect3 from "../../../types/ClimateEffect3";
 import { capitalizeFirstLetter } from "../../../utils";
 import DetailsSourcesTab from "../../../components/DetailsSourcesTabs";
 import useApiClient from "../../../hooks/useApiClient";
-import Card_Shadow from "../../../shadow-presets/Card_Shadow";
+import Card_Shadow from "../../../ShadowStyles/Card_Shadow";
 
 interface Props {
   open: boolean;
