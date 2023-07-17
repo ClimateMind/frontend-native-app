@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Platform } from 'react-native';
 import { DrawerContentComponentProps } from '@react-navigation/drawer';
 import SocialImagesGrid from './SocialImagesGrid';
 import DrawerButton from './DrawerButton';
@@ -42,7 +42,7 @@ function CustomDrawerContent({ navigation }: Props) {
           {!isLoggedIn && <DrawerButton text='LOG IN' icon={<MaterialIcons name="login" size={24} color="black" />} onPress={() => navigation.navigate('LoginScreen')} />}
           {isLoggedIn && <DrawerButton text='LOGOUT' icon={<MaterialIcons name="logout" size={24} color="black" />} onPress={onLogout} />}
         </View>
-        <View style={{ margin: 10, marginLeft: 20 }}>
+        <View style={Platform.OS === 'ios'? { margin: 10, marginLeft: 20, paddingBottom:60 }:{ margin: 10, marginLeft: 20} }>
           <DrawerButton text='FEEDBACK' icon={<MaterialIcons name="email" size={24} color="black" />} onPress={() => openUrl('mailto:hello@climatemind.org')} />
         </View>
       </View>
