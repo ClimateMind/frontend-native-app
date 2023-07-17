@@ -1,4 +1,7 @@
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Modal, Pressable, StyleSheet, View } from 'react-native';
+import Headline4 from '../../../components/TextStyles/Headline4';
+import BodyText from '../../../components/TextStyles/BodyText';
+import ButtonText from '../../../components/TextStyles/ButtonText';
 
 interface Props {
   show: boolean;
@@ -15,12 +18,12 @@ function DeleteConversationModal({ show, userBName, onCancel, onConfirm }: Props
     >
       <View style={styles.centerModal}>
         <View style={styles.card}>
-          <Text style={styles.cardHeader}>Delete Conversation?</Text>
-          <Text>Are you sure you want to delete your conversation with {userBName}</Text>
+          <Headline4 style={styles.cardHeader}>Delete Conversation?</Headline4>
+          <BodyText>Are you sure you want to delete your conversation with {userBName}</BodyText>
 
           <View style={styles.buttonContainer}>
-            <Pressable onPress={onCancel} style={styles.button}><Text>CANCEL</Text></Pressable>
-            <Pressable onPress={onConfirm} style={styles.button}><Text>CONFIRM</Text></Pressable>
+            <Pressable onPress={onCancel}><ButtonText style={styles.buttonText}>CANCEL</ButtonText></Pressable>
+            <Pressable onPress={onConfirm}><ButtonText style={styles.buttonText}>CONFIRM</ButtonText></Pressable>
           </View>
         </View>
       </View>
@@ -41,8 +44,8 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   cardHeader: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    textAlign: 'left',
+    marginBottom: 10,
   },
   textInput: {
     borderBottomColor: 'grey',
@@ -54,8 +57,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
-  button: {
-    padding: 15,
+  buttonText: {
+    padding: 10,
+    paddingTop: 40,
   },
 });
 

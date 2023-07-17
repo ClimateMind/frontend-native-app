@@ -1,6 +1,5 @@
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import PageTitle from "../../../components/PageTitle";
 import { GetAllConversations } from "../../../api/responses";
 import useApiClient from "../../../hooks/useApiClient";
 import { useEffect, useState } from "react";
@@ -10,6 +9,9 @@ import ActionCard from "./ActionCard";
 import SolutionsFeedCard from "./SolutionCard";
 import SolutionDetailsModal from "./SolutionDetailsModal";
 import ActionDetailsModal from "./ActionDetailsModal";
+import Headline1 from "../../../components/TextStyles/Headline1";
+import BodyText from "../../../components/TextStyles/BodyText";
+import ButtonText from "../../../components/TextStyles/ButtonText";
 
 interface Props {
   open: boolean;
@@ -55,12 +57,12 @@ function ViewSelectedTopicsModal({ open, conversation, onClose }: Props) {
           <ScrollView style={{ padding: 20 }}>
             <Pressable style={styles.backButtonContainer} onPress={onClose}>
               <Ionicons name="chevron-back-outline" size={24} color="#A347FF" />
-              <Text style={styles.backButtonText}>BACK</Text>
+              <ButtonText style={styles.backButtonText}>BACK</ButtonText>
             </Pressable>
 
-            <PageTitle>Your shared feed with {conversation.userB.name}</PageTitle>
+            <Headline1 style={{ padding: 8 }}>Your shared feed with {conversation.userB.name}</Headline1>
 
-            <Text style={styles.text}>These are climate effects that matter to you both; great starting point for having a constructive conversation.</Text>
+            <BodyText style={styles.text}>These are climate effects that matter to you both; great starting point for having a constructive conversation.</BodyText>
 
             <View style={{ marginVertical: 20 }}>
               <ActionCard climateEffect={climateEffect} onLearnMore={() => setShowActionDetails(true)} />
@@ -96,9 +98,9 @@ const styles = StyleSheet.create({
   },
   backButtonText: {
     marginLeft: 10,
+    paddingTop: 8,
   },
   text: {
-    fontWeight: 'bold',
     textAlign: 'center',
     marginVertical: 20,
   },

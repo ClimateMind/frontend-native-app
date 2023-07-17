@@ -1,11 +1,12 @@
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import Colors from '../../../assets/colors';
-
-import PageTitle from '../../../components/PageTitle';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StackParams } from '../../../navigation/StackNavigation';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
+import BodyText from '../../../components/TextStyles/BodyText';
+import LabelText from '../../../components/TextStyles/LabelText';
+import Headline1 from '../../../components/TextStyles/Headline1';
 
 type Props = NativeStackScreenProps<StackParams, 'StartScreen'>;
 
@@ -22,29 +23,29 @@ function StartScreen({ navigation }: Props) {
     <ScrollView>
       <View style={[styles.container, { backgroundColor: Colors.themeBright }]}>
         <Image style={styles.image} source={require('../../../assets/cm-logo.png')} />
-        <PageTitle>Inspire others to take action!</PageTitle>
+        <Headline1 style={{ textAlign: 'center' }}>Inspire others to take action!</Headline1>
 
         <SimpleWhiteButton style={styles.button} text='GET STARTED' onPress={navigateToPreQuizScreen} />
 
         <Pressable onPress={navigateToLoginScreen}>
-          <Text style={[styles.text, { fontWeight: 'bold' }]}>Already a member? Login here</Text>
+          <LabelText style={[styles.text, { fontWeight: 'bold' }]}>Already a member? Login here</LabelText>
         </Pressable>
 
-        <Text style={styles.text}>
+        <BodyText style={styles.text}>
           Climate change affects us all. And to inspire sufficient action, we must talk about it
           much more.
-        </Text>
+        </BodyText>
         
-        <Text style={styles.text}>
+        <BodyText style={styles.text}>
           Climate Mind makes it easy to have effective conversations with your friends and family.
-        </Text>
+        </BodyText>
       </View>
 
       <View style={[styles.container, { backgroundColor: Colors.themeDark }]}>
-        <Text style={styles.whiteText}>
+        <BodyText style={styles.whiteText}>
           We use proven social science to connect climate change to what people care about and help
           find solutions they like.
-        </Text>
+        </BodyText>
         
         <Image source={require('../../../assets/ConnectTheDots.png')} />
       </View>

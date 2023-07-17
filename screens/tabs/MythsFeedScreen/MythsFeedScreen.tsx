@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 
 import { MythsFeedStackParams } from '../../../navigation/MythsFeedStack';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import Myth from '../../../types/Myth';
 import useApiClient from '../../../hooks/useApiClient';
-import PageTitle from '../../../components/PageTitle';
+import Myth from '../../../types/Myth';
 import MythsFeedCard from './MythsFeedCard';
+import Headline1 from '../../../components/TextStyles/Headline1';
+import BodyText from '../../../components/TextStyles/BodyText';
 
 type Props = NativeStackScreenProps<MythsFeedStackParams, 'MythsFeedScreen'>;
 
@@ -32,13 +33,11 @@ function MythsFeedScreen({ navigation }: Props) {
       <FlatList
         ListHeaderComponent={
           <>
-            <View style={styles.title}>
-              <PageTitle>Climate change myths</PageTitle>
-            </View>
-            <Text style={styles.text}>
+            <Headline1 style={styles.heading}>Climate change myths</Headline1>
+            <BodyText style={styles.text}>
               Arm yourself with information to challenge these common myths and be part of the
               solution to fight climate change!
-            </Text>
+            </BodyText>
           </>
         }
         data={mythsFeed}
@@ -56,15 +55,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgba(138, 213, 204, 0.4)',
+    padding: 10,
   },
-  title: {
-    margin: 20,
+  heading: {
+    textAlign: 'center',
+    marginTop: 30,
+    marginBottom: 20,
+    paddingTop: 8,
   },
   text: {
-    fontSize: 18,
     textAlign: 'center',
-    marginTop: 20,
-    marginBottom: 50,
+    marginVertical: 20,
+    paddingHorizontal: 30,
   },
   cardContainer: {
     margin: 10,

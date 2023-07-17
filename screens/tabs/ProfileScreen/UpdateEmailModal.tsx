@@ -2,6 +2,8 @@ import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-nativ
 import { useAppSelector } from "../../../store/hooks";
 import { useState } from "react";
 import useApiClient from "../../../hooks/useApiClient";
+import Headline4 from "../../../components/TextStyles/Headline4";
+import BodyText from "../../../components/TextStyles/BodyText";
 
 interface Props {
   show: boolean;
@@ -45,8 +47,8 @@ function UpdateEmailModal({ show, onSubmit, onCancel }: Props) {
     >
       <View style={styles.centerModal}>
         <View style={styles.card}>
-          <Text style={styles.cardHeader}>Update your email address</Text>
-          <Text>Your current email address: {currentEmail}</Text>
+          <Headline4 style={styles.cardHeader}>Update your email address</Headline4>
+          <BodyText>Your current email address: {currentEmail}</BodyText>
         
           <TextInput
             placeholder="New Email"
@@ -96,8 +98,8 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   cardHeader: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    textAlign: 'left',
+    marginBottom: 10,
   },
   textInput: {
     borderBottomColor: 'grey',

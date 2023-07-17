@@ -1,12 +1,14 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, TextInput, View } from 'react-native';
 
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
-import PageTitle from '../../../components/PageTitle';
-import { useState } from 'react';
 import useApiClient from '../../../hooks/useApiClient';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { login } from '../../../store/authSlice';
 import Colors from '../../../assets/colors';
+import Headline1 from '../../../components/TextStyles/Headline1';
+import BodyText from '../../../components/TextStyles/BodyText';
+import LabelText from '../../../components/TextStyles/LabelText';
 
 function SignUpScreen() {  
   const apiClient = useApiClient();
@@ -99,10 +101,10 @@ function SignUpScreen() {
   return (
     <View style={styles.container}>
       <View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-        <PageTitle>Create a Climate Mind account</PageTitle>
-        <Text style={{ marginTop: 30, marginBottom: 60, fontWeight: 'bold', textAlign: 'center' }}>
+        <Headline1 style={{ padding: 8 }}>Create a Climate Mind account</Headline1>
+        <BodyText style={{ marginTop: 30, marginBottom: 60, textAlign: 'center' }}>
           Save your results, see your climate topics, and start talking.
-        </Text>
+        </BodyText>
       </View>
 
       <TextInput
@@ -112,7 +114,7 @@ function SignUpScreen() {
         onChangeText={(value) => inputChangeHandler('firstName', value)}
         style={[styles.input, !inputs.firstName.isValid && styles.invalidInput]}
       />
-      {!inputs.firstName.isValid && <Text style={styles.errorText}>First Name is a required field</Text>}
+      {!inputs.firstName.isValid && <LabelText style={styles.errorText}>First Name is a required field</LabelText>}
 
       <TextInput
         placeholder="Last Name"
@@ -121,7 +123,7 @@ function SignUpScreen() {
         onChangeText={(value) => inputChangeHandler('lastName', value)}
         style={[styles.input, !inputs.lastName.isValid && styles.invalidInput]}
       />
-      {!inputs.lastName.isValid && <Text style={styles.errorText}>Last Name is a required field</Text>}
+      {!inputs.lastName.isValid && <LabelText style={styles.errorText}>Last Name is a required field</LabelText>}
 
       <TextInput
         placeholder="Email"
@@ -130,7 +132,7 @@ function SignUpScreen() {
         onChangeText={(value) => inputChangeHandler('email', value)}
         style={[styles.input, !inputs.email.isValid && styles.invalidInput]}
       />
-      {!inputs.email.isValid && <Text style={styles.errorText}>Invalid email address</Text>}
+      {!inputs.email.isValid && <LabelText style={styles.errorText}>Invalid email address</LabelText>}
 
       <TextInput
         placeholder="Password"
@@ -139,7 +141,7 @@ function SignUpScreen() {
         onChangeText={(value) => inputChangeHandler('password', value)}
         style={[styles.input, !inputs.password.isValid && styles.invalidInput]}
       />
-      {!inputs.password.isValid && <Text style={styles.errorText}>Invalid Password. Password must be at least 8 characters and contain one number or one special character</Text>}
+      {!inputs.password.isValid && <LabelText style={styles.errorText}>Invalid Password. Password must be at least 8 characters and contain one number or one special character</LabelText>}
 
       <TextInput
         placeholder="Confirm Password"
@@ -148,7 +150,7 @@ function SignUpScreen() {
         onChangeText={(value) => inputChangeHandler('confirmPassword', value)}
         style={[styles.input, !inputs.confirmPassword.isValid && styles.invalidInput]}
       />
-      {!inputs.confirmPassword.isValid && <Text style={styles.errorText}>Passwords must match</Text>}
+      {!inputs.confirmPassword.isValid && <LabelText style={styles.errorText}>Passwords must match</LabelText>}
 
       <SimpleWhiteButton style={styles.button} text="CREATE ACCOUNT" onPress={submitHandler} />
     </View>

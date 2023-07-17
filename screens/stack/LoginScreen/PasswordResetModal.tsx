@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Modal, Pressable, StyleSheet, TextInput, View } from "react-native";
 
 import useApiClient from "../../../hooks/useApiClient";
-import { showErrorToast, showSuccessToast } from '../../../components/ToastMessages';
+import { showSuccessToast, showErrorToast } from '../../../components/ToastMessages';
+import Headline3 from '../../../components/TextStyles/Headline3';
+import BodyText from '../../../components/TextStyles/BodyText';
+import ButtonText from '../../../components/TextStyles/ButtonText';
 
 interface Props {
   show: boolean;
@@ -34,8 +37,8 @@ function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
     >
       <View style={styles.centerModal}>
         <View style={styles.card}>
-          <Text style={styles.cardHeader}>Reset your password</Text>
-          <Text>Enter the email associated with your account and we will email you a link to reset your password.</Text>
+          <Headline3 style={styles.cardHeader}>Reset your password</Headline3>
+          <BodyText>Enter the email associated with your account and we will email you a link to reset your password.</BodyText>
           <TextInput
             placeholder="Email address"
             keyboardType="email-address"
@@ -45,8 +48,8 @@ function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
           />
 
           <View style={styles.buttonContainer}>
-            <Pressable onPress={onCancel} style={styles.button}><Text>CANCEL</Text></Pressable>
-            <Pressable onPress={onPasswordResetRequest} style={styles.button}><Text>SUBMIT</Text></Pressable>
+            <Pressable onPress={onCancel} style={styles.button}><ButtonText style={styles.buttonText}>CANCEL</ButtonText></Pressable>
+            <Pressable onPress={onPasswordResetRequest} style={styles.button}><ButtonText style={styles.buttonText}>SUBMIT</ButtonText></Pressable>
           </View>
         </View>
       </View>
@@ -67,8 +70,8 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   cardHeader: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    textAlign: 'left',
+    marginBottom: 10,
   },
   textInput: {
     borderBottomColor: 'grey',
@@ -82,6 +85,9 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 15,
+  },
+  buttonText: {
+    padding: 8,
   },
 });
 

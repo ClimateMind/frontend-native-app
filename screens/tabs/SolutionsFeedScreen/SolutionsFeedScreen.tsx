@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 
 import useApiClient from '../../../hooks/useApiClient';
-import PageTitle from '../../../components/PageTitle';
 import SolutionsFeedCard from './SolutionsFeedCard';
 import Solution from '../../../types/Solution';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SolutionsFeedStackParams } from '../../../navigation/SolutionsFeedStack';
+import Headline1 from '../../../components/TextStyles/Headline1';
+import BodyText from '../../../components/TextStyles/BodyText';
 
 type Props = NativeStackScreenProps<SolutionsFeedStackParams, 'SolutionsFeedScreen'>;
 
@@ -31,12 +32,10 @@ function SolutionsFeedScreen({ navigation }: Props) {
       <FlatList
         ListHeaderComponent={
           <>
-            <View style={styles.title}>
-              <PageTitle>Take action to fight climate change</PageTitle>
-            </View>
-            <Text style={styles.text}>
+            <Headline1 style={styles.heading}>Take action to fight climate change</Headline1>
+            <BodyText style={styles.text}>
               Check out how you and your community can be part of the solution!
-            </Text>
+            </BodyText>
           </>
         }
         data={solutionsFeed}
@@ -55,15 +54,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgba(138, 213, 204, 0.4)',
+    padding: 10,
   },
-  title: {
-    margin: 20,
+  heading: {
+    textAlign: 'center',
+    marginTop: 30,
+    marginBottom: 20,
+    paddingTop: 8,
   },
   text: {
-    fontSize: 18,
     textAlign: 'center',
-    marginTop: 20,
-    marginBottom: 50,
+    marginVertical: 20,
+    paddingHorizontal: 30,
   },
   cardContainer: {
     margin: 10,

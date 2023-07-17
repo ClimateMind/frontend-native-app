@@ -1,7 +1,11 @@
 import { Pressable, StyleSheet } from "react-native";
-import { Text, View } from "react-native";
-import { Ionicons } from '@expo/vector-icons';
+import { View } from "react-native";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 import Myth from "../../../types/Myth";
+import LabelText from "../../../components/TextStyles/LabelText";
+import BodyText from "../../../components/TextStyles/BodyText";
+import ButtonText from "../../../components/TextStyles/ButtonText";
 
 interface Props {
   myth: Myth;
@@ -11,14 +15,14 @@ interface Props {
 function MythsFeedCard({ myth, onLearnMore }: Props) {
   return (
     <View style={styles.card}>
-      <Ionicons style={styles.image} name="chatbox-ellipses-sharp" size={24} color="black" />
-      <Text style={[styles.smallText, { color: '#B00620' }]}>MYTH</Text>
-      <Text style={[styles.largeText, { color: '#B00620' }]}>{myth.mythTitle}</Text>
-      <Text style={[styles.smallText, { color: '#00A85F' }]}>TRUTH</Text>
-      <Text style={[styles.largeText, { color: '#00A85F' }]}>{myth.mythRebuttal}</Text>
+      <MaterialCommunityIcons style={styles.image} name="chat-alert" size={28} color="black" />
+      <LabelText style={{ color: '#B00620', marginTop: 10 }}>MYTH</LabelText>
+      <BodyText style={{ color: '#B00620', letterSpacing: 1.3, fontStyle: 'italic' }}>{myth.mythTitle}</BodyText>
+      <LabelText style={{ color: '#00A85F', marginTop: 40 }}>TRUTH</LabelText>
+      <BodyText style={{ color: '#00A85F', letterSpacing: 1.3 }}>{myth.mythRebuttal}</BodyText>
 
       {onLearnMore !== null && <Pressable onPress={() => onLearnMore(myth)}>
-        <Text style={styles.button}>WHY?</Text>
+        <ButtonText style={styles.button}>WHY?</ButtonText>
       </Pressable>}
       
     </View>
@@ -35,19 +39,10 @@ const styles = StyleSheet.create({
   image: {
     alignSelf: 'flex-end',
   },
-  smallText: {
-    letterSpacing: 1,
-    fontSize: 10,
-    marginTop: 30,
-  },
-  largeText: {
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
   button: {
-    fontWeight: 'bold',
-    letterSpacing: 1,
-    marginTop: 50,
+    marginTop: 60,
+    letterSpacing: 0.8,
+    textAlign: 'left',
   },
 });
 

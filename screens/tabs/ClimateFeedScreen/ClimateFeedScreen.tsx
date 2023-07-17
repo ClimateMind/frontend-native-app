@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ClimateFeedStackParams } from '../../../navigation/ClimateFeedStack';
 
 import useApiClient from '../../../hooks/useApiClient';
-import PageTitle from '../../../components/PageTitle';
+import Headline1 from '../../../components/TextStyles/Headline1';
 import ClimateFeedCard from './ClimateFeedCard';
 import ClimateEffect from '../../../types/ClimateEffect';
 import { useAppSelector } from '../../../store/hooks';
+import BodyText from '../../../components/TextStyles/BodyText';
 
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateFeedScreen'>;
 
@@ -34,13 +35,11 @@ function ClimateFeedScreen({ navigation }: Props) {
       <FlatList
         ListHeaderComponent={
           <>
-            <View style={styles.title}>
-              <PageTitle>Explore climate change impacts</PageTitle>
-            </View>
-            <Text style={styles.text}>
+            <Headline1 style={styles.heading}>Explore climate change impacts</Headline1>
+            <BodyText style={styles.text}>
               This is your personalized homepage based on your unique climate personality. Check out
               these articles to stay informed!
-            </Text>
+            </BodyText>
           </>
         }
         data={climateFeed}
@@ -59,15 +58,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgba(138, 213, 204, 0.4)',
+    padding: 10,
   },
-  title: {
-    margin: 20,
+  heading: {
+    textAlign: 'center',
+    marginTop: 30,
+    marginBottom: 20,
+    paddingTop: 8,
   },
   text: {
-    fontSize: 18,
     textAlign: 'center',
     marginTop: 20,
-    marginBottom: 50,
+    paddingHorizontal: 30,
   },
   cardContainer: {
     margin: 10,
