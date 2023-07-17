@@ -67,6 +67,7 @@ function ChangePasswordModal({ show, onSubmit, onCancel }: Props) {
             autoCorrect={false}
             onChangeText={setCurrentPassword}
             style={styles.input}
+            placeholderTextColor={'#88999C'}
           />
 
           <TextInput
@@ -75,6 +76,7 @@ function ChangePasswordModal({ show, onSubmit, onCancel }: Props) {
             autoCorrect={false}
             onChangeText={setNewPassword}
             style={styles.input}
+            placeholderTextColor={'#88999C'}
           />
 
           <TextInput
@@ -83,6 +85,7 @@ function ChangePasswordModal({ show, onSubmit, onCancel }: Props) {
             autoCorrect={false}
             onChangeText={setConfirmNewPassword}
             style={styles.input}
+            placeholderTextColor={'#88999C'}
           />
 
           <View style={styles.buttonContainer}>

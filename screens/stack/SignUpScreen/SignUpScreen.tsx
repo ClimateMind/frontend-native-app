@@ -113,6 +113,7 @@ function SignUpScreen() {
         autoCorrect={false}
         onChangeText={(value) => inputChangeHandler('firstName', value)}
         style={[styles.input, !inputs.firstName.isValid && styles.invalidInput]}
+        placeholderTextColor={'#88999C'}
       />
       {!inputs.firstName.isValid && <LabelText style={styles.errorText}>First Name is a required field</LabelText>}
 
@@ -122,6 +123,7 @@ function SignUpScreen() {
         autoCorrect={false}
         onChangeText={(value) => inputChangeHandler('lastName', value)}
         style={[styles.input, !inputs.lastName.isValid && styles.invalidInput]}
+        placeholderTextColor={'#88999C'}
       />
       {!inputs.lastName.isValid && <LabelText style={styles.errorText}>Last Name is a required field</LabelText>}
 
@@ -131,6 +133,7 @@ function SignUpScreen() {
         autoCorrect={false}
         onChangeText={(value) => inputChangeHandler('email', value)}
         style={[styles.input, !inputs.email.isValid && styles.invalidInput]}
+        placeholderTextColor={'#88999C'}
       />
       {!inputs.email.isValid && <LabelText style={styles.errorText}>Invalid email address</LabelText>}
 
@@ -140,6 +143,7 @@ function SignUpScreen() {
         autoCorrect={false}
         onChangeText={(value) => inputChangeHandler('password', value)}
         style={[styles.input, !inputs.password.isValid && styles.invalidInput]}
+        placeholderTextColor={'#88999C'}
       />
       {!inputs.password.isValid && <LabelText style={styles.errorText}>Invalid Password. Password must be at least 8 characters and contain one number or one special character</LabelText>}
 
@@ -149,6 +153,7 @@ function SignUpScreen() {
         autoCorrect={false}
         onChangeText={(value) => inputChangeHandler('confirmPassword', value)}
         style={[styles.input, !inputs.confirmPassword.isValid && styles.invalidInput]}
+        placeholderTextColor={'#88999C'}
       />
       {!inputs.confirmPassword.isValid && <LabelText style={styles.errorText}>Passwords must match</LabelText>}
 
