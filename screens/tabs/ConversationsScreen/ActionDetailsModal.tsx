@@ -6,8 +6,8 @@ import ClimateEffect3 from "../../../types/ClimateEffect3";
 import { capitalizeFirstLetter } from "../../../utils";
 import DetailsSourcesTab from "../../../components/DetailsSourcesTabs";
 import useApiClient from "../../../hooks/useApiClient";
+import Headline3 from "../../../components/TextStyles/Headline3";
 import BodyText from "../../../components/TextStyles/BodyText";
-import CaptionText from "../../../components/TextStyles/CaptionText";
 import LabelText from "../../../components/TextStyles/LabelText";
 
 interface Props {
@@ -43,13 +43,13 @@ function ActionDetailsModal({ open, action, onClose }: Props) {
       <View style={styles.container}>
         <ScrollView style={{ width: '100%' }}>
 
-          <BodyText style={styles.title}>{capitalizeFirstLetter(actionDetails.effectTitle)}</BodyText>
+          <Headline3 style={styles.title}>{capitalizeFirstLetter(actionDetails.effectTitle)}</Headline3>
           {actionDetails.imageUrl !== null && <Image style={styles.image} source={{uri: actionDetails.imageUrl}} />}
 
           <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
 
           {selectedTab === 0 && <View>
-            <CaptionText style={styles.text}>{actionDetails.longDescription}</CaptionText>
+            <BodyText style={styles.text}>{actionDetails.longDescription}</BodyText>
           </View>}
 
           {selectedTab === 1 && actionDetails.effectSources.map(source => <View key={source} style={styles.links}><LabelText style={styles.link}>{source}</LabelText></View>)}
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
   },
   title: {
     padding: 20,
+    textAlign: 'left',
   },
   image: {
     width: '100%',

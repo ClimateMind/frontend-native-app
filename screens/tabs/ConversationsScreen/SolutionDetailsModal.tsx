@@ -7,8 +7,8 @@ import Solution2 from "../../../types/Solution2";
 import { StyleSheet } from "react-native";
 import ActionCardHeader from "./ActionCardHeader";
 import DetailsSourcesTab from "../../../components/DetailsSourcesTabs";
-import CaptionText from "../../../components/TextStyles/CaptionText";
 import LabelText from "../../../components/TextStyles/LabelText";
+import BodyText from "../../../components/TextStyles/BodyText";
 
 interface Props {
   open: boolean;
@@ -50,7 +50,7 @@ function SolutionDetailsModal({ open, solution, onClose }: Props) {
 
           <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
 
-          {selectedTab === 0 && <View><CaptionText style={styles.text}>{solutionDetails.longDescription}</CaptionText></View>}
+          {selectedTab === 0 && <View><BodyText style={styles.text}>{solutionDetails.longDescription}</BodyText></View>}
           {selectedTab === 1 && solutionDetails.solutionSources.map(source => <View key={source} style={styles.links}><LabelText style={styles.link}>{source}</LabelText></View>)}
         </ScrollView>
       </View>

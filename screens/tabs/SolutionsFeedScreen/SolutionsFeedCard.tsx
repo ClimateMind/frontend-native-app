@@ -3,9 +3,9 @@ import { Image, View } from "react-native";
 
 import { capitalizeFirstLetter } from "../../../utils";
 import Solution from "../../../types/Solution";
+import Headline3 from "../../../components/TextStyles/Headline3";
 import BodyText from "../../../components/TextStyles/BodyText";
 import LabelText from "../../../components/TextStyles/LabelText";
-import CaptionText from "../../../components/TextStyles/CaptionText";
 import ButtonText from "../../../components/TextStyles/ButtonText";
 
 interface Props {
@@ -18,11 +18,11 @@ function SolutionsFeedCard({ solution, onLearnMore }: Props) {
     <View style={styles.card}>
       <View style={styles.headingContainer}>
         <LabelText style={styles.actionType}>{solution.solutionType.toUpperCase()} ACTION</LabelText>
-        <BodyText style={styles.title}>{capitalizeFirstLetter(solution.solutionTitle)}</BodyText>
+        <Headline3 style={styles.title}>{capitalizeFirstLetter(solution.solutionTitle)}</Headline3>
       </View>
 
       {solution.imageUrl !== null && <Image style={styles.image} source={{uri: solution.imageUrl}} />}
-      <CaptionText style={styles.text}>{solution.shortDescription}</CaptionText>
+      <BodyText style={styles.text}>{solution.shortDescription}</BodyText>
 
       <Pressable onPress={() => onLearnMore(solution)}>
         <ButtonText style={styles.button}>MORE</ButtonText>
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   title: {
     paddingHorizontal: 10,
     marginBottom: 10,
+    textAlign: 'left',
   },
   image: {
     width: '100%',

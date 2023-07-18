@@ -4,8 +4,8 @@ import { Image, View } from "react-native";
 import { capitalizeFirstLetter } from "../../../utils";
 import ClimateEffect2 from "../../../types/ClimateEffect2";
 import RelatedPersonalValuesChips from "../../../components/RelatedPersonalValuesChips";
+import Headline3 from "../../../components/TextStyles/Headline3";
 import BodyText from "../../../components/TextStyles/BodyText";
-import CaptionText from "../../../components/TextStyles/CaptionText";
 import ButtonText from "../../../components/TextStyles/ButtonText";
 
 interface Props {
@@ -16,15 +16,9 @@ interface Props {
 function ActionCard({ climateEffect, onLearnMore }: Props) {   
   return (
     <View style={styles.card}>
-      <BodyText style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</BodyText>
+      <Headline3 style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</Headline3>
       <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />
-      <CaptionText style={styles.text}>{climateEffect.effectShortDescription}</CaptionText>
-
-      <View style={styles.chipsContainer}>
-        {climateEffect.relatedPersonalValues.map(value => (
-          <CaptionText key={value} style={styles.chip}>{value}</CaptionText>
-        ))}
-      </View>
+      <BodyText style={styles.text}>{climateEffect.effectShortDescription}</BodyText>
 
       <RelatedPersonalValuesChips relatedPersonalValues={climateEffect.relatedPersonalValues ?? []}/>
 
@@ -44,6 +38,7 @@ const styles = StyleSheet.create({
   title: {
     padding: 15,
     paddingVertical: 20,
+    textAlign: 'left',
   },
   image: {
     width: '100%',
@@ -57,20 +52,9 @@ const styles = StyleSheet.create({
   button: {
     marginBottom: 10,
     fontWeight: 'bold',
-    padding: 10,
+    padding: 20,
     letterSpacing: 1,
-  },
-  chipsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    padding: 10,
-  },
-  chip: {
-    backgroundColor: '#E4FEF1',
-    borderRadius: 50,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    margin: 5,
+    textAlign: 'left',
   },
 });
 

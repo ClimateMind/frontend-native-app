@@ -5,8 +5,8 @@ import { capitalizeFirstLetter } from "../../../utils";
 import ClimateSolution from "../../../types/Solution3";
 import LabelText from "../../../components/TextStyles/LabelText";
 import BodyText from "../../../components/TextStyles/BodyText";
-import CaptionText from "../../../components/TextStyles/CaptionText";
 import ButtonText from "../../../components/TextStyles/ButtonText";
+import Headline3 from "../../../components/TextStyles/Headline3";
 
 interface Props {
   solution: ClimateSolution;
@@ -18,11 +18,11 @@ function SolutionsFeedCard({ solution, onLearnMore }: Props) {
     <View style={styles.card}>
       <View style={styles.headingContainer}>
         <LabelText style={styles.actionType}>{solution.solutionType[0].toUpperCase()} ACTION</LabelText>
-        <BodyText style={styles.title}>{capitalizeFirstLetter(solution.solutionTitle)}</BodyText>
+        <Headline3 style={styles.title}>{capitalizeFirstLetter(solution.solutionTitle)}</Headline3>
       </View>
 
       {solution.imageUrl !== null && <Image style={styles.image} source={{uri: solution.imageUrl}} />}
-      <CaptionText style={styles.text}>{solution.solutionShortDescription}</CaptionText>
+      <BodyText style={styles.text}>{solution.solutionShortDescription}</BodyText>
 
       <Pressable onPress={() => onLearnMore(solution)}>
         <ButtonText style={styles.button}>MORE</ButtonText>
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   title: {
     paddingHorizontal: 10,
     marginBottom: 10,
+    textAlign: 'left',
   },
   image: {
     width: '100%',

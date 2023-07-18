@@ -16,7 +16,6 @@
       "**/*"
     ],
     "android": {
-      "versionCode": 1,
       "package": "org.climatemind.app"
     },
     "ios": {
