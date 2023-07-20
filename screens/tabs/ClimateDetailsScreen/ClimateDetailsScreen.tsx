@@ -7,8 +7,9 @@ import { StyleSheet } from 'react-native';
 import { capitalizeFirstLetter } from '../../../utils';
 import ActionCard from '../../../components/ActionCard';
 import DetailsSourcesTab from '../../../components/DetailsSourcesTabs';
+
+import Headline3 from '../../../components/TextStyles/Headline3';
 import BodyText from '../../../components/TextStyles/BodyText';
-import CaptionText from '../../../components/TextStyles/CaptionText';
 import LabelText from '../../../components/TextStyles/LabelText';
 
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateDetailsScreen'>;
@@ -19,13 +20,13 @@ function ClimateDetailsScreen({ route }: Props) {
 
   return (
     <ScrollView style={{ backgroundColor: 'white' }}>
-      <BodyText style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</BodyText>
+      <Headline3 style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</Headline3>
       {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
 
       <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
 
       {selectedTab === 0 && <View>
-        <CaptionText style={styles.description}>{climateEffect.effectDescription}</CaptionText>
+        <BodyText style={styles.description}>{climateEffect.effectDescription}</BodyText>
         {climateEffect.effectSolutions.map(solution => <View style={styles.actionCard} key={solution.solutionTitle}><ActionCard solution={solution} /></View>)}
       </View>}
 
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
   title: {
     padding: 15,
     paddingVertical: 20,
+    textAlign: 'left',
   },
   image: {
     width: '100%',

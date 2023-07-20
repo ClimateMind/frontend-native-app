@@ -1,10 +1,11 @@
-import { Pressable, StyleSheet } from "react-native";
-import { Image, View } from "react-native";
+import { Image, Pressable, StyleSheet, View } from "react-native";
+
 import ClimateEffect from "../../../types/ClimateEffect";
 import ActionCardHeader from "./ActionCardHeader";
 import { capitalizeFirstLetter } from "../../../utils";
+
+import Headline3 from "../../../components/TextStyles/Headline3";
 import BodyText from "../../../components/TextStyles/BodyText";
-import CaptionText from "../../../components/TextStyles/CaptionText";
 import ButtonText from "../../../components/TextStyles/ButtonText";
 
 interface Props {
@@ -15,10 +16,10 @@ interface Props {
 function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
   return (
     <View style={styles.card}>
-      <BodyText style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</BodyText>
+      <Headline3 style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</Headline3>
       {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
 
-      <CaptionText style={styles.text}>{climateEffect.effectShortDescription}</CaptionText>
+      <BodyText style={styles.text}>{climateEffect.effectShortDescription}</BodyText>
 
       <Pressable onPress={() => onLearnMore(climateEffect)}>
         <ButtonText style={styles.button}>LEARN MORE</ButtonText>
@@ -36,6 +37,7 @@ const styles = StyleSheet.create({
   },
   title: {
     padding: 20,
+    textAlign: 'left',
   },
   image: {
     width: '100%',

@@ -45,6 +45,7 @@ function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
             autoCorrect={false}
             onChangeText={setEmail}
               style={styles.textInput}
+            placeholderTextColor={'#88999C'}
           />
 
           <View style={styles.buttonContainer}>

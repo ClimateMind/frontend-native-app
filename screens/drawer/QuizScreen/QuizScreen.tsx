@@ -1,4 +1,4 @@
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { DrawerNavigationParams } from '../../../navigation/DrawerNavigation/DrawerNavigation';
 
@@ -73,7 +73,7 @@ function QuizScreen({ route, navigation }: Props) {
 
   // Display the next question for the user
   return (
-    <>
+    <View style={styles.screen}>
       <SingleQuestion
         currentQuestionIndex={route.params.questionSet === 1 ? currentQuestionNumber : currentQuestionNumber + 10}
         maxQuestionIndex={route.params.questionSet === 1 ? 10 : 20}
@@ -83,8 +83,15 @@ function QuizScreen({ route, navigation }: Props) {
         }
         onSelect={(index) => answerSelected(index)}
       />
-    </>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+});
 
 export default QuizScreen;

@@ -9,8 +9,8 @@ import Myth from '../../../types/Myth';
 import MythsFeedCard from '../MythsFeedScreen/MythsFeedCard';
 import ActionCardHeader from '../ClimateFeedScreen/ActionCardHeader';
 import DetailsSourcesTab from '../../../components/DetailsSourcesTabs';
-import CaptionText from '../../../components/TextStyles/CaptionText';
 import LabelText from '../../../components/TextStyles/LabelText';
+import BodyText from '../../../components/TextStyles/BodyText';
 
 type Props = NativeStackScreenProps<SolutionsFeedStackParams, 'SolutionDetailsScreen'>;
 
@@ -43,7 +43,7 @@ function SolutionDetailsScreen({ route }: Props) {
       <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
 
       {selectedTab === 0 && <View>
-        <CaptionText style={styles.description}>{solution.longDescription}</CaptionText>
+        <BodyText style={styles.description}>{solution.longDescription}</BodyText>
         {myths?.map(myth => <View style={styles.mythCard} key={myth.iri}><MythsFeedCard myth={myth} onLearnMore={null} /></View>)}
         </View>}
 

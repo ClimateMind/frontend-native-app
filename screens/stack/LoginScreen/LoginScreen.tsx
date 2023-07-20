@@ -79,6 +79,8 @@ function LoginScreen() {
             autoCorrect={false}
             onChangeText={setEmail}
             style={styles.input}
+            placeholderTextColor={'#88999C'}
+            
           />
 
           <TextInput
@@ -87,6 +89,7 @@ function LoginScreen() {
             autoCorrect={false}
             onChangeText={setPassword}
             style={styles.input}
+            placeholderTextColor={'#88999C'}
           />
 
           <View style={{ flexDirection: 'row' }}>

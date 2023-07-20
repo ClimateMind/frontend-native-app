@@ -4,8 +4,8 @@ import { Foundation } from '@expo/vector-icons';
 
 import Solution2 from "../../../types/Solution2";
 import { capitalizeFirstLetter } from "../../../utils";
+import Headline3 from "../../../components/TextStyles/Headline3";
 import LabelText from "../../../components/TextStyles/LabelText";
-import BodyText from "../../../components/TextStyles/BodyText";
 
 interface Props {
   effectSolution: Solution2;
@@ -21,7 +21,7 @@ function ActionCardHeader({ effectSolution, color='#FDED6D' }: Props) {
       </View>
       <View style={styles.textContainer}>
         <LabelText style={{ fontSize: 10 }}>{effectSolution.solutionType[0].toUpperCase()} ACTION</LabelText>
-        <BodyText style={styles.title}>{capitalizeFirstLetter(effectSolution.solutionTitle)}</BodyText>
+        <Headline3 style={styles.title}>{capitalizeFirstLetter(effectSolution.solutionTitle)}</Headline3>
       </View>
     </View>
   );
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   },
   title: {
     width: '90%',
+    textAlign: 'left',
   },
 });
 

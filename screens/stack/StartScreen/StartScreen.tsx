@@ -23,7 +23,7 @@ function StartScreen({ navigation }: Props) {
     <ScrollView>
       <View style={[styles.container, { backgroundColor: Colors.themeBright }]}>
         <Image style={styles.image} source={require('../../../assets/cm-logo.png')} />
-        <Headline1 style={{ textAlign: 'center' }}>Inspire others to take action!</Headline1>
+        <Headline1 style={{ textAlign: 'center', paddingVertical: 8 }}>Inspire others to take action!</Headline1>
 
         <SimpleWhiteButton style={styles.button} text='GET STARTED' onPress={navigateToPreQuizScreen} />
 
