@@ -19,7 +19,6 @@
       "package": "org.climatemind.app"
     },
     "ios": {
-      "buildNumber": "1.0.0",
       "supportsTablet": true,
       "bundleIdentifier": "org.climatemind.app"
     },
