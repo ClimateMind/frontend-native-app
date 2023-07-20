@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from 'react-native';
 
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import useApiClient from '../../../hooks/useApiClient';
@@ -10,11 +10,11 @@ import Headline1 from '../../../components/TextStyles/Headline1';
 import BodyText from '../../../components/TextStyles/BodyText';
 import LabelText from '../../../components/TextStyles/LabelText';
 
-function SignUpScreen() {  
+function SignUpScreen() {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
-  const quizId = useAppSelector(state => state.auth.user.quizId);
-  
+  const quizId = useAppSelector((state) => state.auth.user.quizId);
+
   const [inputs, setInputs] = useState({
     firstName: { value: '', isValid: true },
     lastName: { value: '', isValid: true },
@@ -40,124 +40,128 @@ function SignUpScreen() {
     const confirmPasswordIsValid = inputs.password.value === inputs.confirmPassword.value;
 
     let formIsValid = true;
-    
+
     if (!firstNameIsValid) {
-      setInputs(current => {
-        return { ...current, firstName: { value: current.firstName.value, isValid: false } }
+      setInputs((current) => {
+        return { ...current, firstName: { value: current.firstName.value, isValid: false }};
       });
       formIsValid = false;
     }
 
     if (!lastNameIsValid) {
-      setInputs(current => {
-        return { ...current, lastName: { value: current.lastName.value, isValid: false } }
+      setInputs((current) => {
+        return { ...current, lastName: { value: current.lastName.value, isValid: false }};
       });
       formIsValid = false;
     }
 
     if (!emailIsValid) {
-      setInputs(current => {
-        return { ...current, email: { value: current.email.value, isValid: false } }
+      setInputs((current) => {
+        return { ...current, email: { value: current.email.value, isValid: false }};
       });
       formIsValid = false;
     }
 
     if (!passwordIsValid) {
-      setInputs(current => {
-        return { ...current, password: { value: current.password.value, isValid: false } }
+      setInputs((current) => {
+        return { ...current, password: { value: current.password.value, isValid: false }};
       });
       formIsValid = false;
     }
 
     if (!confirmPasswordIsValid) {
-      setInputs(current => {
-        return { ...current, confirmPassword: { value: current.confirmPassword.value, isValid: false } }
+      setInputs((current) => {
+        return { ...current, confirmPassword: { value: current.confirmPassword.value, isValid: false }};
       });
       formIsValid = false;
     }
-    
+
     if (!formIsValid) {
       return;
     }
-    
-    apiClient.postRegister({
-      firstName: inputs.firstName.value, lastName: inputs.lastName.value, 
-      email: inputs.email.value, password: inputs.password.value, quizId,
-    }).then(result => {
-      if (result !== undefined) {
-        dispatch(login({
-          accessToken: result.access_token,
-          firstName: result.user.first_name,
-          lastName: result.user.last_name,
-          email: result.user.email,
-          userId: result.user.user_uuid,
-          quizId: result.user.quiz_id,
-        }));
-      }
-    })
-    .catch(error => console.log(error)); 
+
+    apiClient
+      .postRegister({
+        firstName: inputs.firstName.value, lastName: inputs.lastName.value,
+        email: inputs.email.value, password: inputs.password.value, quizId,
+      })
+      .then((result) => {
+        if (result !== undefined) {
+          dispatch(
+            login({
+              accessToken: result.access_token,
+              firstName: result.user.first_name,
+              lastName: result.user.last_name,
+              email: result.user.email,
+              userId: result.user.user_uuid,
+              quizId: result.user.quiz_id,
+            })
+          );
+        }
+      })
+      .catch((error) => console.log(error));
   }
-  
+
   return (
     <View style={styles.container}>
-      <View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-        <Headline1 style={{ padding: 8 }}>Create a Climate Mind account</Headline1>
-        <BodyText style={{ marginTop: 30, marginBottom: 60, textAlign: 'center' }}>
-          Save your results, see your climate topics, and start talking.
-        </BodyText>
-      </View>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'position' : 'padding'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 80 : 0}
+      >
+        <View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
+          <Headline1 style={{ padding: 8 }}>Create a Climate Mind account</Headline1>
+          <BodyText style={{ marginTop: 30, marginBottom: 60, textAlign: 'center' }}>
+            Save your results, see your climate topics, and start talking.
+          </BodyText>
+        </View>
 
-      <TextInput
-        placeholder="First Name"
-        autoCapitalize="sentences"
-        autoCorrect={false}
-        onChangeText={(value) => inputChangeHandler('firstName', value)}
-        style={[styles.input, !inputs.firstName.isValid && styles.invalidInput]}
-        placeholderTextColor={'#88999C'}
-      />
-      {!inputs.firstName.isValid && <LabelText style={styles.errorText}>First Name is a required field</LabelText>}
+        <TextInput
+          placeholder="First Name"
+          autoCapitalize="sentences"
+          autoCorrect={false}
+          onChangeText={(value) => inputChangeHandler('firstName', value)}
+          style={[styles.input, !inputs.firstName.isValid && styles.invalidInput]}
+        />
+        {!inputs.firstName.isValid && <LabelText style={styles.errorText}>First Name is a required field</LabelText>}
 
-      <TextInput
-        placeholder="Last Name"
-        autoCapitalize="sentences"
-        autoCorrect={false}
-        onChangeText={(value) => inputChangeHandler('lastName', value)}
-        style={[styles.input, !inputs.lastName.isValid && styles.invalidInput]}
-        placeholderTextColor={'#88999C'}
-      />
-      {!inputs.lastName.isValid && <LabelText style={styles.errorText}>Last Name is a required field</LabelText>}
+        <TextInput
+          placeholder="Last Name"
+          autoCapitalize="sentences"
+          autoCorrect={false}
+          onChangeText={(value) => inputChangeHandler('lastName', value)}
+          style={[styles.input, !inputs.lastName.isValid && styles.invalidInput]}
+        />
+        {!inputs.lastName.isValid && <LabelText style={styles.errorText}>Last Name is a required field</LabelText>}
 
-      <TextInput
-        placeholder="Email"
-        keyboardType="email-address"
-        autoCorrect={false}
-        onChangeText={(value) => inputChangeHandler('email', value)}
-        style={[styles.input, !inputs.email.isValid && styles.invalidInput]}
-        placeholderTextColor={'#88999C'}
-      />
-      {!inputs.email.isValid && <LabelText style={styles.errorText}>Invalid email address</LabelText>}
+        <TextInput
+          placeholder="Email"
+          keyboardType="email-address"
+          autoCorrect={false}
+          onChangeText={(value) => inputChangeHandler('email', value)}
+          style={[styles.input, !inputs.email.isValid && styles.invalidInput]}
+        />
+        {!inputs.email.isValid && <LabelText style={styles.errorText}>Invalid email address</LabelText>}
 
-      <TextInput
-        placeholder="Password"
-        secureTextEntry={true}
-        autoCorrect={false}
-        onChangeText={(value) => inputChangeHandler('password', value)}
-        style={[styles.input, !inputs.password.isValid && styles.invalidInput]}
-        placeholderTextColor={'#88999C'}
-      />
-      {!inputs.password.isValid && <LabelText style={styles.errorText}>Invalid Password. Password must be at least 8 characters and contain one number or one special character</LabelText>}
+        <TextInput
+          placeholder="Password"
+          secureTextEntry={true}
+          autoCorrect={false}
+          onChangeText={(value) => inputChangeHandler('password', value)}
+          style={[styles.input, !inputs.password.isValid && styles.invalidInput]}
+        />
+        {!inputs.password.isValid && <LabelText style={styles.errorText}>Invalid Password. Password must be at least 8 characters and contain one number or one special character</LabelText>}
 
-      <TextInput
-        placeholder="Confirm Password"
-        secureTextEntry={true}
-        autoCorrect={false}
-        onChangeText={(value) => inputChangeHandler('confirmPassword', value)}
-        style={[styles.input, !inputs.confirmPassword.isValid && styles.invalidInput]}
-        placeholderTextColor={'#88999C'}
-      />
-      {!inputs.confirmPassword.isValid && <LabelText style={styles.errorText}>Passwords must match</LabelText>}
+        <TextInput
+          placeholder="Confirm Password"
+          secureTextEntry={true}
+          autoCorrect={false}
+          onChangeText={(value) => inputChangeHandler('confirmPassword', value)}
+          style={[styles.input, !inputs.confirmPassword.isValid && styles.invalidInput]}
+        />
+        {!inputs.confirmPassword.isValid && <LabelText style={styles.errorText}>Passwords must match</LabelText>}
 
-      <SimpleWhiteButton style={styles.button} text="CREATE ACCOUNT" onPress={submitHandler} />
+        <SimpleWhiteButton style={styles.button} text="CREATE ACCOUNT" onPress={submitHandler} />
+      </KeyboardAvoidingView>
     </View>
   );
 }
@@ -167,7 +171,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: Colors.themeBright,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   input: {
     marginVertical: 5,
