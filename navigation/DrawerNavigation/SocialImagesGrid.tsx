@@ -20,7 +20,6 @@ function SocialImagesGrid() {
       data={images}
       numColumns={3}
       renderItem={(item) => <View style={styles.item}>{item.item.icon}</View>}
-      style={{ marginLeft: 20 }}
     />
   );
 }
