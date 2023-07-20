@@ -9,7 +9,7 @@ import useApiClient from '../../../hooks/useApiClient';
 import { useAppSelector } from '../../../store/hooks';
 import { GetPersonalValues } from '../../../api/responses';
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
-import PersonalValueCard from '../../../components/PersonalValueCard';
+import PersonalValueCard from '../../../components/Cards/PersonalValueCard';
 import RadarChart from '../../../components/RadarChart';
 import Headline1 from '../../../components/TextStyles/Headline1';
 import BodyText from '../../../components/TextStyles/BodyText';
@@ -56,13 +56,13 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
       <View style={[styles.section, styles.blueArea]}>
         <Headline1 style={styles.headlines}>This is your Climate Personality</Headline1>
 
-        <View style={styles.valueCard}>
+        <View style={{ marginVertical: 20 }}>
           <PersonalValueCard nr={1} value={personalValues.personalValues[0]} />
         </View>
-        <View style={styles.valueCard}>
+        <View style={{ marginVertical: 20 }}>
           <PersonalValueCard nr={2} value={personalValues.personalValues[1]} />
         </View>
-        <View style={styles.valueCard}>
+        <View style={{ marginVertical: 20 }}>
           <PersonalValueCard nr={3} value={personalValues.personalValues[2]} />
         </View>
       </View>
@@ -116,10 +116,6 @@ const styles = StyleSheet.create({
   boldText: {
     marginVertical: 15,
     textAlign: 'center',
-  },
-  valueCard: {
-    marginVertical: 20,
-    width: '100%',
   },
   button: {
     marginTop: 30,

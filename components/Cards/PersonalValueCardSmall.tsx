@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
-import { capitalizeFirstLetter } from "../utils";
+import { capitalizeFirstLetter } from "../../utils";
 
-import Headline3 from "./TextStyles/Headline3";
-import ButtonText from "./TextStyles/ButtonText";
-import BodyText from "./TextStyles/BodyText";
-import PersonalValueIcon from "./PersonalValueIcon";
+import Headline3 from "../TextStyles/Headline3";
+import ButtonText from "../TextStyles/ButtonText";
+import BodyText from "../TextStyles/BodyText";
+import PersonalValueIcon from "../PersonalValueIcon";
+import Card from "./Card";
 
 interface Props {
   name: string;
@@ -17,7 +18,8 @@ function PersonalValueCardSmall({ name, shortDescription, percentage }: Props) {
   const [expanded, setExpanded] = useState(false);
   
   return (
-    <View style={styles.card}>
+    <Card style={{ padding: 10 }}>
+
       <View style={styles.header}>
         <PersonalValueIcon valueName={name} style={styles.image} />
 
@@ -32,18 +34,12 @@ function PersonalValueCardSmall({ name, shortDescription, percentage }: Props) {
       </View>
 
       {expanded && <BodyText style={styles.shortDescription}>{shortDescription}</BodyText>}
-    </View>
+
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: 'white',
-    borderRadius: 5,
-    padding: 10,
-    width: '100%',
-    elevation: 5,
-  },
   image: {
     resizeMode: 'contain',
     width: 90,

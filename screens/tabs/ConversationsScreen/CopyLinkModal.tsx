@@ -5,6 +5,7 @@ import { showSuccessToast } from '../../../components/ToastMessages';
 import Headline4 from '../../../components/TextStyles/Headline4';
 import BodyText from '../../../components/TextStyles/BodyText';
 import ButtonText from '../../../components/TextStyles/ButtonText';
+import Card from '../../../components/Cards/Card';
 
 interface Props {
   show: boolean;
@@ -23,7 +24,8 @@ function CopyLinkModal({ show, recipient, link, onClose }: Props) {
   return (
     <Modal visible={show} animationType="fade" transparent={true}>
       <View style={styles.centerModal}>
-        <View style={styles.modalCard}>
+        <Card style={{ padding: 20, width: '90%' }}>
+
           <Headline4 style={styles.modalText}>Copy Link</Headline4>
           <BodyText style={styles.modalText}>Unique for {recipient}</BodyText>
           <BodyText style={styles.modalText}>{link}</BodyText>
@@ -31,7 +33,8 @@ function CopyLinkModal({ show, recipient, link, onClose }: Props) {
           <Pressable onPress={copyLink} style={styles.copyButton}>
             <ButtonText style={styles.modalText}>Copy</ButtonText>
           </Pressable>
-        </View>
+
+        </Card>
       </View>
     </Modal>
   );
@@ -43,11 +46,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
-  },
-  modalCard: {
-    padding: 20,
-    backgroundColor: 'white',
-    width: '90%',
   },
   copyButton: {
     flexDirection: 'row',

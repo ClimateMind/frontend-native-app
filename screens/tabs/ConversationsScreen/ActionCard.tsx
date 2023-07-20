@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet } from "react-native";
-import { Image, View } from "react-native";
+import { Image } from "react-native";
 
 import { capitalizeFirstLetter } from "../../../utils";
 import ClimateEffect2 from "../../../types/ClimateEffect2";
@@ -7,6 +7,7 @@ import RelatedPersonalValuesChips from "../../../components/RelatedPersonalValue
 import Headline3 from "../../../components/TextStyles/Headline3";
 import BodyText from "../../../components/TextStyles/BodyText";
 import ButtonText from "../../../components/TextStyles/ButtonText";
+import Card from "../../../components/Cards/Card";
 
 interface Props {
   climateEffect: ClimateEffect2;
@@ -15,7 +16,8 @@ interface Props {
 
 function ActionCard({ climateEffect, onLearnMore }: Props) {   
   return (
-    <View style={styles.card}>
+    <Card>
+
       <Headline3 style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</Headline3>
       <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />
       <BodyText style={styles.text}>{climateEffect.effectShortDescription}</BodyText>
@@ -26,15 +28,11 @@ function ActionCard({ climateEffect, onLearnMore }: Props) {
         <ButtonText style={styles.button}>LEARN MORE</ButtonText>
       </Pressable>
 
-    </View>
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: 'white',
-    borderRadius: 5,
-  },
   title: {
     padding: 15,
     paddingVertical: 20,

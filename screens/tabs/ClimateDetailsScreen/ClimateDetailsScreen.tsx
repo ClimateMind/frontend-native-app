@@ -5,7 +5,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ClimateFeedStackParams } from '../../../navigation/ClimateFeedStack';
 import { StyleSheet } from 'react-native';
 import { capitalizeFirstLetter } from '../../../utils';
-import ActionCard from '../../../components/ActionCard';
+import ActionCard from './ActionCard';
 import DetailsSourcesTab from '../../../components/DetailsSourcesTabs';
 
 import Headline3 from '../../../components/TextStyles/Headline3';
@@ -27,7 +27,7 @@ function ClimateDetailsScreen({ route }: Props) {
 
       {selectedTab === 0 && <View>
         <BodyText style={styles.description}>{climateEffect.effectDescription}</BodyText>
-        {climateEffect.effectSolutions.map(solution => <View style={styles.actionCard} key={solution.solutionTitle}><ActionCard solution={solution} /></View>)}
+        {climateEffect.effectSolutions.map(solution => <View style={{ marginVertical: 20 }} key={solution.solutionTitle}><ActionCard solution={solution} /></View>)}
       </View>}
 
       {selectedTab === 1 && climateEffect.effectSources.map(source => <View key={source} style={styles.links}><LabelText style={styles.link}>{source}</LabelText></View>)}
@@ -49,9 +49,6 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     lineHeight: 20,
     padding: 20,
-  },
-  actionCard: {
-    marginVertical: 20,
   },
   links: {
     padding: 10,
