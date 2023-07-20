@@ -1,11 +1,5 @@
 import { useState } from 'react';
-import {
-  StyleSheet,
-  TextInput,
-  View,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
+import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from 'react-native';
 
 import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import useApiClient from '../../../hooks/useApiClient';
@@ -42,63 +36,42 @@ function SignUpScreen() {
     const firstNameIsValid = inputs.firstName.value.trim().length > 0;
     const lastNameIsValid = inputs.lastName.value.trim().length > 0;
     const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputs.email.value);
-    const passwordIsValid = /^(?=.*[0-9!@#$%^&*])(.{8,})$/.test(
-      inputs.password.value
-    );
-    const confirmPasswordIsValid =
-      inputs.password.value === inputs.confirmPassword.value;
+    const passwordIsValid = /^(?=.*[0-9!@#$%^&*])(.{8,})$/.test(inputs.password.value);
+    const confirmPasswordIsValid = inputs.password.value === inputs.confirmPassword.value;
 
     let formIsValid = true;
 
     if (!firstNameIsValid) {
       setInputs((current) => {
-        return {
-          ...current,
-          firstName: { value: current.firstName.value, isValid: false },
-        };
+        return { ...current, firstName: { value: current.firstName.value, isValid: false }};
       });
       formIsValid = false;
     }
 
     if (!lastNameIsValid) {
       setInputs((current) => {
-        return {
-          ...current,
-          lastName: { value: current.lastName.value, isValid: false },
-        };
+        return { ...current, lastName: { value: current.lastName.value, isValid: false }};
       });
       formIsValid = false;
     }
 
     if (!emailIsValid) {
       setInputs((current) => {
-        return {
-          ...current,
-          email: { value: current.email.value, isValid: false },
-        };
+        return { ...current, email: { value: current.email.value, isValid: false }};
       });
       formIsValid = false;
     }
 
     if (!passwordIsValid) {
       setInputs((current) => {
-        return {
-          ...current,
-          password: { value: current.password.value, isValid: false },
-        };
+        return { ...current, password: { value: current.password.value, isValid: false }};
       });
       formIsValid = false;
     }
 
     if (!confirmPasswordIsValid) {
       setInputs((current) => {
-        return {
-          ...current,
-          confirmPassword: {
-            value: current.confirmPassword.value,
-            isValid: false,
-          },
-        };
+        return { ...current, confirmPassword: { value: current.confirmPassword.value, isValid: false }};
       });
       formIsValid = false;
     }
@@ -109,11 +82,8 @@ function SignUpScreen() {
 
     apiClient
       .postRegister({
-        firstName: inputs.firstName.value,
-        lastName: inputs.lastName.value,
-        email: inputs.email.value,
-        password: inputs.password.value,
-        quizId,
+        firstName: inputs.firstName.value, lastName: inputs.lastName.value,
+        email: inputs.email.value, password: inputs.password.value, quizId,
       })
       .then((result) => {
         if (result !== undefined) {
@@ -138,19 +108,9 @@ function SignUpScreen() {
         behavior={Platform.OS === 'ios' ? 'position' : 'padding'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 80 : 0}
       >
-        <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingHorizontal: 20,
-          }}
-        >
-          <Headline1 style={{ padding: 8 }}>
-            Create a Climate Mind account
-          </Headline1>
-          <BodyText
-            style={{ marginTop: 30, marginBottom: 60, textAlign: 'center' }}
-          >
+        <View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
+          <Headline1 style={{ padding: 8 }}>Create a Climate Mind account</Headline1>
+          <BodyText style={{ marginTop: 30, marginBottom: 60, textAlign: 'center' }}>
             Save your results, see your climate topics, and start talking.
           </BodyText>
         </View>
@@ -160,32 +120,18 @@ function SignUpScreen() {
           autoCapitalize="sentences"
           autoCorrect={false}
           onChangeText={(value) => inputChangeHandler('firstName', value)}
-          style={[
-            styles.input,
-            !inputs.firstName.isValid && styles.invalidInput,
-          ]}
+          style={[styles.input, !inputs.firstName.isValid && styles.invalidInput]}
         />
-        {!inputs.firstName.isValid && (
-          <LabelText style={styles.errorText}>
-            First Name is a required field
-          </LabelText>
-        )}
+        {!inputs.firstName.isValid && <LabelText style={styles.errorText}>First Name is a required field</LabelText>}
 
         <TextInput
           placeholder="Last Name"
           autoCapitalize="sentences"
           autoCorrect={false}
           onChangeText={(value) => inputChangeHandler('lastName', value)}
-          style={[
-            styles.input,
-            !inputs.lastName.isValid && styles.invalidInput,
-          ]}
+          style={[styles.input, !inputs.lastName.isValid && styles.invalidInput]}
         />
-        {!inputs.lastName.isValid && (
-          <LabelText style={styles.errorText}>
-            Last Name is a required field
-          </LabelText>
-        )}
+        {!inputs.lastName.isValid && <LabelText style={styles.errorText}>Last Name is a required field</LabelText>}
 
         <TextInput
           placeholder="Email"
@@ -194,46 +140,27 @@ function SignUpScreen() {
           onChangeText={(value) => inputChangeHandler('email', value)}
           style={[styles.input, !inputs.email.isValid && styles.invalidInput]}
         />
-        {!inputs.email.isValid && (
-          <LabelText style={styles.errorText}>Invalid email address</LabelText>
-        )}
+        {!inputs.email.isValid && <LabelText style={styles.errorText}>Invalid email address</LabelText>}
 
         <TextInput
           placeholder="Password"
           secureTextEntry={true}
           autoCorrect={false}
           onChangeText={(value) => inputChangeHandler('password', value)}
-          style={[
-            styles.input,
-            !inputs.password.isValid && styles.invalidInput,
-          ]}
+          style={[styles.input, !inputs.password.isValid && styles.invalidInput]}
         />
-        {!inputs.password.isValid && (
-          <LabelText style={styles.errorText}>
-            Invalid Password. Password must be at least 8 characters and contain
-            one number or one special character
-          </LabelText>
-        )}
+        {!inputs.password.isValid && <LabelText style={styles.errorText}>Invalid Password. Password must be at least 8 characters and contain one number or one special character</LabelText>}
 
         <TextInput
           placeholder="Confirm Password"
           secureTextEntry={true}
           autoCorrect={false}
           onChangeText={(value) => inputChangeHandler('confirmPassword', value)}
-          style={[
-            styles.input,
-            !inputs.confirmPassword.isValid && styles.invalidInput,
-          ]}
+          style={[styles.input, !inputs.confirmPassword.isValid && styles.invalidInput]}
         />
-        {!inputs.confirmPassword.isValid && (
-          <LabelText style={styles.errorText}>Passwords must match</LabelText>
-        )}
+        {!inputs.confirmPassword.isValid && <LabelText style={styles.errorText}>Passwords must match</LabelText>}
 
-        <SimpleWhiteButton
-          style={styles.button}
-          text="CREATE ACCOUNT"
-          onPress={submitHandler}
-        />
+        <SimpleWhiteButton style={styles.button} text="CREATE ACCOUNT" onPress={submitHandler} />
       </KeyboardAvoidingView>
     </View>
   );

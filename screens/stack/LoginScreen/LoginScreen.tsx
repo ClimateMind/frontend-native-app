@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Dimensions, Image, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, TextInput, View, Platform } from 'react-native';
+import { Dimensions, Image, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { AxiosError } from 'axios';
 import Recaptcha, { RecaptchaHandles } from 'react-native-recaptcha-that-works';
 import { WEB_URL, RECAPTCHA_SITE_KEY } from '@env';
