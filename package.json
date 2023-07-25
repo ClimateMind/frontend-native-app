@@ -4,11 +4,9 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "update:all:staging": "eas update --channel staging --platform all --clear-cache",
-    "build:android:production": "eas build -p android"
+    "update:android:staging": "eas update --channel staging --platform android --clear-cache",
+    "update:android:production": "eas update --channel production --platform android --clear-cache",
+    "build:android:production": "eas build --profile production --platform android --clear-cache"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.17.11",

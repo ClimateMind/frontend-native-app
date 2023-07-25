@@ -7,6 +7,7 @@ import SimpleWhiteButton from '../../../components/SimpleWhiteButton';
 import BodyText from '../../../components/TextStyles/BodyText';
 import LabelText from '../../../components/TextStyles/LabelText';
 import Headline1 from '../../../components/TextStyles/Headline1';
+import { showSuccessToast } from '../../../components/ToastMessages';
 
 type Props = NativeStackScreenProps<StackParams, 'StartScreen'>;
 
@@ -22,7 +23,10 @@ function StartScreen({ navigation }: Props) {
   return (
     <ScrollView>
       <View style={[styles.container, { backgroundColor: Colors.themeBright }]}>
-        <Image style={styles.image} source={require('../../../assets/cm-logo.png')} />
+        <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Hello")}>
+          <Image style={styles.image} source={require('../../../assets/cm-logo.png')} />
+        </Pressable>
+
         <Headline1 style={{ textAlign: 'center', paddingVertical: 8 }}>Inspire others to take action!</Headline1>
 
         <SimpleWhiteButton style={styles.button} text='GET STARTED' onPress={navigateToPreQuizScreen} />
