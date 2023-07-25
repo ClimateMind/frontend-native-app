@@ -7,7 +7,7 @@ on:
 
 jobs:
   preview:
-    name: EAS Update
+    name: EAS Update Show Preview
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
