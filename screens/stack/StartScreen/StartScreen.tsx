@@ -23,7 +23,7 @@ function StartScreen({ navigation }: Props) {
   return (
     <ScrollView>
       <View style={[styles.container, { backgroundColor: Colors.themeBright }]}>
-        <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Hello")}>
+        <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Hello :")}>
           <Image style={styles.image} source={require('../../../assets/cm-logo.png')} />
         </Pressable>
 
