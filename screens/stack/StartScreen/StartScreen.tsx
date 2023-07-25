@@ -23,10 +23,8 @@ function StartScreen({ navigation }: Props) {
   return (
     <ScrollView>
       <View style={[styles.container, { backgroundColor: Colors.themeBright }]}>
-        <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Hello :")}>
-          <Image style={styles.image} source={require('../../../assets/cm-logo.png')} />
-        </Pressable>
-
+        
+        <Image style={styles.image} source={require('../../../assets/cm-logo.png')} />
         <Headline1 style={{ textAlign: 'center', paddingVertical: 8 }}>Inspire others to take action!</Headline1>
 
         <SimpleWhiteButton style={styles.button} text='GET STARTED' onPress={navigateToPreQuizScreen} />
@@ -51,7 +49,9 @@ function StartScreen({ navigation }: Props) {
           find solutions they like.
         </BodyText>
         
-        <Image source={require('../../../assets/ConnectTheDots.png')} />
+        <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Hello :)")}>
+          <Image source={require('../../../assets/ConnectTheDots.png')} />
+        </Pressable>
       </View>
     </ScrollView>
   );
