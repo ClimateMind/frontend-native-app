@@ -21,7 +21,7 @@ function CustomDrawerContent({ navigation }: Props) {
   }
   
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, Platform.OS ==='ios' &&  {paddingVertical: 45}]}>
 
       {/* Text Buttons above the social images */}
       <View>
@@ -42,7 +42,7 @@ function CustomDrawerContent({ navigation }: Props) {
           {!isLoggedIn && <DrawerButton text='LOG IN' icon={<MaterialIcons name="login" size={24} color="black" />} onPress={() => navigation.navigate('LoginScreen')} />}
           {isLoggedIn && <DrawerButton text='LOGOUT' icon={<MaterialIcons name="logout" size={24} color="black" />} onPress={onLogout} />}
         </View>
-        <View style={[{ marginTop: 10 }, Platform.OS === 'ios' && { paddingBottom: 60 }]}>
+        <View style={Platform.OS === 'ios' && { marginTop: 20}}>
           <DrawerButton text='FEEDBACK' icon={<MaterialIcons name="email" size={24} color="black" />} onPress={() => openUrl('mailto:hello@climatemind.org')} />
         </View>
       </View>
@@ -55,10 +55,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingVertical: 60,
+    paddingVertical: 60, 
     paddingHorizontal: 20,
     justifyContent: 'space-between',
   },
+
   textButton: {
     fontFamily: 'nunito-bold',
     paddingVertical: 20,
