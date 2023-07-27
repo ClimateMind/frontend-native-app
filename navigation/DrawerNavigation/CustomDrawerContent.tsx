@@ -42,7 +42,7 @@ function CustomDrawerContent({ navigation }: Props) {
           {!isLoggedIn && <DrawerButton text='LOG IN' icon={<MaterialIcons name="login" size={24} color="black" />} onPress={() => navigation.navigate('LoginScreen')} />}
           {isLoggedIn && <DrawerButton text='LOGOUT' icon={<MaterialIcons name="logout" size={24} color="black" />} onPress={onLogout} />}
         </View>
-        <View style={Platform.OS === 'ios' && { marginTop: 20}}>
+        <View style={{ marginTop: 20}}>
           <DrawerButton text='FEEDBACK' icon={<MaterialIcons name="email" size={24} color="black" />} onPress={() => openUrl('mailto:hello@climatemind.org')} />
         </View>
       </View>
