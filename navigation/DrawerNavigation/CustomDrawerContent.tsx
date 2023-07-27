@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Platform } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons'; 
+import { MaterialIcons } from '@expo/vector-icons';
 import { DrawerContentComponentProps } from '@react-navigation/drawer';
 
 import SocialImagesGrid from './SocialImagesGrid';
@@ -14,15 +14,14 @@ type Props = DrawerContentComponentProps;
 function CustomDrawerContent({ navigation }: Props) {
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
-  
+
   function onLogout() {
     dispatch(logout());
     navigation.closeDrawer();
   }
-  
-  return (
-    <View style={[styles.container, Platform.OS ==='ios' &&  {paddingVertical: 45}]}>
 
+  return (
+    <View style={[styles.container, Platform.OS === 'ios' && { paddingVertical: 45 }]}>
       {/* Text Buttons above the social images */}
       <View>
         {isLoggedIn && <Text style={styles.textButton} onPress={() => navigation.navigate('PersonalValuesScreen')}>Personal Values</Text>}
@@ -42,20 +41,19 @@ function CustomDrawerContent({ navigation }: Props) {
           {!isLoggedIn && <DrawerButton text='LOG IN' icon={<MaterialIcons name="login" size={24} color="black" />} onPress={() => navigation.navigate('LoginScreen')} />}
           {isLoggedIn && <DrawerButton text='LOGOUT' icon={<MaterialIcons name="logout" size={24} color="black" />} onPress={onLogout} />}
         </View>
-        <View style={{ marginTop: 20}}>
+        <View style={{ marginTop: 20 }}>
           <DrawerButton text='FEEDBACK' icon={<MaterialIcons name="email" size={24} color="black" />} onPress={() => openUrl('mailto:hello@climatemind.org')} />
         </View>
       </View>
-
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingVertical: 60, 
+    paddingVertical: 60,
     paddingHorizontal: 20,
     justifyContent: 'space-between',
   },
