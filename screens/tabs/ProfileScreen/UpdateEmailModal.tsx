@@ -4,6 +4,7 @@ import { useState } from "react";
 import useApiClient from "../../../hooks/useApiClient";
 import Headline4 from "../../../components/TextStyles/Headline4";
 import BodyText from "../../../components/TextStyles/BodyText";
+import Card from "../../../components/Cards/Card";
 
 interface Props {
   show: boolean;
@@ -46,7 +47,8 @@ function UpdateEmailModal({ show, onSubmit, onCancel }: Props) {
       transparent={true}
     >
       <View style={styles.centerModal}>
-        <View style={styles.card}>
+        <Card style={{ padding: 20, width: '90%' }}>
+
           <Headline4 style={styles.cardHeader}>Update your email address</Headline4>
           <BodyText>Your current email address: {currentEmail}</BodyText>
         
@@ -82,7 +84,7 @@ function UpdateEmailModal({ show, onSubmit, onCancel }: Props) {
             <Pressable disabled={submitDisabled()} onPress={submitButtonHandler} style={[styles.button, submitDisabled() && {opacity: 0.2}]}><Text>SUBMIT</Text></Pressable>
           </View>
 
-        </View>
+        </Card>
       </View>
     </Modal>
   );
@@ -94,11 +96,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
-  },
-  card: {
-    padding: 20,
-    backgroundColor: 'white',
-    width: '90%',
   },
   cardHeader: {
     textAlign: 'left',

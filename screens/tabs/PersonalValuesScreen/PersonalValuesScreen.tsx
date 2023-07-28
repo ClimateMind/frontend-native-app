@@ -7,7 +7,7 @@ import Colors from '../../../assets/colors';
 import useApiClient from '../../../hooks/useApiClient';
 import { GetPersonalValues } from '../../../api/responses';
 import { useAppSelector } from '../../../store/hooks';
-import PersonalValueCard from '../../../components/PersonalValueCard';
+import PersonalValueCard from '../../../components/Cards/PersonalValueCard';
 import RadarChart from '../../../components/RadarChart';
 import { useFocusEffect } from '@react-navigation/native';
 import Headline2 from '../../../components/TextStyles/Headline2';
@@ -50,13 +50,13 @@ function PersonalValuesScreen({ navigation }: Props) {
       <View style={[styles.padding, styles.blueArea]}>
         <Headline2 style={{ padding: 8 }}>This is your Climate Personality</Headline2>
 
-        <View style={styles.valueCard}>
+        <View style={{ marginVertical: 20 }}>
           <PersonalValueCard nr={1} value={personalValues.personalValues[0]} />
         </View>
-        <View style={styles.valueCard}>
+        <View style={{ marginVertical: 20 }}>
           <PersonalValueCard nr={2} value={personalValues.personalValues[1]} />
         </View>
-        <View style={styles.valueCard}>
+        <View style={{ marginVertical: 20 }}>
           <PersonalValueCard nr={3} value={personalValues.personalValues[2]} />
         </View>
       </View>
@@ -97,9 +97,6 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     marginVertical: 15,
-  },
-  valueCard: {
-    marginVertical: 20,
   },
 });
 

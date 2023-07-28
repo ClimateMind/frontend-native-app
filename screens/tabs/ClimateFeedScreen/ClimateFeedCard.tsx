@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet, View } from "react-native";
+import { Image, Pressable, StyleSheet } from "react-native";
 
 import ClimateEffect from "../../../types/ClimateEffect";
 import ActionCardHeader from "./ActionCardHeader";
@@ -7,6 +7,7 @@ import { capitalizeFirstLetter } from "../../../utils";
 import Headline3 from "../../../components/TextStyles/Headline3";
 import BodyText from "../../../components/TextStyles/BodyText";
 import ButtonText from "../../../components/TextStyles/ButtonText";
+import Card from "../../../components/Cards/Card";
 
 interface Props {
   climateEffect: ClimateEffect;
@@ -15,7 +16,8 @@ interface Props {
 
 function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
   return (
-    <View style={styles.card}>
+    <Card>
+
       <Headline3 style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</Headline3>
       {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
 
@@ -26,15 +28,12 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
       </Pressable>
 
       <ActionCardHeader effectSolution={climateEffect.effectSolutions[0]} />
-    </View>
+
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: 'white',
-    borderRadius: 5,
-  },
   title: {
     padding: 20,
     textAlign: 'left',

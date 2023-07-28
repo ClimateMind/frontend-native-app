@@ -19,6 +19,7 @@ import ButtonText from '../../../components/TextStyles/ButtonText';
 import Headline3 from '../../../components/TextStyles/Headline3';
 import BodyText from '../../../components/TextStyles/BodyText';
 import Headline4 from '../../../components/TextStyles/Headline4';
+import Card from '../../../components/Cards/Card';
 
 interface Props {
   conversation: GetAllConversations;
@@ -75,11 +76,12 @@ function ConversationCard({ conversation, onDelete }: Props) {
   }, [conversation.state]);
 
   return (
-      <View style={[styles.container, { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }]}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <CaptionText>{headerText[conversationState]}</CaptionText>
-          {expanded && <Pressable onPress={copyLink}><Text>COPY LINK</Text></Pressable>}
-        </View>
+    <Card style={[{ padding: 15 }, { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }]}>
+
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <CaptionText>{headerText[conversationState]}</CaptionText>
+        {expanded && <Pressable onPress={copyLink}><Text>COPY LINK</Text></Pressable>}
+      </View>
 
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0}}>
         <Headline3 style={{ marginBottom: 5 }}>{conversation.userB.name}</Headline3>
@@ -119,17 +121,12 @@ function ConversationCard({ conversation, onDelete }: Props) {
       <ViewSelectedTopicsModal conversation={conversation} open={showViewSelectedTopicsModal} onClose={() => setShowViewSelectedTopicsModal(false)} />
 
       <DeleteConversationModal show={showDeleteModal} userBName={userBName} onCancel={() => setShowDeleteModal(false)} onConfirm={deleteConversation} />
-    </View>
+
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    borderRadius: 10,
-    elevation: 5,
-    justifyContent: 'center',
-    padding: 15,
-  },
   text: {
     marginVertical: 5,
   },

@@ -1,9 +1,9 @@
 import { Image, Pressable, StyleSheet, View } from "react-native";
 
-import Solution from "../types/Solution";
-import ActionCardHeader from "../screens/tabs/ClimateFeedScreen/ActionCardHeader";
-import BodyText from "./TextStyles/BodyText";
-import ButtonText from "./TextStyles/ButtonText";
+import Solution from "../../../types/Solution";
+import ActionCardHeader from "../ClimateFeedScreen/ActionCardHeader";
+import BodyText from "../../../components/TextStyles/BodyText";
+import ButtonText from "../../../components/TextStyles/ButtonText";
 
 interface Props {
   solution: Solution;

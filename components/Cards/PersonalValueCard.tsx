@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 
-import Headline4 from "./TextStyles/Headline4";
-import BodyText from "./TextStyles/BodyText";
-import LabelText from "./TextStyles/LabelText";
-import ButtonText from "./TextStyles/ButtonText";
-import PersonalValueIcon from "./PersonalValueIcon";
+import Headline4 from "../TextStyles/Headline4";
+import BodyText from "../TextStyles/BodyText";
+import LabelText from "../TextStyles/LabelText";
+import ButtonText from "../TextStyles/ButtonText";
+import PersonalValueIcon from "../PersonalValueIcon";
+import Card from "./Card";
 
 interface Props {
   nr: number;
@@ -25,7 +26,7 @@ function PersonalValueCard({ nr, value }: Props) {
   }
 
   return (
-    <View style={styles.card}>
+    <Card style={{ padding: 10 }}>
 
       <LabelText>NO.{nr.toString()}</LabelText>
       <Headline4 style={{ textAlign: 'left', fontSize: 18, paddingTop: 4 }}>{capitalizeFirstLetter(value.name)}</Headline4>
@@ -43,17 +44,11 @@ function PersonalValueCard({ nr, value }: Props) {
         {expanded && <ButtonText style={styles.moreLessButton}>LESS</ButtonText>}
       </Pressable>
       
-    </View>
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: 'white',
-    borderRadius: 5,
-    padding: 10,
-    width: '100%',
-  },
   moreLessButton: {
     textAlign: 'left',
     paddingVertical: 8,

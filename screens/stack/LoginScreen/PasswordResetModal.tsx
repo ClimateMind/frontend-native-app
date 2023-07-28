@@ -6,6 +6,7 @@ import { showSuccessToast, showErrorToast } from '../../../components/ToastMessa
 import Headline3 from '../../../components/TextStyles/Headline3';
 import BodyText from '../../../components/TextStyles/BodyText';
 import ButtonText from '../../../components/TextStyles/ButtonText';
+import Card from '../../../components/Cards/Card';
 
 interface Props {
   show: boolean;
@@ -36,7 +37,8 @@ function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
       transparent={true}
     >
       <View style={styles.centerModal}>
-        <View style={styles.card}>
+        <Card style={{ padding: 20, width: '90%' }}>
+
           <Headline3 style={styles.cardHeader}>Reset your password</Headline3>
           <BodyText>Enter the email associated with your account and we will email you a link to reset your password.</BodyText>
           <TextInput
@@ -52,7 +54,8 @@ function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
             <Pressable onPress={onCancel} style={styles.button}><ButtonText style={styles.buttonText}>CANCEL</ButtonText></Pressable>
             <Pressable onPress={onPasswordResetRequest} style={styles.button}><ButtonText style={styles.buttonText}>SUBMIT</ButtonText></Pressable>
           </View>
-        </View>
+
+        </Card>
       </View>
     </Modal>
   );
@@ -64,11 +67,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
-  },
-  card: {
-    padding: 20,
-    backgroundColor: 'white',
-    width: '90%',
   },
   cardHeader: {
     textAlign: 'left',

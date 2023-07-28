@@ -35,7 +35,7 @@ function SolutionDetailsScreen({ route }: Props) {
   
   return (
     <ScrollView style={{ backgroundColor: 'white' }}>
-      <View style={styles.header}>
+      <View style={{ padding: 10 }}>
         <ActionCardHeader effectSolution={solution} color='rgba(0, 0, 0, 0)' />
       </View>
       {solution.imageUrl !== null && <Image style={styles.image} source={{uri: solution.imageUrl}} />}
@@ -44,18 +44,15 @@ function SolutionDetailsScreen({ route }: Props) {
 
       {selectedTab === 0 && <View>
         <BodyText style={styles.description}>{solution.longDescription}</BodyText>
-        {myths?.map(myth => <View style={styles.mythCard} key={myth.iri}><MythsFeedCard myth={myth} onLearnMore={null} /></View>)}
+        {myths?.map(myth => <View style={{ margin: 10 }} key={myth.iri}><MythsFeedCard myth={myth} onLearnMore={null} /></View>)}
         </View>}
 
-      {selectedTab === 1 && solution.solutionSources.map(source => <View key={source} style={styles.links}><LabelText style={styles.link}>{source}</LabelText></View>)}
+      {selectedTab === 1 && solution.solutionSources.map(source => <View key={source} style={{ padding: 10 }}><LabelText style={styles.link}>{source}</LabelText></View>)}
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  header: {
-    padding: 10,
-  },
   image: {
     width: '100%',
     height: 250,
@@ -64,12 +61,6 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     lineHeight: 20,
     padding: 20,
-  },
-  mythCard: {
-    margin: 10,
-  },
-  links: {
-    padding: 10,
   },
   link: {
     paddingHorizontal: 20,
