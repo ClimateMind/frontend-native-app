@@ -1,9 +1,9 @@
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
+import * as NavigationBar from 'expo-navigation-bar';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
-import * as NavigationBar from 'expo-navigation-bar';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { NavigationContainer } from '@react-navigation/native';
@@ -15,7 +15,6 @@ import Colors from './assets/colors';
 SplashScreen.preventAutoHideAsync();
 
 function App() {
-
   NavigationBar.setBackgroundColorAsync(Colors.themeDark);
 
   const [fontsLoaded] = useFonts({
