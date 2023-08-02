@@ -15,7 +15,7 @@ import useApiClient from './hooks/useApiClient';
 function NavigationRoot() {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
-  const sessionId = useAppSelector(state => state.auth.sessionId);
+  const sessionId = useAppSelector((state) => state.auth.sessionId);
 
   const [showOnboarding, setShowOnboarding] = useState(false);
 
@@ -29,7 +29,7 @@ function NavigationRoot() {
 
       return false;
     }
-    
+
     async function isUserLoggedIn() {
       // Check if the user information is stored on the device
       const accessToken = await AsyncStorage.getItem('accessToken');
@@ -41,37 +41,46 @@ function NavigationRoot() {
 
       if (accessToken && firstName && lastName && email && userId && quizId) {
         // If so, login the user directly when he opens the app
-        dispatch(login({
-          accessToken, firstName, lastName,
-          email, userId, quizId,
-        }));
+        dispatch(
+          login({
+            accessToken,
+            firstName,
+            lastName,
+            email,
+            userId,
+            quizId,
+          })
+        );
       }
     }
 
-    firstTimeUsage()
-      .then(result => {
-        if (result) {
-          // If it's the first time the user opens the app, show the onboading screens
-          setShowOnboarding(true);
-          SplashScreen.hideAsync();
-        } else {
-          // Otherwise, check if the user is logged in
-          isUserLoggedIn().then(() => SplashScreen.hideAsync());
-        }
-      })
-  }, [])
+    firstTimeUsage().then((result) => {
+      if (result) {
+        // If it's the first time the user opens the app, show the onboading screens
+        setShowOnboarding(true);
+        SplashScreen.hideAsync();
+      } else {
+        // Otherwise, check if the user is logged in
+        isUserLoggedIn().then(() => SplashScreen.hideAsync());
+      }
+    });
+  }, []);
 
   useEffect(() => {
-    if (!sessionId) {{
-        apiClient.postSession()
-          .then(result => dispatch(setSessionId(result.sessionId)))
+    if (!sessionId) {
+      {
+        apiClient
+          .postSession()
+          .then((result) => dispatch(setSessionId(result.sessionId)));
       }
     }
   }, []);
 
   return (
     <>
-      {showOnboarding && <OnBoardingScreens onCompleted={() => setShowOnboarding(false)} /> }
+      {showOnboarding && (
+        <OnBoardingScreens onCompleted={() => setShowOnboarding(false)} />
+      )}
       {!showOnboarding && <DrawerNavigation />}
     </>
   );
