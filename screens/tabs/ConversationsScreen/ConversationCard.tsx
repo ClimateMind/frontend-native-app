@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
-import * as Clipboard from 'expo-clipboard';
 import { WEB_URL } from '@env';
-
+import CopyLinkModal from './CopyLinkModal';
 import { GetAllConversations } from '../../../api/responses';
 import useApiClient from '../../../hooks/useApiClient';
 import DeleteConversationModal from './DeleteConversationModal';
@@ -32,11 +31,13 @@ function ConversationCard({ conversation, onDelete }: Props) {
   const [expanded, setExpanded] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [conversationState, setConversationState] = useState(conversation.state);
-  
+  const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
+  const [conversationLink, setConversationLink] = useState('');
   const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
   const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
-  
+
   const userBName = conversation.userB.name;
+
   const headerText = [
     `Invited ${userBName} to talk`,
     `Prepare to talk with ${userBName}`,
@@ -47,7 +48,12 @@ function ConversationCard({ conversation, onDelete }: Props) {
   ];
   
   function copyLink() {
-    Clipboard.setStringAsync(WEB_URL + '/landing/' + conversation.conversationId);
+    setShowCopyLinkModal(true)
+    setConversationLink(WEB_URL + '/landing/' + conversation.conversationId);
+  }
+
+  function closeModal() {
+    setShowCopyLinkModal(false);
   }
 
   function deleteConversation() {
@@ -76,6 +82,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
   }, [conversation.state]);
 
   return (
+    <>
     <Card style={[{ padding: 15 }, { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }]}>
 
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -123,6 +130,13 @@ function ConversationCard({ conversation, onDelete }: Props) {
       <DeleteConversationModal show={showDeleteModal} userBName={userBName} onCancel={() => setShowDeleteModal(false)} onConfirm={deleteConversation} />
 
     </Card>
+    <CopyLinkModal
+      show={showCopyLinkModal}
+      recipient={userBName}
+      link={conversationLink}
+      onClose={closeModal}
+    />
+    </>
   );
 }
 
