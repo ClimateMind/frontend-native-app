@@ -15,7 +15,7 @@ import useApiClient from './hooks/useApiClient';
 function NavigationRoot() {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
-  const sessionId = useAppSelector((state) => state.auth.sessionId);
+  const sessionId = useAppSelector(state => state.auth.sessionId);
 
   const [showOnboarding, setShowOnboarding] = useState(false);
 
@@ -41,16 +41,10 @@ function NavigationRoot() {
 
       if (accessToken && firstName && lastName && email && userId && quizId) {
         // If so, login the user directly when he opens the app
-        dispatch(
-          login({
-            accessToken,
-            firstName,
-            lastName,
-            email,
-            userId,
-            quizId,
-          })
-        );
+        dispatch(login({
+          accessToken, firstName, lastName,
+          email, userId, quizId,
+        }));
       }
     }
 
@@ -67,20 +61,16 @@ function NavigationRoot() {
   }, []);
 
   useEffect(() => {
-    if (!sessionId) {
-      {
-        apiClient
-          .postSession()
-          .then((result) => dispatch(setSessionId(result.sessionId)));
+    if (!sessionId) {{
+        apiClient.postSession()
+          .then(result => dispatch(setSessionId(result.sessionId)))
       }
     }
   }, []);
 
   return (
     <>
-      {showOnboarding && (
-        <OnBoardingScreens onCompleted={() => setShowOnboarding(false)} />
-      )}
+      {showOnboarding && <OnBoardingScreens onCompleted={() => setShowOnboarding(false)} /> }
       {!showOnboarding && <DrawerNavigation />}
     </>
   );
