@@ -1,12 +1,11 @@
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
+import * as NavigationBar from 'expo-navigation-bar';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
-
 import { Provider } from 'react-redux';
 import { store } from './store/store';
-
 import { NavigationContainer } from '@react-navigation/native';
 import NavigationRoot from './NavigationRoot';
 
@@ -16,6 +15,8 @@ import Colors from './assets/colors';
 SplashScreen.preventAutoHideAsync();
 
 function App() {
+  NavigationBar.setBackgroundColorAsync(Colors.themeDark);
+
   const [fontsLoaded] = useFonts({
     'nunito': require('./assets/fonts/Nunito-Regular.ttf'),
     'nunito-italic': require('./assets/fonts/Nunito-Italic.ttf'),
@@ -31,7 +32,7 @@ function App() {
     <Provider store={store}>
       <RootSiblingParent>
         <SafeAreaView style={styles.safeArea}>
-          <StatusBar style="light" />
+          <StatusBar style="light" backgroundColor={Colors.themeDark}/>
           <NavigationContainer>
             <NavigationRoot />
           </NavigationContainer>
