@@ -44,7 +44,7 @@ function ClimateFeedScreen({ navigation }: Props) {
         }
         data={climateFeed}
         renderItem={(item) => (
-          <View key={item.item.effectId} style={styles.cardContainer}>
+          <View key={item.item.effectId} style={{ margin: 10 }}>
             <ClimateFeedCard climateEffect={item.item} onLearnMore={gotoDetailsScreen} />
           </View>
         )}
@@ -70,9 +70,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 20,
     paddingHorizontal: 30,
-  },
-  cardContainer: {
-    margin: 10,
   },
 });
 

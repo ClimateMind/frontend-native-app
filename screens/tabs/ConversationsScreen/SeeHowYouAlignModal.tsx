@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Modal, Pressable, StyleSheet, View } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 
-import PersonalValueCardSmall from "../../../components/PersonalValueCardSmall";
+import PersonalValueCardSmall from "../../../components/Cards/PersonalValueCardSmall";
 import ViewSelectedTopicsButton from "./ViewSelectedTopicsButton";
 import { GetAllConversations } from "../../../api/responses";
 import useApiClient from "../../../hooks/useApiClient";

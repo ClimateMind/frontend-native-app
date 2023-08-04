@@ -42,10 +42,11 @@ function MythsFeedScreen({ navigation }: Props) {
         }
         data={mythsFeed}
         renderItem={(item) => (
-          <View key={item.item.mythTitle} style={styles.cardContainer}>
+          <View key={item.item.mythTitle} style={{ margin: 10 }}>
             <MythsFeedCard myth={item.item} onLearnMore={gotoDetailsScreen} />
           </View>
         )}
+        keyExtractor={(item) => item.iri}
       />
     </View>
   );
@@ -67,9 +68,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 20,
     paddingHorizontal: 30,
-  },
-  cardContainer: {
-    margin: 10,
   },
 });
 

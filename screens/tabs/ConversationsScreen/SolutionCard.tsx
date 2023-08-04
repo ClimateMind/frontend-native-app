@@ -7,6 +7,7 @@ import LabelText from "../../../components/TextStyles/LabelText";
 import BodyText from "../../../components/TextStyles/BodyText";
 import ButtonText from "../../../components/TextStyles/ButtonText";
 import Headline3 from "../../../components/TextStyles/Headline3";
+import Card from "../../../components/Cards/Card";
 
 interface Props {
   solution: ClimateSolution;
@@ -15,7 +16,8 @@ interface Props {
 
 function SolutionsFeedCard({ solution, onLearnMore }: Props) {
   return (
-    <View style={styles.card}>
+    <Card>
+
       <View style={styles.headingContainer}>
         <LabelText style={styles.actionType}>{solution.solutionType[0].toUpperCase()} ACTION</LabelText>
         <Headline3 style={styles.title}>{capitalizeFirstLetter(solution.solutionTitle)}</Headline3>
@@ -27,15 +29,12 @@ function SolutionsFeedCard({ solution, onLearnMore }: Props) {
       <Pressable onPress={() => onLearnMore(solution)}>
         <ButtonText style={styles.button}>MORE</ButtonText>
       </Pressable>
-    </View>
+
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: 'white',
-    borderRadius: 5,
-  },
   headingContainer: {
     paddingHorizontal: 5,
     paddingVertical: 10,

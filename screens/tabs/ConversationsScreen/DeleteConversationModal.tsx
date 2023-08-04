@@ -2,6 +2,7 @@ import { Modal, Pressable, StyleSheet, View } from 'react-native';
 import Headline4 from '../../../components/TextStyles/Headline4';
 import BodyText from '../../../components/TextStyles/BodyText';
 import ButtonText from '../../../components/TextStyles/ButtonText';
+import Card from '../../../components/Cards/Card';
 
 interface Props {
   show: boolean;
@@ -17,7 +18,8 @@ function DeleteConversationModal({ show, userBName, onCancel, onConfirm }: Props
       transparent={true}
     >
       <View style={styles.centerModal}>
-        <View style={styles.card}>
+        <Card style={{ padding: 20, width: '90%' }}>
+
           <Headline4 style={styles.cardHeader}>Delete Conversation?</Headline4>
           <BodyText>Are you sure you want to delete your conversation with {userBName}</BodyText>
 
@@ -25,7 +27,8 @@ function DeleteConversationModal({ show, userBName, onCancel, onConfirm }: Props
             <Pressable onPress={onCancel}><ButtonText style={styles.buttonText}>CANCEL</ButtonText></Pressable>
             <Pressable onPress={onConfirm}><ButtonText style={styles.buttonText}>CONFIRM</ButtonText></Pressable>
           </View>
-        </View>
+
+        </Card>
       </View>
     </Modal>
   );
@@ -37,11 +40,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
-  },
-  card: {
-    padding: 20,
-    backgroundColor: 'white',
-    width: '90%',
   },
   cardHeader: {
     textAlign: 'left',

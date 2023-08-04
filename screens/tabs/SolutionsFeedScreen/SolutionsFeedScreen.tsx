@@ -40,11 +40,11 @@ function SolutionsFeedScreen({ navigation }: Props) {
         }
         data={solutionsFeed}
         renderItem={(item) => (
-          <View key={item.item.solutionTitle} style={styles.cardContainer}>
+          <View key={item.item.solutionTitle} style={{ margin: 10 }}>
             <SolutionsFeedCard solution={item.item} onLearnMore={gotoDetailsScreen} />
           </View>
         )}
-        keyExtractor={(item) => item.solutionTitle}
+        keyExtractor={(item) => item.iri}
       />
     </View>
   );
@@ -66,9 +66,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 20,
     paddingHorizontal: 30,
-  },
-  cardContainer: {
-    margin: 10,
   },
 });
 

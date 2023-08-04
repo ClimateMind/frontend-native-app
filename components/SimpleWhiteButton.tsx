@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
+
   },
   buttonPressed: {
     backgroundColor: 'lightgray',
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontWeight: 'bold',
+    paddingVertical:5,
   },
 });
 

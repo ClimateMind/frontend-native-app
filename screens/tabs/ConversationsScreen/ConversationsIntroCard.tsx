@@ -1,14 +1,16 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 
 import Headline4 from '../../../components/TextStyles/Headline4';
 import BodyText from '../../../components/TextStyles/BodyText';
+import Card from '../../../components/Cards/Card';
 
 function ConversationsIntroCard() {
   const [expanded, setExpanded] = useState(true);
   
   return (
-    <View style={styles.container}>
+    <Card style={{ padding: 15 }}>
+
       <Headline4 style={{ marginBottom: 10 }}>How to talk about Climate Change</Headline4>
 
       {expanded && <>
@@ -26,19 +28,12 @@ function ConversationsIntroCard() {
       <Pressable onPress={() => setExpanded(current => !current)} style={styles.moreLessButton}>
         <BodyText style={{ letterSpacing: 1, fontWeight: 'bold' }}>{expanded ? 'LESS' : 'MORE'}</BodyText>
       </Pressable>
-    </View>
+
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white',
-    borderRadius: 10,
-    elevation: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 15,
-  },
   subtitle: {
     paddingVertical: 10,
   },
