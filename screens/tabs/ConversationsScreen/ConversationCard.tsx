@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
 import { WEB_URL } from '@env';
-import CopyLinkModal from './CopyLinkModal';
+
 import { GetAllConversations } from '../../../api/responses';
 import useApiClient from '../../../hooks/useApiClient';
 import DeleteConversationModal from './DeleteConversationModal';
@@ -11,6 +11,7 @@ import SeeHowYouAlignButton from './SeeHowYouAlignButton';
 import ViewSelectedTopicsButton from './ViewSelectedTopicsButton';
 import YesWeTalkedButton from './YesWeTalkedButton';
 import ConversationRating from './ConversationRating';
+import CopyLinkModal from './CopyLinkModal';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
 import CaptionText from '../../../components/TextStyles/CaptionText';
@@ -29,10 +30,11 @@ function ConversationCard({ conversation, onDelete }: Props) {
   const apiClient = useApiClient();
   
   const [expanded, setExpanded] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [conversationState, setConversationState] = useState(conversation.state);
-  const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [conversationLink, setConversationLink] = useState('');
+  const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
   const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
   const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
 
@@ -50,10 +52,6 @@ function ConversationCard({ conversation, onDelete }: Props) {
   function copyLink() {
     setShowCopyLinkModal(true)
     setConversationLink(WEB_URL + '/landing/' + conversation.conversationId);
-  }
-
-  function closeModal() {
-    setShowCopyLinkModal(false);
   }
 
   function deleteConversation() {
@@ -83,59 +81,60 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
   return (
     <>
-    <Card style={[{ padding: 15 }, { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }]}>
+      <Card style={[{ padding: 15 }, { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }]}>
 
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <CaptionText>{headerText[conversationState]}</CaptionText>
-        {expanded && <Pressable onPress={copyLink}><Text>COPY LINK</Text></Pressable>}
-      </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <CaptionText>{headerText[conversationState]}</CaptionText>
+          {expanded && <Pressable onPress={copyLink}><Text>COPY LINK</Text></Pressable>}
+        </View>
 
-      <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0}}>
-        <Headline3 style={{ marginBottom: 5 }}>{conversation.userB.name}</Headline3>
-        {expanded && <Pressable>
-          <MaterialIcons name="edit" size={24} color="black" style={{ marginHorizontal: 10 }} />
-        </Pressable>}
-      </View>
-      
-      {/* For state 0, display a text that the userB has to take the quiz */}
-      {expanded && conversationState === 0 && <>
-        <BodyText style={styles.text}>When {conversation.userB.name} is finished, we will send you an email and their results will appear here. Then you can start preparing for your chat!</BodyText>
-        <BodyText style={styles.text}>If you need to resend test their link, you can access it by clicking “COPY LINK”.</BodyText>
-      </>}
-
-      {/* For every other state, show the text and buttons the userA needs */}
-      { expanded && conversationState !== 0 && <>
-        <Headline4 style={styles.subheading}>1. {conversation.userB.name} took the values quiz</Headline4>
-        <SeeHowYouAlignButton style={styles.whiteButton} conversationId={conversation.conversationId} conversationState={conversationState} onClick={() => increaseState(2)} />
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0}}>
+          <Headline3 style={{ marginBottom: 5 }}>{conversation.userB.name}</Headline3>
+          {expanded && <Pressable>
+            <MaterialIcons name="edit" size={24} color="black" style={{ marginHorizontal: 10 }} />
+          </Pressable>}
+        </View>
         
-        <Headline4 style={styles.subheading}>2. See what you can discuss with {conversation.userB.name}</Headline4>
-        <ViewSelectedTopicsButton style={styles.whiteButton} conversationId={conversation.conversationId} conversationState={conversationState} onClick={() => increaseState(3)} />
+        {/* For state 0, display a text that the userB has to take the quiz */}
+        {expanded && conversationState === 0 && <>
+          <BodyText style={styles.text}>When {conversation.userB.name} is finished, we will send you an email and their results will appear here. Then you can start preparing for your chat!</BodyText>
+          <BodyText style={styles.text}>If you need to resend test their link, you can access it by clicking “COPY LINK”.</BodyText>
+        </>}
 
-        <Headline4 style={styles.subheading}>3. Have you had your conversation with {conversation.userB.name}?</Headline4>
-        {conversationState <= 3 && <YesWeTalkedButton style={styles.whiteButton} conversationId={conversation.conversationId} conversationState={conversationState} onClick={() => increaseState(4)} />}
-        {conversationState > 3 && <ConversationRating conversationId={conversation.conversationId} initialRating={conversation.userARating} />}
-      </>
-      }
-      
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
-        {expanded ? <Pressable onPress={() => setShowDeleteModal(true)} style={styles.deleteButton}><Foundation name="trash" size={24} color="#77AAAF" /></Pressable> : <View></View>}
-        <Pressable onPress={() => setExpanded(current => !current)} style={styles.moreLessButton}>
-          <ButtonText style={{ letterSpacing: 1, paddingVertical: 3 }}>{expanded ? 'LESS' : 'MORE'}</ButtonText>
-        </Pressable>
-      </View>
+        {/* For every other state, show the text and buttons the userA needs */}
+        { expanded && conversationState !== 0 && <>
+          <Headline4 style={styles.subheading}>1. {conversation.userB.name} took the values quiz</Headline4>
+          <SeeHowYouAlignButton style={styles.whiteButton} conversationId={conversation.conversationId} conversationState={conversationState} onClick={() => increaseState(2)} />
+          
+          <Headline4 style={styles.subheading}>2. See what you can discuss with {conversation.userB.name}</Headline4>
+          <ViewSelectedTopicsButton style={styles.whiteButton} conversationId={conversation.conversationId} conversationState={conversationState} onClick={() => increaseState(3)} />
 
-      <SeeHowYouAlignModal conversation={conversation} open={showSeeHowYouAlignModal} onClose={() => setShowSeeHowYouAlignModal(false)} onViewTopics={() => {setShowSeeHowYouAlignModal(false); setShowViewSelectedTopicsModal(true);}} />
-      <ViewSelectedTopicsModal conversation={conversation} open={showViewSelectedTopicsModal} onClose={() => setShowViewSelectedTopicsModal(false)} />
+          <Headline4 style={styles.subheading}>3. Have you had your conversation with {conversation.userB.name}?</Headline4>
+          {conversationState <= 3 && <YesWeTalkedButton style={styles.whiteButton} conversationId={conversation.conversationId} conversationState={conversationState} onClick={() => increaseState(4)} />}
+          {conversationState > 3 && <ConversationRating conversationId={conversation.conversationId} initialRating={conversation.userARating} />}
+        </>
+        }
+        
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
+          {expanded ? <Pressable onPress={() => setShowDeleteModal(true)} style={styles.deleteButton}><Foundation name="trash" size={24} color="#77AAAF" /></Pressable> : <View></View>}
+          <Pressable onPress={() => setExpanded(current => !current)} style={styles.moreLessButton}>
+            <ButtonText style={{ letterSpacing: 1, paddingVertical: 3 }}>{expanded ? 'LESS' : 'MORE'}</ButtonText>
+          </Pressable>
+        </View>
 
-      <DeleteConversationModal show={showDeleteModal} userBName={userBName} onCancel={() => setShowDeleteModal(false)} onConfirm={deleteConversation} />
+        <SeeHowYouAlignModal conversation={conversation} open={showSeeHowYouAlignModal} onClose={() => setShowSeeHowYouAlignModal(false)} onViewTopics={() => {setShowSeeHowYouAlignModal(false); setShowViewSelectedTopicsModal(true);}} />
+        <ViewSelectedTopicsModal conversation={conversation} open={showViewSelectedTopicsModal} onClose={() => setShowViewSelectedTopicsModal(false)} />
 
-    </Card>
-    <CopyLinkModal
-      show={showCopyLinkModal}
-      recipient={userBName}
-      link={conversationLink}
-      onClose={closeModal}
-    />
+        <DeleteConversationModal show={showDeleteModal} userBName={userBName} onCancel={() => setShowDeleteModal(false)} onConfirm={deleteConversation} />
+
+      </Card>
+
+      <CopyLinkModal
+        show={showCopyLinkModal}
+        recipient={userBName}
+        link={conversationLink}
+        onClose={() => setShowCopyLinkModal(false)}
+      />
     </>
   );
 }
