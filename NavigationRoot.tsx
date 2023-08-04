@@ -29,7 +29,7 @@ function NavigationRoot() {
 
       return false;
     }
-    
+
     async function isUserLoggedIn() {
       // Check if the user information is stored on the device
       const accessToken = await AsyncStorage.getItem('accessToken');
@@ -48,18 +48,17 @@ function NavigationRoot() {
       }
     }
 
-    firstTimeUsage()
-      .then(result => {
-        if (result) {
-          // If it's the first time the user opens the app, show the onboading screens
-          setShowOnboarding(true);
-          SplashScreen.hideAsync();
-        } else {
-          // Otherwise, check if the user is logged in
-          isUserLoggedIn().then(() => SplashScreen.hideAsync());
-        }
-      })
-  }, [])
+    firstTimeUsage().then((result) => {
+      if (result) {
+        // If it's the first time the user opens the app, show the onboading screens
+        setShowOnboarding(true);
+        SplashScreen.hideAsync();
+      } else {
+        // Otherwise, check if the user is logged in
+        isUserLoggedIn().then(() => SplashScreen.hideAsync());
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (!sessionId) {{
