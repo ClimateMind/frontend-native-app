@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Modal, Pressable, StyleSheet, View } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 
+import Colors from "../../../assets/colors";
 import PersonalValueCardSmall from "../../../components/Cards/PersonalValueCardSmall";
 import ViewSelectedTopicsButton from "./ViewSelectedTopicsButton";
 import { GetAllConversations } from "../../../api/responses";
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: 20,
-    backgroundColor: 'rgba(138, 213, 204, 0.6)',
+    backgroundColor: Colors.themeBright,
   },
   backButtonContainer: {
     alignSelf: 'flex-start',
