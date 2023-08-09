@@ -7,7 +7,7 @@ import { useFonts } from 'expo-font';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { NavigationContainer } from '@react-navigation/native';
-import NavigationRoot from './NavigationRoot';
+import NavigationRoot from './navigation/NavigationRoot';
 
 import Colors from './assets/colors';
 
