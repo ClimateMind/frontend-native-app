@@ -23,15 +23,18 @@ function LoginScreen() {
   const dispatch = useAppDispatch();
 
   const recaptcha = useRef<RecaptchaHandles>(null);
+  const [loginAttempts, setLoginAttempts] = useState(0);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function onLogin(token: string) {
-    if (email === '' || password === '') {      
+  async function onLogin(token?: string) {
+    if (email === '' || password === '') {
       showErrorToast('Please enter your username and password');
       return;
     }
+
+    setLoginAttempts((current) => current + 1);
 
     try {
       const result = await apiClient.postLogin(email.trim(), password, token);
@@ -80,7 +83,6 @@ function LoginScreen() {
             onChangeText={setEmail}
             style={styles.input}
             placeholderTextColor={'#88999C'}
-            
           />
 
           <TextInput
@@ -99,17 +101,25 @@ function LoginScreen() {
             </Pressable>
           </View>
 
-          <Recaptcha
-            ref={recaptcha}
-            siteKey={RECAPTCHA_SITE_KEY}
-            baseUrl={WEB_URL}
-            onVerify={(token: string) => onLogin(token)}
-            onExpire={() => {}}
-            size="normal"
-            onError={(err) => { err ?? showErrorToast('Captcha did not load.') }}
-          />
+          {loginAttempts >= 4 && (
+            <>
+              <Recaptcha
+                ref={recaptcha}
+                siteKey={RECAPTCHA_SITE_KEY}
+                baseUrl={WEB_URL}
+                onVerify={(token: string) => onLogin(token)}
+                onExpire={() => {}}
+                size="normal"
+                onError={(err) => {
+                  err ?? showErrorToast('Captcha did not load.');
+                }}
+              />
 
-          <SimpleWhiteButton style={styles.loginButton} text="LOG IN" onPress={() => recaptcha.current?.open()} />
+              <SimpleWhiteButton style={styles.loginButton} text="LOG IN" onPress={() => recaptcha.current?.open()} />
+            </>
+          )}
+
+          {loginAttempts < 4 && <SimpleWhiteButton style={styles.loginButton} text="LOG IN" onPress={() => onLogin()} />}
 
           <PasswordResetModal show={showModal} onCancel={() => {setShowModal(false)}} onSubmit={() => setShowModal(false)} />
         </View>

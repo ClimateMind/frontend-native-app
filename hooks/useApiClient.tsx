@@ -114,12 +114,17 @@ function useApiClient() {
     return response.data;
   }
 
-  async function postLogin(email: string, password: string, recaptchaToken: string) {
+  async function postLogin(email: string, password: string, recaptchaToken?: string) {
+    const body = {
+      email,
+      password,
+    };
+    
     const response = await apiCall<responses.Login>(
       'post',
       '/login',
       {},
-      { email, password, recaptchaToken },
+      recaptchaToken ? { ...body, recaptchaToken } : { ...body, skipCaptcha: true },
     );
 
     // Store the refresh token in AsyncStorage
