@@ -76,6 +76,7 @@ export const authSlice = createSlice({
     },
     setAuthToken: (state, action: PayloadAction<string>) => {
       state.user.accessToken = action.payload;
+      AsyncStorage.setItem('accessToken', action.payload);
     },
     clearAll: () => {
       AsyncStorage.removeItem('accessToken');
