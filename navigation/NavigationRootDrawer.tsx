@@ -26,7 +26,7 @@ function NavigationRootDrawer({ navigation }: Props) {
       <View>
         {isLoggedIn && <Text style={styles.textButton} onPress={() => navigation.navigate('PersonalValuesScreen')}>Personal Values</Text>}
         {isLoggedIn && <Text style={styles.textButton} onPress={() => navigation.navigate('QuizScreen', { questionSet: 1 })}>Retake the Quiz</Text>}
-        {isLoggedIn && <Text style={styles.textButton} onPress={() => navigation.navigate('ConversationsScreen')}>Conversations</Text>}
+        {isLoggedIn && <Text style={styles.textButton} onPress={() => navigation.navigate('UserAAuthorizedScreens', { screen: 'ConversationsStack' })}>Conversations</Text>}
         <Text style={styles.textButton} onPress={() => openUrl('https://climatemind.org/')}>About Climate Mind</Text>
         <Text style={styles.textButton} onPress={() => openUrl('https://t.me/climatemind_chat')}>Community & Chat</Text>
         <Text style={styles.textButton} onPress={() => openUrl('https://app.climatemind.org/privacy')}>Privacy Policy</Text>

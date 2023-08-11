@@ -20,8 +20,8 @@ import Colors from '../assets/colors';
 import useApiClient from '../hooks/useApiClient';
 
 export type RootDrawerNavigationParams = {
-  UnauthorizedUserAScreens: undefined;
-  AuthorizedUserAScreens: { screen: 'PersonalValuesScreen' };
+  UserAUnauthorizedScreens: undefined;
+  UserAAuthorizedScreens: { screen: 'PersonalValuesScreen' | 'ConversationsStack' };
   QuizScreen: { questionSet: 1 | 2 };
   SubmitSetOneScreen: undefined;
   SubmitSetTwoScreen: undefined;
@@ -104,8 +104,8 @@ function NavigationRoot() {
         headerRight: () => <DrawerToggleButton tintColor='white' />,
       }}
     >
-      {!isLoggedIn && <RootDrawer.Screen name='UnauthorizedUserAScreens' component={UserAUnauthorizedStackNavigation} />}
-      {isLoggedIn && <RootDrawer.Screen name='AuthorizedUserAScreens' component={UserAAuthorizedTabsNavigation} />}
+      {!isLoggedIn && <RootDrawer.Screen name='UserAUnauthorizedScreens' component={UserAUnauthorizedStackNavigation} />}
+      {isLoggedIn && <RootDrawer.Screen name='UserAAuthorizedScreens' component={UserAAuthorizedTabsNavigation} />}
 
       <RootDrawer.Screen name='QuizScreen' component={QuizScreen} />
       <RootDrawer.Screen name='SubmitSetOneScreen' component={SubmitSetOneScreen} />

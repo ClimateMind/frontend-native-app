@@ -16,9 +16,9 @@ function SubmitSetTwoScreen({ navigation }: Props) {
   
   function navigateToPersonalValuesScreen() {
     if (isLoggedIn) {
-      navigation.navigate('AuthorizedUserAScreens', { screen: 'PersonalValuesScreen' });
+      navigation.navigate('UserAAuthorizedScreens', { screen: 'PersonalValuesScreen' });
     } else {
-      navigation.navigate('UnauthorizedUserAScreens');
+      navigation.navigate('UserAUnauthorizedScreens');
     }
   }
 
