@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 
+import Colors from '../../../assets/colors';
 import useApiClient from '../../../hooks/useApiClient';
 import SolutionsFeedCard from './SolutionsFeedCard';
 import Solution from '../../../types/Solution';
@@ -53,7 +54,7 @@ function SolutionsFeedScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgba(138, 213, 204, 0.4)',
+    backgroundColor: Colors.themeBright,
     padding: 10,
   },
   heading: {
