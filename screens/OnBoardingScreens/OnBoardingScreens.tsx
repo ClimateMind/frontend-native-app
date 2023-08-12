@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import Colors from '../../assets/colors';
 
 const images = [
   require('../../assets/onboarding/onboarding1.png'),
@@ -63,7 +64,7 @@ function OnBoardingScreens({ onCompleted }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#D0EEEB',
+    backgroundColor: Colors.themeBright,
   },
   contentArea: {
     flex: 1,

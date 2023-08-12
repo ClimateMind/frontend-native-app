@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ConversationsStackParams } from '../../../navigation/Stacks/ConversationsStack';
 
+import Colors from '../../../assets/colors';
 import Headline2 from '../../../components/TextStyles/Headline2';
 import BodyText from '../../../components/TextStyles/BodyText';
 import BulletListItem from '../../../components/BulletListItem';
@@ -35,7 +36,7 @@ function ConversationsIntroScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgba(138, 213, 204, 0.4)',
+    backgroundColor: Colors.themeBright,
     paddingTop: 50,
     paddingHorizontal: 50,
   },

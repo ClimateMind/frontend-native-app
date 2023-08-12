@@ -4,6 +4,7 @@ import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ClimateFeedStackParams } from '../../../navigation/Stacks/ClimateFeedStack';
 
+import Colors from '../../../assets/colors';
 import useApiClient from '../../../hooks/useApiClient';
 import Headline1 from '../../../components/TextStyles/Headline1';
 import ClimateFeedCard from './ClimateFeedCard';
@@ -57,7 +58,7 @@ function ClimateFeedScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgba(138, 213, 204, 0.4)',
+    backgroundColor: Colors.themeBright,
     padding: 10,
   },
   heading: {

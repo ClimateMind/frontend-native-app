@@ -1,5 +1,5 @@
 const Colors = {
-  themeBright: 'rgba(138, 213, 204, 0.6)',
+  themeBright: '#D0EEEB',
   themeDark: '#07373b',
 };
 

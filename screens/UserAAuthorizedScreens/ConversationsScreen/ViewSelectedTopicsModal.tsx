@@ -1,5 +1,7 @@
 import { Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+
+import Colors from "../../../assets/colors";
 import { GetAllConversations } from "../../../api/responses";
 import useApiClient from "../../../hooks/useApiClient";
 import { useEffect, useState } from "react";
@@ -88,7 +90,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: 'rgba(138, 213, 204, 0.6)',
+    backgroundColor: Colors.themeBright,
   },
   backButtonContainer: {
     alignSelf: 'flex-start',

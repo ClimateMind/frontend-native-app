@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Dimensions, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, TextInput } from 'react-native';
-
 import { AntDesign } from '@expo/vector-icons';
 
+import Colors from '../../../assets/colors';
 import { WEB_URL } from '@env';
 import SimpleWhiteTextButton from '../../../components/SimpleWhiteTextButton';
 import useApiClient from '../../../hooks/useApiClient';
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   openDrawerButton: {
-    backgroundColor: '#BBE6E2',
+    backgroundColor: Colors.themeBright,
     width: Dimensions.get('screen').width,
     height: 100,
     marginTop: 'auto',

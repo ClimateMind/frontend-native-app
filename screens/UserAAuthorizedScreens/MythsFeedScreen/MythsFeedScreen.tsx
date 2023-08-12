@@ -4,6 +4,7 @@ import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 import { MythsFeedStackParams } from '../../../navigation/Stacks/MythsFeedStack';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+import Colors from '../../../assets/colors';
 import useApiClient from '../../../hooks/useApiClient';
 import Myth from '../../../types/Myth';
 import MythsFeedCard from './MythsFeedCard';
@@ -55,7 +56,7 @@ function MythsFeedScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgba(138, 213, 204, 0.4)',
+    backgroundColor: Colors.themeBright,
     padding: 10,
   },
   heading: {

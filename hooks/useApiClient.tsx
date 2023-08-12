@@ -1,16 +1,16 @@
 import axios from 'axios';
 import { API_URL } from '@env';
 import jwtDecode from 'jwt-decode';
-import Toast from 'react-native-root-toast';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { logout, setAuthToken } from '../store/authSlice';
+import { showErrorToast } from '../components/ToastMessages';
 import * as requests from '../api/requests';
 import * as responses from '../api/responses';
 import ClimateEffect from '../types/ClimateEffect';
 import Solution from '../types/Solution';
 import Myth from '../types/Myth';
-
-import { logout } from '../store/authSlice';
 
 const validateToken = (token: string): boolean => {
   try {
@@ -36,13 +36,8 @@ function useApiClient() {
     if (headers['Authorization']) {
       const token = headers['Authorization'].split(' ')[1];
       if (!validateToken(token)) {
-        Toast.show('Session expired, please login again.', {
-          duration: Toast.durations.LONG,
-          backgroundColor: '#ED7878',
-          textColor: '#000000',
-          opacity: 1,
-        });
-        dispatch(logout());
+        const response = await postRefresh();
+        headers['Authorization'] = 'Bearer ' + response.access_token;
       }
     }
 
@@ -119,29 +114,63 @@ function useApiClient() {
     return response.data;
   }
 
-  async function postLogin(email: string, password: string, recaptchaToken: string) {
+  async function postLogin(email: string, password: string, recaptchaToken?: string) {
+    const body = {
+      email,
+      password,
+    };
+    
     const response = await apiCall<responses.Login>(
       'post',
       '/login',
       {},
-      { email, password, recaptchaToken },
+      recaptchaToken ? { ...body, recaptchaToken } : { ...body, skipCaptcha: true },
     );
+
+    // Store the refresh token in AsyncStorage
+    const cookieHeader = response.headers['set-cookie'];
+    if (cookieHeader) {
+      const refreshToken = cookieHeader[0].split(';')[0].split('=')[1];
+      AsyncStorage.setItem('refreshToken', refreshToken);
+    }
 
     return response.data;
   }
 
   async function postRefresh() {
-    const response = await apiCall<{ access_token: string }>(
-      'post',
-      '/refresh',
-      {
-        'X-Session-Id': sessionId,
-        'Authorization': 'Bearer ' + user.accessToken,
-      },
-    );
+    const refreshToken = await AsyncStorage.getItem('refreshToken');
 
-    console.log(response.data)
-    return response.data;
+    try {
+      const response = await apiCall<{ access_token: string }>(
+        'post',
+        '/refresh',
+        {
+          'X-Session-Id': sessionId,
+          'Cookie': 'refreshToken=' + refreshToken,
+        },
+      );
+
+      // Update the auth token in the store
+      dispatch(setAuthToken(response.data.access_token));
+
+      // Store the refresh token in AsyncStorage
+      const cookieHeader = response.headers['set-cookie'];
+      if (cookieHeader) {
+        const refreshToken = cookieHeader[0].split(';')[0].split('=')[1];
+        AsyncStorage.setItem('refreshToken', refreshToken);
+      }
+
+      return response.data;
+    } catch (error) {
+      if (error instanceof axios.AxiosError) {
+        if (error.response?.status === 401) {
+          dispatch(logout());
+          showErrorToast('Your session has expired. Please login again.');
+        }
+      }
+
+      return { access_token: '' };
+    }
   }
 
   async function postPasswordResetLink(email: string) {

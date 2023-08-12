@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import Colors from '../../../assets/colors';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { logout } from '../../../store/authSlice';
 import SimpleWhiteTextButton from '../../../components/SimpleWhiteTextButton';
@@ -32,7 +33,7 @@ function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgba(138, 213, 204, 0.4)',
+    backgroundColor: Colors.themeBright,
     padding: 20,
   },
 });
