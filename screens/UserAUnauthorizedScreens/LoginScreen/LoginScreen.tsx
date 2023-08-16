@@ -101,7 +101,7 @@ function LoginScreen() {
               <LabelText style={[styles.marginVertical, { textDecorationLine: "underline" }]}>Send reset link</LabelText>
             </Pressable>
           </View>
-          
+
           {loginAttempts >= 4 && (
             <>
               <Recaptcha
@@ -116,7 +116,7 @@ function LoginScreen() {
                 }}
                 style={Platform.OS === 'ios' && { marginTop: 100 }}
               />
-                
+
               <SimpleWhiteTextButton style={styles.loginButton} text="LOG IN" onPress={() => recaptcha.current?.open()} />
             </>
           )}
