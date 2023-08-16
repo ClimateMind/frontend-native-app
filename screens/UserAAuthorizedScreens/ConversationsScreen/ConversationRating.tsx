@@ -8,14 +8,16 @@ import BodyText from "../../../components/TextStyles/BodyText";
 interface Props {
   conversationId: string;
   initialRating: number;
+  onRated: () => void;
 }
 
-function ConversationRating({ conversationId, initialRating}: Props) {
+function ConversationRating({ conversationId, initialRating, onRated }: Props) {
   const apiClient = useApiClient();
   const [rating, setRating] = useState(initialRating);
   
   function submitRating(newRating: number) {
     setRating(newRating);
+    onRated();
     
     apiClient.putSingleConversation({
       conversationId,
