@@ -20,6 +20,7 @@ import Headline3 from '../../../components/TextStyles/Headline3';
 import BodyText from '../../../components/TextStyles/BodyText';
 import Headline4 from '../../../components/TextStyles/Headline4';
 import Card from '../../../components/Cards/Card';
+import NotifyIcon from './NotifyIcon';
 
 interface Props {
   conversation: GetAllConversations;
@@ -86,6 +87,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <CaptionText>{headerText[conversationState]}</CaptionText>
           {expanded && <Pressable onPress={copyLink}><Text>COPY LINK</Text></Pressable>}
+          {!expanded &&  conversationState > 0 && conversationState < 5 && <NotifyIcon />}
         </View>
 
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0}}>
@@ -94,7 +96,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
             <MaterialIcons name="edit" size={24} color="black" style={{ marginHorizontal: 10 }} />
           </Pressable>}
         </View>
-        
+
         {/* For state 0, display a text that the userB has to take the quiz */}
         {expanded && conversationState === 0 && <>
           <BodyText style={styles.text}>When {conversation.userB.name} is finished, we will send you an email and their results will appear here. Then you can start preparing for your chat!</BodyText>
@@ -111,7 +113,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
           <Headline4 style={styles.subheading}>3. Have you had your conversation with {conversation.userB.name}?</Headline4>
           {conversationState <= 3 && <YesWeTalkedButton style={styles.whiteButton} conversationId={conversation.conversationId} conversationState={conversationState} onClick={() => increaseState(4)} />}
-          {conversationState > 3 && <ConversationRating conversationId={conversation.conversationId} initialRating={conversation.userARating} />}
+          {conversationState > 3 && <ConversationRating conversationId={conversation.conversationId} initialRating={conversation.userARating} onRated={() => setConversationState(5)} />}
         </>
         }
         
