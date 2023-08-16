@@ -107,7 +107,7 @@ function LoginScreen() {
             onExpire={() => {}}
             size="normal"
             onError={(err) => { err ?? showErrorToast('Captcha did not load.') }}
-            style={Platform.OS === 'ios' && {marginTop:100}}
+            style={Platform.OS === 'ios' && { marginTop: 100 }}
           />
 
           <SimpleWhiteTextButton style={styles.loginButton} text="LOG IN" onPress={() => recaptcha.current?.open()} />
