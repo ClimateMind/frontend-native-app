@@ -96,8 +96,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
             <MaterialIcons name="edit" size={24} color="black" style={{ marginHorizontal: 10 }} />
           </Pressable>}
         </View>
-      
-        
+
         {/* For state 0, display a text that the userB has to take the quiz */}
         {expanded && conversationState === 0 && <>
           <BodyText style={styles.text}>When {conversation.userB.name} is finished, we will send you an email and their results will appear here. Then you can start preparing for your chat!</BodyText>
