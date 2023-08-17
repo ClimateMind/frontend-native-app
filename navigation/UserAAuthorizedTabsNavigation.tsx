@@ -50,7 +50,7 @@ function UserAAuthorizedTabsNavigation() {
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color }) => (
-            <Headline3 style={{ color, width: '100%' }}>
+            <Headline3 style={{ color, width: 100 }}>
               {user.firstName[0] + user.lastName[0]}
             </Headline3>
           ),
