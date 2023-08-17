@@ -21,7 +21,7 @@ function StartScreen({ navigation }: Props) {
   }
   
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: Colors.themeBright }}>
       <View style={[styles.container, { backgroundColor: Colors.themeBright }]}>
         
         <Image style={styles.image} source={require('../../../assets/cm-logo.png')} />
