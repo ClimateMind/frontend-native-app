@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    minHeight: 50,
+    paddingHorizontal: 20,
   },
   buttonPressed: {
     backgroundColor: 'lightgray',
@@ -41,11 +43,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgray',
   },
   buttonText: {
-    flexShrink:1, 
+    flexShrink: 1, 
     flexWrap: 'wrap',
     fontWeight: 'bold',
-    paddingVertical:5,
-    paddingHorizontal:5
+    paddingVertical: 5,
+    paddingHorizontal: 5,
   },
 });
 
