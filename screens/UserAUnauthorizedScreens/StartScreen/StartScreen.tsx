@@ -22,7 +22,7 @@ function StartScreen({ navigation }: Props) {
   
   return (
     <ScrollView style={{ backgroundColor: Colors.themeBright }}>
-      <View style={[styles.container, { backgroundColor: Colors.themeBright }]}>
+      <View style={styles.container}>
         
         <Image style={styles.image} source={require('../../../assets/cm-logo.png')} />
         <Headline1 style={{ textAlign: 'center', paddingVertical: 8 }}>Inspire others to take action!</Headline1>
