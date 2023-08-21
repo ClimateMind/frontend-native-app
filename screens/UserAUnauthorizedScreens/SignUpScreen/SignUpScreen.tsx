@@ -116,7 +116,7 @@ function SignUpScreen() {
         </View>
 
         <TextInput
-          placeholderTextColor={'#88999C'}
+          placeholderTextColor="#88999C"
           placeholder="First Name"
           autoCapitalize="sentences"
           autoCorrect={false}
@@ -126,7 +126,7 @@ function SignUpScreen() {
         {!inputs.firstName.isValid && <LabelText style={styles.errorText}>First Name is a required field</LabelText>}
 
         <TextInput
-          placeholderTextColor={'#88999C'}
+          placeholderTextColor="#88999C"
           placeholder="Last Name"
           autoCapitalize="sentences"
           autoCorrect={false}
@@ -136,7 +136,7 @@ function SignUpScreen() {
         {!inputs.lastName.isValid && <LabelText style={styles.errorText}>Last Name is a required field</LabelText>}
 
         <TextInput
-          placeholderTextColor={'#88999C'}
+          placeholderTextColor="#88999C"
           placeholder="Email"
           keyboardType="email-address"
           autoCorrect={false}
@@ -146,7 +146,7 @@ function SignUpScreen() {
         {!inputs.email.isValid && <LabelText style={styles.errorText}>Invalid email address</LabelText>}
 
         <TextInput
-          placeholderTextColor={'#88999C'}
+          placeholderTextColor="#88999C"
           placeholder="Password"
           secureTextEntry={true}
           autoCorrect={false}
@@ -156,7 +156,7 @@ function SignUpScreen() {
         {!inputs.password.isValid && <LabelText style={styles.errorText}>Invalid Password. Password must be at least 8 characters and contain one number or one special character</LabelText>}
 
         <TextInput
-          placeholderTextColor={'#88999C'}
+          placeholderTextColor="#88999C"
           placeholder="Confirm Password"
           secureTextEntry={true}
           autoCorrect={false}
