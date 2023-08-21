@@ -29,7 +29,7 @@ function SingleQuestion({
           marginBottom: 5,
         }}
       >
-        <Headline3 style={{ fontSize: 24, fontWeight: 'bold' }}>Q{currentQuestionIndex.toString()}</Headline3>
+        <Headline3 style={{ fontSize: 24, fontWeight: 'bold', paddingTop: 5 }}>Q{currentQuestionIndex.toString()}</Headline3>
         <Headline4>/{maxQuestionIndex.toString()}</Headline4>
       </View>
 
