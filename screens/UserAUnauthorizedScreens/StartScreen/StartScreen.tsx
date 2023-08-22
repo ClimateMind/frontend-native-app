@@ -49,7 +49,7 @@ function StartScreen({ navigation }: Props) {
           We use proven social science to connect climate change to what people care about and help
           find solutions they like.
         </BodyText>
-        
+
         <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Test8: " + TEST_VALUE)}>
           <Image source={require('../../../assets/ConnectTheDots.png')} />
         </Pressable>
