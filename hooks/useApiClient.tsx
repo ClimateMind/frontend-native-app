@@ -124,7 +124,7 @@ function useApiClient() {
       'post',
       '/login',
       {},
-      recaptchaToken ? { ...body, recaptchaToken } : { ...body, skipCaptcha: true },
+      { ...body, skipCaptcha: true },
     );
 
     // Store the refresh token in AsyncStorage
