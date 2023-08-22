@@ -50,7 +50,7 @@ function StartScreen({ navigation }: Props) {
           find solutions they like.
         </BodyText>
         
-        <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Test5: " + TEST_VALUE)}>
+        <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Test6: " + TEST_VALUE)}>
           <Image source={require('../../../assets/ConnectTheDots.png')} />
         </Pressable>
       </View>
