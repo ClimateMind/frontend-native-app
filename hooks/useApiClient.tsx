@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { API_URL } from '@env';
 import jwtDecode from 'jwt-decode';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -42,7 +41,7 @@ function useApiClient() {
     }
 
     const response = await axios.request<T>({
-      url: API_URL + endpoint,
+      url: process.env.EXPO_PUBLIC_API_URL + endpoint,
       method,
       headers,
       data,

@@ -17,7 +17,12 @@
     },
     "production": {
       "channel": "production",
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://app-backend-prod-001.azurewebsites.net",
+        "EXPO_PUBLIC_WEB_URL": "https://app.climatemind.org",
+        "EXPO_PUBLIC_TEST_VALUE": "PRODUCTION"
+      }
     }
   }
 }
