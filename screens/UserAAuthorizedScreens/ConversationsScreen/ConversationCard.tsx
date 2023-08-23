@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
-import { WEB_URL } from '@env';
 
 import { GetAllConversations } from '../../../api/responses';
 import useApiClient from '../../../hooks/useApiClient';
@@ -52,7 +51,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
   
   function copyLink() {
     setShowCopyLinkModal(true)
-    setConversationLink(WEB_URL + '/landing/' + conversation.conversationId);
+    setConversationLink(process.env.EXPO_PUBLIC_WEB_URL + '/landing/' + conversation.conversationId);
   }
 
   function deleteConversation() {

@@ -1,6 +1,5 @@
 import { Image, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import Colors from '../../../assets/colors';
-import { TEST_VALUE } from '@env';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StackParams } from '../../../navigation/UserAUnauthorizedStackNavigation';
@@ -50,7 +49,7 @@ function StartScreen({ navigation }: Props) {
           find solutions they like.
         </BodyText>
 
-        <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Test8: " + TEST_VALUE)}>
+        <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Test8: " + process.env.EXPO_PUBLIC_TEST_VALUE + " Secret: " + process.env.TEST_SECRET ?? 'no')}>
           <Image source={require('../../../assets/ConnectTheDots.png')} />
         </Pressable>
       </View>
