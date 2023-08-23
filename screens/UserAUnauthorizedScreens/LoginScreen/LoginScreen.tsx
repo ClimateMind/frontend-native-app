@@ -1,8 +1,7 @@
 import { useRef, useState } from 'react';
 import { Dimensions, Image, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { AxiosError } from 'axios';
-import Recaptcha, { RecaptchaHandles } from 'react-native-recaptcha-that-works';
-import { WEB_URL, RECAPTCHA_SITE_KEY } from '@env';
+import Recaptcha, { RecaptchaRef } from 'react-native-recaptcha-that-works';
 
 import { useAppDispatch } from '../../../store/hooks';
 import { login } from '../../../store/authSlice';
@@ -22,7 +21,7 @@ function LoginScreen() {
   const logger = useLogger();
   const dispatch = useAppDispatch();
 
-  const recaptcha = useRef<RecaptchaHandles>(null);
+  const recaptcha = useRef<RecaptchaRef>(null);
   const [loginAttempts, setLoginAttempts] = useState(0);
 
   const [email, setEmail] = useState('');
@@ -106,8 +105,8 @@ function LoginScreen() {
             <>
               <Recaptcha
                 ref={recaptcha}
-                siteKey={RECAPTCHA_SITE_KEY}
-                baseUrl={WEB_URL}
+                siteKey={process.env.EXPO_BUILD_RECAPTCHA_SITE_KEY ?? process.env.RECAPTCHA_SITE_KEY ?? ''}
+                baseUrl={process.env.EXPO_BUILD_WEB_URL ?? ''}
                 onVerify={(token: string) => onLogin(token)}
                 onExpire={() => {}}
                 size="normal"
