@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SplashScreen from 'expo-splash-screen';
+import { Ionicons } from '@expo/vector-icons';
 
 // Redux
 import { login, setSessionId } from '../store/authSlice';
@@ -93,16 +94,16 @@ function NavigationRoot() {
   return (
     <RootDrawer.Navigator
       drawerContent={NavigationRootDrawer}
-      screenOptions={{
+      screenOptions={({ navigation }) => ({
         drawerPosition: 'right',
         title: 'Climate Mind',
         headerTitleStyle: { fontFamily: 'nunito-bold' },
         headerStyle: { backgroundColor: Colors.themeDark },
         headerTintColor: 'white',
         headerTitleAlign: 'center',
-        headerLeft: () => null,
+        headerLeft: () => <Ionicons name="chevron-back" size={24} color="white" onPress={() => navigation.goBack()} style={{ padding: 10, paddingRight: 20 }} />,
         headerRight: () => <DrawerToggleButton tintColor='white' />,
-      }}
+      })}
     >
       {!isLoggedIn && <RootDrawer.Screen name='UserAUnauthorizedScreens' component={UserAUnauthorizedStackNavigation} />}
       {isLoggedIn && <RootDrawer.Screen name='UserAAuthorizedScreens' component={UserAAuthorizedTabsNavigation} />}
