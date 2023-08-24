@@ -105,7 +105,7 @@ function LoginScreen() {
             <>
               <Recaptcha
                 ref={recaptcha}
-                siteKey={process.env.EXPO_BUILD_RECAPTCHA_SITE_KEY ?? process.env.RECAPTCHA_SITE_KEY ?? ''}
+                siteKey={process.env.EXPO_BUILD_RECAPTCHA_SITE_KEY ?? ''}
                 baseUrl={process.env.EXPO_BUILD_WEB_URL ?? ''}
                 onVerify={(token: string) => onLogin(token)}
                 onExpire={() => {}}
