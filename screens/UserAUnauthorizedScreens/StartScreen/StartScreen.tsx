@@ -49,7 +49,7 @@ function StartScreen({ navigation }: Props) {
           find solutions they like.
         </BodyText>
 
-        <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Test9: " + process.env.EXPO_PUBLIC_TEST_VALUE + " Secret: " + process.env.TEST_SECRET ?? 'no')}>
+        <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Test10: " + process.env.EXPO_PUBLIC_TEST_VALUE + " Secret: " + process.env.TEST_SECRET ?? 'no')}>
           <Image source={require('../../../assets/ConnectTheDots.png')} />
         </Pressable>
       </View>
