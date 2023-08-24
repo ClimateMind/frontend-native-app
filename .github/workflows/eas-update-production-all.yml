@@ -1,16 +1,13 @@
-name: eas-show-preview-on-pr
+name: eas-update-production
 on:
-  pull_request:
+  push:
     branches:
-      - main
       - production
 
 jobs:
-  preview:
-    name: EAS Update Show Preview
+  update:
+    name: EAS Update Production
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
     steps:
       - name: Check for EXPO_TOKEN
         run: |
@@ -21,6 +18,10 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v3
+ 
+      - name: Create production env file
+        run: |
+          echo "${{ secrets.PRODUCTION_ENV }}" > .env
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -37,7 +38,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Create preview
-        uses: expo/expo-github-action/preview@v8
-        with:
-          command: eas update --auto
+      - name: Publish update
+        run: npm run update:production:all -- --message '${{ github.event.head_commit.message }}'

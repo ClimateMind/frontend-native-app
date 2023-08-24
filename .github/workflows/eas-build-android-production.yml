@@ -17,10 +17,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Create production env file
-        run: |
-          echo "${{ secrets.PRODUCTION_ENV }}" > .env
-
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -37,4 +33,4 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Build
-        run: npm run build:android:production
+        run: npm run build:production:android

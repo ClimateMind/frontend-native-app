@@ -4,9 +4,10 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
-    "update:android:staging": "eas update --channel staging --platform android --clear-cache",
-    "update:android:production": "eas update --channel production --platform android --clear-cache",
-    "build:android:production": "eas build --profile production --platform android --clear-cache"
+    "update:production:all": "eas update --channel production --platform all --clear-cache --non-interactive",
+    "build:production:android": "eas build --profile production --platform android --clear-cache --non-interactive",
+    "build:production:ios": "eas build --profile production --platform ios --clear-cache --non-interactive",
+    "build:production:all": "eas build --profile production --platform all --clear-cache --non-interactive"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.18.2",
@@ -16,7 +17,7 @@
     "@react-navigation/native-stack": "^6.9.12",
     "@reduxjs/toolkit": "^1.9.3",
     "axios": "^1.4.0",
-    "expo": "^49.0.0",
+    "expo": "^49.0.6",
     "expo-clipboard": "~4.3.1",
     "expo-font": "~11.4.0",
     "expo-navigation-bar": "~2.3.0",
