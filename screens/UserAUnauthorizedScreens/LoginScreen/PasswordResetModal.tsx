@@ -52,7 +52,9 @@ function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
 
           <View style={styles.buttonContainer}>
             <Pressable onPress={onCancel} style={styles.button}><ButtonText style={styles.buttonText}>CANCEL</ButtonText></Pressable>
-            <Pressable onPress={onPasswordResetRequest} style={styles.button}><ButtonText style={styles.buttonText}>SUBMIT</ButtonText></Pressable>
+            <Pressable onPress={onPasswordResetRequest} style={styles.button} disabled={!email.trim()}>
+              <ButtonText style={[styles.buttonText, { color: !email.trim() ? 'lightgray' : 'black' }]}>SUBMIT</ButtonText>
+            </Pressable>
           </View>
 
         </Card>
