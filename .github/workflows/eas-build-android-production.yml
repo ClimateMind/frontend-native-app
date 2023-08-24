@@ -33,4 +33,4 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Build
-        run: npm run build:android:production
+        run: npm run build:production:android
