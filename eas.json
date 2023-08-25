@@ -5,24 +5,9 @@
     "promptToConfigurePushNotifications": false
   },
   "build": {
-    "preview": {
-      "android": {
-        "channel": "staging",
-        "buildType": "apk"
-      },
-      "ios": {
-        "simulator": true
-      },
-      "distribution": "internal"
-    },
     "production": {
       "channel": "production",
-      "autoIncrement": true,
-      "env": {
-        "EXPO_PUBLIC_API_URL": "https://app-backend-prod-001.azurewebsites.net",
-        "EXPO_PUBLIC_WEB_URL": "https://app.climatemind.org",
-        "EXPO_PUBLIC_TEST_VALUE": "PRODUCTION"
-      }
+      "autoIncrement": true
     }
   }
 }
