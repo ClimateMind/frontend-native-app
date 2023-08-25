@@ -25,7 +25,7 @@ Getting ready to start programming is very easy.
 
 To view the app, you have two possibilities, running it on your own device or in an emulator.
 The easier one is to run it on your own device. Install the Expo app and scan the QR code in the terminal where you entered `npm start`.
-Running it in an emulator requires to setup the emulator with Android Studio (Android) or xCode (iOS).
+Running it in an emulator requires to setup the emulator with Android Studio (Android) or Xcode (iOS).
 
 <h2>Resources</h2>
 Further informations about the backend, the routes and responses of the rest api: <br />
