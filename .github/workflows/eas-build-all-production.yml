@@ -1,10 +1,10 @@
-name: eas-build-android-production
+name: eas-build-all-production
 on:
   workflow_dispatch:
 
 jobs:
   build:
-    name: EAS Build Android Production
+    name: EAS Build All Production
     runs-on: ubuntu-latest
     steps:
       - name: Check for EXPO_TOKEN
