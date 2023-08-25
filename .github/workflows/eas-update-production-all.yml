@@ -18,10 +18,6 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v3
- 
-      - name: Create production env file
-        run: |
-          echo "${{ secrets.PRODUCTION_ENV }}" > .env
 
       - name: Setup Node
         uses: actions/setup-node@v3
