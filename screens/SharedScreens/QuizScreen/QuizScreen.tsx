@@ -38,7 +38,12 @@ function QuizScreen({ route, navigation }: Props) {
   
   useEffect(() => {
     // Fetch the questions on page load
-    apiClient.getQuestions().then(result => setQuestionSets(result));
+    // and reverse them so that the last question is displayed first
+    apiClient.getQuestions().then(result => {
+      const SetOne = result.SetOne.reverse();
+      const SetTwo = result.SetTwo.reverse();
+      setQuestionSets({ SetOne, SetTwo });
+    });
   }, []);
 
   useEffect(() => {
