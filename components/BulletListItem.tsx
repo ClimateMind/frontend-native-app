@@ -10,7 +10,7 @@ interface Props {
 function BulletListItem({ children, textStyle={} }: Props) {
   return (
     <View style={styles.container}>
-      <Entypo name="dot-single" size={24} color="black" style={{position: 'relative', top: 4}} />
+      <Entypo name="dot-single" size={24} color="black" />
       <BodyText style={textStyle}>{children}</BodyText>
     </View>
   );
