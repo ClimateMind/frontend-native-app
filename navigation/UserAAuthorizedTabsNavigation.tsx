@@ -81,6 +81,7 @@ function UserAAuthorizedTabsNavigation() {
         }}
       />
 
+      <Tabs.Screen
         name='ProfileScreen'
         component={ProfileScreen}
         options={{
