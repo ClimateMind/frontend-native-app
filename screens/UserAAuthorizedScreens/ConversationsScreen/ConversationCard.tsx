@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+// import { MaterialIcons } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
 
 import { GetAllConversations } from '../../../api/responses';
@@ -92,7 +92,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0}}>
           <Headline3 style={{ marginBottom: 5 }}>{conversation.userB.name}</Headline3>
           {expanded && <Pressable>
-            <MaterialIcons name="edit" size={24} color="black" style={{ marginHorizontal: 10 }} />
+            {/* <MaterialIcons name="edit" size={24} color="black" style={{ marginHorizontal: 10 }} /> */}
           </Pressable>}
         </View>
 
