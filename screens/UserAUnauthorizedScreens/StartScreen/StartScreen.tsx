@@ -1,4 +1,4 @@
-import { Image, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Image, Pressable, ScrollView, StyleSheet, View, Platform,PlatformIOSStatic  } from 'react-native';
 import Colors from '../../../assets/colors';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -19,6 +19,8 @@ function StartScreen({ navigation }: Props) {
   function navigateToPreQuizScreen() {
     navigation.navigate('PreQuizScreen');
   }
+
+  const platformIOS = Platform as PlatformIOSStatic
   
   return (
     <ScrollView style={{ backgroundColor: Colors.themeBright }}>
@@ -43,7 +45,7 @@ function StartScreen({ navigation }: Props) {
         </BodyText>
       </View>
 
-      <View style={[styles.container, { backgroundColor: Colors.themeDark }]}>
+      <View style={platformIOS.isPad ? [styles.container, { backgroundColor: Colors.themeDark, minHeight:'60%' }]:[styles.container, { backgroundColor: Colors.themeDark }]}>
         <BodyText style={styles.whiteText}>
           We use proven social science to connect climate change to what people care about and help
           find solutions they like.
