@@ -29,8 +29,10 @@ function UserAAuthorizedTabsNavigation() {
   const user = useAppSelector((state) => state.auth.user);
 
   return (
-    <Tabs.Navigator initialRouteName="ClimateFeedStack" screenOptions={
-      {
+    <Tabs.Navigator
+      initialRouteName='ClimateFeedStack'
+      backBehavior='history'
+      screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: '#07373b',
         tabBarInactiveTintColor: '#77AAAF',
@@ -41,11 +43,10 @@ function UserAAuthorizedTabsNavigation() {
         tabBarStyle: {
           height: 55,
         }
-      }
-    }
+      }}
     >
       <Tabs.Screen
-        name="ClimateFeedStack"
+        name='ClimateFeedStack'
         component={ClimateFeedStack}
         options={{
           tabBarLabel: 'Home',
@@ -54,7 +55,7 @@ function UserAAuthorizedTabsNavigation() {
       />
 
       <Tabs.Screen
-        name="SolutionsFeedStack"
+        name='SolutionsFeedStack'
         component={SolutionsFeedStack}
         options={{
           tabBarLabel: 'Actions',
@@ -72,7 +73,7 @@ function UserAAuthorizedTabsNavigation() {
       />
 
       <Tabs.Screen
-        name="MythsFeedStack"
+        name='MythsFeedStack'
         component={MythsFeedStack}
         options={{
           tabBarLabel: 'Myths',
@@ -80,8 +81,7 @@ function UserAAuthorizedTabsNavigation() {
         }}
       />
 
-      <Tabs.Screen
-        name="ProfileScreen"
+        name='ProfileScreen'
         component={ProfileScreen}
         options={{
           tabBarLabel: 'Profile',
