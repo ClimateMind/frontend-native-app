@@ -45,18 +45,6 @@ function UserAAuthorizedTabsNavigation() {
     }
     >
       <Tabs.Screen
-        name="ProfileScreen"
-        component={ProfileScreen}
-        options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: ({ color }) => (
-            <Headline3 style={{ color, width: 100 }}>
-              {user.firstName[0] + user.lastName[0]}
-            </Headline3>
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="ClimateFeedStack"
         component={ClimateFeedStack}
         options={{
@@ -64,6 +52,7 @@ function UserAAuthorizedTabsNavigation() {
           tabBarIcon: ({ color }) => <Entypo name="home" size={24} color={color} />,
         }}
       />
+
       <Tabs.Screen
         name="SolutionsFeedStack"
         component={SolutionsFeedStack}
@@ -72,14 +61,7 @@ function UserAAuthorizedTabsNavigation() {
           tabBarIcon: ({ color }) => <Ionicons name="bulb-sharp" size={24} color={color} />,
         }}
       />
-      <Tabs.Screen
-        name="MythsFeedStack"
-        component={MythsFeedStack}
-        options={{
-          tabBarLabel: 'Myths',
-          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="chat-alert" size={24} color={color} />,
-        }}
-      />
+
       <Tabs.Screen
         name="ConversationsStack"
         component={ConversationsStack}
@@ -88,6 +70,29 @@ function UserAAuthorizedTabsNavigation() {
           tabBarIcon: ({ color }) => <Entypo name="chat" size={24} color={color} />,
         }}
       />
+
+      <Tabs.Screen
+        name="MythsFeedStack"
+        component={MythsFeedStack}
+        options={{
+          tabBarLabel: 'Myths',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="chat-alert" size={24} color={color} />,
+        }}
+      />
+
+      <Tabs.Screen
+        name="ProfileScreen"
+        component={ProfileScreen}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color }) => (
+            <Headline3 style={{ color, width: 100 }}>
+              {(user.firstName[0] + user.lastName[0]).toUpperCase()}
+            </Headline3>
+          ),
+        }}
+      />
+
       <Tabs.Screen
         name='PersonalValuesScreen'
         component={PersonalValuesScreen}
