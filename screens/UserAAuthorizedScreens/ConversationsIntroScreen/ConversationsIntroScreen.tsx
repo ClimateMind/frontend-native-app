@@ -20,8 +20,8 @@ function ConversationsIntroScreen({ navigation }: Props) {
       
       <BodyText style={styles.marginBottom}>You don't need to be an expert to talk about climate change. Follow these easy steps to start having effective conversations:</BodyText>
       
-      <BulletListItem>Reach out to a friend</BulletListItem>
-      <BulletListItem>They'll pick an article to talk about with you</BulletListItem>
+      <BulletListItem>Send a friend the link we provide</BulletListItem>
+      <BulletListItem>They will pick an article to talk about with you</BulletListItem>
       <BulletListItem>Use the article to start a conversation</BulletListItem>
       <BulletListItem textStyle={styles.marginBottom}>Tell us how it went!</BulletListItem>
 
