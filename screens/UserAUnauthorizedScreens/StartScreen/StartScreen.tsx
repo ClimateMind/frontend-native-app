@@ -1,4 +1,4 @@
-import { Image, Pressable, ScrollView, StyleSheet, View, Platform,PlatformIOSStatic  } from 'react-native';
+import { Image, Pressable, ScrollView, StyleSheet, View, Platform, PlatformIOSStatic } from 'react-native';
 import Colors from '../../../assets/colors';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
