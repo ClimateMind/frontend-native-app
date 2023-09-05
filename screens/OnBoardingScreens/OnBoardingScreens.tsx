@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import Colors from '../../assets/colors';
+
+import Screen from '../../components/Screen/Screen';
+import Content from '../../components/Screen/Content';
+import Section from '../../components/Screen/Section';
 
 const images = [
   require('../../assets/onboarding/onboarding1.png'),
@@ -43,36 +46,36 @@ function OnBoardingScreens({ onCompleted }: Props) {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.contentArea}>
-        <Image style={styles.image} source={images[currentScreen]} />
-        <Text style={styles.headerText}>{headers[currentScreen]}</Text>
-        <Text style={styles.text}>{texts[currentScreen]}</Text>
-      </View>
-      <View style={styles.navIcons}>
-        <Pressable onPress={() => previousScreen()} style={styles.navIcon}>
-          {currentScreen > 0 && <MaterialIcons name="arrow-back-ios" size={32} color="black" />}
-        </Pressable>
-        <Pressable onPress={() => nextScreen()} style={styles.navIcon}>
-          <MaterialIcons name="arrow-forward-ios" size={32} color="black" />
-        </Pressable>
-      </View>
-    </View>
+    <Screen>
+      <Section>
+        <Content>
+            <View style={styles.contentArea}>
+              <Image style={styles.image} source={images[currentScreen]} />
+              <Text style={styles.headerText}>{headers[currentScreen]}</Text>
+              <Text style={styles.text}>{texts[currentScreen]}</Text>
+            </View>
+            <View style={styles.navIcons}>
+              <Pressable onPress={() => previousScreen()} style={styles.navIcon}>
+                {currentScreen > 0 && <MaterialIcons name="arrow-back-ios" size={32} color="black" />}
+              </Pressable>
+              <Pressable onPress={() => nextScreen()} style={styles.navIcon}>
+                <MaterialIcons name="arrow-forward-ios" size={32} color="black" />
+              </Pressable>
+            </View>
+        </Content>
+      </Section>
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.themeBright,
-  },
   contentArea: {
     flex: 1,
     marginTop: '20%',
   },
   image: {
     resizeMode: 'contain',
-    width: '90%',
+    width: Dimensions.get('window').width / 1.5,
     height: Dimensions.get('window').height / 2.7,
     alignSelf: 'center',
   },
@@ -85,7 +88,6 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'nunito-bold',
     fontSize: 16,
-    paddingHorizontal: 60,
   },
   navIcons: {
     width: Dimensions.get('window').width,

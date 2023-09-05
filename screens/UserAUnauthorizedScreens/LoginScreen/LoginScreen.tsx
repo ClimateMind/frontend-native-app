@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Dimensions, Image, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { Image, KeyboardAvoidingView, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { AxiosError } from 'axios';
 import Recaptcha, { RecaptchaRef } from 'react-native-recaptcha-that-works';
 
@@ -10,11 +10,13 @@ import useLogger from '../../../hooks/useLogger';
 
 import SimpleWhiteTextButton from '../../../components/SimpleWhiteTextButton';
 import PasswordResetModal from './PasswordResetModal';
-import Colors from '../../../assets/colors';
 import { showErrorToast } from '../../../components/ToastMessages';
 import Headline2 from '../../../components/TextStyles/Headline2';
 import BodyText from '../../../components/TextStyles/BodyText';
 import LabelText from '../../../components/TextStyles/LabelText';
+import Screen from '../../../components/Screen/Screen';
+import Section from '../../../components/Screen/Section';
+import Content from '../../../components/Screen/Content';
 
 function LoginScreen() {
   const apiClient = useApiClient();
@@ -67,74 +69,71 @@ function LoginScreen() {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <ScrollView contentContainerStyle={[styles.container, { backgroundColor: Colors.themeBright }]}>
-      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
-        <View style={styles.container}>
-          <Image style={styles.image} source={require("../../../assets/cm-logo.png")} />
-          <Headline2>Climate Mind</Headline2>
+    <Screen>
+      <Section>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
+          <Content>
+            <Image style={styles.image} source={require("../../../assets/cm-logo.png")} />
+            <Headline2>Climate Mind</Headline2>
 
-          <BodyText style={styles.marginVertical}>Sign In</BodyText>
+            <BodyText style={styles.marginVertical}>Sign In</BodyText>
 
-          <TextInput
-            placeholder="Email"
-            keyboardType="email-address"
-            autoCorrect={false}
-            onChangeText={setEmail}
-            style={styles.input}
-            placeholderTextColor={'#88999C'}
-            
-          />
+            <TextInput
+              placeholder="Email"
+              keyboardType="email-address"
+              autoCorrect={false}
+              onChangeText={setEmail}
+              style={styles.input}
+              placeholderTextColor={'#88999C'}
+              
+            />
 
-          <TextInput
-            placeholder="Password"
-            secureTextEntry={true}
-            autoCorrect={false}
-            onChangeText={setPassword}
-            style={styles.input}
-            placeholderTextColor={'#88999C'}
-          />
+            <TextInput
+              placeholder="Password"
+              secureTextEntry={true}
+              autoCorrect={false}
+              onChangeText={setPassword}
+              style={styles.input}
+              placeholderTextColor={'#88999C'}
+            />
 
-          <View style={{ flexDirection: 'row' }}>
-            <BodyText style={[styles.marginVertical, { marginRight: 20 }]}>Forgot your password?</BodyText>
-            <Pressable onPress={() => setShowModal(true)} style={{ justifyContent: 'center' }} >
-              <LabelText style={[styles.marginVertical, { textDecorationLine: "underline" }]}>Send reset link</LabelText>
-            </Pressable>
-          </View>
+            <View style={{ flexDirection: 'row' }}>
+              <BodyText style={[styles.marginVertical, { marginRight: 20 }]}>Forgot your password?</BodyText>
+              <Pressable onPress={() => setShowModal(true)} style={{ justifyContent: 'center' }} >
+                <LabelText style={[styles.marginVertical, { textDecorationLine: "underline" }]}>Send reset link</LabelText>
+              </Pressable>
+            </View>
 
-          {loginAttempts >= 4 && (
-            <>
-              <Recaptcha
-                ref={recaptcha}
-                siteKey={process.env.EXPO_BUILD_RECAPTCHA_SITE_KEY ?? ''}
-                baseUrl={process.env.EXPO_BUILD_WEB_URL ?? ''}
-                onVerify={(token: string) => onLogin(token)}
-                onExpire={() => {}}
-                size="normal"
-                onError={(err) => {
-                  err ?? showErrorToast('Captcha did not load.');
-                }}
-                style={Platform.OS === 'ios' && { marginTop: 100 }}
-              />
+            {loginAttempts >= 4 && (
+              <>
+                <Recaptcha
+                  ref={recaptcha}
+                  siteKey={process.env.EXPO_BUILD_RECAPTCHA_SITE_KEY ?? ''}
+                  baseUrl={process.env.EXPO_BUILD_WEB_URL ?? ''}
+                  onVerify={(token: string) => onLogin(token)}
+                  onExpire={() => {}}
+                  size="normal"
+                  onError={(err) => {
+                    err ?? showErrorToast('Captcha did not load.');
+                  }}
+                  style={Platform.OS === 'ios' && { marginTop: 100 }}
+                />
 
-              <SimpleWhiteTextButton style={styles.loginButton} text="LOG IN" onPress={() => recaptcha.current?.open()} />
-            </>
-          )}
+                <SimpleWhiteTextButton style={styles.loginButton} text="LOG IN" onPress={() => recaptcha.current?.open()} />
+              </>
+            )}
 
-          {loginAttempts < 4 && <SimpleWhiteTextButton style={styles.loginButton} text="LOG IN" onPress={() => onLogin()} />}
+            {loginAttempts < 4 && <SimpleWhiteTextButton style={styles.loginButton} text="LOG IN" onPress={() => onLogin()} />}
 
-          <PasswordResetModal show={showModal} onCancel={() => {setShowModal(false)}} onSubmit={() => setShowModal(false)} />
-        </View>
-      </KeyboardAvoidingView>
-    </ScrollView>
+            <PasswordResetModal show={showModal} onCancel={() => {setShowModal(false)}} onSubmit={() => setShowModal(false)} />
+          </Content>
+        </KeyboardAvoidingView>
+      </Section>
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   image: {
     width: 100,
     resizeMode: 'contain',
@@ -148,7 +147,7 @@ const styles = StyleSheet.create({
     marginVertical: 30,
   },
   input: {
-    width: Dimensions.get('screen').width * 0.8,
+    width: '100%',
     marginVertical: 5,
     padding: 10,
     backgroundColor: 'white',

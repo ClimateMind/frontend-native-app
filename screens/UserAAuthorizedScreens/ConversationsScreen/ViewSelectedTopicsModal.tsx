@@ -14,6 +14,7 @@ import ActionDetailsModal from "./ActionDetailsModal";
 import Headline1 from "../../../components/TextStyles/Headline1";
 import BodyText from "../../../components/TextStyles/BodyText";
 import ButtonText from "../../../components/TextStyles/ButtonText";
+import Content from "../../../components/Screen/Content";
 
 interface Props {
   open: boolean;
@@ -55,7 +56,8 @@ function ViewSelectedTopicsModal({ open, conversation, onClose }: Props) {
       animationType="fade"
       onRequestClose={onClose}
     >
-        <View style={styles.container}>
+      <View style={styles.container}>
+        <Content>
           <ScrollView style={{ padding: 20 }}>
             <Pressable style={styles.backButtonContainer} onPress={onClose}>
               <Ionicons name="chevron-back-outline" size={24} color="#A347FF" />
@@ -78,10 +80,11 @@ function ViewSelectedTopicsModal({ open, conversation, onClose }: Props) {
 
             <View style={{ height: 70 }}></View>
           </ScrollView>
-        </View>
+        </Content>
+      </View>
 
-        <ActionDetailsModal open={showActionDetails} action={climateEffect} onClose={() => setShowActionDetails(false)} />
-        <SolutionDetailsModal open={showSolutionDetails} solution={solutionDetails} onClose={() => setShowSolutionDetails(false)} />
+      <ActionDetailsModal open={showActionDetails} action={climateEffect} onClose={() => setShowActionDetails(false)} />
+      <SolutionDetailsModal open={showSolutionDetails} solution={solutionDetails} onClose={() => setShowSolutionDetails(false)} />
     </Modal>
   );
 }

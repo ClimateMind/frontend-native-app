@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Image, ScrollView, View } from 'react-native';
+import { Image, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ClimateFeedStackParams } from '../../../navigation/Stacks/ClimateFeedStack';
@@ -8,6 +8,9 @@ import { capitalizeFirstLetter } from '../../../utils';
 import ActionCard from './ActionCard';
 import DetailsSourcesTab from '../../../components/DetailsSourcesTabs';
 
+import Screen from '../../../components/Screen/Screen';
+import Section from '../../../components/Screen/Section';
+import Content from '../../../components/Screen/Content';
 import Headline3 from '../../../components/TextStyles/Headline3';
 import BodyText from '../../../components/TextStyles/BodyText';
 import LabelText from '../../../components/TextStyles/LabelText';
@@ -19,19 +22,23 @@ function ClimateDetailsScreen({ route }: Props) {
   const [selectedTab, setSelectedTab] = useState(0);
 
   return (
-    <ScrollView style={{ backgroundColor: 'white' }}>
-      <Headline3 style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</Headline3>
-      {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
+    <Screen style={{ backgroundColor: 'white' }}>
+      <Section>
+        <Content>
+          <Headline3 style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</Headline3>
+          {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
 
-      <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
+          <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
 
-      {selectedTab === 0 && <View>
-        <BodyText style={styles.description}>{climateEffect.effectDescription}</BodyText>
-        {climateEffect.effectSolutions.map(solution => <View style={{ marginVertical: 20 }} key={solution.solutionTitle}><ActionCard solution={solution} /></View>)}
-      </View>}
+          {selectedTab === 0 && <View>
+            <BodyText style={styles.description}>{climateEffect.effectDescription}</BodyText>
+            {climateEffect.effectSolutions.map(solution => <View style={{ marginVertical: 20 }} key={solution.solutionTitle}><ActionCard solution={solution} /></View>)}
+          </View>}
 
-      {selectedTab === 1 && climateEffect.effectSources.map(source => <View key={source} style={styles.links}><LabelText style={styles.link}>{source}</LabelText></View>)}
-    </ScrollView>
+          {selectedTab === 1 && climateEffect.effectSources.map(source => <View key={source} style={styles.links}><LabelText style={styles.link}>{source}</LabelText></View>)}
+        </Content>
+      </Section>
+    </Screen>
   );
 }
 
@@ -40,9 +47,11 @@ const styles = StyleSheet.create({
     padding: 15,
     paddingVertical: 20,
     textAlign: 'left',
+    alignSelf: 'flex-start',
   },
   image: {
-    width: '100%',
+    marginHorizontal: 20,
+    alignSelf: 'stretch',
     height: 250,
   },
   description: {

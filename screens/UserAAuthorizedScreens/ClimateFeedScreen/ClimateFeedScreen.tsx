@@ -4,11 +4,13 @@ import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ClimateFeedStackParams } from '../../../navigation/Stacks/ClimateFeedStack';
 
-import Colors from '../../../assets/colors';
 import useApiClient from '../../../hooks/useApiClient';
+import ClimateEffect from '../../../types/ClimateEffect';
+import Screen from '../../../components/Screen/Screen';
+import Section from '../../../components/Screen/Section';
+import Content from '../../../components/Screen/Content';
 import Headline1 from '../../../components/TextStyles/Headline1';
 import ClimateFeedCard from './ClimateFeedCard';
-import ClimateEffect from '../../../types/ClimateEffect';
 import { useAppSelector } from '../../../store/hooks';
 import BodyText from '../../../components/TextStyles/BodyText';
 
@@ -32,35 +34,34 @@ function ClimateFeedScreen({ navigation }: Props) {
   }
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        ListHeaderComponent={
-          <>
-            <Headline1 style={styles.heading}>Explore climate change impacts</Headline1>
-            <BodyText style={styles.text}>
-              This is your personalized homepage based on your unique climate personality. Check out
-              these articles to stay informed!
-            </BodyText>
-          </>
-        }
-        data={climateFeed}
-        renderItem={(item) => (
-          <View key={item.item.effectId} style={{ margin: 10 }}>
-            <ClimateFeedCard climateEffect={item.item} onLearnMore={gotoDetailsScreen} />
-          </View>
-        )}
-        keyExtractor={(item) => item.effectId}
-      />
-    </View>
+    <Screen view='View'>
+      <Section>
+        <Content style={{ alignItems: 'stretch' }}>
+          <FlatList
+            ListHeaderComponent={
+              <>
+              <Headline1 style={styles.heading}>Explore climate change impacts</Headline1>
+              <BodyText style={styles.text}>
+                This is your personalized homepage based on your unique climate personality. Check out
+                these articles to stay informed!
+              </BodyText>
+              </>
+            }
+            data={climateFeed}
+            renderItem={(item) => (
+              <View key={item.item.effectId} style={{ margin: 10 }}>
+                <ClimateFeedCard climateEffect={item.item} onLearnMore={gotoDetailsScreen} />
+              </View>
+            )}
+            keyExtractor={(item) => item.effectId}
+          />
+        </Content>
+      </Section>
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.themeBright,
-    padding: 10,
-  },
   heading: {
     textAlign: 'center',
     marginTop: 30,
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     marginTop: 20,
-    paddingHorizontal: 30,
+
   },
 });
 

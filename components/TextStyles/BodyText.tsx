@@ -2,7 +2,7 @@ import { StyleSheet, Text, StyleProp, TextStyle } from 'react-native';
 
 interface Props {
   children: string | string[];
-  style?: StyleProp<TextStyle>; // Accepts custom styles
+  style?: StyleProp<TextStyle>;
 }
 
 function BodyText({ children, style }: Props) {

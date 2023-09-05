@@ -1,4 +1,4 @@
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { RootDrawerNavigationParams } from '../../../navigation/NavigationRoot';
 
@@ -9,6 +9,9 @@ import { addQuizAnswer } from '../../../store/quizSlice';
 import { GetQuestions } from '../../../api/responses';
 import useApiClient from '../../../hooks/useApiClient';
 import { setQuizId } from '../../../store/authSlice';
+import Screen from '../../../components/Screen/Screen';
+import Content from '../../../components/Screen/Content';
+import Section from '../../../components/Screen/Section';
 
 type Props = DrawerScreenProps<RootDrawerNavigationParams, 'QuizScreen'>;
 
@@ -78,25 +81,22 @@ function QuizScreen({ route, navigation }: Props) {
 
   // Display the next question for the user
   return (
-    <View style={styles.screen}>
-      <SingleQuestion
-        currentQuestionIndex={route.params.questionSet === 1 ? currentQuestionNumber : currentQuestionNumber + 10}
-        maxQuestionIndex={route.params.questionSet === 1 ? 10 : 20}
-        question={
-          route.params.questionSet === 1 ? questionSets.SetOne[currentQuestionNumber - 1].question :
-          questionSets.SetTwo[currentQuestionNumber - 1].question
-        }
-        onSelect={(index) => answerSelected(index)}
-      />
-    </View>
+    <Screen style={{ backgroundColor: 'white' }}>
+      <Section>
+        <Content>
+          <SingleQuestion
+            currentQuestionIndex={route.params.questionSet === 1 ? currentQuestionNumber : currentQuestionNumber + 10}
+            maxQuestionIndex={route.params.questionSet === 1 ? 10 : 20}
+            question={
+              route.params.questionSet === 1 ? questionSets.SetOne[currentQuestionNumber - 1].question :
+              questionSets.SetTwo[currentQuestionNumber - 1].question
+            }
+            onSelect={(index) => answerSelected(index)}
+          />
+        </Content>
+      </Section>
+    </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-});
 
 export default QuizScreen;

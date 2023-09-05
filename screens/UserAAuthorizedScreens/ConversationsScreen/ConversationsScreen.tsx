@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Dimensions, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, TextInput } from 'react-native';
+import { Dimensions, KeyboardAvoidingView, Pressable, StyleSheet, TextInput } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 import Colors from '../../../assets/colors';
-import { WEB_URL } from '@env';
+import Screen from '../../../components/Screen/Screen';
+import Section from '../../../components/Screen/Section';
+import Content from '../../../components/Screen/Content';
 import SimpleWhiteTextButton from '../../../components/SimpleWhiteTextButton';
 import useApiClient from '../../../hooks/useApiClient';
 import ConversationsDrawer from './ConversationsDrawer';
@@ -30,7 +32,7 @@ function ConversationsScreen() {
 
     try {
       const result = await apiClient.createConversationInvite(recipient);
-      setConversationLink(WEB_URL + '/landing/' + result.conversationId);
+      setConversationLink(process.env.WEB_URL + '/landing/' + result.conversationId);
 
       setShowCopyLinkModal(true);
     } catch (e) {
@@ -45,41 +47,43 @@ function ConversationsScreen() {
 
   return (
     <>
-      <ScrollView contentContainerStyle={styles.container}>
+      <Screen style={{ backgroundColor: 'white' }}>
+        <Section style={{ paddingBottom: 0 }}>
+          <Content>
+            <KeyboardAvoidingView behavior="position" style={styles.mainSection}>
+              <Headline2>Start a Conversation</Headline2>
+              <BodyText style={styles.center}>
+                Create a personalized link for each person you want to talk to. Then
+                share it, so they can take the quiz, discover your shared values, and
+                pick topics to talk about.
+              </BodyText>
+              <CaptionText style={styles.center}>We will send you an email when they agree to share their results with you!</CaptionText>
 
-        <KeyboardAvoidingView behavior="position" style={styles.mainSection}>
-          <Headline2>Start a Conversation</Headline2>
-          <BodyText style={styles.center}>
-            Create a personalized link for each person you want to talk to. Then
-            share it, so they can take the quiz, discover your shared values, and
-            pick topics to talk about.
-          </BodyText>
-          <CaptionText style={styles.center}>We will send you an email when they agree to share their results with you!</CaptionText>
+              <LabelText style={styles.label}>Name of recipient</LabelText>
+              <TextInput
+                placeholder='Try "Peter Smith" or "Mom"'
+                autoCapitalize="sentences"
+                autoCorrect={false}
+                onChangeText={(value) => setRecipient(value)}
+                style={styles.input}
+                value={recipient}
+                placeholderTextColor={'#88999C'}
+              />
+              <SimpleWhiteTextButton style={styles.createLinkButton} disabled={recipient === ''} text='CREATE LINK' onPress={showModal} />
+            </KeyboardAvoidingView>
 
-          <LabelText style={styles.label}>Name of recipient</LabelText>
-          <TextInput
-            placeholder='Try "Peter Smith" or "Mom"'
-            autoCapitalize="sentences"
-            autoCorrect={false}
-            onChangeText={(value) => setRecipient(value)}
-            style={styles.input}
-            value={recipient}
-            placeholderTextColor={'#88999C'}
-          />
-          <SimpleWhiteTextButton style={styles.createLinkButton} disabled={recipient === ''} text='CREATE LINK' onPress={showModal} />
-        </KeyboardAvoidingView>
+            <Pressable onPress={() => setShowConversationsDrawer(true)} style={styles.openDrawerButton}>
+              <AntDesign name="up" size={24} color="black" />
+              <BodyText style={{ fontWeight: 'bold', letterSpacing: 1.2 }}>Ongoing Conversations</BodyText>
+            </Pressable>
 
-        <Pressable onPress={() => setShowConversationsDrawer(true)} style={styles.openDrawerButton}>
-          <AntDesign name="up" size={24} color="black" />
-          <BodyText style={{ fontWeight: 'bold', letterSpacing: 1.2 }}>Ongoing Conversations</BodyText>
-        </Pressable>
-
-        <ConversationsDrawer
-          open={showConversationsDrawer}
-          onClose={() => setShowConversationsDrawer(false)}
-        />
-
-      </ScrollView>
+            <ConversationsDrawer
+              open={showConversationsDrawer}
+              onClose={() => setShowConversationsDrawer(false)}
+            />
+          </Content>
+        </Section>
+      </Screen>
 
       <CopyLinkModal
         show={showCopyLinkModal}
@@ -92,14 +96,6 @@ function ConversationsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    paddingHorizontal: 30,
-    paddingTop: 20,
-  },
   mainSection: {
     flex: 1,
     alignItems: 'center',

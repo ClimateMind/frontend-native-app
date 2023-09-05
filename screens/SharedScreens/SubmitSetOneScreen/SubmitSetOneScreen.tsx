@@ -1,14 +1,17 @@
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { RootDrawerNavigationParams } from '../../../navigation/NavigationRoot';
 
 import Colors from '../../../assets/colors';
 import { useAppSelector } from '../../../store/hooks';
 
+import Screen from '../../../components/Screen/Screen';
 import SimpleWhiteTextButton from '../../../components/SimpleWhiteTextButton';
 import Headline1 from '../../../components/TextStyles/Headline1';
 import BodyText from '../../../components/TextStyles/BodyText';
 import ButtonText from '../../../components/TextStyles/ButtonText';
+import Section from '../../../components/Screen/Section';
+import Content from '../../../components/Screen/Content';
 
 type Props = DrawerScreenProps<RootDrawerNavigationParams, 'SubmitSetOneScreen'>;
 
@@ -28,19 +31,23 @@ function SubmitSetOneScreen({ navigation }: Props) {
   }
   
   return (
-    <View style={styles.container}>
-      <Headline1 style={{ padding: 8 }}>Woah! You are doing great!</Headline1>
-      
-      <BodyText style={styles.bodyText}>Do you want to carry on with another 10 questions or get your results now?</BodyText>
-      
-      <Pressable onPress={navigateToPersonalValuesScreen}>
-        <ButtonText style={{ padding: 8, textAlign: 'center' }}>FIND OUT MY CLIMATE PERSONALITY</ButtonText>
-      </Pressable>
+    <Screen>
+      <Section>
+        <Content style={{ justifyContent: 'center' }}>
+          <Headline1 style={{ padding: 8 }}>Woah! You are doing great!</Headline1>
+          
+          <BodyText style={styles.bodyText}>Do you want to carry on with another 10 questions or get your results now?</BodyText>
+          
+          <Pressable onPress={navigateToPersonalValuesScreen}>
+            <ButtonText style={{ padding: 8, textAlign: 'center' }}>FIND OUT MY CLIMATE PERSONALITY</ButtonText>
+          </Pressable>
 
-      <BodyText style={styles.bodyText}>You will get better personalised results if you complete all 20 questions.</BodyText>
-      
-      <SimpleWhiteTextButton style={styles.button} text='Continue' onPress={navigateToQuizScreen} />
-    </View>
+          <BodyText style={styles.bodyText}>You will get better personalised results if you complete all 20 questions.</BodyText>
+          
+          <SimpleWhiteTextButton style={styles.button} text='Continue' onPress={navigateToQuizScreen} />
+        </Content>
+      </Section>
+    </Screen>
   );
 }
 

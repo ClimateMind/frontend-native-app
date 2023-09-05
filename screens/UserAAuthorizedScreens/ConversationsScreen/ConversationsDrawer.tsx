@@ -42,20 +42,20 @@ function ConversationsDrawer({ open, onClose }: Props) {
         </View>
 
         {allConversations === undefined && <ActivityIndicator size="large" color="black" style={{ marginTop: 100 }} />}
-        <View>
-        {allConversations && (
-          <FlatList
-            ListHeaderComponent={
-              <View style={{ margin: 10 }}>
-                <ConversationsIntroCard />
-              </View>
-            }
-            data={allConversations}
-            renderItem={(item) => <View style={{ margin: 10 }}><ConversationCard conversation={item.item} onDelete={onDeleteConversation} /></View>}
-            keyExtractor={(item) => item.conversationId}
-            style={{ marginBottom: 30 }}
-          />
-        )}
+        <View style={{ maxWidth: 640, alignSelf: 'center' }}>
+          {allConversations && (
+            <FlatList
+              ListHeaderComponent={
+                <View style={{ margin: 10 }}>
+                  <ConversationsIntroCard />
+                </View>
+              }
+              data={allConversations}
+              renderItem={(item) => <View style={{ margin: 10 }}><ConversationCard conversation={item.item} onDelete={onDeleteConversation} /></View>}
+              keyExtractor={(item) => item.conversationId}
+              style={{ marginBottom: 30 }}
+            />
+          )}
         </View>
       </View>
       
