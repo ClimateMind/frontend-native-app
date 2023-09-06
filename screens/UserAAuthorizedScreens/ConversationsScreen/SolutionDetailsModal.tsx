@@ -43,7 +43,7 @@ function SolutionDetailsModal({ open, solution, onClose }: Props) {
       onRequestClose={onClose}
     >
       <View style={styles.container}>
-        <Pressable style={{ alignItems: 'center', height: 50, width: '100%' }} onPress={onClose}>
+        <Pressable style={{ alignItems: 'center', width: '100%', paddingTop: 20 }} onPress={onClose}>
           <LabelText>Close</LabelText>
           <MaterialIcons name="keyboard-arrow-down" size={50} color={Colors.themeBright} style={{ top: -15, }} />
         </Pressable>

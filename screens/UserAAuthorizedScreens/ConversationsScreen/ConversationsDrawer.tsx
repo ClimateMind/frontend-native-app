@@ -17,7 +17,7 @@ interface Props {
 function ConversationsDrawer({ open, onClose }: Props) {
   const apiClient = useApiClient();
   const [allConversations, setAllConversations] = useState<GetAllConversations[]>([]);
-  
+
   function onDeleteConversation(conversationId: string) {
     setAllConversations(current => current.filter(conversation => conversation.conversationId !== conversationId));
   }
@@ -34,7 +34,7 @@ function ConversationsDrawer({ open, onClose }: Props) {
       onRequestClose={onClose}
     >
       <View style={styles.container}>
-        <Pressable onPress={onClose} style={{ height: 100, alignItems: "center" }}>
+        <Pressable onPress={onClose} style={{ height: 100, alignItems: "center", paddingTop: 20 }}>
           <AntDesign name="down" size={24} color="black" style={{ padding: 20 }} />
         </Pressable>
         <View style={{ marginBottom: 20 }}>

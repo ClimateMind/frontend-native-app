@@ -88,11 +88,10 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginVertical: 20,
   },
   backButtonText: {
     marginLeft: 10,
-    paddingTop: 8,
   },
   subheader: {
     textAlign: 'center',

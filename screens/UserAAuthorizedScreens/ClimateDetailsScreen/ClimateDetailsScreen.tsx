@@ -14,10 +14,11 @@ import Content from '../../../components/Screen/Content';
 import Headline3 from '../../../components/TextStyles/Headline3';
 import BodyText from '../../../components/TextStyles/BodyText';
 import LabelText from '../../../components/TextStyles/LabelText';
+import BackButton from '../../../components/BackButton';
 
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateDetailsScreen'>;
 
-function ClimateDetailsScreen({ route }: Props) {
+function ClimateDetailsScreen({ navigation, route }: Props) {  
   const climateEffect = route.params.climateEffect;
   const [selectedTab, setSelectedTab] = useState(0);
 
@@ -25,6 +26,8 @@ function ClimateDetailsScreen({ route }: Props) {
     <Screen style={{ backgroundColor: 'white' }}>
       <Section>
         <Content>
+          <BackButton onPress={() => navigation.goBack()} />
+
           <Headline3 style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</Headline3>
           {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
 

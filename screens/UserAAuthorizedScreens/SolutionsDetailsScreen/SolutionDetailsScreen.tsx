@@ -14,10 +14,11 @@ import ActionCardHeader from '../ClimateFeedScreen/ActionCardHeader';
 import DetailsSourcesTab from '../../../components/DetailsSourcesTabs';
 import LabelText from '../../../components/TextStyles/LabelText';
 import BodyText from '../../../components/TextStyles/BodyText';
+import BackButton from '../../../components/BackButton';
 
 type Props = NativeStackScreenProps<SolutionsFeedStackParams, 'SolutionDetailsScreen'>;
 
-function SolutionDetailsScreen({ route }: Props) {
+function SolutionDetailsScreen({ navigation, route }: Props) {
   const apiClient = useApiClient();
   const solution = route.params.solution;
   
@@ -40,6 +41,8 @@ function SolutionDetailsScreen({ route }: Props) {
     <Screen style={{ backgroundColor: 'white' }}>
       <Section>
         <Content>
+          <BackButton onPress={() => navigation.goBack()} />
+
           <View style={{ padding: 10 }}>
             <ActionCardHeader effectSolution={solution} color='rgba(0, 0, 0, 0)' />
           </View>

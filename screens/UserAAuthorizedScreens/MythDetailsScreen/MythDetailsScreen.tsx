@@ -11,10 +11,11 @@ import DetailsSourcesTab from '../../../components/DetailsSourcesTabs';
 import LabelText from '../../../components/TextStyles/LabelText';
 import BodyText from '../../../components/TextStyles/BodyText';
 import CaptionText from '../../../components/TextStyles/CaptionText';
+import BackButton from '../../../components/BackButton';
 
 type Props = NativeStackScreenProps<MythsFeedStackParams, 'MythDetailsScreen'>;
 
-function MythDetailsScreen({ route }: Props) {
+function MythDetailsScreen({ navigation, route }: Props) {
   const myth = route.params.myth;
   const [selectedTab, setSelectedTab] = useState(0);
   
@@ -22,6 +23,8 @@ function MythDetailsScreen({ route }: Props) {
     <Screen style={{ backgroundColor: 'white' }}>
       <Section>
         <Content style={{ alignItems: 'flex-start' }}>
+          <BackButton onPress={() => navigation.goBack()} />
+
           <LabelText style={{ color: '#B00620', marginTop: 10 }}>MYTH</LabelText>
           <BodyText style={{ color: '#B00620', letterSpacing: 1.3, fontStyle: 'italic' }}>{myth.mythTitle}</BodyText>
           <LabelText style={{ color: '#00A85F', marginTop: 40 }}>TRUTH</LabelText>
