@@ -17,11 +17,11 @@ function ConversationsIntroScreen({ navigation }: Props) {
   return (
     <Screen>
       <Section>
-        <Content>
-          <Headline2 style={styles.marginBottom}>How to talk about Climate Change</Headline2>
+        <Content style={{ maxWidth: 400, alignItems: 'flex-start' }}>
+          <Headline2 style={[styles.marginBottom, { alignSelf: 'center' }]}>How to talk about Climate Change</Headline2>
 
           <BodyText style={styles.marginBottom}>Climate change is a global issue, and your contribution matters!</BodyText>
-          
+
           <BodyText style={styles.marginBottom}>You don't need to be an expert to talk about climate change. Follow these easy steps to start having effective conversations:</BodyText>
           
           <BulletListItem>Send a friend the link we provide</BulletListItem>
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 30,
     marginBottom: 100,
+    alignSelf: 'center',
   },
 });
 
