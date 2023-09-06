@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { Image, Modal, ScrollView, View } from "react-native";
+import { Image, Modal, Pressable, ScrollView, View } from "react-native";
+import { MaterialIcons } from '@expo/vector-icons';
 
+import Colors from "../../../assets/colors";
 import useApiClient from "../../../hooks/useApiClient";
 import Solution3 from "../../../types/Solution3";
 import Solution2 from "../../../types/Solution2";
@@ -41,6 +43,11 @@ function SolutionDetailsModal({ open, solution, onClose }: Props) {
       onRequestClose={onClose}
     >
       <View style={styles.container}>
+        <Pressable style={{ alignItems: 'center', width: '100%', paddingTop: 20 }} onPress={onClose}>
+          <LabelText>Close</LabelText>
+          <MaterialIcons name="keyboard-arrow-down" size={50} color={Colors.themeBright} style={{ top: -15, }} />
+        </Pressable>
+
         <ScrollView style={{ width: '100%' }}>
           <View style={styles.header}>
             <ActionCardHeader effectSolution={solutionDetails} color='rgba(0, 0, 0, 0)' />

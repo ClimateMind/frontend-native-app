@@ -9,6 +9,9 @@ import Colors from '../../../assets/colors';
 import Headline1 from '../../../components/TextStyles/Headline1';
 import BodyText from '../../../components/TextStyles/BodyText';
 import LabelText from '../../../components/TextStyles/LabelText';
+import Screen from '../../../components/Screen/Screen';
+import Section from '../../../components/Screen/Section';
+import Content from '../../../components/Screen/Content';
 
 function SignUpScreen() {
   const apiClient = useApiClient();
@@ -103,81 +106,79 @@ function SignUpScreen() {
   }
 
   return (
-    <View style={styles.container}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'position' : 'padding'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 80 : 0}
-      >
-        <View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-          <Headline1 style={{ padding: 8 }}>Create a Climate Mind account</Headline1>
-          <BodyText style={{ marginTop: 30, marginBottom: 60, textAlign: 'center' }}>
-            Save your results, see your climate topics, and start talking.
-          </BodyText>
-        </View>
+    <Screen>
+      <Section>
+        <Content>
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'position' : 'padding'}
+            keyboardVerticalOffset={Platform.OS === 'ios' ? 80 : 0}
+          >
+            <View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
+              <Headline1 style={{ padding: 8 }}>Create a Climate Mind account</Headline1>
+              <BodyText style={{ marginTop: 30, marginBottom: 60, textAlign: 'center' }}>
+                Save your results, see your climate topics, and start talking.
+              </BodyText>
+            </View>
 
-        <TextInput
-          placeholderTextColor="#88999C"
-          placeholder="First Name"
-          autoCapitalize="sentences"
-          autoCorrect={false}
-          onChangeText={(value) => inputChangeHandler('firstName', value)}
-          style={[styles.input, !inputs.firstName.isValid && styles.invalidInput]}
-        />
-        {!inputs.firstName.isValid && <LabelText style={styles.errorText}>First Name is a required field</LabelText>}
+            <TextInput
+              placeholderTextColor="#88999C"
+              placeholder="First Name"
+              autoCapitalize="sentences"
+              autoCorrect={false}
+              onChangeText={(value) => inputChangeHandler('firstName', value)}
+              style={[styles.input, !inputs.firstName.isValid && styles.invalidInput]}
+            />
+            {!inputs.firstName.isValid && <LabelText style={styles.errorText}>First Name is a required field</LabelText>}
 
-        <TextInput
-          placeholderTextColor="#88999C"
-          placeholder="Last Name"
-          autoCapitalize="sentences"
-          autoCorrect={false}
-          onChangeText={(value) => inputChangeHandler('lastName', value)}
-          style={[styles.input, !inputs.lastName.isValid && styles.invalidInput]}
-        />
-        {!inputs.lastName.isValid && <LabelText style={styles.errorText}>Last Name is a required field</LabelText>}
+            <TextInput
+              placeholderTextColor="#88999C"
+              placeholder="Last Name"
+              autoCapitalize="sentences"
+              autoCorrect={false}
+              onChangeText={(value) => inputChangeHandler('lastName', value)}
+              style={[styles.input, !inputs.lastName.isValid && styles.invalidInput]}
+            />
+            {!inputs.lastName.isValid && <LabelText style={styles.errorText}>Last Name is a required field</LabelText>}
 
-        <TextInput
-          placeholderTextColor="#88999C"
-          placeholder="Email"
-          keyboardType="email-address"
-          autoCorrect={false}
-          onChangeText={(value) => inputChangeHandler('email', value)}
-          style={[styles.input, !inputs.email.isValid && styles.invalidInput]}
-        />
-        {!inputs.email.isValid && <LabelText style={styles.errorText}>Invalid email address</LabelText>}
+            <TextInput
+              placeholderTextColor="#88999C"
+              placeholder="Email"
+              keyboardType="email-address"
+              autoCorrect={false}
+              onChangeText={(value) => inputChangeHandler('email', value)}
+              style={[styles.input, !inputs.email.isValid && styles.invalidInput]}
+            />
+            {!inputs.email.isValid && <LabelText style={styles.errorText}>Invalid email address</LabelText>}
 
-        <TextInput
-          placeholderTextColor="#88999C"
-          placeholder="Password"
-          secureTextEntry={true}
-          autoCorrect={false}
-          onChangeText={(value) => inputChangeHandler('password', value)}
-          style={[styles.input, !inputs.password.isValid && styles.invalidInput]}
-        />
-        {!inputs.password.isValid && <LabelText style={styles.errorText}>Invalid Password. Password must be at least 8 characters and contain one number or one special character</LabelText>}
+            <TextInput
+              placeholderTextColor="#88999C"
+              placeholder="Password"
+              secureTextEntry={true}
+              autoCorrect={false}
+              onChangeText={(value) => inputChangeHandler('password', value)}
+              style={[styles.input, !inputs.password.isValid && styles.invalidInput]}
+            />
+            {!inputs.password.isValid && <LabelText style={styles.errorText}>Invalid Password. Password must be at least 8 characters and contain one number or one special character</LabelText>}
 
-        <TextInput
-          placeholderTextColor="#88999C"
-          placeholder="Confirm Password"
-          secureTextEntry={true}
-          autoCorrect={false}
-          onChangeText={(value) => inputChangeHandler('confirmPassword', value)}
-          style={[styles.input, !inputs.confirmPassword.isValid && styles.invalidInput]}
-        />
-        {!inputs.confirmPassword.isValid && <LabelText style={styles.errorText}>Passwords must match</LabelText>}
+            <TextInput
+              placeholderTextColor="#88999C"
+              placeholder="Confirm Password"
+              secureTextEntry={true}
+              autoCorrect={false}
+              onChangeText={(value) => inputChangeHandler('confirmPassword', value)}
+              style={[styles.input, !inputs.confirmPassword.isValid && styles.invalidInput]}
+            />
+            {!inputs.confirmPassword.isValid && <LabelText style={styles.errorText}>Passwords must match</LabelText>}
 
-        <SimpleWhiteTextButton style={styles.button} text="CREATE ACCOUNT" onPress={submitHandler} />
-      </KeyboardAvoidingView>
-    </View>
+            <SimpleWhiteTextButton style={styles.button} text="CREATE ACCOUNT" onPress={submitHandler} />
+          </KeyboardAvoidingView>
+        </Content>
+      </Section>
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: Colors.themeBright,
-    justifyContent: 'center',
-  },
   input: {
     marginVertical: 5,
     padding: 10,

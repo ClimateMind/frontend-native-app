@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   tabBar: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
+    width: '100%',
   },
   tabButton: {
     padding: 10,

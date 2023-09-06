@@ -3,10 +3,12 @@ import { ActivityIndicator, Dimensions, Pressable, ScrollView, StyleSheet, View 
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { BottomTabsNavigationParams } from '../../../navigation/UserAAuthorizedTabsNavigation';
 
-import Colors from '../../../assets/colors';
 import useApiClient from '../../../hooks/useApiClient';
 import { GetPersonalValues } from '../../../api/responses';
 import { useAppSelector } from '../../../store/hooks';
+import Screen from '../../../components/Screen/Screen';
+import Section from '../../../components/Screen/Section';
+import Content from '../../../components/Screen/Content';
 import PersonalValueCard from '../../../components/Cards/PersonalValueCard';
 import RadarChart from '../../../components/RadarChart';
 import { useFocusEffect } from '@react-navigation/native';
@@ -46,50 +48,50 @@ function PersonalValuesScreen({ navigation }: Props) {
   }
   
   return (
-    <ScrollView ref={scrollRef}>
-      <View style={[styles.padding, styles.blueArea]}>
-        <Headline2 style={{ padding: 8 }}>This is your Climate Personality</Headline2>
+    <Screen>
+      <Section>
+        <Content>
+          <Headline2 style={{ padding: 8 }}>This is your Climate Personality</Headline2>
 
-        <View style={{ marginVertical: 20 }}>
-          <PersonalValueCard nr={1} value={personalValues.personalValues[0]} />
-        </View>
-        <View style={{ marginVertical: 20 }}>
-          <PersonalValueCard nr={2} value={personalValues.personalValues[1]} />
-        </View>
-        <View style={{ marginVertical: 20 }}>
-          <PersonalValueCard nr={3} value={personalValues.personalValues[2]} />
-        </View>
-      </View>
+          <View style={styles.cardContainer}>
+            <PersonalValueCard nr={1} value={personalValues.personalValues[0]} />
+            <PersonalValueCard nr={2} value={personalValues.personalValues[1]} />
+            <PersonalValueCard nr={3} value={personalValues.personalValues[2]} />
+          </View>
+        </Content>
+      </Section>
 
-      <View style={[styles.padding, styles.whiteArea]}>
-        <Headline2 style={{ padding: 8 }}>Your Personal Value Web</Headline2>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <RadarChart
-            // The -40 comes from the padding of the parent view (20 on each side)
-            size={Dimensions.get('window').width - 40}
-            data={personalValues.valueScores.map(value => value.score)}
-            labels={personalValues.valueScores.map(value => value.personalValue)}
-          />
-        </View>
-      </View>
+      <Section style={styles.whiteArea}>
+        <Content>
+          <Headline2 style={{ padding: 8 }}>Your Personal Value Web</Headline2>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <RadarChart
+              // The -40 comes from the padding of the parent view (20 on each side)
+              size={Dimensions.get('window').width - 40}
+              maxWidth={640}
+              data={personalValues.valueScores.map(value => value.score)}
+              labels={personalValues.valueScores.map(value => value.personalValue)}
+            />
+          </View>
+        </Content>
+      </Section>
 
-      <View style={[styles.padding, styles.blueArea]}>
-        <CaptionText style={styles.text}>Not happy with your results?</CaptionText>
-        <Pressable onPress={retakeQuiz}>
-          <ButtonText style={[styles.text, { padding: 8 }]}>RETAKE QUIZ</ButtonText>
-        </Pressable>
-      </View>
-    </ScrollView>
+      <Section style={{ minHeight: 250 }}>
+        <Content>
+          <CaptionText style={styles.text}>Not happy with your results?</CaptionText>
+          <Pressable onPress={retakeQuiz}>
+            <ButtonText style={[styles.text, { padding: 8 }]}>RETAKE QUIZ</ButtonText>
+          </Pressable>
+        </Content>
+      </Section>
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  blueArea: {
-    backgroundColor: Colors.themeBright,
-    minHeight: 200,
-  },
   whiteArea: {
     backgroundColor: 'white',
+    flex: 1,
   },
   padding: {
     padding: 20,
@@ -97,6 +99,14 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     marginVertical: 15,
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 20,
+    paddingVertical: 20,
   },
 });
 

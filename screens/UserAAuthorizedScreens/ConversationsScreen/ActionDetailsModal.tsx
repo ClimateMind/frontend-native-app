@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { Image, Modal, ScrollView, StyleSheet, View } from "react-native";
+import { Image, Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
+import { MaterialIcons } from '@expo/vector-icons';
 
+import Colors from "../../../assets/colors";
 import ClimateEffect2 from "../../../types/ClimateEffect2";
 import ClimateEffect3 from "../../../types/ClimateEffect3";
 import { capitalizeFirstLetter } from "../../../utils";
@@ -41,6 +43,11 @@ function ActionDetailsModal({ open, action, onClose }: Props) {
       onRequestClose={onClose}
     >
       <View style={styles.container}>
+        <Pressable style={{ alignItems: 'center', width: '100%', paddingTop: 20 }} onPress={onClose}>
+          <LabelText>Close</LabelText>
+          <MaterialIcons name="keyboard-arrow-down" size={50} color={Colors.themeBright} style={{ top: -15, }} />
+        </Pressable>
+
         <ScrollView style={{ width: '100%' }}>
 
           <Headline3 style={styles.title}>{capitalizeFirstLetter(actionDetails.effectTitle)}</Headline3>

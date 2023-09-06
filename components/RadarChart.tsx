@@ -5,6 +5,7 @@ import Svg, { Path, Text, Circle, Line } from 'react-native-svg';
 type Props = {
   data: number[],
   size: number,
+  maxWidth?: number,
   labels: string[],
 };
 
@@ -22,13 +23,20 @@ type Axis = {
 function RadarChart(props: Props) {
   const { data, size, labels } = props;
 
+  let chartSize = 0;
+  if (props.maxWidth && props.maxWidth < size) {
+    chartSize = props.maxWidth;
+  } else {
+    chartSize = size;
+  }
+
   const strokeColor = "#61dafb";
   const strokeWidth = 2;
   const axisColor="#000";
   const axisLabelColor="#666";
   
-  const center = size / 2;
-  const radius = size / 2 - 50;
+  const center = chartSize / 2;
+  const radius = chartSize / 2 - 50;
   const angle = (2 * Math.PI) / data.length;
 
   // Calculate points for each data point
@@ -58,15 +66,15 @@ function RadarChart(props: Props) {
     // Check if label exceeds the X bounds
     if (labelPoint.x < labelOffset) {
       labelX = labelOffset;
-    } else if (labelPoint.x > size - labelOffset) {
-      labelX = size - labelOffset;
+    } else if (labelPoint.x > chartSize - labelOffset) {
+      labelX = chartSize - labelOffset;
     }
 
     // Check if label exceeds the Y bounds
     if (labelPoint.y < labelOffset) {
       labelY = labelOffset;
-    } else if (labelPoint.y > size - labelOffset) {
-      labelY = size - labelOffset;
+    } else if (labelPoint.y > chartSize - labelOffset) {
+      labelY = chartSize - labelOffset;
     }
 
     return {
@@ -101,7 +109,7 @@ function RadarChart(props: Props) {
 
   return (
     <View>
-      <Svg width={size} height={size}>
+      <Svg width={chartSize} height={chartSize}>
         {axes.map((axis, index) => (
           <Line
             key={index}

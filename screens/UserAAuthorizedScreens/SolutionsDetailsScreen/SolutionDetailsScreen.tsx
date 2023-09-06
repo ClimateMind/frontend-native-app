@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react';
-import { Image, ScrollView, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SolutionsFeedStackParams } from '../../../navigation/Stacks/SolutionsFeedStack';
 
 import useApiClient from '../../../hooks/useApiClient';
 import Myth from '../../../types/Myth';
+import Screen from '../../../components/Screen/Screen';
+import Section from '../../../components/Screen/Section';
+import Content from '../../../components/Screen/Content';
 import MythsFeedCard from '../MythsFeedScreen/MythsFeedCard';
 import ActionCardHeader from '../ClimateFeedScreen/ActionCardHeader';
 import DetailsSourcesTab from '../../../components/DetailsSourcesTabs';
 import LabelText from '../../../components/TextStyles/LabelText';
 import BodyText from '../../../components/TextStyles/BodyText';
+import BackButton from '../../../components/BackButton';
 
 type Props = NativeStackScreenProps<SolutionsFeedStackParams, 'SolutionDetailsScreen'>;
 
-function SolutionDetailsScreen({ route }: Props) {
+function SolutionDetailsScreen({ navigation, route }: Props) {
   const apiClient = useApiClient();
   const solution = route.params.solution;
   
@@ -34,27 +38,34 @@ function SolutionDetailsScreen({ route }: Props) {
   }, [solution, setMyths]);
   
   return (
-    <ScrollView style={{ backgroundColor: 'white' }}>
-      <View style={{ padding: 10 }}>
-        <ActionCardHeader effectSolution={solution} color='rgba(0, 0, 0, 0)' />
-      </View>
-      {solution.imageUrl !== null && <Image style={styles.image} source={{uri: solution.imageUrl}} />}
+    <Screen style={{ backgroundColor: 'white' }}>
+      <Section>
+        <Content>
+          <BackButton onPress={() => navigation.goBack()} />
 
-      <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
+          <View style={{ padding: 10 }}>
+            <ActionCardHeader effectSolution={solution} color='rgba(0, 0, 0, 0)' />
+          </View>
+          {solution.imageUrl !== null && <Image style={styles.image} source={{uri: solution.imageUrl}} />}
 
-      {selectedTab === 0 && <View>
-        <BodyText style={styles.description}>{solution.longDescription}</BodyText>
-        {myths?.map(myth => <View style={{ margin: 10 }} key={myth.iri}><MythsFeedCard myth={myth} onLearnMore={null} /></View>)}
-        </View>}
+          <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
 
-      {selectedTab === 1 && solution.solutionSources.map(source => <View key={source} style={{ padding: 10 }}><LabelText style={styles.link}>{source}</LabelText></View>)}
-    </ScrollView>
+          {selectedTab === 0 && <View>
+            <BodyText style={styles.description}>{solution.longDescription}</BodyText>
+            {myths?.map(myth => <View style={{ margin: 10 }} key={myth.iri}><MythsFeedCard myth={myth} onLearnMore={null} /></View>)}
+            </View>}
+
+          {selectedTab === 1 && solution.solutionSources.map(source => <View key={source} style={{ padding: 10 }}><LabelText style={styles.link}>{source}</LabelText></View>)}
+        </Content>
+      </Section>
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
   image: {
-    width: '100%',
+    marginHorizontal: 20,
+    alignSelf: 'stretch',
     height: 250,
   },
   description: {

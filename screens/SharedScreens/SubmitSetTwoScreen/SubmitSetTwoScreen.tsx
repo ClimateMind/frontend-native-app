@@ -1,10 +1,13 @@
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { RootDrawerNavigationParams } from '../../../navigation/NavigationRoot';
 
 import Colors from '../../../assets/colors';
 import { useAppSelector } from '../../../store/hooks';
 
+import Screen from '../../../components/Screen/Screen';
+import Section from '../../../components/Screen/Section';
+import Content from '../../../components/Screen/Content';
 import SimpleWhiteTextButton from '../../../components/SimpleWhiteTextButton';
 import Headline1 from '../../../components/TextStyles/Headline1';
 import BodyText from '../../../components/TextStyles/BodyText';
@@ -23,17 +26,21 @@ function SubmitSetTwoScreen({ navigation }: Props) {
   }
 
   return (
-    <View style={styles.container}>
-      <Headline1 style={{ padding: 8 }}>Woohoo! Good Job!</Headline1>
-      
-      <BodyText style={styles.bodyText}>With the questions you just answered I can predict your Climate Personality.</BodyText>
-      
-      <Image style={{ marginVertical: 30 }} source={require('../../../assets/reward-personalities.png')} />
-      
-      <BodyText style={styles.bodyText}>This is a ranking of the top three personal values that you deploy when making decisions.</BodyText>
+    <Screen>
+      <Section>
+        <Content style={{ justifyContent: 'center' }}>
+          <Headline1 style={{ padding: 8 }}>Woohoo! Good Job!</Headline1>
+          
+          <BodyText style={styles.bodyText}>With the questions you just answered I can predict your Climate Personality.</BodyText>
+          
+          <Image style={{ marginVertical: 30 }} source={require('../../../assets/reward-personalities.png')} />
+          
+          <BodyText style={styles.bodyText}>This is a ranking of the top three personal values that you deploy when making decisions.</BodyText>
 
-      <SimpleWhiteTextButton style={styles.button} text='FIND OUT MY CLIMATE PERSONALITY' onPress={navigateToPersonalValuesScreen} />
-    </View>
+          <SimpleWhiteTextButton style={styles.button} text='FIND OUT MY CLIMATE PERSONALITY' onPress={navigateToPersonalValuesScreen} />
+        </Content>
+      </Section>
+    </Screen>
   );
 }
 
