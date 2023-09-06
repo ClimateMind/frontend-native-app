@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginVertically: 20,
-    paddingTop: 20,
+    paddingTop: 25,
   },
   backButtonText: {
     marginLeft: 10,
