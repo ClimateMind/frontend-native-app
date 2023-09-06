@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Image, Modal, Pressable, ScrollView, View } from "react-native";
-import { SimpleLineIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import Colors from "../../../assets/colors";
 import useApiClient from "../../../hooks/useApiClient";
@@ -43,9 +43,9 @@ function SolutionDetailsModal({ open, solution, onClose }: Props) {
       onRequestClose={onClose}
     >
       <View style={styles.container}>
-        <Pressable style={{ alignItems: 'center' }} onPress={onClose}>
+        <Pressable style={{ alignItems: 'center', height: 50, width: '100%' }} onPress={onClose}>
           <LabelText>Close</LabelText>
-          <SimpleLineIcons name="arrow-down" size={24} color={Colors.themeBright} />
+          <MaterialIcons name="keyboard-arrow-down" size={50} color={Colors.themeBright} style={{ top: -15, }} />
         </Pressable>
 
         <ScrollView style={{ width: '100%' }}>
