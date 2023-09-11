@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from 'react-native';
+import { AxiosError } from 'axios';
 
 import SimpleWhiteTextButton from '../../../components/SimpleWhiteTextButton';
 import useApiClient from '../../../hooks/useApiClient';
@@ -11,6 +12,7 @@ import LabelText from '../../../components/TextStyles/LabelText';
 import Screen from '../../../components/Screen/Screen';
 import Section from '../../../components/Screen/Section';
 import Content from '../../../components/Screen/Content';
+import { showErrorToast } from '../../../components/ToastMessages';
 
 function SignUpScreen() {
   const apiClient = useApiClient();
@@ -101,7 +103,11 @@ function SignUpScreen() {
           );
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error instanceof AxiosError) {
+          showErrorToast(error.response?.data.error ?? 'Unknow Error has occoured')
+        }
+      });
   }
 
   return (
