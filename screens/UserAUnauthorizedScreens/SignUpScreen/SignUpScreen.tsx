@@ -5,7 +5,6 @@ import SimpleWhiteTextButton from '../../../components/SimpleWhiteTextButton';
 import useApiClient from '../../../hooks/useApiClient';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { login } from '../../../store/authSlice';
-import Colors from '../../../assets/colors';
 import Headline1 from '../../../components/TextStyles/Headline1';
 import BodyText from '../../../components/TextStyles/BodyText';
 import LabelText from '../../../components/TextStyles/LabelText';

@@ -55,7 +55,7 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
   }
 
   return (
-    <Screen>
+    <Screen ref={scrollRef}>
       <Section>
         <Content>
           <Headline1 style={styles.headlines}>This is your Climate Personality</Headline1>
