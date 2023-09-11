@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet } from "react-native";
+import { Image, Pressable, StyleSheet, View } from "react-native";
 
 import ClimateEffect from "../../../types/ClimateEffect";
 import ActionCardHeader from "./ActionCardHeader";
@@ -8,6 +8,7 @@ import Headline3 from "../../../components/TextStyles/Headline3";
 import BodyText from "../../../components/TextStyles/BodyText";
 import ButtonText from "../../../components/TextStyles/ButtonText";
 import Card from "../../../components/Cards/Card";
+import { CmChip } from "../../../components";
 
 interface Props {
   climateEffect: ClimateEffect;
@@ -22,6 +23,14 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
       {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
 
       <BodyText style={styles.text}>{climateEffect.effectShortDescription}</BodyText>
+
+      {climateEffect.relatedPersonalValues && (
+        <View style={styles.chipsContainer}>
+          {climateEffect.relatedPersonalValues.map((value) => (
+            <CmChip key={value} label={value} />
+          ))}
+        </View>
+      )}
 
       <Pressable onPress={() => onLearnMore(climateEffect)}>
         <ButtonText style={styles.button}>LEARN MORE</ButtonText>
@@ -53,6 +62,11 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     textAlign: 'left',
     fontSize: 12,
+  },
+  chipsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    padding: 10,
   },
 });
 

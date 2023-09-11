@@ -1,13 +1,13 @@
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { Image } from "react-native";
 
 import { capitalizeFirstLetter } from "../../../utils";
 import ClimateEffect2 from "../../../types/ClimateEffect2";
-import RelatedPersonalValuesChips from "../../../components/RelatedPersonalValuesChips";
 import Headline3 from "../../../components/TextStyles/Headline3";
 import BodyText from "../../../components/TextStyles/BodyText";
 import ButtonText from "../../../components/TextStyles/ButtonText";
 import Card from "../../../components/Cards/Card";
+import { CmChip } from "../../../components";
 
 interface Props {
   climateEffect: ClimateEffect2;
@@ -22,7 +22,13 @@ function ActionCard({ climateEffect, onLearnMore }: Props) {
       <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />
       <BodyText style={styles.text}>{climateEffect.effectShortDescription}</BodyText>
 
-      <RelatedPersonalValuesChips relatedPersonalValues={climateEffect.relatedPersonalValues ?? []}/>
+      {climateEffect.relatedPersonalValues && (
+        <View style={styles.chipsContainer}>
+          {climateEffect.relatedPersonalValues.map((value) => (
+            <CmChip key={value} label={value} />
+          ))}
+        </View>
+      )}
 
       <Pressable onPress={() => onLearnMore(climateEffect)}>
         <ButtonText style={styles.button}>LEARN MORE</ButtonText>
@@ -53,6 +59,11 @@ const styles = StyleSheet.create({
     padding: 20,
     letterSpacing: 1,
     textAlign: 'left',
+  },
+  chipsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    padding: 10,
   },
 });
 
