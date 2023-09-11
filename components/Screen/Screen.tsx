@@ -12,14 +12,14 @@ interface Props {
 function Screen({ children, style = {} , props = {}, ref, view='ScrollView'}: Props) {
   if (view === 'View') {
     return (
-      <View style={{ flexGrow: 1, backgroundColor: Colors.themeBright, ...style }} {...props} {...ref}>
+      <View style={{ flexGrow: 1, backgroundColor: Colors.themeBright, ...style }} {...props}>
         {children}
       </View>
     );
   }
   
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: Colors.themeBright, ...style }} {...props} {...ref}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: Colors.themeBright, ...style }} {...props} ref={ref}>
       {children}
     </ScrollView>
   );
