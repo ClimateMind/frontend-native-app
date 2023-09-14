@@ -1,7 +1,3 @@
----
-name: Pull Request for Issue
-about: Create a pull request to solve a specific issue
----
 <!-- title: [CLOSES #<issue_number>] Title of the Pull Request -->
 
 ## Description
