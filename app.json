@@ -5,10 +5,10 @@
     "slug": "climate-mind",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/SplashScreen.png",
+      "image": "./src/assets/SplashScreen.png",
       "resizeMode": "contain",
       "backgroundColor": "#B9E6E0"
     },
@@ -32,6 +32,9 @@
     },
     "updates": {
       "url": "https://u.expo.dev/d3f6d39c-a2f2-412d-9434-6cb0e2739ebc"
-    }
+    },
+    "experiments": {
+      "tsconfigPaths": true
+    } 
   }
 }
