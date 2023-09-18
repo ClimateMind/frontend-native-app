@@ -1,8 +1,6 @@
 import { StyleSheet, ScrollView, View } from 'react-native';
 
-import Headline3 from 'src/components/TextStyles/Headline3';
-import Headline4 from 'src/components/TextStyles/Headline4';
-import LabelText from 'src/components/TextStyles/LabelText';
+import { CmTypography } from 'src/components';
 import ProgressBar from './ProgressBar';
 import Answer from './Answer';
 
@@ -29,13 +27,13 @@ function SingleQuestion({
           marginBottom: 5,
         }}
       >
-        <Headline3 style={{ fontSize: 24, fontWeight: 'bold', paddingTop: 5 }}>Q{currentQuestionIndex.toString()}</Headline3>
-        <Headline4>/{maxQuestionIndex.toString()}</Headline4>
+        <CmTypography variant='h3' style={{ fontSize: 24, fontWeight: 'bold', letterSpacing: 0 }}>Q{currentQuestionIndex.toString()}</CmTypography>
+        <CmTypography variant='h4'>/{maxQuestionIndex.toString()}</CmTypography>
       </View>
 
       <ProgressBar progress={currentQuestionIndex / maxQuestionIndex - 0.1} />
 
-      <LabelText style={styles.question}>{question}</LabelText>
+      <CmTypography variant='label' style={styles.question}>{question}</CmTypography>
 
       <Answer onSelect={onSelect} index={1} text="Not Like Me At All" />
       <Answer onSelect={onSelect} index={2} text="Not Like me" />

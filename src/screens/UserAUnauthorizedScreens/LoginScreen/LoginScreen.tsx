@@ -11,9 +11,7 @@ import useLogger from 'src/hooks/useLogger';
 import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
 import PasswordResetModal from './PasswordResetModal';
 import { showErrorToast } from 'src/components/ToastMessages';
-import Headline2 from 'src/components/TextStyles/Headline2';
-import BodyText from 'src/components/TextStyles/BodyText';
-import LabelText from 'src/components/TextStyles/LabelText';
+import { CmTypography } from 'src/components';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
@@ -74,9 +72,9 @@ function LoginScreen() {
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
           <Content>
             <Image style={styles.image} source={require("src/assets/cm-logo.png")} />
-            <Headline2>Climate Mind</Headline2>
+            <CmTypography variant='h2'>Climate Mind</CmTypography>
 
-            <BodyText style={styles.marginVertical}>Sign In</BodyText>
+            <CmTypography variant='body' style={styles.marginVertical}>Sign In</CmTypography>
 
             <TextInput
               placeholder="Email"
@@ -98,9 +96,9 @@ function LoginScreen() {
             />
 
             <View style={{ flexDirection: 'row' }}>
-              <BodyText style={[styles.marginVertical, { marginRight: 20 }]}>Forgot your password?</BodyText>
+              <CmTypography variant='body' style={[styles.marginVertical, { marginRight: 20 }]}>Forgot your password?</CmTypography>
               <Pressable onPress={() => setShowModal(true)} style={{ justifyContent: 'center' }} >
-                <LabelText style={[styles.marginVertical, { textDecorationLine: "underline" }]}>Send reset link</LabelText>
+                <CmTypography variant='label' style={[styles.marginVertical, { textDecorationLine: "underline" }]}>Send reset link</CmTypography>
               </Pressable>
             </View>
 

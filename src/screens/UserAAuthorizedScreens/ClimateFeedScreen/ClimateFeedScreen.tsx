@@ -9,10 +9,9 @@ import ClimateEffect from 'src/types/ClimateEffect';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import Headline1 from 'src/components/TextStyles/Headline1';
+import { CmTypography } from 'src/components';
 import ClimateFeedCard from './ClimateFeedCard';
 import { useAppSelector } from 'src/store/hooks';
-import BodyText from 'src/components/TextStyles/BodyText';
 
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateFeedScreen'>;
 
@@ -40,11 +39,11 @@ function ClimateFeedScreen({ navigation }: Props) {
           <FlatList
             ListHeaderComponent={
               <>
-              <Headline1 style={styles.heading}>Explore climate change impacts</Headline1>
-              <BodyText style={styles.text}>
+              <CmTypography variant='h1' style={styles.heading}>Explore climate change impacts</CmTypography>
+              <CmTypography variant='body' style={styles.text}>
                 This is your personalized homepage based on your unique climate personality. Check out
                 these articles to stay informed!
-              </BodyText>
+              </CmTypography>
               </>
             }
             data={climateFeed}
@@ -66,12 +65,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 30,
     marginBottom: 20,
-    paddingTop: 8,
   },
   text: {
     textAlign: 'center',
     marginTop: 20,
-
   },
 });
 

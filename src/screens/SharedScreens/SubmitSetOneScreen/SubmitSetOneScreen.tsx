@@ -7,9 +7,7 @@ import { useAppSelector } from 'src/store/hooks';
 
 import Screen from 'src/components/Screen/Screen';
 import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
-import Headline1 from 'src/components/TextStyles/Headline1';
-import BodyText from 'src/components/TextStyles/BodyText';
-import ButtonText from 'src/components/TextStyles/ButtonText';
+import { CmTypography } from 'src/components';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
 
@@ -34,15 +32,15 @@ function SubmitSetOneScreen({ navigation }: Props) {
     <Screen>
       <Section>
         <Content style={{ justifyContent: 'center' }}>
-          <Headline1 style={{ padding: 8 }}>Woah! You are doing great!</Headline1>
+          <CmTypography variant='h1'>Woah! You are doing great!</CmTypography>
           
-          <BodyText style={styles.bodyText}>Do you want to carry on with another 10 questions or get your results now?</BodyText>
+          <CmTypography variant='body' style={styles.bodyText}>Do you want to carry on with another 10 questions or get your results now?</CmTypography>
           
           <Pressable onPress={navigateToPersonalValuesScreen}>
-            <ButtonText style={{ padding: 8, textAlign: 'center' }}>FIND OUT MY CLIMATE PERSONALITY</ButtonText>
+            <CmTypography variant='button' style={{ textAlign: 'center' }}>FIND OUT MY CLIMATE PERSONALITY</CmTypography>
           </Pressable>
 
-          <BodyText style={styles.bodyText}>You will get better personalised results if you complete all 20 questions.</BodyText>
+          <CmTypography variant='body' style={styles.bodyText}>You will get better personalised results if you complete all 20 questions.</CmTypography>
           
           <SimpleWhiteTextButton style={styles.button} text='Continue' onPress={navigateToQuizScreen} />
         </Content>

@@ -11,9 +11,7 @@ import ActionCard from "./ActionCard";
 import SolutionsFeedCard from "./SolutionCard";
 import SolutionDetailsModal from "./SolutionDetailsModal";
 import ActionDetailsModal from "./ActionDetailsModal";
-import Headline1 from "src/components/TextStyles/Headline1";
-import BodyText from "src/components/TextStyles/BodyText";
-import ButtonText from "src/components/TextStyles/ButtonText";
+import { CmTypography } from "src/components";
 import Content from "src/components/Screen/Content";
 
 interface Props {
@@ -61,12 +59,12 @@ function ViewSelectedTopicsModal({ open, conversation, onClose }: Props) {
           <ScrollView style={{ padding: 20 }}>
             <Pressable style={styles.backButtonContainer} onPress={onClose}>
               <Ionicons name="chevron-back-outline" size={24} color="#A347FF" />
-              <ButtonText style={styles.backButtonText}>BACK</ButtonText>
+              <CmTypography variant='button' style={styles.backButtonText}>BACK</CmTypography>
             </Pressable>
 
-            <Headline1 style={{ padding: 8 }}>Your shared feed with {conversation.userB.name}</Headline1>
+            <CmTypography variant='h1'>Your shared feed with {conversation.userB.name}</CmTypography>
 
-            <BodyText style={styles.text}>These are climate effects that matter to you both; great starting point for having a constructive conversation.</BodyText>
+            <CmTypography variant='body' style={styles.text}>These are climate effects that matter to you both; great starting point for having a constructive conversation.</CmTypography>
 
             <View style={{ marginVertical: 20 }}>
               <ActionCard climateEffect={climateEffect} onLearnMore={() => setShowActionDetails(true)} />

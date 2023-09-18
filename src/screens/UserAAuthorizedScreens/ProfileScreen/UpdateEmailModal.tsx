@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Modal, Pressable, StyleSheet, TextInput, View } from "react-native";
+
 import { useAppSelector } from "src/store/hooks";
 import useApiClient from "src/hooks/useApiClient";
-import Headline4 from "src/components/TextStyles/Headline4";
-import BodyText from "src/components/TextStyles/BodyText";
+import { CmTypography } from "src/components";
 import Card from "src/components/Cards/Card";
 
 interface Props {
@@ -49,8 +49,8 @@ function UpdateEmailModal({ show, onSubmit, onCancel }: Props) {
       <View style={styles.centerModal}>
         <Card style={{ padding: 20, width: '90%' }}>
 
-          <Headline4 style={styles.cardHeader}>Update your email address</Headline4>
-          <BodyText>Your current email address: {currentEmail}</BodyText>
+          <CmTypography variant='h4' style={styles.cardHeader}>Update your email address</CmTypography>
+          <CmTypography variant='body'>Your current email address: {currentEmail}</CmTypography>
         
           <TextInput
             placeholder="New Email"
@@ -80,8 +80,8 @@ function UpdateEmailModal({ show, onSubmit, onCancel }: Props) {
           />
         
           <View style={styles.buttonContainer}>
-            <Pressable onPress={onCancel} style={styles.button}><Text>CANCEL</Text></Pressable>
-            <Pressable disabled={submitDisabled()} onPress={submitButtonHandler} style={[styles.button, submitDisabled() && {opacity: 0.2}]}><Text>SUBMIT</Text></Pressable>
+            <Pressable onPress={onCancel} style={styles.button}><CmTypography variant='button'>CANCEL</CmTypography></Pressable>
+            <Pressable disabled={submitDisabled()} onPress={submitButtonHandler} style={[styles.button, submitDisabled() && {opacity: 0.2}]}><CmTypography variant='button'>SUBMIT</CmTypography></Pressable>
           </View>
 
         </Card>

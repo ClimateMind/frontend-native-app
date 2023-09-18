@@ -12,7 +12,7 @@ import MythsFeedStack from './Stacks/MythsFeedStack';
 import ConversationsStack from './Stacks/ConversationsStack';
 
 import { useAppSelector } from 'src/store/hooks';
-import Headline3 from 'src/components/TextStyles/Headline3';
+import { CmTypography } from 'src/components';
 
 export type BottomTabsNavigationParams = {
   ProfileScreen: undefined;
@@ -87,9 +87,9 @@ function UserAAuthorizedTabsNavigation() {
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color }) => (
-            <Headline3 style={{ color, width: 100 }}>
+            <CmTypography variant='h3' style={{ color, width: 100 }}>
               {(user.firstName[0] + user.lastName[0]).toUpperCase()}
-            </Headline3>
+            </CmTypography>
           ),
         }}
       />

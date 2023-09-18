@@ -3,9 +3,7 @@ import { Modal, Pressable, StyleSheet, TextInput, View } from "react-native";
 
 import useApiClient from "src/hooks/useApiClient";
 import { showSuccessToast, showErrorToast } from 'src/components/ToastMessages';
-import Headline3 from 'src/components/TextStyles/Headline3';
-import BodyText from 'src/components/TextStyles/BodyText';
-import ButtonText from 'src/components/TextStyles/ButtonText';
+import { CmTypography } from 'src/components';
 import Card from 'src/components/Cards/Card';
 
 interface Props {
@@ -39,8 +37,8 @@ function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
       <View style={styles.centerModal}>
         <Card style={{ padding: 20, width: '90%' }}>
 
-          <Headline3 style={styles.cardHeader}>Reset your password</Headline3>
-          <BodyText>Enter the email associated with your account and we will email you a link to reset your password.</BodyText>
+          <CmTypography variant='h3' style={styles.cardHeader}>Reset your password</CmTypography>
+          <CmTypography variant='body'>Enter the email associated with your account and we will email you a link to reset your password.</CmTypography>
           <TextInput
             placeholder="Email address"
             keyboardType="email-address"
@@ -51,9 +49,9 @@ function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
           />
 
           <View style={styles.buttonContainer}>
-            <Pressable onPress={onCancel} style={styles.button}><ButtonText style={styles.buttonText}>CANCEL</ButtonText></Pressable>
+            <Pressable onPress={onCancel} style={styles.button}><CmTypography variant='button' style={styles.buttonText}>CANCEL</CmTypography></Pressable>
             <Pressable onPress={onPasswordResetRequest} style={styles.button} disabled={!email.trim()}>
-              <ButtonText style={[styles.buttonText, { color: !email.trim() ? 'lightgray' : 'black' }]}>SUBMIT</ButtonText>
+              <CmTypography variant='button' style={[styles.buttonText, { color: !email.trim() ? 'lightgray' : 'black' }]}>SUBMIT</CmTypography>
             </Pressable>
           </View>
 

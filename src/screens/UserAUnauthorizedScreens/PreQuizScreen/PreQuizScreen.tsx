@@ -7,8 +7,7 @@ import { StackParams } from 'src/navigation/UserAUnauthorizedStackNavigation';
 
 import Screen from 'src/components/Screen/Screen';
 import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
-import Headline3 from 'src/components/TextStyles/Headline3';
-import BodyText from 'src/components/TextStyles/BodyText';
+import { CmTypography } from 'src/components';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
 
@@ -24,15 +23,15 @@ function PreQuizScreen({ navigation }: Props) {
     <Screen>
       <Section>
         <Content>
-          <Headline3 style={styles.titleText}>First, what do you care about?</Headline3>
+          <CmTypography variant='h3' style={styles.titleText}>First, what do you care about?</CmTypography>
 
-          <BodyText style={styles.text}>
+          <CmTypography variant='body' style={styles.text}>
             Take this short quiz about personal values so we can help you find common ground and topics for your conversations.
-          </BodyText>
+          </CmTypography>
           
-          <BodyText style={styles.text}>
+          <CmTypography variant='body' style={styles.text}>
             Read each statement and decide how much like it you are or not. Don't worry! There's no right or wrong answers!
-          </BodyText>
+          </CmTypography>
 
           <SimpleWhiteTextButton style={styles.button} text='TAKE THE QUIZ' onPress={navigateToQuizScreen} />
         </Content>
@@ -40,9 +39,9 @@ function PreQuizScreen({ navigation }: Props) {
 
       <Section style={{ backgroundColor: Colors.themeDark }}>
         <Content>
-          <BodyText style={styles.whiteText}>
+          <CmTypography variant='body' style={styles.whiteText}>
             Personal values are key for effective climate conversations.
-          </BodyText>
+          </CmTypography>
           
           <Image source={require('src/assets/cm-logo-mint.png')} />
         </Content>

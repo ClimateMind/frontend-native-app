@@ -1,5 +1,6 @@
 import { Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native';
-import ButtonText from 'src/components/TextStyles/ButtonText';
+
+import { CmTypography } from '.';
 
 type Props = {
   text: string;
@@ -20,7 +21,7 @@ function SimpleWhiteTextButton({ text, onPress, disabled = false, style = {} }: 
       ]}
       onPress={onPress}
     >
-      <ButtonText style={styles.buttonText}>{text}</ButtonText>
+      <CmTypography variant='button' style={styles.buttonText}>{text}</CmTypography>
     </Pressable>
   );
 }

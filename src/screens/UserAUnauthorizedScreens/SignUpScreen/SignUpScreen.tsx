@@ -6,9 +6,7 @@ import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
 import useApiClient from 'src/hooks/useApiClient';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { login } from 'src/store/authSlice';
-import Headline1 from 'src/components/TextStyles/Headline1';
-import BodyText from 'src/components/TextStyles/BodyText';
-import LabelText from 'src/components/TextStyles/LabelText';
+import { CmTypography } from 'src/components';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
@@ -119,10 +117,10 @@ function SignUpScreen() {
             keyboardVerticalOffset={Platform.OS === 'ios' ? 80 : 0}
           >
             <View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-              <Headline1 style={{ padding: 8 }}>Create a Climate Mind account</Headline1>
-              <BodyText style={{ marginTop: 30, marginBottom: 60, textAlign: 'center' }}>
+              <CmTypography variant='h1'>Create a Climate Mind account</CmTypography>
+              <CmTypography variant='body' style={{ marginTop: 30, marginBottom: 60, textAlign: 'center' }}>
                 Save your results, see your climate topics, and start talking.
-              </BodyText>
+              </CmTypography>
             </View>
 
             <TextInput
@@ -133,7 +131,7 @@ function SignUpScreen() {
               onChangeText={(value) => inputChangeHandler('firstName', value)}
               style={[styles.input, !inputs.firstName.isValid && styles.invalidInput]}
             />
-            {!inputs.firstName.isValid && <LabelText style={styles.errorText}>First Name is a required field</LabelText>}
+            {!inputs.firstName.isValid && <CmTypography variant='label' style={styles.errorText}>First Name is a required field</CmTypography>}
 
             <TextInput
               placeholderTextColor="#88999C"
@@ -143,7 +141,7 @@ function SignUpScreen() {
               onChangeText={(value) => inputChangeHandler('lastName', value)}
               style={[styles.input, !inputs.lastName.isValid && styles.invalidInput]}
             />
-            {!inputs.lastName.isValid && <LabelText style={styles.errorText}>Last Name is a required field</LabelText>}
+            {!inputs.lastName.isValid && <CmTypography variant='label' style={styles.errorText}>Last Name is a required field</CmTypography>}
 
             <TextInput
               placeholderTextColor="#88999C"
@@ -153,7 +151,7 @@ function SignUpScreen() {
               onChangeText={(value) => inputChangeHandler('email', value)}
               style={[styles.input, !inputs.email.isValid && styles.invalidInput]}
             />
-            {!inputs.email.isValid && <LabelText style={styles.errorText}>Invalid email address</LabelText>}
+            {!inputs.email.isValid && <CmTypography variant='label' style={styles.errorText}>Invalid email address</CmTypography>}
 
             <TextInput
               placeholderTextColor="#88999C"
@@ -163,7 +161,7 @@ function SignUpScreen() {
               onChangeText={(value) => inputChangeHandler('password', value)}
               style={[styles.input, !inputs.password.isValid && styles.invalidInput]}
             />
-            {!inputs.password.isValid && <LabelText style={styles.errorText}>Invalid Password. Password must be at least 8 characters and contain one number or one special character</LabelText>}
+            {!inputs.password.isValid && <CmTypography variant='label' style={styles.errorText}>Invalid Password. Password must be at least 8 characters and contain one number or one special character</CmTypography>}
 
             <TextInput
               placeholderTextColor="#88999C"
@@ -173,7 +171,7 @@ function SignUpScreen() {
               onChangeText={(value) => inputChangeHandler('confirmPassword', value)}
               style={[styles.input, !inputs.confirmPassword.isValid && styles.invalidInput]}
             />
-            {!inputs.confirmPassword.isValid && <LabelText style={styles.errorText}>Passwords must match</LabelText>}
+            {!inputs.confirmPassword.isValid && <CmTypography variant='label' style={styles.errorText}>Passwords must match</CmTypography>}
 
             <SimpleWhiteTextButton style={styles.button} text="CREATE ACCOUNT" onPress={submitHandler} />
           </KeyboardAvoidingView>

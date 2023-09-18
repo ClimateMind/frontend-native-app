@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
-import LabelText from 'src/components/TextStyles/LabelText';
+import { CmTypography } from '.';
 
 interface Props {
   detailsTabName?: string;
@@ -17,11 +17,11 @@ function DetailsSourcesTab({ onTabChanged, detailsTabName='Details' }: Props) {
     <View style={styles.tabBar}>
       <Pressable style={[styles.tabButton, selectedTab === 0 ? styles.tabButtonActive : styles.tabButtonInactive ]} onPress={() => {setSelectedTab(0); onTabChanged(0)}}>
         <MaterialCommunityIcons name="clipboard-text" size={20} color="black" />
-        <LabelText style={{ padding: 5 }}>{detailsTabName}</LabelText>
+        <CmTypography variant='label' style={{ padding: 5 }}>{detailsTabName}</CmTypography>
       </Pressable>
       <Pressable style={[styles.tabButton, selectedTab === 1 ? styles.tabButtonActive : styles.tabButtonInactive ]} onPress={() => {setSelectedTab(1); onTabChanged(1)}}>
         <FontAwesome name="file-text" size={20} color="black" />
-        <LabelText style={{ padding: 5 }}>Sources</LabelText>
+        <CmTypography variant='label' style={{ padding: 5 }}>Sources</CmTypography>
       </Pressable>
   </View>
   );

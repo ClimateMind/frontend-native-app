@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 
 import useApiClient from "src/hooks/useApiClient";
-import Headline2 from "src/components/TextStyles/Headline2";
-import BodyText from "src/components/TextStyles/BodyText";
+import { CmTypography } from "src/components";
 
 interface Props {
   conversationId: string;
@@ -29,16 +28,16 @@ function ConversationRating({ conversationId, initialRating, onRated }: Props) {
   
   return (
     <>
-      <Headline2 style={styles.title}>Yay! Go you!</Headline2>
+      <CmTypography variant='h2' style={styles.title}>Yay! Go you!</CmTypography>
 
-      <BodyText>How Did it go?</BodyText>
+      <CmTypography variant='body'>How Did it go?</CmTypography>
 
       <View style={styles.buttonContainer}>
-        <Pressable style={[styles.button, { backgroundColor: rating === 1 ? 'lightgray' : 'white'}]} onPress={() => submitRating(1)}><BodyText>😡</BodyText></Pressable>
-        <Pressable style={[styles.button, { backgroundColor: rating === 2 ? 'lightgray' : 'white'}]} onPress={() => submitRating(2)}><BodyText>😐</BodyText></Pressable>
-        <Pressable style={[styles.button, { backgroundColor: rating === 3 ? 'lightgray' : 'white'}]} onPress={() => submitRating(3)}><BodyText>🤔</BodyText></Pressable>
-        <Pressable style={[styles.button, { backgroundColor: rating === 4 ? 'lightgray' : 'white'}]} onPress={() => submitRating(4)}><BodyText>😊</BodyText></Pressable>
-        <Pressable style={[styles.button, { backgroundColor: rating === 5 ? 'lightgray' : 'white'}]} onPress={() => submitRating(5)}><BodyText>🥳</BodyText></Pressable>
+        <Pressable style={[styles.button, { backgroundColor: rating === 1 ? 'lightgray' : 'white'}]} onPress={() => submitRating(1)}><CmTypography variant='body'>😡</CmTypography></Pressable>
+        <Pressable style={[styles.button, { backgroundColor: rating === 2 ? 'lightgray' : 'white'}]} onPress={() => submitRating(2)}><CmTypography variant='body'>😐</CmTypography></Pressable>
+        <Pressable style={[styles.button, { backgroundColor: rating === 3 ? 'lightgray' : 'white'}]} onPress={() => submitRating(3)}><CmTypography variant='body'>🤔</CmTypography></Pressable>
+        <Pressable style={[styles.button, { backgroundColor: rating === 4 ? 'lightgray' : 'white'}]} onPress={() => submitRating(4)}><CmTypography variant='body'>😊</CmTypography></Pressable>
+        <Pressable style={[styles.button, { backgroundColor: rating === 5 ? 'lightgray' : 'white'}]} onPress={() => submitRating(5)}><CmTypography variant='body'>🥳</CmTypography></Pressable>
       </View>
     </>
   );

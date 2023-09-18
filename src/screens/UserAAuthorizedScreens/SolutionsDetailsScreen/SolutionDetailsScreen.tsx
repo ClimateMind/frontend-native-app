@@ -12,8 +12,7 @@ import Content from 'src/components/Screen/Content';
 import MythsFeedCard from '../MythsFeedScreen/MythsFeedCard';
 import ActionCardHeader from '../ClimateFeedScreen/ActionCardHeader';
 import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
-import LabelText from 'src/components/TextStyles/LabelText';
-import BodyText from 'src/components/TextStyles/BodyText';
+import { CmTypography } from 'src/components';
 import BackButton from 'src/components/BackButton';
 
 type Props = NativeStackScreenProps<SolutionsFeedStackParams, 'SolutionDetailsScreen'>;
@@ -51,11 +50,11 @@ function SolutionDetailsScreen({ navigation, route }: Props) {
           <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
 
           {selectedTab === 0 && <View>
-            <BodyText style={styles.description}>{solution.longDescription}</BodyText>
+            <CmTypography variant='body' style={styles.description}>{solution.longDescription}</CmTypography>
             {myths?.map(myth => <View style={{ margin: 10 }} key={myth.iri}><MythsFeedCard myth={myth} onLearnMore={null} /></View>)}
             </View>}
 
-          {selectedTab === 1 && solution.solutionSources.map(source => <View key={source} style={{ padding: 10 }}><LabelText style={styles.link}>{source}</LabelText></View>)}
+          {selectedTab === 1 && solution.solutionSources.map(source => <View key={source} style={{ padding: 10 }}><CmTypography variant='label' style={styles.link}>{source}</CmTypography></View>)}
         </Content>
       </Section>
     </Screen>

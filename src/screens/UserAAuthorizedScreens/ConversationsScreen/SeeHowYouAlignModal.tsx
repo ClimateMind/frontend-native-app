@@ -8,9 +8,7 @@ import ViewSelectedTopicsButton from "./ViewSelectedTopicsButton";
 import { GetAllConversations } from "src/api/responses";
 import useApiClient from "src/hooks/useApiClient";
 import Alignment from "src/types/Alignment";
-import Headline1 from "src/components/TextStyles/Headline1";
-import ButtonText from "src/components/TextStyles/ButtonText";
-import BodyText from "src/components/TextStyles/BodyText";
+import { CmTypography } from "src/components";
 import Content from "src/components/Screen/Content";
 
 interface Props {
@@ -56,19 +54,19 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
         <Content>
           <Pressable style={styles.backButtonContainer} onPress={onClose}>
             <Ionicons name="chevron-back-outline" size={24} color="#A347FF" />
-            <ButtonText style={styles.backButtonText}>BACK</ButtonText>
+            <CmTypography variant='button' style={styles.backButtonText}>BACK</CmTypography>
           </Pressable>
           
-          <Headline1 style={{ padding: 8 }}>Your shared core values!</Headline1>
+          <CmTypography variant='h1'>Your shared core values!</CmTypography>
 
-          <BodyText style={styles.subheader}>How do your values align with {userBName}'s?</BodyText>
-          <BodyText style={styles.text}>Understanding your shared core values will help you identify how to tackle climate topics and solutions with friends.</BodyText>
+          <CmTypography variant='body' style={styles.subheader}>How do your values align with {userBName}'s?</CmTypography>
+          <CmTypography variant='body' style={styles.text}>Understanding your shared core values will help you identify how to tackle climate topics and solutions with friends.</CmTypography>
 
-          <BodyText style={styles.subheader}>Top Shared Core Value</BodyText>
+          <CmTypography variant='body' style={styles.subheader}>Top Shared Core Value</CmTypography>
           <PersonalValueCardSmall name={topSharedValue.name} shortDescription={topSharedValue.shortDescription} percentage={topSharedValue.score} />
 
-          <BodyText style={styles.subheader}>Overall Similarity</BodyText>
-          <Headline1 style={styles.percentage}>{topSharedValue.score.toString()}%</Headline1>
+          <CmTypography variant='body' style={styles.subheader}>Overall Similarity</CmTypography>
+          <CmTypography variant='h1' style={styles.percentage}>{topSharedValue.score.toString()}%</CmTypography>
 
           <ViewSelectedTopicsButton conversationId={conversation.conversationId} conversationState={2} style={{ marginTop: 50 }} onClick={onViewTopics} />
         </Content>

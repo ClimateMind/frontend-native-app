@@ -15,10 +15,7 @@ import Content from 'src/components/Screen/Content';
 import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
 import PersonalValueCard from 'src/components/Cards/PersonalValueCard';
 import RadarChart from 'src/components/RadarChart';
-import Headline1 from 'src/components/TextStyles/Headline1';
-import BodyText from 'src/components/TextStyles/BodyText';
-import CaptionText from 'src/components/TextStyles/CaptionText';
-import ButtonText from 'src/components/TextStyles/ButtonText';
+import { CmTypography } from 'src/components';
 
 type Props = NativeStackScreenProps<StackParams, 'PersonalValuesScreenNewUser'>;
 
@@ -58,7 +55,7 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
     <Screen ref={scrollRef}>
       <Section>
         <Content>
-          <Headline1 style={styles.headlines}>This is your Climate Personality</Headline1>
+          <CmTypography variant='h1' style={styles.headlines}>This is your Climate Personality</CmTypography>
 
           <View style={styles.cardContainer}>
             <PersonalValueCard nr={1} value={personalValues.personalValues[0]} />
@@ -70,7 +67,7 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
 
       <Section style={styles.whiteArea}>
         <Content>
-          <Headline1 style={styles.headlines}>Your Personal Value Web</Headline1>
+          <CmTypography variant='h1' style={styles.headlines}>Your Personal Value Web</CmTypography>
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <RadarChart
               // The -40 comes from the padding of the parent view (20 on each side)
@@ -85,17 +82,17 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
 
       <Section>
         <Content>
-          <Headline1 style={styles.headlines}>Get started</Headline1>
-          <BodyText style={styles.boldText}>Explore how climate change impacts you personally and relates to your values</BodyText>
-          <BodyText style={styles.boldText}>Discover climate solutions tailored to you</BodyText>
-          <BodyText style={styles.boldText}>Communicate the realities of climate change to others</BodyText>
-          <BodyText style={[styles.boldText, { marginBottom: 30 }]}>Set up your account and dive into effective conversations about climate change</BodyText>
+          <CmTypography variant='h1' style={styles.headlines}>Get started</CmTypography>
+          <CmTypography variant='body' style={styles.boldText}>Explore how climate change impacts you personally and relates to your values</CmTypography>
+          <CmTypography variant='body' style={styles.boldText}>Discover climate solutions tailored to you</CmTypography>
+          <CmTypography variant='body' style={styles.boldText}>Communicate the realities of climate change to others</CmTypography>
+          <CmTypography variant='body' style={[styles.boldText, { marginBottom: 30 }]}>Set up your account and dive into effective conversations about climate change</CmTypography>
 
           <SimpleWhiteTextButton style={styles.button} text='DIVE IN' onPress={navigateToSignUpScreen} />
 
-          <CaptionText style={styles.boldText}>Not happy with your results?</CaptionText>
+          <CmTypography variant='caption' style={styles.boldText}>Not happy with your results?</CmTypography>
           <Pressable onPress={retakeQuiz}>
-            <ButtonText style={{ letterSpacing: 0, marginBottom: 60 }}>RETAKE QUIZ</ButtonText>
+            <CmTypography variant='button' style={{ letterSpacing: 0, marginBottom: 60 }}>RETAKE QUIZ</CmTypography>
           </Pressable>
         </Content>
       </Section>
@@ -111,7 +108,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   headlines: {
-    paddingVertical: 8,
     marginVertical: 20,
   },
   boldText: {

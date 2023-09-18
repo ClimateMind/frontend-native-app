@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Modal, Pressable, StyleSheet, TextInput, View } from "react-native";
 import useApiClient from 'src/hooks/useApiClient';
 import { showErrorToast, showSuccessToast } from 'src/components/ToastMessages';
-import Headline4 from 'src/components/TextStyles/Headline4';
+import { CmTypography } from 'src/components';
 import Card from 'src/components/Cards/Card';
 
 interface Props {
@@ -61,7 +61,7 @@ function ChangePasswordModal({ show, onSubmit, onCancel }: Props) {
       <View style={styles.centerModal}>
         <Card style={{ padding: 20, width: '90%' }}>
 
-          <Headline4 style={styles.cardHeader}>Change your password</Headline4>
+          <CmTypography variant='h4' style={styles.cardHeader}>Change your password</CmTypography>
 
           <TextInput
             placeholder="Current password"
@@ -91,8 +91,8 @@ function ChangePasswordModal({ show, onSubmit, onCancel }: Props) {
           />
 
           <View style={styles.buttonContainer}>
-            <Pressable onPress={onCancel} style={styles.button}><Text>CANCEL</Text></Pressable>
-            <Pressable disabled={submitDisabled()} onPress={submitButtonHandler} style={[styles.button, submitDisabled() && {opacity: 0.2}]}><Text>SUBMIT</Text></Pressable>
+            <Pressable onPress={onCancel} style={styles.button}><CmTypography variant='button'>CANCEL</CmTypography></Pressable>
+            <Pressable disabled={submitDisabled()} onPress={submitButtonHandler} style={[styles.button, submitDisabled() && {opacity: 0.2}]}><CmTypography variant='button'>SUBMIT</CmTypography></Pressable>
           </View>
 
         </Card>

@@ -2,9 +2,7 @@ import { useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { capitalize } from "lodash";
 
-import Headline3 from "src/components/TextStyles/Headline3";
-import ButtonText from "src/components/TextStyles/ButtonText";
-import BodyText from "src/components/TextStyles/BodyText";
+import { CmTypography } from "src/components";
 import PersonalValueIcon from "src/components/PersonalValueIcon";
 import Card from "./Card";
 
@@ -24,16 +22,16 @@ function PersonalValueCardSmall({ name, shortDescription, percentage }: Props) {
         <PersonalValueIcon valueName={name} style={styles.image} />
 
         <View>
-          <Headline3>{capitalize(name)}</Headline3>
-          <Headline3>{percentage.toString()}% match</Headline3>
+          <CmTypography variant='h3'>{capitalize(name)}</CmTypography>
+          <CmTypography variant='h3'>{percentage.toString()}% match</CmTypography>
         </View>
 
         <Pressable onPress={() => setExpanded(prev => !prev)} style={{ width: 70 }}>
-          <ButtonText style={styles.moreCloseText}>{expanded ? "CLOSE" : "MORE"}</ButtonText>
+          <CmTypography variant='button' style={styles.moreCloseText}>{expanded ? "CLOSE" : "MORE"}</CmTypography>
         </Pressable>
       </View>
 
-      {expanded && <BodyText style={styles.shortDescription}>{shortDescription}</BodyText>}
+      {expanded && <CmTypography variant='body' style={styles.shortDescription}>{shortDescription}</CmTypography>}
 
     </Card>
   );

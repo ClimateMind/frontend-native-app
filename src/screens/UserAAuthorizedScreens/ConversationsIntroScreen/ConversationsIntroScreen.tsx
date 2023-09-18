@@ -6,8 +6,7 @@ import { ConversationsStackParams } from 'src/navigation/Stacks/ConversationsSta
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import Headline2 from 'src/components/TextStyles/Headline2';
-import BodyText from 'src/components/TextStyles/BodyText';
+import { CmTypography } from 'src/components';
 import BulletListItem from 'src/components/BulletListItem';
 import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
 
@@ -18,18 +17,17 @@ function ConversationsIntroScreen({ navigation }: Props) {
     <Screen>
       <Section>
         <Content style={{ maxWidth: 400, alignItems: 'flex-start' }}>
-          <Headline2 style={[styles.marginBottom, { alignSelf: 'center' }]}>How to talk about Climate Change</Headline2>
+          <CmTypography variant='h2' style={[styles.marginBottom, { alignSelf: 'center' }]}>How to talk about Climate Change</CmTypography>
 
-          <BodyText style={styles.marginBottom}>Climate change is a global issue, and your contribution matters!</BodyText>
-
-          <BodyText style={styles.marginBottom}>You don't need to be an expert to talk about climate change. Follow these easy steps to start having effective conversations:</BodyText>
+          <CmTypography variant='body' style={styles.marginBottom}>Climate change is a global issue, and your contribution matters!</CmTypography>
+          <CmTypography variant='body' style={styles.marginBottom}>You don't need to be an expert to talk about climate change. Follow these easy steps to start having effective conversations:</CmTypography>
           
           <BulletListItem>Send a friend the link we provide</BulletListItem>
           <BulletListItem>They will pick an article to talk about with you</BulletListItem>
           <BulletListItem>Use the article to start a conversation</BulletListItem>
           <BulletListItem textStyle={styles.marginBottom}>Tell us how it went!</BulletListItem>
 
-          <BodyText style={styles.marginBottom}>When you have conversations with others, you take part in a network of people around the world who are working together to find solutions.</BodyText>
+          <CmTypography variant='body' style={styles.marginBottom}>When you have conversations with others, you take part in a network of people around the world who are working together to find solutions.</CmTypography>
 
           <SimpleWhiteTextButton style={styles.button} text='START TALKING WITH PEOPLE' onPress={() => { navigation.navigate('ConversationsScreen') }} />
         </Content>

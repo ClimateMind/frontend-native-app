@@ -10,9 +10,7 @@ import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import Headline3 from 'src/components/TextStyles/Headline3';
-import BodyText from 'src/components/TextStyles/BodyText';
-import LabelText from 'src/components/TextStyles/LabelText';
+import { CmTypography } from 'src/components';
 import BackButton from 'src/components/BackButton';
 
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateDetailsScreen'>;
@@ -27,17 +25,17 @@ function ClimateDetailsScreen({ navigation, route }: Props) {
         <Content>
           <BackButton onPress={() => navigation.goBack()} />
 
-          <Headline3 style={styles.title}>{capitalize(climateEffect.effectTitle)}</Headline3>
+          <CmTypography variant='h3' style={styles.title}>{capitalize(climateEffect.effectTitle)}</CmTypography>
           {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
 
           <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
 
           {selectedTab === 0 && <View>
-            <BodyText style={styles.description}>{climateEffect.effectDescription}</BodyText>
+            <CmTypography variant='body' style={styles.description}>{climateEffect.effectDescription}</CmTypography>
             {climateEffect.effectSolutions.map(solution => <View style={{ marginVertical: 20 }} key={solution.solutionTitle}><ActionCard solution={solution} /></View>)}
           </View>}
 
-          {selectedTab === 1 && climateEffect.effectSources.map(source => <View key={source} style={styles.links}><LabelText style={styles.link}>{source}</LabelText></View>)}
+          {selectedTab === 1 && climateEffect.effectSources.map(source => <View key={source} style={styles.links}><CmTypography variant='label' style={styles.link}>{source}</CmTypography></View>)}
         </Content>
       </Section>
     </Screen>
