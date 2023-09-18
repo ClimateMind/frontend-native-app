@@ -17,6 +17,13 @@ export const Default = {
   },
 }
 
+export const Disabled = {
+  args: {
+    text: 'Disabled Button',
+    disabled: true,
+  },
+}
+
 export const Error = {
   args: {
     text: 'Error Button',

@@ -13,20 +13,20 @@ const meta: Meta<typeof CmTextButton> = {
 
 export const Default = {
   args: {
-    text: 'Default Button',
+    text: 'Text Button',
   },
 }
 
-export const Error = {
+export const Disabled = {
   args: {
-    text: 'Error Button',
-    color: 'error',
+    text: 'Disabled Button',
+    disabled: true,
   },
 }
 
 export const WithLineBreaks = {
   args: {
-    text: 'Button With\nLine Breaks',
+    text: 'Text\nButton',
   },
 }
 
