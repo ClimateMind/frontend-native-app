@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 
-import Headline4 from 'src/components/TextStyles/Headline4';
-import BodyText from 'src/components/TextStyles/BodyText';
+import { CmTypography } from 'src/components';
 import Card from 'src/components/Cards/Card';
 
 function ConversationsIntroCard() {
@@ -10,23 +9,22 @@ function ConversationsIntroCard() {
   
   return (
     <Card style={{ padding: 15 }}>
-
-      <Headline4 style={{ marginBottom: 10 }}>How to talk about Climate Change</Headline4>
+      <CmTypography variant='h4' style={{ marginBottom: 10 }}>How to talk about Climate Change</CmTypography>
 
       {expanded && <>
-        <Headline4 style={styles.subtitle}>Step 1: Bond</Headline4>
-        <BodyText style={styles.text}>Start your conversation by bonding over similar personal values and interests.</BodyText>
-        <BodyText style={styles.text}>Climate Mind helps with this by giving you a special link to the values questionnaire to share with others before you chat.</BodyText>
+        <CmTypography variant='h4' style={styles.subtitle}>Step 1: Bond</CmTypography>
+        <CmTypography variant='body' style={styles.text}>Start your conversation by bonding over similar personal values and interests.</CmTypography>
+        <CmTypography variant='body' style={styles.text}>Climate Mind helps with this by giving you a special link to the values questionnaire to share with others before you chat.</CmTypography>
 
-        <Headline4 style={styles.subtitle}>Step 2: Relate</Headline4>
-        <BodyText style={styles.text}>Connect the dots for others on how your shared values relate to climate change.</BodyText>
+        <CmTypography variant='h4' style={styles.subtitle}>Step 2: Relate</CmTypography>
+        <CmTypography variant='body' style={styles.text}>Connect the dots for others on how your shared values relate to climate change.</CmTypography>
         
-        <Headline4 style={styles.subtitle}>Step 3: Inspire</Headline4>
-        <BodyText style={styles.text}>Motivate the other person with solutions they find attractive.</BodyText>
+        <CmTypography variant='h4' style={styles.subtitle}>Step 3: Inspire</CmTypography>
+        <CmTypography variant='body' style={styles.text}>Motivate the other person with solutions they find attractive.</CmTypography>
       </>}
 
       <Pressable onPress={() => setExpanded(current => !current)} style={styles.moreLessButton}>
-        <BodyText style={{ letterSpacing: 1, fontWeight: 'bold' }}>{expanded ? 'LESS' : 'MORE'}</BodyText>
+        <CmTypography variant='body' style={{ letterSpacing: 1, fontWeight: 'bold' }}>{expanded ? 'LESS' : 'MORE'}</CmTypography>
       </Pressable>
 
     </Card>

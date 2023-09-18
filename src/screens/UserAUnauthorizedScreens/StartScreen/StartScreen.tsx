@@ -4,9 +4,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Colors from 'src/assets/colors';
 import { StackParams } from 'src/navigation/UserAUnauthorizedStackNavigation';
 import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
-import BodyText from 'src/components/TextStyles/BodyText';
-import LabelText from 'src/components/TextStyles/LabelText';
-import Headline1 from 'src/components/TextStyles/Headline1';
+import { CmTypography } from 'src/components';
 import { showSuccessToast } from 'src/components/ToastMessages';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
@@ -28,31 +26,31 @@ function StartScreen({ navigation }: Props) {
       <Section>
         <Content>
           <Image style={styles.image} source={require('src/assets/cm-logo.png')} />
-          <Headline1 style={{ textAlign: 'center', paddingVertical: 8 }}>Inspire others to take action!</Headline1>
+          <CmTypography variant='h1'>Inspire others to take action!</CmTypography>
 
           <SimpleWhiteTextButton style={styles.button} text='GET STARTED' onPress={navigateToPreQuizScreen} />
 
           <Pressable onPress={navigateToLoginScreen}>
-            <LabelText style={[styles.text, { fontWeight: 'bold' }]}>Already a member? Login here</LabelText>
+            <CmTypography variant='label' style={styles.text}>Already a member? Login here</CmTypography>
           </Pressable>
 
-          <BodyText style={styles.text}>
+          <CmTypography variant='body' style={styles.text}>
             Climate change affects us all. And to inspire sufficient action, we must talk about it
             much more.
-          </BodyText>
+          </CmTypography>
           
-          <BodyText style={styles.text}>
+          <CmTypography variant='body' style={styles.text}>
             Climate Mind makes it easy to have effective conversations with your friends and family.
-          </BodyText>
+          </CmTypography>
         </Content>
       </Section>
 
       <Section style={{ flexGrow: 1, backgroundColor: Colors.themeDark }}>
         <Content>
-          <BodyText style={styles.whiteText}>
+          <CmTypography variant='body' style={styles.whiteText}>
             We use proven social science to connect climate change to what people care about and help
             find solutions they like.
-          </BodyText>
+          </CmTypography>
 
           <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Test12: " + process.env.EXPO_PUBLIC_API_URL)}>
             <Image source={require('src/assets/ConnectTheDots.png')} />

@@ -9,7 +9,7 @@ import useApiClient from 'src/hooks/useApiClient';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import Headline2 from 'src/components/TextStyles/Headline2';
+import { CmTypography } from 'src/components';
 
 interface Props {
   open: boolean;
@@ -42,7 +42,7 @@ function ConversationsDrawer({ open, onClose }: Props) {
               <AntDesign name="down" size={24} color="black" style={{ padding: 20 }} />
             </Pressable>
             <View style={{ marginBottom: 20 }}>
-              <Headline2>Ongoing Conversations</Headline2>
+              <CmTypography variant='h2'>Ongoing Conversations</CmTypography>
             </View>
 
             {allConversations === undefined && <ActivityIndicator size="large" color="black" style={{ marginTop: 100 }} />}

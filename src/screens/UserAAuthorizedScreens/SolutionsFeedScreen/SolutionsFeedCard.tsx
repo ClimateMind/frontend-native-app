@@ -3,10 +3,7 @@ import { Image, View } from "react-native";
 import { capitalize } from "lodash";
 
 import Solution from "src/types/Solution";
-import Headline3 from "src/components/TextStyles/Headline3";
-import BodyText from "src/components/TextStyles/BodyText";
-import LabelText from "src/components/TextStyles/LabelText";
-import ButtonText from "src/components/TextStyles/ButtonText";
+import { CmTypography } from "src/components";
 import Card from "src/components/Cards/Card";
 
 interface Props {
@@ -19,15 +16,15 @@ function SolutionsFeedCard({ solution, onLearnMore }: Props) {
     <Card>
 
       <View style={styles.headingContainer}>
-        <LabelText style={styles.actionType}>{solution.solutionType.toUpperCase()} ACTION</LabelText>
-        <Headline3 style={styles.title}>{capitalize(solution.solutionTitle)}</Headline3>
+        <CmTypography variant='label' style={styles.actionType}>{solution.solutionType.toUpperCase()} ACTION</CmTypography>
+        <CmTypography variant='h3' style={styles.title}>{capitalize(solution.solutionTitle)}</CmTypography>
       </View>
 
       {solution.imageUrl !== null && <Image style={styles.image} source={{uri: solution.imageUrl}} />}
-      <BodyText style={styles.text}>{solution.shortDescription}</BodyText>
+      <CmTypography variant='body' style={styles.text}>{solution.shortDescription}</CmTypography>
 
       <Pressable onPress={() => onLearnMore(solution)}>
-        <ButtonText style={styles.button}>MORE</ButtonText>
+        <CmTypography variant='button' style={styles.button}>MORE</CmTypography>
       </Pressable>
 
     </Card>

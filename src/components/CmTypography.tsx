@@ -7,7 +7,9 @@ interface Props extends TextProps {
 }
 
 function ButtonText({ children, variant, style, ...rest }: Props) {
-  const textContent = Array.isArray(children) ? children.join(' ') : children;
+  let textContent = Array.isArray(children) ? children.join(' ') : children;
+  textContent = textContent[0].toUpperCase() + textContent.slice(1);
+
   let textStyle: StyleProp<TextStyle>;
 
   switch (variant) {
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
     lineHeight: 32,
     letterSpacing: 0.8,
     textAlign: 'center',
-    textTransform: 'capitalize',
+    paddingTop: 8,
   },
   headline2: {
     fontFamily: 'nunito-black',
@@ -64,7 +66,6 @@ const styles = StyleSheet.create({
     lineHeight: 32,
     letterSpacing: 0.8,
     textAlign: 'center',
-    textTransform: 'capitalize',
   },
   headline3: {
     fontFamily: 'nunito-black',
@@ -72,26 +73,22 @@ const styles = StyleSheet.create({
     lineHeight: 24.5,
     letterSpacing: 1.6,
     textAlign: 'center',
-    textTransform: 'capitalize',
   },
   headline4: {
     fontFamily: 'nunito-bold',
     fontSize: 16,
     lineHeight: 22,
     textAlign: 'center',
-    textTransform: 'capitalize',
   },
   body: {
     fontFamily: 'nunito',
     fontSize: 16,
     lineHeight: 22,
-    textTransform: 'capitalize',
   },
   bodyItalics: {
     fontFamily: 'nunito-italic',
     fontSize: 16,
     lineHeight: 22,
-    textTransform: 'capitalize',
   },
   button: {
     fontFamily: 'nunito-bold',
@@ -104,14 +101,12 @@ const styles = StyleSheet.create({
     fontFamily: 'nunito',
     fontSize: 12,
     lineHeight: 16,
-    textTransform: 'capitalize',
   },
   label: {
     fontFamily: 'nunito-extra-bold',
     fontSize: 12,
     lineHeight: 16,
     letterSpacing: 1.0,
-    textTransform: 'capitalize',
   },
   overline: {
     fontFamily: 'nunito-bold',

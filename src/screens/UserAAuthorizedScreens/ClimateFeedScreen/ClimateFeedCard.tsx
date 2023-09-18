@@ -4,11 +4,8 @@ import { capitalize } from "lodash";
 import ClimateEffect from "src/types/ClimateEffect";
 import ActionCardHeader from "./ActionCardHeader";
 
-import Headline3 from "src/components/TextStyles/Headline3";
-import BodyText from "src/components/TextStyles/BodyText";
-import ButtonText from "src/components/TextStyles/ButtonText";
 import Card from "src/components/Cards/Card";
-import { CmChip } from "src/components";
+import { CmChip, CmTypography } from "src/components";
 
 interface Props {
   climateEffect: ClimateEffect;
@@ -19,10 +16,10 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
   return (
     <Card>
 
-      <Headline3 style={styles.title}>{capitalize(climateEffect.effectTitle)}</Headline3>
+      <CmTypography variant='h3' style={styles.title}>{capitalize(climateEffect.effectTitle)}</CmTypography>
       {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
 
-      <BodyText style={styles.text}>{climateEffect.effectShortDescription}</BodyText>
+      <CmTypography variant='body' style={styles.text}>{climateEffect.effectShortDescription}</CmTypography>
 
       {climateEffect.relatedPersonalValues && (
         <View style={styles.chipsContainer}>
@@ -33,7 +30,7 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
       )}
 
       <Pressable onPress={() => onLearnMore(climateEffect)}>
-        <ButtonText style={styles.button}>LEARN MORE</ButtonText>
+        <CmTypography variant='button' style={styles.button}>LEARN MORE</CmTypography>
       </Pressable>
 
       <ActionCardHeader effectSolution={climateEffect.effectSolutions[0]} />

@@ -6,11 +6,10 @@ import Solution from 'src/types/Solution';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
+import { CmTypography } from 'src/components';
 import SolutionsFeedCard from './SolutionsFeedCard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SolutionsFeedStackParams } from 'src/navigation/Stacks/SolutionsFeedStack';
-import Headline1 from 'src/components/TextStyles/Headline1';
-import BodyText from 'src/components/TextStyles/BodyText';
 import { useAppSelector } from 'src/store/hooks';
 
 type Props = NativeStackScreenProps<SolutionsFeedStackParams, 'SolutionsFeedScreen'>;
@@ -39,10 +38,10 @@ function SolutionsFeedScreen({ navigation }: Props) {
           <FlatList
             ListHeaderComponent={
               <>
-                <Headline1 style={styles.heading}>Take action to fight climate change</Headline1>
-                <BodyText style={styles.text}>
+                <CmTypography variant='h1' style={styles.heading}>Take action to fight climate change</CmTypography>
+                <CmTypography variant='body' style={styles.text}>
                   Check out how you and your community can be part of the solution!
-                </BodyText>
+                </CmTypography>
               </>
             }
             data={solutionsFeed}
@@ -64,7 +63,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 30,
     marginBottom: 20,
-    paddingTop: 8,
   },
   text: {
     textAlign: 'center',

@@ -1,7 +1,8 @@
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
-import LabelText from 'src/components/TextStyles/LabelText';
+
+import { CmTypography } from 'src/components';
 
 interface AnswerProps {
   index: number;
@@ -20,7 +21,7 @@ function Answer({ index, text, onSelect }: AnswerProps) {
           pressed ? (
             <>
               <FontAwesome5 name="dot-circle" size={24} color="#39f5ad" />
-              <LabelText style={styles.answerText}>{text}</LabelText>
+              <CmTypography variant='label' style={styles.answerText}>{text}</CmTypography>
             </>
           ) : (
             <>
@@ -29,7 +30,7 @@ function Answer({ index, text, onSelect }: AnswerProps) {
                 size={24}
                 color={pressed ? '#39f5ad' : 'black'}
               />
-              <LabelText style={styles.answerText}>{text}</LabelText>
+              <CmTypography variant='label' style={styles.answerText}>{text}</CmTypography>
             </>
           )
         }

@@ -1,8 +1,6 @@
 import { Modal, Pressable, StyleSheet, View } from 'react-native';
 
-import Headline4 from 'src/components/TextStyles/Headline4';
-import BodyText from 'src/components/TextStyles/BodyText';
-import ButtonText from 'src/components/TextStyles/ButtonText';
+import { CmTypography } from 'src/components';
 import Card from 'src/components/Cards/Card';
 
 interface Props {
@@ -21,12 +19,12 @@ function DeleteConversationModal({ show, userBName, onCancel, onConfirm }: Props
       <View style={styles.centerModal}>
         <Card style={{ padding: 20, width: '90%' }}>
 
-          <Headline4 style={styles.cardHeader}>Delete Conversation?</Headline4>
-          <BodyText>Are you sure you want to delete your conversation with {userBName}</BodyText>
+          <CmTypography variant='h4' style={styles.cardHeader}>Delete Conversation?</CmTypography>
+          <CmTypography variant='body'>Are you sure you want to delete your conversation with {userBName}</CmTypography>
 
           <View style={styles.buttonContainer}>
-            <Pressable onPress={onCancel}><ButtonText style={styles.buttonText}>CANCEL</ButtonText></Pressable>
-            <Pressable onPress={onConfirm}><ButtonText style={styles.buttonText}>CONFIRM</ButtonText></Pressable>
+            <Pressable onPress={onCancel}><CmTypography variant='button' style={styles.buttonText}>CANCEL</CmTypography></Pressable>
+            <Pressable onPress={onConfirm}><CmTypography variant='button' style={styles.buttonText}>CONFIRM</CmTypography></Pressable>
           </View>
 
         </Card>

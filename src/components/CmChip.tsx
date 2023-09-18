@@ -1,13 +1,13 @@
 import { StyleSheet } from 'react-native';
 
-import BodyText from 'src/components/TextStyles/BodyText';
+import { CmTypography } from '.';
 
 interface Props {
   label: string;
 }
 
 function CmChip({ label }: Props) {
-  return <BodyText style={styles.chip}>{label}</BodyText>;
+  return <CmTypography variant='body' style={styles.chip}>{label}</CmTypography>;
 }
 
 const styles = StyleSheet.create({

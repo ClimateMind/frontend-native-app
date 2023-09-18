@@ -11,10 +11,7 @@ import useApiClient from 'src/hooks/useApiClient';
 import ConversationsDrawer from './ConversationsDrawer';
 import CopyLinkModal from './CopyLinkModal';
 import { showErrorToast } from 'src/components/ToastMessages';
-import LabelText from 'src/components/TextStyles/LabelText';
-import Headline2 from 'src/components/TextStyles/Headline2';
-import BodyText from 'src/components/TextStyles/BodyText';
-import CaptionText from 'src/components/TextStyles/CaptionText';
+import { CmTypography } from 'src/components';
 
 function ConversationsScreen() {
   const apiClient = useApiClient();
@@ -51,15 +48,15 @@ function ConversationsScreen() {
         <Section style={{ paddingBottom: 0 }}>
           <Content>
             <KeyboardAvoidingView behavior="position" style={styles.mainSection}>
-              <Headline2>Start a Conversation</Headline2>
-              <BodyText style={styles.center}>
+              <CmTypography variant='h2'>Start a Conversation</CmTypography>
+              <CmTypography variant='body' style={styles.center}>
                 Create a personalized link for each person you want to talk to. Then
                 share it, so they can take the quiz, discover your shared values, and
                 pick topics to talk about.
-              </BodyText>
-              <CaptionText style={styles.center}>We will send you an email when they agree to share their results with you!</CaptionText>
+              </CmTypography>
+              <CmTypography variant='caption' style={styles.center}>We will send you an email when they agree to share their results with you!</CmTypography>
 
-              <LabelText style={styles.label}>Name of recipient</LabelText>
+              <CmTypography variant='label' style={styles.label}>Name of recipient</CmTypography>
               <TextInput
                 placeholder='Try "Peter Smith" or "Mom"'
                 autoCapitalize="sentences"
@@ -74,7 +71,7 @@ function ConversationsScreen() {
 
             <Pressable onPress={() => setShowConversationsDrawer(true)} style={styles.openDrawerButton}>
               <AntDesign name="up" size={24} color="black" />
-              <BodyText style={{ fontWeight: 'bold', letterSpacing: 1.2 }}>Ongoing Conversations</BodyText>
+              <CmTypography variant='body' style={{ fontWeight: 'bold', letterSpacing: 1.2 }}>Ongoing Conversations</CmTypography>
             </Pressable>
 
             <ConversationsDrawer

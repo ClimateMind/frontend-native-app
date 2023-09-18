@@ -8,9 +8,8 @@ import { useAppSelector } from 'src/store/hooks';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
+import { CmTypography } from 'src/components';
 import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
-import Headline1 from 'src/components/TextStyles/Headline1';
-import BodyText from 'src/components/TextStyles/BodyText';
 
 type Props = DrawerScreenProps<RootDrawerNavigationParams, 'SubmitSetTwoScreen'>;
 
@@ -29,13 +28,13 @@ function SubmitSetTwoScreen({ navigation }: Props) {
     <Screen>
       <Section>
         <Content style={{ justifyContent: 'center' }}>
-          <Headline1 style={{ padding: 8 }}>Woohoo! Good Job!</Headline1>
+          <CmTypography variant='h1'>Woohoo! Good Job!</CmTypography>
           
-          <BodyText style={styles.bodyText}>With the questions you just answered I can predict your Climate Personality.</BodyText>
+          <CmTypography variant='body' style={styles.bodyText}>With the questions you just answered I can predict your Climate Personality.</CmTypography>
           
           <Image style={{ marginVertical: 30 }} source={require('src/assets/reward-personalities.png')} />
           
-          <BodyText style={styles.bodyText}>This is a ranking of the top three personal values that you deploy when making decisions.</BodyText>
+          <CmTypography variant='body' style={styles.bodyText}>This is a ranking of the top three personal values that you deploy when making decisions.</CmTypography>
 
           <SimpleWhiteTextButton style={styles.button} text='FIND OUT MY CLIMATE PERSONALITY' onPress={navigateToPersonalValuesScreen} />
         </Content>

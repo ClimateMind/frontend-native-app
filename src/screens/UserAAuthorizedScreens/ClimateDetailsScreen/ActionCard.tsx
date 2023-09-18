@@ -2,8 +2,7 @@ import { Image, Pressable, StyleSheet, View } from "react-native";
 
 import Solution from "src/types/Solution";
 import ActionCardHeader from "../ClimateFeedScreen/ActionCardHeader";
-import BodyText from "src/components/TextStyles/BodyText";
-import ButtonText from "src/components/TextStyles/ButtonText";
+import { CmTypography } from "src/components";
 
 interface Props {
   solution: Solution;
@@ -18,9 +17,9 @@ function ActionCard({ solution, color = '#FDED6D' }: Props) {
         <Image style={styles.image} source={{ uri: solution.imageUrl }} />
       )}
 
-      <BodyText style={styles.description}>{solution.shortDescription}</BodyText>
+      <CmTypography variant='body' style={styles.description}>{solution.shortDescription}</CmTypography>
       <Pressable>
-        <ButtonText style={styles.button}>LEARN MORE</ButtonText>
+        <CmTypography variant='button' style={styles.button}>LEARN MORE</CmTypography>
       </Pressable>
     </View>
   );

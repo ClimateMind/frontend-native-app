@@ -8,9 +8,7 @@ import ClimateEffect2 from "src/types/ClimateEffect2";
 import ClimateEffect3 from "src/types/ClimateEffect3";
 import DetailsSourcesTab from "src/components/DetailsSourcesTabs";
 import useApiClient from "src/hooks/useApiClient";
-import Headline3 from "src/components/TextStyles/Headline3";
-import BodyText from "src/components/TextStyles/BodyText";
-import LabelText from "src/components/TextStyles/LabelText";
+import { CmTypography } from "src/components";
 
 interface Props {
   open: boolean;
@@ -44,22 +42,22 @@ function ActionDetailsModal({ open, action, onClose }: Props) {
     >
       <View style={styles.container}>
         <Pressable style={{ alignItems: 'center', width: '100%', paddingTop: 20 }} onPress={onClose}>
-          <LabelText>Close</LabelText>
+          <CmTypography variant='label'>Close</CmTypography>
           <MaterialIcons name="keyboard-arrow-down" size={50} color={Colors.themeBright} style={{ top: -15, }} />
         </Pressable>
 
         <ScrollView style={{ width: '100%' }}>
 
-          <Headline3 style={styles.title}>{capitalize(actionDetails.effectTitle)}</Headline3>
+          <CmTypography variant='h3' style={styles.title}>{capitalize(actionDetails.effectTitle)}</CmTypography>
           {actionDetails.imageUrl !== null && <Image style={styles.image} source={{uri: actionDetails.imageUrl}} />}
 
           <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
 
           {selectedTab === 0 && <View>
-            <BodyText style={styles.text}>{actionDetails.longDescription}</BodyText>
+            <CmTypography variant='body' style={styles.text}>{actionDetails.longDescription}</CmTypography>
           </View>}
 
-          {selectedTab === 1 && actionDetails.effectSources.map(source => <View key={source} style={styles.links}><LabelText style={styles.link}>{source}</LabelText></View>)}
+          {selectedTab === 1 && actionDetails.effectSources.map(source => <View key={source} style={styles.links}><CmTypography variant='label' style={styles.link}>{source}</CmTypography></View>)}
 
         </ScrollView>
       </View>

@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-import { Image, Modal, Pressable, ScrollView, View } from "react-native";
+import { Image, Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
 
 import Colors from "src/assets/colors";
 import useApiClient from "src/hooks/useApiClient";
 import Solution3 from "src/types/Solution3";
 import Solution2 from "src/types/Solution2";
-import { StyleSheet } from "react-native";
 import ActionCardHeader from "./ActionCardHeader";
 import DetailsSourcesTab from "src/components/DetailsSourcesTabs";
-import LabelText from "src/components/TextStyles/LabelText";
-import BodyText from "src/components/TextStyles/BodyText";
+import { CmTypography } from "src/components";
 
 interface Props {
   open: boolean;
@@ -44,7 +42,7 @@ function SolutionDetailsModal({ open, solution, onClose }: Props) {
     >
       <View style={styles.container}>
         <Pressable style={{ alignItems: 'center', width: '100%', paddingTop: 20 }} onPress={onClose}>
-          <LabelText>Close</LabelText>
+          <CmTypography variant='label'>Close</CmTypography>
           <MaterialIcons name="keyboard-arrow-down" size={50} color={Colors.themeBright} style={{ top: -15, }} />
         </Pressable>
 
@@ -57,8 +55,8 @@ function SolutionDetailsModal({ open, solution, onClose }: Props) {
 
           <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
 
-          {selectedTab === 0 && <View><BodyText style={styles.text}>{solutionDetails.longDescription}</BodyText></View>}
-          {selectedTab === 1 && solutionDetails.solutionSources.map(source => <View key={source} style={styles.links}><LabelText style={styles.link}>{source}</LabelText></View>)}
+          {selectedTab === 0 && <View><CmTypography variant='body' style={styles.text}>{solutionDetails.longDescription}</CmTypography></View>}
+          {selectedTab === 1 && solutionDetails.solutionSources.map(source => <View key={source} style={styles.links}><CmTypography variant='label' style={styles.link}>{source}</CmTypography></View>)}
         </ScrollView>
       </View>
     </Modal>

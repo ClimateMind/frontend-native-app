@@ -2,9 +2,7 @@ import { Modal, Pressable, StyleSheet, View } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 
 import { showSuccessToast } from 'src/components/ToastMessages';
-import Headline4 from 'src/components/TextStyles/Headline4';
-import BodyText from 'src/components/TextStyles/BodyText';
-import ButtonText from 'src/components/TextStyles/ButtonText';
+import { CmTypography } from 'src/components';
 import Card from 'src/components/Cards/Card';
 
 interface Props {
@@ -26,12 +24,12 @@ function CopyLinkModal({ show, recipient, link, onClose }: Props) {
       <View style={styles.centerModal}>
         <Card style={{ padding: 20, width: '90%' }}>
 
-          <Headline4 style={styles.modalText}>Copy Link</Headline4>
-          <BodyText style={styles.modalText}>Unique for {recipient}</BodyText>
-          <BodyText style={styles.modalText}>{link}</BodyText>
+          <CmTypography variant='h4' style={styles.modalText}>Copy Link</CmTypography>
+          <CmTypography variant='body' style={styles.modalText}>Unique for {recipient}</CmTypography>
+          <CmTypography variant='body' style={styles.modalText}>{link}</CmTypography>
 
           <Pressable onPress={copyLink} style={styles.copyButton}>
-            <ButtonText style={styles.modalText}>Copy</ButtonText>
+            <CmTypography variant='button' style={styles.modalText}>Copy</CmTypography>
           </Pressable>
 
         </Card>

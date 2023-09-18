@@ -4,8 +4,7 @@ import { Foundation } from '@expo/vector-icons';
 import { capitalize } from "lodash";
 
 import Solution2 from "src/types/Solution2";
-import Headline3 from "src/components/TextStyles/Headline3";
-import LabelText from "src/components/TextStyles/LabelText";
+import { CmTypography } from "src/components";
 
 interface Props {
   effectSolution: Solution2;
@@ -20,8 +19,8 @@ function ActionCardHeader({ effectSolution, color='#FDED6D' }: Props) {
         {effectSolution.solutionType[1] === 'adaptation' && <Foundation name="shield" size={24} color="black" />}
       </View>
       <View style={styles.textContainer}>
-        <LabelText style={{ fontSize: 10 }}>{effectSolution.solutionType[0].toUpperCase()} ACTION</LabelText>
-        <Headline3 style={styles.title}>{capitalize(effectSolution.solutionTitle)}</Headline3>
+        <CmTypography variant='label' style={{ fontSize: 10 }}>{effectSolution.solutionType[0].toUpperCase()} ACTION</CmTypography>
+        <CmTypography variant='h3' style={styles.title}>{capitalize(effectSolution.solutionTitle)}</CmTypography>
       </View>
     </View>
   );

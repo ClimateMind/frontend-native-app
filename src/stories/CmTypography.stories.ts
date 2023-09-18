@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import CmTypography from 'src/components/CmTypography/CmTypography';
+import { CmTypography } from 'src/components';
 
 const meta: Meta<typeof CmTypography> = {
   title: 'components/CmTypography',
   component: CmTypography,
+  tags: ['autodocs'],
 };
 
 export default meta;

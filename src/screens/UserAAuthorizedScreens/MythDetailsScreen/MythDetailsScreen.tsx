@@ -7,10 +7,8 @@ import { MythsFeedStackParams } from 'src/navigation/Stacks/MythsFeedStack';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
+import { CmTypography } from 'src/components';
 import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
-import LabelText from 'src/components/TextStyles/LabelText';
-import BodyText from 'src/components/TextStyles/BodyText';
-import CaptionText from 'src/components/TextStyles/CaptionText';
 import BackButton from 'src/components/BackButton';
 
 type Props = NativeStackScreenProps<MythsFeedStackParams, 'MythDetailsScreen'>;
@@ -25,18 +23,18 @@ function MythDetailsScreen({ navigation, route }: Props) {
         <Content style={{ alignItems: 'flex-start' }}>
           <BackButton onPress={() => navigation.goBack()} />
 
-          <LabelText style={{ color: '#B00620', marginTop: 10 }}>MYTH</LabelText>
-          <BodyText style={{ color: '#B00620', letterSpacing: 1.3, fontStyle: 'italic' }}>{myth.mythTitle}</BodyText>
-          <LabelText style={{ color: '#00A85F', marginTop: 40 }}>TRUTH</LabelText>
-          <BodyText style={{ color: '#00A85F', letterSpacing: 1.3 }}>{myth.mythRebuttal}</BodyText>
+          <CmTypography variant='label' style={{ color: '#B00620', marginTop: 10 }}>MYTH</CmTypography>
+          <CmTypography variant='body' style={{ color: '#B00620', letterSpacing: 1.3, fontStyle: 'italic' }}>{myth.mythTitle}</CmTypography>
+          <CmTypography variant='label' style={{ color: '#00A85F', marginTop: 40 }}>TRUTH</CmTypography>
+          <CmTypography variant='body' style={{ color: '#00A85F', letterSpacing: 1.3 }}>{myth.mythRebuttal}</CmTypography>
 
           <View style={styles.tabBar}>
             <DetailsSourcesTab detailsTabName='Flawed Logic' onTabChanged={(tab) => setSelectedTab(tab)} />
           </View>
 
-          {selectedTab === 0 && <CaptionText style={styles.description}>{myth.faultyLogicDescription}</CaptionText>}
+          {selectedTab === 0 && <CmTypography variant='caption' style={styles.description}>{myth.faultyLogicDescription}</CmTypography>}
 
-          {selectedTab === 1 && myth.mythSources.map(source => <LabelText key={source} style={styles.link}>{source}</LabelText>)}
+          {selectedTab === 1 && myth.mythSources.map(source => <CmTypography variant='label' key={source} style={styles.link}>{source}</CmTypography>)}
         </Content>
       </Section>
     </Screen>

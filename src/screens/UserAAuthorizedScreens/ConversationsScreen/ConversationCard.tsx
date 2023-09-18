@@ -13,11 +13,7 @@ import ConversationRating from './ConversationRating';
 import CopyLinkModal from './CopyLinkModal';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
-import CaptionText from 'src/components/TextStyles/CaptionText';
-import ButtonText from 'src/components/TextStyles/ButtonText';
-import Headline3 from 'src/components/TextStyles/Headline3';
-import BodyText from 'src/components/TextStyles/BodyText';
-import Headline4 from 'src/components/TextStyles/Headline4';
+import { CmTypography } from 'src/components';
 import Card from 'src/components/Cards/Card';
 import NotifyIcon from './NotifyIcon';
 
@@ -84,13 +80,13 @@ function ConversationCard({ conversation, onDelete }: Props) {
       <Card style={[{ padding: 15 }, { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }]}>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <CaptionText>{headerText[conversationState]}</CaptionText>
+          <CmTypography variant='caption'>{headerText[conversationState]}</CmTypography>
           {expanded && <Pressable onPress={copyLink}><Text>COPY LINK</Text></Pressable>}
           {!expanded &&  conversationState > 0 && conversationState < 5 && <NotifyIcon />}
         </View>
 
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0}}>
-          <Headline3 style={{ marginBottom: 5 }}>{conversation.userB.name}</Headline3>
+          <CmTypography variant='h3' style={{ marginBottom: 5 }}>{conversation.userB.name}</CmTypography>
           {expanded && <Pressable>
             {/* <MaterialIcons name="edit" size={24} color="black" style={{ marginHorizontal: 10 }} /> */}
           </Pressable>}
@@ -98,19 +94,19 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
         {/* For state 0, display a text that the userB has to take the quiz */}
         {expanded && conversationState === 0 && <>
-          <BodyText style={styles.text}>When {conversation.userB.name} is finished, we will send you an email and their results will appear here. Then you can start preparing for your chat!</BodyText>
-          <BodyText style={styles.text}>If you need to resend test their link, you can access it by clicking “COPY LINK”.</BodyText>
+          <CmTypography variant='body' style={styles.text}>When {conversation.userB.name} is finished, we will send you an email and their results will appear here. Then you can start preparing for your chat!</CmTypography>
+          <CmTypography variant='body' style={styles.text}>If you need to resend test their link, you can access it by clicking “COPY LINK”.</CmTypography>
         </>}
 
         {/* For every other state, show the text and buttons the userA needs */}
         { expanded && conversationState !== 0 && <>
-          <Headline4 style={styles.subheading}>1. {conversation.userB.name} took the values quiz</Headline4>
+          <CmTypography variant='h4' style={styles.subheading}>1. {conversation.userB.name} took the values quiz</CmTypography>
           <SeeHowYouAlignButton style={styles.whiteButton} conversationId={conversation.conversationId} conversationState={conversationState} onClick={() => increaseState(2)} />
           
-          <Headline4 style={styles.subheading}>2. See what you can discuss with {conversation.userB.name}</Headline4>
+          <CmTypography variant='h4' style={styles.subheading}>2. See what you can discuss with {conversation.userB.name}</CmTypography>
           <ViewSelectedTopicsButton style={styles.whiteButton} conversationId={conversation.conversationId} conversationState={conversationState} onClick={() => increaseState(3)} />
 
-          <Headline4 style={styles.subheading}>3. Have you had your conversation with {conversation.userB.name}?</Headline4>
+          <CmTypography variant='h4' style={styles.subheading}>3. Have you had your conversation with {conversation.userB.name}?</CmTypography>
           {conversationState <= 3 && <YesWeTalkedButton style={styles.whiteButton} conversationId={conversation.conversationId} conversationState={conversationState} onClick={() => increaseState(4)} />}
           {conversationState > 3 && <ConversationRating conversationId={conversation.conversationId} initialRating={conversation.userARating} onRated={() => setConversationState(5)} />}
         </>
@@ -119,7 +115,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
           {expanded ? <Pressable onPress={() => setShowDeleteModal(true)} style={styles.deleteButton}><Foundation name="trash" size={24} color="#77AAAF" /></Pressable> : <View></View>}
           <Pressable onPress={() => setExpanded(current => !current)} style={styles.moreLessButton}>
-            <ButtonText style={{ letterSpacing: 1, paddingVertical: 3 }}>{expanded ? 'LESS' : 'MORE'}</ButtonText>
+            <CmTypography variant='button' style={{ letterSpacing: 1, paddingVertical: 3 }}>{expanded ? 'LESS' : 'MORE'}</CmTypography>
           </Pressable>
         </View>
 

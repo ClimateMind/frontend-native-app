@@ -9,12 +9,10 @@ import { useAppSelector } from 'src/store/hooks';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
+import { CmTypography } from 'src/components';
 import PersonalValueCard from 'src/components/Cards/PersonalValueCard';
 import RadarChart from 'src/components/RadarChart';
 import { useFocusEffect } from '@react-navigation/native';
-import Headline2 from 'src/components/TextStyles/Headline2';
-import CaptionText from 'src/components/TextStyles/CaptionText';
-import ButtonText from 'src/components/TextStyles/ButtonText';
 
 type Props = BottomTabScreenProps<BottomTabsNavigationParams, 'PersonalValuesScreen'>;
 
@@ -51,7 +49,7 @@ function PersonalValuesScreen({ navigation }: Props) {
     <Screen ref={scrollRef}>
       <Section>
         <Content>
-          <Headline2 style={{ padding: 8 }}>This is your Climate Personality</Headline2>
+          <CmTypography variant='h1'>This is your Climate Personality</CmTypography>
 
           <View style={styles.cardContainer}>
             <PersonalValueCard nr={1} value={personalValues.personalValues[0]} />
@@ -63,7 +61,7 @@ function PersonalValuesScreen({ navigation }: Props) {
 
       <Section style={styles.whiteArea}>
         <Content>
-          <Headline2 style={{ padding: 8 }}>Your Personal Value Web</Headline2>
+          <CmTypography variant='h1'>Your Personal Value Web</CmTypography>
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <RadarChart
               // The -40 comes from the padding of the parent view (20 on each side)
@@ -78,9 +76,9 @@ function PersonalValuesScreen({ navigation }: Props) {
 
       <Section style={{ minHeight: 250 }}>
         <Content>
-          <CaptionText style={styles.text}>Not happy with your results?</CaptionText>
+          <CmTypography variant='caption' style={styles.text}>Not happy with your results?</CmTypography>
           <Pressable onPress={retakeQuiz}>
-            <ButtonText style={[styles.text, { padding: 8 }]}>RETAKE QUIZ</ButtonText>
+            <CmTypography variant='button' style={styles.text}>RETAKE QUIZ</CmTypography>
           </Pressable>
         </Content>
       </Section>
