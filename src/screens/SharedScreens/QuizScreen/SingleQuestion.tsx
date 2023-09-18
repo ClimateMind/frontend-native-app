@@ -17,6 +17,10 @@ function SingleQuestion({
   question,
   onSelect,
 }: SingleQuestionProps) {
+  // When questions have a line break, the second line starts with a space.
+  // This is a workaround to remove that space.
+  const questionText = question.split('\n').map(item => item.trim()).join('\n');
+
   return (
     <ScrollView style={styles.rootContainer}>
       <View
@@ -33,7 +37,7 @@ function SingleQuestion({
 
       <ProgressBar progress={currentQuestionIndex / maxQuestionIndex - 0.1} />
 
-      <CmTypography variant='label' style={styles.question}>{question}</CmTypography>
+      <CmTypography variant='label' style={styles.question}>{questionText}</CmTypography>
 
       <Answer onSelect={onSelect} index={1} text="Not Like Me At All" />
       <Answer onSelect={onSelect} index={2} text="Not Like me" />
