@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.22.17",
-    "@storybook/addon-essentials": "^7.4.1",
+    "@storybook/addon-essentials": "^7.4.2",
     "@storybook/addon-interactions": "^7.4.1",
     "@storybook/addon-links": "^7.4.1",
     "@storybook/addon-onboarding": "^1.0.8",
