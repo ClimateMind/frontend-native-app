@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { RootDrawerNavigationParams } from '../../../navigation/NavigationRoot';
@@ -27,7 +28,11 @@ function SubmitSetOneScreen({ navigation }: Props) {
       navigation.navigate('UserAUnauthorizedScreens');
     }
   }
-  
+
+  useEffect(() => {
+    navigation.navigate('UserAUnauthorizedScreens', { screen: 'StartScreen' });
+  }, [isLoggedIn]);
+
   return (
     <Screen>
       <Section>
