@@ -18,8 +18,7 @@ type Props = DrawerScreenProps<RootDrawerNavigationParams, 'QuizScreen'>;
 function QuizScreen({ route, navigation }: Props) {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
-  
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
+
   const quizAnswers = useAppSelector(state => state.quiz.quizAnswers);
   const [questionSets, setQuestionSets] = useState<GetQuestions>();
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState(1);
@@ -39,10 +38,6 @@ function QuizScreen({ route, navigation }: Props) {
 
     setCurrentQuestionNumber(currentQuestionNumber + 1)
   }
-  
-  useEffect(() => {
-    navigation.navigate('UserAUnauthorizedScreens', { screen: 'StartScreen' });
-  }, [isLoggedIn]);
 
   useEffect(() => {
     // Fetch the questions on page load
