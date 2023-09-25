@@ -118,13 +118,15 @@ function useApiClient() {
     const body = {
       email,
       password,
+      // Use the recaptcha token if it exists, otherwise skip the captcha
+      ...(recaptchaToken ? { recaptchaToken } : { skipCaptcha: true }),
     };
     
     const response = await apiCall<responses.Login>(
       'post',
       '/login',
       {},
-      { ...body, skipCaptcha: true },
+      body,
     );
 
     // Store the refresh token in AsyncStorage
