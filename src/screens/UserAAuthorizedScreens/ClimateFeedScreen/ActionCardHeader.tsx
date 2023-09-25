@@ -1,8 +1,8 @@
 import { StyleSheet, View } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
-import { capitalize } from "lodash";
 
+import { capitalizeFirstLetter } from "src/utils";
 import Solution from "src/types/Solution";
 import { CmTypography } from "src/components";
 
@@ -20,7 +20,7 @@ function ActionCardHeader({ effectSolution, color='#FDED6D' }: Props) {
       </View>
       <View style={styles.textContainer}>
         <CmTypography variant='label' style={{ fontSize: 10 }}>{effectSolution.solutionType.toUpperCase()} ACTION</CmTypography>
-        <CmTypography variant='h3' style={styles.title}>{capitalize(effectSolution.solutionTitle)}</CmTypography>
+        <CmTypography variant='h3' style={styles.title}>{capitalizeFirstLetter(effectSolution.solutionTitle)}</CmTypography>
       </View>
     </View>
   );

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import { capitalize } from 'lodash';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ClimateFeedStackParams } from 'src/navigation/Stacks/ClimateFeedStack';
 import ActionCard from './ActionCard';
 import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
 
+import { capitalizeFirstLetter } from 'src/utils';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
@@ -25,7 +25,7 @@ function ClimateDetailsScreen({ navigation, route }: Props) {
         <Content>
           <BackButton onPress={() => navigation.goBack()} />
 
-          <CmTypography variant='h3' style={styles.title}>{capitalize(climateEffect.effectTitle)}</CmTypography>
+          <CmTypography variant='h3' style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</CmTypography>
           {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
 
           <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />

@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import { Image } from "react-native";
-import { capitalize } from "lodash";
 
+import { capitalizeFirstLetter } from "src/utils";
 import ClimateEffect2 from "src/types/ClimateEffect2";
 import Card from "src/components/Cards/Card";
 import { CmChip, CmTypography } from "src/components";
@@ -15,7 +15,7 @@ function ActionCard({ climateEffect, onLearnMore }: Props) {
   return (
     <Card>
 
-      <CmTypography variant='h3' style={styles.title}>{capitalize(climateEffect.effectTitle)}</CmTypography>
+      <CmTypography variant='h3' style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</CmTypography>
       <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />
       <CmTypography variant='body' style={styles.text}>{climateEffect.effectShortDescription}</CmTypography>
 

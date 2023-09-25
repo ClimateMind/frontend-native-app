@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
-import { capitalize } from "lodash";
 
+import { capitalizeFirstLetter } from "src/utils";
 import { CmTypography } from "src/components";
 import PersonalValueIcon from "src/components/PersonalValueIcon";
 import Card from "./Card";
@@ -22,7 +22,7 @@ function PersonalValueCardSmall({ name, shortDescription, percentage }: Props) {
         <PersonalValueIcon valueName={name} style={styles.image} />
 
         <View>
-          <CmTypography variant='h3'>{capitalize(name)}</CmTypography>
+          <CmTypography variant='h3'>{capitalizeFirstLetter(name)}</CmTypography>
           <CmTypography variant='h3'>{percentage.toString()}% match</CmTypography>
         </View>
 

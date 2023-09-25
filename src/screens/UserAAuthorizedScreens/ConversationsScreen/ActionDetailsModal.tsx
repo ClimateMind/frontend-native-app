@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Image, Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
-import { capitalize } from "lodash";
 
+import { capitalizeFirstLetter } from "src/utils";
 import Colors from "src/assets/colors";
 import ClimateEffect2 from "src/types/ClimateEffect2";
 import ClimateEffect3 from "src/types/ClimateEffect3";
@@ -48,7 +48,7 @@ function ActionDetailsModal({ open, action, onClose }: Props) {
 
         <ScrollView style={{ width: '100%' }}>
 
-          <CmTypography variant='h3' style={styles.title}>{capitalize(actionDetails.effectTitle)}</CmTypography>
+          <CmTypography variant='h3' style={styles.title}>{capitalizeFirstLetter(actionDetails.effectTitle)}</CmTypography>
           {actionDetails.imageUrl !== null && <Image style={styles.image} source={{uri: actionDetails.imageUrl}} />}
 
           <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />

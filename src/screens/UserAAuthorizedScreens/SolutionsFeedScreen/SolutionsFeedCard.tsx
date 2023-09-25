@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet } from "react-native";
 import { Image, View } from "react-native";
-import { capitalize } from "lodash";
 
+import { capitalizeFirstLetter } from "src/utils";
 import Solution from "src/types/Solution";
 import { CmTypography } from "src/components";
 import Card from "src/components/Cards/Card";
@@ -17,7 +17,7 @@ function SolutionsFeedCard({ solution, onLearnMore }: Props) {
 
       <View style={styles.headingContainer}>
         <CmTypography variant='label' style={styles.actionType}>{solution.solutionType.toUpperCase()} ACTION</CmTypography>
-        <CmTypography variant='h3' style={styles.title}>{capitalize(solution.solutionTitle)}</CmTypography>
+        <CmTypography variant='h3' style={styles.title}>{capitalizeFirstLetter(solution.solutionTitle)}</CmTypography>
       </View>
 
       {solution.imageUrl !== null && <Image style={styles.image} source={{uri: solution.imageUrl}} />}
