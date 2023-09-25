@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { RootDrawerNavigationParams } from '../../../navigation/NavigationRoot';
@@ -23,6 +24,13 @@ function SubmitSetTwoScreen({ navigation }: Props) {
       navigation.navigate('UserAUnauthorizedScreens');
     }
   }
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      // Navigate the user back to the start screen
+      navigation.navigate('UserAUnauthorizedScreens', { screen: 'StartScreen' });
+    }
+  }, [isLoggedIn]);
 
   return (
     <Screen>
