@@ -40,7 +40,7 @@
     "react-redux": "^8.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.20",
+    "@babel/core": "^7.23.0",
     "@storybook/addon-essentials": "^7.4.5",
     "@storybook/addon-interactions": "^7.4.4",
     "@storybook/addon-links": "^7.4.2",
