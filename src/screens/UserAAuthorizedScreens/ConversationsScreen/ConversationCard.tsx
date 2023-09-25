@@ -85,7 +85,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
           {!expanded &&  conversationState > 0 && conversationState < 5 && <NotifyIcon />}
         </View>
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0}}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0 }}>
           <CmTypography variant='h3' style={{ marginBottom: 5 }}>{conversation.userB.name}</CmTypography>
           {expanded && <Pressable>
             {/* <MaterialIcons name="edit" size={24} color="black" style={{ marginHorizontal: 10 }} /> */}

@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   moreCloseText: {
-    paddingVertical: 8,
+    paddingTop: 4,
+    paddingBottom: 10,
   },
   shortDescription: {
     padding: 20,
