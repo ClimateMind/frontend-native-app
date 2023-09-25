@@ -33,7 +33,7 @@ function SolutionsFeedScreen({ navigation }: Props) {
 
   return (
     <Screen view='View'>
-      <Section>
+      <Section style={{ paddingBottom: 0 }}>
         <Content style={{ alignItems: 'stretch' }}>
           <FlatList
             ListHeaderComponent={
