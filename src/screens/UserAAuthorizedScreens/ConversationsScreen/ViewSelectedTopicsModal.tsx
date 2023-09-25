@@ -56,7 +56,7 @@ function ViewSelectedTopicsModal({ open, conversation, onClose }: Props) {
     >
       <View style={styles.container}>
         <Content>
-          <ScrollView style={{ padding: 20 }}>
+          <ScrollView>
             <Pressable style={styles.backButtonContainer} onPress={onClose}>
               <Ionicons name="chevron-back-outline" size={24} color="#A347FF" />
               <CmTypography variant='button' style={styles.backButtonText}>BACK</CmTypography>
@@ -91,13 +91,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    padding: 20,
     backgroundColor: Colors.themeBright,
   },
   backButtonContainer: {
     alignSelf: 'flex-start',
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertically: 20,
+    marginVertical: 20,
     paddingTop: 30,
   },
   backButtonText: {
