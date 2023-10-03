@@ -114,6 +114,20 @@ function useApiClient() {
     return response.data;
   }
 
+  async function deleteAccount(password: string) {
+    const response = await apiCall(
+      'post',
+      '/user-account',
+      {
+        'X-Session-Id': sessionId,
+        'Authorization': 'Bearer ' + user.accessToken,
+      },
+      { currentPassword: password },
+    );
+
+    return response.data;
+  }
+
   async function postLogin(email: string, password: string, recaptchaToken?: string) {
     const body = {
       email,
@@ -419,7 +433,9 @@ function useApiClient() {
     getQuestions,
     postScores,
     getPersonalValues,
+
     postRegister,
+    deleteAccount,
     postLogin,
     postRefresh,
     postPasswordResetLink,
