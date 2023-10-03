@@ -20,7 +20,7 @@ const Screen = forwardRef<ScrollView, Props>(({ children, style = {}, props = {}
     }
 
     return (
-      <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: Colors.themeBright, ...style }} {...props} ref={ref}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: Colors.themeBright, ...style }} {...props} ref={ref} keyboardShouldPersistTaps="handled">
         {children}
       </ScrollView>
     );
