@@ -21,7 +21,7 @@ import Colors from 'src/assets/colors';
 import useApiClient from 'src/hooks/useApiClient';
 
 export type RootDrawerNavigationParams = {
-  UserAUnauthorizedScreens: { screen: 'StartScreen' } | undefined;
+  UserAUnauthorizedScreens: { screen: 'StartScreen' | 'LoginScreen' } | undefined;
   UserAAuthorizedScreens: { screen: 'PersonalValuesScreen' | 'ConversationsStack' };
   QuizScreen: { questionSet: 1 | 2 };
   SubmitSetOneScreen: undefined;
