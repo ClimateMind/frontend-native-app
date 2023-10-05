@@ -48,7 +48,7 @@
     "@storybook/addon-react-native-web": "^0.0.21",
     "@storybook/blocks": "^7.4.6",
     "@storybook/react": "^7.4.6",
-    "@storybook/react-webpack5": "^7.4.5",
+    "@storybook/react-webpack5": "^7.4.6",
     "@storybook/testing-library": "^0.2.2",
     "@types/react": "~18.2.14",
     "@types/react-redux": "^7.1.27",
