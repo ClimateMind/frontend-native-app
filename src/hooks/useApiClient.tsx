@@ -116,7 +116,7 @@ function useApiClient() {
 
   async function deleteAccount(password: string) {
     const response = await apiCall(
-      'post',
+      'delete',
       '/user-account',
       {
         'X-Session-Id': sessionId,
