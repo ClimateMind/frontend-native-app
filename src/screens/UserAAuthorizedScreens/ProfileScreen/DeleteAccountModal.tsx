@@ -25,7 +25,8 @@ function DeleteAccountModal({ show, onSubmit, onCancel }: Props) {
       onSubmit();
     } catch (error) {
       if (error instanceof AxiosError) {
-        showErrorToast(error.response?.data.error ?? 'Unexpected Error. Please try again.');
+        // showErrorToast(error.response?.data.error ?? 'Unexpected Error. Please try again.');
+        showErrorToast(error.toJSON().toString());
       }
     }
   }

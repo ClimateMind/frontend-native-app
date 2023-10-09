@@ -52,7 +52,7 @@ function StartScreen({ navigation }: Props) {
             find solutions they like.
           </CmTypography>
 
-          <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Test12: " + process.env.EXPO_PUBLIC_API_URL)}>
+          <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Test13: " + process.env.EXPO_PUBLIC_API_URL)}>
             <Image source={require('src/assets/ConnectTheDots.png')} />
           </Pressable>
         </Content>
