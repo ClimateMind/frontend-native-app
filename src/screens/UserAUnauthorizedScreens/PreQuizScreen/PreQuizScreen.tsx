@@ -28,7 +28,7 @@ function PreQuizScreen({ navigation }: Props) {
           <CmTypography variant='body' style={styles.text}>
             Take this short quiz about personal values so we can help you find common ground and topics for your conversations.
           </CmTypography>
-          
+
           <CmTypography variant='body' style={styles.text}>
             Read each statement and decide how much like it you are or not. Don't worry! There's no right or wrong answers!
           </CmTypography>
@@ -39,10 +39,10 @@ function PreQuizScreen({ navigation }: Props) {
 
       <Section style={{ backgroundColor: Colors.themeDark }}>
         <Content>
-          <CmTypography variant='body' style={styles.whiteText}>
+          <CmTypography variant="body" style={styles.whiteText}>
             Personal values are key for effective climate conversations.
           </CmTypography>
-          
+
           <Image source={require('src/assets/cm-logo-mint.png')} />
         </Content>
       </Section>

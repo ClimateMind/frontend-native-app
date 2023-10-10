@@ -1,14 +1,19 @@
-import { Pressable, StyleProp, StyleSheet, ViewStyle } from "react-native";
-import CmTypography from "./CmTypography";
+import { Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import CmTypography from './CmTypography';
 
 interface Props {
   text: string;
   onPress?: () => void;
-  style?: StyleProp<ViewStyle>; 
+  style?: StyleProp<ViewStyle>;
   disabled?: boolean;
 }
 
-function CmTextButton({ text, onPress = () => {}, style = {}, disabled = false }: Props) {  
+function CmTextButton({
+  text,
+  onPress = () => {},
+  style = {},
+  disabled = false,
+}: Props) {
   return (
     <Pressable
       disabled={disabled}
@@ -16,8 +21,8 @@ function CmTextButton({ text, onPress = () => {}, style = {}, disabled = false }
       style={[styles.button, style]}
     >
       <CmTypography
-        variant='button'
-        style={[styles.buttonText, disabled && styles.buttonDisabled,]}
+        variant="button"
+        style={[styles.buttonText, disabled && styles.buttonDisabled]}
       >
         {text}
       </CmTypography>

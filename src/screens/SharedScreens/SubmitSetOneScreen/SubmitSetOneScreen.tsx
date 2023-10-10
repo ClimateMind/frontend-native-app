@@ -14,8 +14,8 @@ import Content from 'src/components/Screen/Content';
 type Props = DrawerScreenProps<RootDrawerNavigationParams, 'SubmitSetOneScreen'>;
 
 function SubmitSetOneScreen({ navigation }: Props) {
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
-  
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+
   function navigateToQuizScreen() {
     navigation.navigate('QuizScreen', { questionSet: 2 });
   }
@@ -32,17 +32,29 @@ function SubmitSetOneScreen({ navigation }: Props) {
     <Screen>
       <Section>
         <Content style={{ justifyContent: 'center' }}>
-          <CmTypography variant='h1'>Woah! You are doing great!</CmTypography>
-          
-          <CmTypography variant='body' style={styles.bodyText}>Do you want to carry on with another 10 questions or get your results now?</CmTypography>
-          
+          <CmTypography variant="h1">Woah! You are doing great!</CmTypography>
+
+          <CmTypography variant="body" style={styles.bodyText}>
+            Do you want to carry on with another 10 questions or get your
+            results now?
+          </CmTypography>
+
           <Pressable onPress={navigateToPersonalValuesScreen}>
-            <CmTypography variant='button' style={{ textAlign: 'center' }}>FIND OUT MY CLIMATE PERSONALITY</CmTypography>
+            <CmTypography variant="button" style={{ textAlign: 'center' }}>
+              FIND OUT MY CLIMATE PERSONALITY
+            </CmTypography>
           </Pressable>
 
-          <CmTypography variant='body' style={styles.bodyText}>You will get better personalised results if you complete all 20 questions.</CmTypography>
-          
-          <SimpleWhiteTextButton style={styles.button} text='Continue' onPress={navigateToQuizScreen} />
+          <CmTypography variant="body" style={styles.bodyText}>
+            You will get better personalised results if you complete all 20
+            questions.
+          </CmTypography>
+
+          <SimpleWhiteTextButton
+            style={styles.button}
+            text="Continue"
+            onPress={navigateToQuizScreen}
+          />
         </Content>
       </Section>
     </Screen>

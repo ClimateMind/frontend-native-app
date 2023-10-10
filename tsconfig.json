@@ -6,7 +6,7 @@
     "noUnusedParameters": true,
     "baseUrl": "./src",
     "paths": {
-      "src/*": ["./*"],
+      "src/*": ["./*"]
     }
   },
   "exclude": [

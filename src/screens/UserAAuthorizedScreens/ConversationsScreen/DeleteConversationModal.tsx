@@ -12,10 +12,7 @@ interface Props {
 
 function DeleteConversationModal({ show, userBName, onCancel, onConfirm }: Props) {
   return (
-    <Modal
-      visible={show}
-      transparent={true}
-    >
+    <Modal visible={show} transparent={true}>
       <View style={styles.centerModal}>
         <Card style={{ padding: 20, width: '90%' }}>
 

@@ -20,7 +20,7 @@ type Props = NativeStackScreenProps<SolutionsFeedStackParams, 'SolutionDetailsSc
 function SolutionDetailsScreen({ navigation, route }: Props) {
   const apiClient = useApiClient();
   const solution = route.params.solution;
-  
+
   const [selectedTab, setSelectedTab] = useState(0);
   const [myths, setMyths] = useState<Myth[]>([]);
 
@@ -31,11 +31,11 @@ function SolutionDetailsScreen({ navigation, route }: Props) {
         if (current.map(m => m.iri).includes(myth.iri)) {
           return [...current];
         }
-        return [...current, myth]
-      })
-    })
+        return [...current, myth];
+      });
+    });
   }, [solution, setMyths]);
-  
+
   return (
     <Screen style={{ backgroundColor: 'white' }}>
       <Section>

@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import { Image, Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
+import { useEffect, useState } from 'react';
+import { Image, Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import Colors from "src/assets/colors";
-import useApiClient from "src/hooks/useApiClient";
-import Solution3 from "src/types/Solution3";
-import Solution2 from "src/types/Solution2";
-import ActionCardHeader from "./ActionCardHeader";
-import DetailsSourcesTab from "src/components/DetailsSourcesTabs";
-import { CmTypography } from "src/components";
+import Colors from 'src/assets/colors';
+import useApiClient from 'src/hooks/useApiClient';
+import Solution3 from 'src/types/Solution3';
+import Solution2 from 'src/types/Solution2';
+import ActionCardHeader from './ActionCardHeader';
+import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
+import { CmTypography } from 'src/components';
 
 interface Props {
   open: boolean;
@@ -18,7 +18,7 @@ interface Props {
 
 function SolutionDetailsModal({ open, solution, onClose }: Props) {
   const apiClient = useApiClient();
-  
+
   const [selectedTab, setSelectedTab] = useState(0);
   const [solutionDetails, setSolutionDetails] = useState<Solution2>();
 
@@ -28,11 +28,11 @@ function SolutionDetailsModal({ open, solution, onClose }: Props) {
         setSolutionDetails(response);
       });
   }, [solution]);
-  
+
   if (!solutionDetails) {
     return null;
   }
-  
+
   return (
     <Modal
       visible={open}

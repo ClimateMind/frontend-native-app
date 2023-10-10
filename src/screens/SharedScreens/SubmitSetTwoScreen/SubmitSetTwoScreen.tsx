@@ -14,8 +14,8 @@ import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
 type Props = DrawerScreenProps<RootDrawerNavigationParams, 'SubmitSetTwoScreen'>;
 
 function SubmitSetTwoScreen({ navigation }: Props) {
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
-  
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+
   function navigateToPersonalValuesScreen() {
     if (isLoggedIn) {
       navigation.navigate('UserAAuthorizedScreens', { screen: 'PersonalValuesScreen' });
@@ -28,15 +28,28 @@ function SubmitSetTwoScreen({ navigation }: Props) {
     <Screen>
       <Section>
         <Content style={{ justifyContent: 'center' }}>
-          <CmTypography variant='h1'>Woohoo! Good Job!</CmTypography>
-          
-          <CmTypography variant='body' style={styles.bodyText}>With the questions you just answered I can predict your Climate Personality.</CmTypography>
-          
-          <Image style={{ marginVertical: 30 }} source={require('src/assets/reward-personalities.png')} />
-          
-          <CmTypography variant='body' style={styles.bodyText}>This is a ranking of the top three personal values that you deploy when making decisions.</CmTypography>
+          <CmTypography variant="h1">Woohoo! Good Job!</CmTypography>
 
-          <SimpleWhiteTextButton style={styles.button} text='FIND OUT MY CLIMATE PERSONALITY' onPress={navigateToPersonalValuesScreen} />
+          <CmTypography variant="body" style={styles.bodyText}>
+            With the questions you just answered I can predict your Climate
+            Personality.
+          </CmTypography>
+
+          <Image
+            style={{ marginVertical: 30 }}
+            source={require('src/assets/reward-personalities.png')}
+          />
+
+          <CmTypography variant="body" style={styles.bodyText}>
+            This is a ranking of the top three personal values that you deploy
+            when making decisions.
+          </CmTypography>
+
+          <SimpleWhiteTextButton
+            style={styles.button}
+            text="FIND OUT MY CLIMATE PERSONALITY"
+            onPress={navigateToPersonalValuesScreen}
+          />
         </Content>
       </Section>
     </Screen>

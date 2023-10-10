@@ -6,7 +6,7 @@ import Card from 'src/components/Cards/Card';
 
 function ConversationsIntroCard() {
   const [expanded, setExpanded] = useState(true);
-  
+
   return (
     <Card style={{ padding: 15 }}>
       <CmTypography variant='h4' style={{ marginBottom: 10 }}>How to talk about Climate Change</CmTypography>

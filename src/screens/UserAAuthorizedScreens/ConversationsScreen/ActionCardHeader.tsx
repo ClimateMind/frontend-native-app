@@ -1,17 +1,17 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
 
-import { capitalizeFirstLetter } from "src/utils";
-import Solution2 from "src/types/Solution2";
-import { CmTypography } from "src/components";
+import { capitalizeFirstLetter } from 'src/utils';
+import Solution2 from 'src/types/Solution2';
+import { CmTypography } from 'src/components';
 
 interface Props {
   effectSolution: Solution2;
   color?: string;
 }
 
-function ActionCardHeader({ effectSolution, color='#FDED6D' }: Props) {
+function ActionCardHeader({ effectSolution, color = '#FDED6D' }: Props) {
   return (
     <View style={[styles.container, { backgroundColor: color }]}>
       <View style={styles.imageContainer}>

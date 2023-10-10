@@ -33,8 +33,8 @@ const RootDrawer = createDrawerNavigator<RootDrawerNavigationParams>();
 function NavigationRoot() {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
-  const sessionId = useAppSelector(state => state.auth.sessionId);
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
+  const sessionId = useAppSelector((state) => state.auth.sessionId);
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
   const [showOnboarding, setShowOnboarding] = useState(false);
 
@@ -80,7 +80,8 @@ function NavigationRoot() {
   }, []);
 
   useEffect(() => {
-    if (!sessionId) {{
+    if (!sessionId) {
+      {
         apiClient.postSession()
           .then(result => dispatch(setSessionId(result.sessionId)))
       }
@@ -90,7 +91,7 @@ function NavigationRoot() {
   if (showOnboarding) {
     return <OnBoardingScreens onCompleted={() => setShowOnboarding(false)} />;
   }
-  
+
   return (
     <RootDrawer.Navigator
       drawerContent={NavigationRootDrawer}

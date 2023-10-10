@@ -7,7 +7,11 @@ interface Props {
 }
 
 function CmChip({ label }: Props) {
-  return <CmTypography variant='body' style={styles.chip}>{label}</CmTypography>;
+  return (
+    <CmTypography variant="body" style={styles.chip}>
+      {label}
+    </CmTypography>
+  );
 }
 
 const styles = StyleSheet.create({

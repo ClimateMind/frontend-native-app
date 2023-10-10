@@ -1,6 +1,6 @@
 export type PostScores = {
-  SetOne: { questionId: number, answerId: number }[],
-  SetTwo: { questionId: number, answerId: number }[],
+  SetOne: { questionId: number; answerId: number }[];
+  SetTwo: { questionId: number; answerId: number }[];
 };
 
 export type PostRegister = {
@@ -9,7 +9,7 @@ export type PostRegister = {
   email: string;
   password: string;
   quizId: string;
-}
+};
 
 export type PutSingleConversation = {
   conversationId: string;
@@ -17,5 +17,5 @@ export type PutSingleConversation = {
     state?: number;
     receiverName?: string;
     userARating?: number;
-  }
-}
+  };
+};

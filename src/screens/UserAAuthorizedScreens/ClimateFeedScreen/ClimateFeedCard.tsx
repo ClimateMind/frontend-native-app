@@ -1,11 +1,11 @@
-import { Image, Pressable, StyleSheet, View } from "react-native";
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 
-import { capitalizeFirstLetter } from "src/utils";
-import ClimateEffect from "src/types/ClimateEffect";
-import ActionCardHeader from "./ActionCardHeader";
+import { capitalizeFirstLetter } from 'src/utils';
+import ClimateEffect from 'src/types/ClimateEffect';
+import ActionCardHeader from './ActionCardHeader';
 
-import Card from "src/components/Cards/Card";
-import { CmChip, CmTypography } from "src/components";
+import Card from 'src/components/Cards/Card';
+import { CmChip, CmTypography } from 'src/components';
 
 interface Props {
   climateEffect: ClimateEffect;

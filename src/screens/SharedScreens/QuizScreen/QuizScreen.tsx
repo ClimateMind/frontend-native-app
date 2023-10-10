@@ -19,30 +19,32 @@ function QuizScreen({ route, navigation }: Props) {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
 
-  const quizAnswers = useAppSelector(state => state.quiz.quizAnswers);
+  const quizAnswers = useAppSelector((state) => state.quiz.quizAnswers);
   const [questionSets, setQuestionSets] = useState<GetQuestions>();
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState(1);
 
-  function answerSelected(answerId: number) {   
+  function answerSelected(answerId: number) {
     if (!questionSets) {
       return;
     }
 
-    const currentQuestion = questionSets.SetOne[currentQuestionNumber - 1]
+    const currentQuestion = questionSets.SetOne[currentQuestionNumber - 1];
 
-    dispatch(addQuizAnswer({
-      questionSet: route.params.questionSet,
-      questionId: currentQuestion.id,
-      answerId,
-    }));
+    dispatch(
+      addQuizAnswer({
+        questionSet: route.params.questionSet,
+        questionId: currentQuestion.id,
+        answerId,
+      })
+    );
 
-    setCurrentQuestionNumber(currentQuestionNumber + 1)
+    setCurrentQuestionNumber(currentQuestionNumber + 1);
   }
 
   useEffect(() => {
     // Fetch the questions on page load
     // and reverse them so that the last question is displayed first
-    apiClient.getQuestions().then(result => {
+    apiClient.getQuestions().then((result) => {
       const SetOne = result.SetOne.reverse();
       const SetTwo = result.SetTwo.reverse();
       setQuestionSets({ SetOne, SetTwo });
@@ -54,7 +56,7 @@ function QuizScreen({ route, navigation }: Props) {
       const result = await apiClient.postScores(quizAnswers);
       dispatch(setQuizId(result.quizId));
     }
-    
+
     // If the user answered all 10 questions, he will be navigated to the next screen
     if (route.params.questionSet === 1 && currentQuestionNumber === 11) {
       setCurrentQuestionNumber(1);
@@ -70,10 +72,13 @@ function QuizScreen({ route, navigation }: Props) {
   }, [currentQuestionNumber]);
 
   // If the user answered all 10 questions, he will be navigated to the next screen and we don't want to show anything
-  if ((route.params.questionSet === 1 && currentQuestionNumber === 11) || (route.params.questionSet === 2 && currentQuestionNumber === 11)) {
+  if (
+    (route.params.questionSet === 1 && currentQuestionNumber === 11) ||
+    (route.params.questionSet === 2 && currentQuestionNumber === 11)
+  ) {
     return null;
   }
-  
+
   // While we are fetching the questions from the backend, show a loading spinner to the user
   if (questionSets === undefined) {
     return <ActivityIndicator size='large' color='black' style={{ marginTop: 100 }} />

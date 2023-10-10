@@ -17,13 +17,13 @@ type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateFeedScreen'>
 
 function ClimateFeedScreen({ navigation }: Props) {
   const apiClient = useApiClient();
-  const sessionId = useAppSelector(state => state.auth.sessionId);
+  const sessionId = useAppSelector((state) => state.auth.sessionId);
   const [climateFeed, setClimateFeed] = useState<ClimateEffect[]>();
 
   function gotoDetailsScreen(climateEffect: ClimateEffect) {
     navigation.navigate('ClimateDetailsScreen', { climateEffect });
   }
-  
+
   useEffect(() => {
     apiClient.getClimateFeed().then((result) => setClimateFeed(result));
   }, [sessionId]);
@@ -33,17 +33,17 @@ function ClimateFeedScreen({ navigation }: Props) {
   }
 
   return (
-    <Screen view='View'>
+    <Screen view="View">
       <Section style={{ paddingBottom: 0 }}>
         <Content style={{ alignItems: 'stretch' }}>
           <FlatList
             ListHeaderComponent={
               <>
-              <CmTypography variant='h1' style={styles.heading}>Explore climate change impacts</CmTypography>
-              <CmTypography variant='body' style={styles.text}>
-                This is your personalized homepage based on your unique climate personality. Check out
-                these articles to stay informed!
-              </CmTypography>
+                <CmTypography variant='h1' style={styles.heading}>Explore climate change impacts</CmTypography>
+                <CmTypography variant='body' style={styles.text}>
+                  This is your personalized homepage based on your unique climate personality. Check out
+                  these articles to stay informed!
+                </CmTypography>
               </>
             }
             data={climateFeed}

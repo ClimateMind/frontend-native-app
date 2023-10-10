@@ -2,7 +2,7 @@ import { StyleSheet, StyleProp, Text, TextProps, TextStyle } from 'react-native'
 
 interface Props extends TextProps {
   children: string | string[];
-  variant: 'h1'| 'h2'| 'h3'| 'h4'| 'body'| 'body-italics'| 'button'| 'caption'| 'label'| 'overline';
+  variant: 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'body-italics' | 'button' | 'caption' | 'label' | 'overline';
   style?: StyleProp<TextStyle>;
 }
 
@@ -46,9 +46,13 @@ function ButtonText({ children, variant, style, ...rest }: Props) {
     default:
       textStyle = styles.body;
       break;
-    }
+  }
 
-    return <Text style={[textStyle, style]} {...rest}>{textContent}</Text>;
+  return (
+    <Text style={[textStyle, style]} {...rest}>
+      {textContent}
+    </Text>
+  );
 }
 
 const styles = StyleSheet.create({

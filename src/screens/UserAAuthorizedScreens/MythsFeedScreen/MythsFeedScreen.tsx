@@ -17,7 +17,7 @@ type Props = NativeStackScreenProps<MythsFeedStackParams, 'MythsFeedScreen'>;
 
 function MythsFeedScreen({ navigation }: Props) {
   const apiClient = useApiClient();
-  const sessionId = useAppSelector(state => state.auth.sessionId);
+  const sessionId = useAppSelector((state) => state.auth.sessionId);
   const [mythsFeed, setMythsFeed] = useState<Myth[]>();
 
   function gotoDetailsScreen(myth: Myth) {
@@ -33,7 +33,7 @@ function MythsFeedScreen({ navigation }: Props) {
   }
 
   return (
-    <Screen view='View'>
+    <Screen view="View">
       <Section style={{ paddingBottom: 0 }}>
         <Content style={{ alignItems: 'stretch' }}>
           <FlatList
@@ -61,7 +61,6 @@ function MythsFeedScreen({ navigation }: Props) {
 }
 
 const styles = StyleSheet.create({
-
   heading: {
     textAlign: 'center',
     marginTop: 30,

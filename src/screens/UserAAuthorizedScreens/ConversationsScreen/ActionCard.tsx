@@ -1,17 +1,17 @@
-import { Pressable, StyleSheet, View } from "react-native";
-import { Image } from "react-native";
+import { Pressable, StyleSheet, View } from 'react-native';
+import { Image } from 'react-native';
 
-import { capitalizeFirstLetter } from "src/utils";
-import ClimateEffect2 from "src/types/ClimateEffect2";
-import Card from "src/components/Cards/Card";
-import { CmChip, CmTypography } from "src/components";
+import { capitalizeFirstLetter } from 'src/utils';
+import ClimateEffect2 from 'src/types/ClimateEffect2';
+import Card from 'src/components/Cards/Card';
+import { CmChip, CmTypography } from 'src/components';
 
 interface Props {
   climateEffect: ClimateEffect2;
   onLearnMore: (climateEffect: ClimateEffect2) => void;
 }
 
-function ActionCard({ climateEffect, onLearnMore }: Props) {   
+function ActionCard({ climateEffect, onLearnMore }: Props) {
   return (
     <Card>
 

@@ -12,7 +12,7 @@ interface AnswerProps {
 
 function Answer({ index, text, onSelect }: AnswerProps) {
   return (
-    <View style={styles.questionsContainer} >
+    <View style={styles.questionsContainer}>
       <Pressable
         onPress={() => onSelect(index)}
         style={[styles.answerContainer]}
@@ -21,7 +21,9 @@ function Answer({ index, text, onSelect }: AnswerProps) {
           pressed ? (
             <>
               <FontAwesome5 name="dot-circle" size={24} color="#39f5ad" />
-              <CmTypography variant='label' style={styles.answerText}>{text}</CmTypography>
+              <CmTypography variant="label" style={styles.answerText}>
+                {text}
+              </CmTypography>
             </>
           ) : (
             <>
@@ -30,7 +32,9 @@ function Answer({ index, text, onSelect }: AnswerProps) {
                 size={24}
                 color={pressed ? '#39f5ad' : 'black'}
               />
-              <CmTypography variant='label' style={styles.answerText}>{text}</CmTypography>
+              <CmTypography variant="label" style={styles.answerText}>
+                {text}
+              </CmTypography>
             </>
           )
         }

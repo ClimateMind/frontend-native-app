@@ -16,7 +16,7 @@ type Props = NativeStackScreenProps<SolutionsFeedStackParams, 'SolutionsFeedScre
 
 function SolutionsFeedScreen({ navigation }: Props) {
   const apiClient = useApiClient();
-  const sessionId = useAppSelector(state => state.auth.sessionId);
+  const sessionId = useAppSelector((state) => state.auth.sessionId);
   const [solutionsFeed, setSolutionsFeed] = useState<Solution[]>();
 
   function gotoDetailsScreen(solution: Solution) {
@@ -32,7 +32,7 @@ function SolutionsFeedScreen({ navigation }: Props) {
   }
 
   return (
-    <Screen view='View'>
+    <Screen view="View">
       <Section style={{ paddingBottom: 0 }}>
         <Content style={{ alignItems: 'stretch' }}>
           <FlatList

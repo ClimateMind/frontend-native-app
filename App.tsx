@@ -32,7 +32,7 @@ function App() {
     <Provider store={store}>
       <RootSiblingParent>
         <SafeAreaView style={styles.safeArea}>
-          <StatusBar style="light" backgroundColor={Colors.themeDark}/>
+          <StatusBar style="light" backgroundColor={Colors.themeDark} />
           <NavigationContainer>
             <NavigationRoot />
           </NavigationContainer>

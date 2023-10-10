@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, Pressable, StyleSheet, TextInput, View } from "react-native";
+import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import useApiClient from 'src/hooks/useApiClient';
 import { showErrorToast, showSuccessToast } from 'src/components/ToastMessages';
@@ -29,12 +29,9 @@ function DeleteAccountModal({ show, onSubmit, onCancel }: Props) {
       }
     }
   }
-  
+
   return (
-    <Modal
-      visible={show}
-      transparent={true}
-    >
+    <Modal visible={show} transparent={true}>
       <View style={styles.centerModal}>
         <Card style={{ padding: 20, width: '90%' }}>
 
@@ -57,7 +54,6 @@ function DeleteAccountModal({ show, onSubmit, onCancel }: Props) {
               <CmTypography variant='button' style={confirmPassword !== '' && { color: '#ff0000' }}>DELETE ACCOUNT</CmTypography>
             </Pressable>
           </View>
-
         </Card>
       </View>
     </Modal>
@@ -98,7 +94,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     marginVertical: 20,
-  }
+  },
 });
 
 export default DeleteAccountModal;

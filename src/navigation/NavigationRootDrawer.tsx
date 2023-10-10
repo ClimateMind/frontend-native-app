@@ -13,7 +13,7 @@ type Props = DrawerContentComponentProps;
 
 function NavigationRootDrawer({ navigation }: Props) {
   const dispatch = useAppDispatch();
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
   function onLogout() {
     dispatch(logout());

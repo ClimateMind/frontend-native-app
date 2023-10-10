@@ -1,4 +1,4 @@
-import Solution from "./Solution";
+import Solution from './Solution';
 
 type ClimateEffect = {
   effectId: string;
@@ -13,6 +13,6 @@ type ClimateEffect = {
   isPossiblyLocal: 0 | 1;
   effectSpecificMythIRIs: string[];
   relatedPersonalValues?: string[];
-}
+};
 
 export default ClimateEffect;

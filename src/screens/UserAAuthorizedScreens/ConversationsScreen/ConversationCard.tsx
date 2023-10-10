@@ -24,7 +24,7 @@ interface Props {
 
 function ConversationCard({ conversation, onDelete }: Props) {
   const apiClient = useApiClient();
-  
+
   const [expanded, setExpanded] = useState(false);
   const [conversationState, setConversationState] = useState(conversation.state);
 
@@ -42,9 +42,10 @@ function ConversationCard({ conversation, onDelete }: Props) {
     `Prepare to talk with ${userBName}`,
     `Ready to talk with ${userBName}`,
     `Talked with ${userBName}`,
-    `Talked with ${userBName}`,`Invited ${userBName} to talk`,
+    `Talked with ${userBName}`,
+    `Invited ${userBName} to talk`,
   ];
-  
+
   function copyLink() {
     setShowCopyLinkModal(true)
     setConversationLink(process.env.EXPO_PUBLIC_WEB_URL + '/landing/' + conversation.conversationId);
@@ -56,7 +57,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
       .then(() => {
         onDelete(conversation.conversationId);
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   }
 
   function increaseState(state: number) {
@@ -70,7 +71,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
       setShowViewSelectedTopicsModal(true);
     }
   }
-  
+
   useEffect(() => {
     setConversationState(conversation.state);
   }, [conversation.state]);

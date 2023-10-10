@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, Pressable, StyleSheet, TextInput, View } from "react-native";
+import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import useApiClient from 'src/hooks/useApiClient';
 import { showErrorToast, showSuccessToast } from 'src/components/ToastMessages';
 import { CmTypography } from 'src/components';
@@ -13,16 +13,16 @@ interface Props {
 
 function ChangePasswordModal({ show, onSubmit, onCancel }: Props) {
   const apiClient = useApiClient();
-  
+
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
-  
+
   function submitDisabled() {
     if (currentPassword === '') {
       return true;
     }
-    
+
     if (!/^(?=.*[0-9!@#$%^&*])(.{8,})$/.test(newPassword)) {
       return true;
     }
@@ -33,7 +33,7 @@ function ChangePasswordModal({ show, onSubmit, onCancel }: Props) {
 
     return false;
   }
-  
+
   function submitButtonHandler() {
     apiClient.putPassword(currentPassword, newPassword, confirmNewPassword)
       .then(() => {
@@ -43,8 +43,8 @@ function ChangePasswordModal({ show, onSubmit, onCancel }: Props) {
         setConfirmNewPassword('');
         onSubmit();
       })
-      .catch(error => {
-        console.log(error.response.status)
+      .catch((error) => {
+        console.log(error.response.status);
         if (error.response.status === 403) {
           showErrorToast('Current password is incorrect');
         } else {
@@ -52,12 +52,9 @@ function ChangePasswordModal({ show, onSubmit, onCancel }: Props) {
         }
       });
   }
-  
+
   return (
-    <Modal
-      visible={show}
-      transparent={true}
-    >
+    <Modal visible={show} transparent={true}>
       <View style={styles.centerModal}>
         <Card style={{ padding: 20, width: '90%' }}>
 
@@ -94,7 +91,6 @@ function ChangePasswordModal({ show, onSubmit, onCancel }: Props) {
             <Pressable onPress={onCancel} style={styles.button}><CmTypography variant='button'>CANCEL</CmTypography></Pressable>
             <Pressable disabled={submitDisabled()} onPress={submitButtonHandler} style={[styles.button, submitDisabled() && {opacity: 0.2}]}><CmTypography variant='button'>SUBMIT</CmTypography></Pressable>
           </View>
-
         </Card>
       </View>
     </Modal>
@@ -135,7 +131,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
-  }
+  },
 });
 
 export default ChangePasswordModal;

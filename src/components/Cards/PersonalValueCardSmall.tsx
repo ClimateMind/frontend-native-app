@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { useState } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
 
-import { capitalizeFirstLetter } from "src/utils";
-import { CmTypography } from "src/components";
-import PersonalValueIcon from "src/components/PersonalValueIcon";
-import Card from "./Card";
+import { capitalizeFirstLetter } from 'src/utils';
+import { CmTypography } from 'src/components';
+import PersonalValueIcon from 'src/components/PersonalValueIcon';
+import Card from './Card';
 
 interface Props {
   name: string;
@@ -14,25 +14,32 @@ interface Props {
 
 function PersonalValueCardSmall({ name, shortDescription, percentage }: Props) {
   const [expanded, setExpanded] = useState(false);
-  
+
   return (
     <Card style={{ padding: 10 }}>
-
       <View style={styles.header}>
         <PersonalValueIcon valueName={name} style={styles.image} />
 
         <View>
-          <CmTypography variant='h3'>{capitalizeFirstLetter(name)}</CmTypography>
-          <CmTypography variant='h3'>{percentage.toString()}% match</CmTypography>
+          <CmTypography variant="h3">{capitalizeFirstLetter(name)}</CmTypography>
+          <CmTypography variant="h3">{percentage.toString()}% match</CmTypography>
         </View>
 
-        <Pressable onPress={() => setExpanded(prev => !prev)} style={{ width: 70 }}>
-          <CmTypography variant='button' style={styles.moreCloseText}>{expanded ? "CLOSE" : "MORE"}</CmTypography>
+        <Pressable
+          onPress={() => setExpanded((prev) => !prev)}
+          style={{ width: 70 }}
+        >
+          <CmTypography variant="button" style={styles.moreCloseText}>
+            {expanded ? 'CLOSE' : 'MORE'}
+          </CmTypography>
         </Pressable>
       </View>
 
-      {expanded && <CmTypography variant='body' style={styles.shortDescription}>{shortDescription}</CmTypography>}
-
+      {expanded && (
+        <CmTypography variant="body" style={styles.shortDescription}>
+          {shortDescription}
+        </CmTypography>
+      )}
     </Card>
   );
 }

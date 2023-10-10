@@ -16,7 +16,7 @@ type Props = NativeStackScreenProps<MythsFeedStackParams, 'MythDetailsScreen'>;
 function MythDetailsScreen({ navigation, route }: Props) {
   const myth = route.params.myth;
   const [selectedTab, setSelectedTab] = useState(0);
-  
+
   return (
     <Screen style={{ backgroundColor: 'white' }}>
       <Section>
@@ -33,7 +33,6 @@ function MythDetailsScreen({ navigation, route }: Props) {
           </View>
 
           {selectedTab === 0 && <CmTypography variant='caption' style={styles.description}>{myth.faultyLogicDescription}</CmTypography>}
-
           {selectedTab === 1 && myth.mythSources.map(source => <CmTypography variant='label' key={source} style={styles.link}>{source}</CmTypography>)}
         </Content>
       </Section>

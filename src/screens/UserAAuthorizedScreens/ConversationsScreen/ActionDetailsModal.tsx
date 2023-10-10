@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import { Image, Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
+import { useEffect, useState } from 'react';
+import { Image, Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import { capitalizeFirstLetter } from "src/utils";
-import Colors from "src/assets/colors";
-import ClimateEffect2 from "src/types/ClimateEffect2";
-import ClimateEffect3 from "src/types/ClimateEffect3";
-import DetailsSourcesTab from "src/components/DetailsSourcesTabs";
-import useApiClient from "src/hooks/useApiClient";
-import { CmTypography } from "src/components";
+import { capitalizeFirstLetter } from 'src/utils';
+import Colors from 'src/assets/colors';
+import ClimateEffect2 from 'src/types/ClimateEffect2';
+import ClimateEffect3 from 'src/types/ClimateEffect3';
+import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
+import useApiClient from 'src/hooks/useApiClient';
+import { CmTypography } from 'src/components';
 
 interface Props {
   open: boolean;
@@ -18,21 +18,21 @@ interface Props {
 
 function ActionDetailsModal({ open, action, onClose }: Props) {
   const apiClient = useApiClient();
-  
+
   const [actionDetails, setActionDetails] = useState<ClimateEffect3>();
   const [selectedTab, setSelectedTab] = useState(0);
-  
+
   useEffect(() => {
     apiClient.getSharedImpactDetails(action.effectId)
       .then(response => {
         setActionDetails(response);
       });
   }, [action]);
-  
+
   if (!actionDetails) {
     return null;
   }
-  
+
   return (
     <Modal
       visible={open}

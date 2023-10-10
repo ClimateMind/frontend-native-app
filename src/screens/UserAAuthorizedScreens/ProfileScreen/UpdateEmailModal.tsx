@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Modal, Pressable, StyleSheet, TextInput, View } from "react-native";
+import { useState } from 'react';
+import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
-import { useAppSelector } from "src/store/hooks";
-import useApiClient from "src/hooks/useApiClient";
-import { CmTypography } from "src/components";
-import Card from "src/components/Cards/Card";
+import { useAppSelector } from 'src/store/hooks';
+import useApiClient from 'src/hooks/useApiClient';
+import { CmTypography } from 'src/components';
+import Card from 'src/components/Cards/Card';
 
 interface Props {
   show: boolean;
@@ -14,12 +14,12 @@ interface Props {
 
 function UpdateEmailModal({ show, onSubmit, onCancel }: Props) {
   const apiClient = useApiClient();
-  const currentEmail = useAppSelector(state => state.auth.user.email);
-  
+  const currentEmail = useAppSelector((state) => state.auth.user.email);
+
   const [email, setEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+
   function submitDisabled() {
     if (email === '' || password === '') {
       return true;
@@ -35,17 +35,14 @@ function UpdateEmailModal({ show, onSubmit, onCancel }: Props) {
 
     return false;
   }
-  
+
   function submitButtonHandler() {
     apiClient.putEmail(email, confirmEmail, password);
     onSubmit();
   }
-  
+
   return (
-    <Modal
-      visible={show}
-      transparent={true}
-    >
+    <Modal visible={show} transparent={true}>
       <View style={styles.centerModal}>
         <Card style={{ padding: 20, width: '90%' }}>
 
@@ -78,12 +75,11 @@ function UpdateEmailModal({ show, onSubmit, onCancel }: Props) {
             style={styles.input}
             placeholderTextColor={'#88999C'}
           />
-        
+
           <View style={styles.buttonContainer}>
             <Pressable onPress={onCancel} style={styles.button}><CmTypography variant='button'>CANCEL</CmTypography></Pressable>
             <Pressable disabled={submitDisabled()} onPress={submitButtonHandler} style={[styles.button, submitDisabled() && {opacity: 0.2}]}><CmTypography variant='button'>SUBMIT</CmTypography></Pressable>
           </View>
-
         </Card>
       </View>
     </Modal>
@@ -124,7 +120,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
-  }
+  },
 });
 
 export default UpdateEmailModal;

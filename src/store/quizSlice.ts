@@ -29,11 +29,11 @@ export const quizSlice = createSlice({
             (x) => x.questionId !== action.payload.questionId
           );
         }
-        
+
         // Add the new answer to the array
         state.quizAnswers.SetOne.push({
           questionId: action.payload.questionId,
-          answerId: action.payload.answerId
+          answerId: action.payload.answerId,
         });
       } else if (action.payload.questionSet === 2) {
         // If the question is already answered, remove it from the array
@@ -42,11 +42,11 @@ export const quizSlice = createSlice({
             (x) => x.questionId !== action.payload.questionId + 10
           );
         }
-        
+
         // Add the new answer to the array
         state.quizAnswers.SetTwo.push({
           questionId: action.payload.questionId + 10,
-          answerId: action.payload.answerId
+          answerId: action.payload.answerId,
         });
       }
     },

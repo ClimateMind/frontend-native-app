@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { useState } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
 
-import useApiClient from "src/hooks/useApiClient";
-import { CmTypography } from "src/components";
+import useApiClient from 'src/hooks/useApiClient';
+import { CmTypography } from 'src/components';
 
 interface Props {
   conversationId: string;
@@ -13,11 +13,11 @@ interface Props {
 function ConversationRating({ conversationId, initialRating, onRated }: Props) {
   const apiClient = useApiClient();
   const [rating, setRating] = useState(initialRating);
-  
+
   function submitRating(newRating: number) {
     setRating(newRating);
     onRated();
-    
+
     apiClient.putSingleConversation({
       conversationId,
       updatedConversation: {
@@ -25,12 +25,12 @@ function ConversationRating({ conversationId, initialRating, onRated }: Props) {
       },
     });
   }
-  
+
   return (
     <>
       <CmTypography variant='h2' style={styles.title}>Yay! Go you!</CmTypography>
 
-      <CmTypography variant='body'>How Did it go?</CmTypography>
+      <CmTypography variant="body">How Did it go?</CmTypography>
 
       <View style={styles.buttonContainer}>
         <Pressable style={[styles.button, { backgroundColor: rating === 1 ? 'lightgray' : 'white'}]} onPress={() => submitRating(1)}><CmTypography variant='body'>😡</CmTypography></Pressable>

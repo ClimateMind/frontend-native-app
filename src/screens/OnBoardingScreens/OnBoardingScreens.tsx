@@ -49,19 +49,19 @@ function OnBoardingScreens({ onCompleted }: Props) {
     <Screen>
       <Section>
         <Content>
-            <View style={styles.contentArea}>
-              <Image style={styles.image} source={images[currentScreen]} />
-              <Text style={styles.headerText}>{headers[currentScreen]}</Text>
-              <Text style={styles.text}>{texts[currentScreen]}</Text>
-            </View>
-            <View style={styles.navIcons}>
-              <Pressable onPress={() => previousScreen()} style={styles.navIcon}>
-                {currentScreen > 0 && <MaterialIcons name="arrow-back-ios" size={32} color="black" />}
-              </Pressable>
-              <Pressable onPress={() => nextScreen()} style={styles.navIcon}>
-                <MaterialIcons name="arrow-forward-ios" size={32} color="black" />
-              </Pressable>
-            </View>
+          <View style={styles.contentArea}>
+            <Image style={styles.image} source={images[currentScreen]} />
+            <Text style={styles.headerText}>{headers[currentScreen]}</Text>
+            <Text style={styles.text}>{texts[currentScreen]}</Text>
+          </View>
+          <View style={styles.navIcons}>
+            <Pressable onPress={() => previousScreen()} style={styles.navIcon}>
+              {currentScreen > 0 && <MaterialIcons name="arrow-back-ios" size={32} color="black" />}
+            </Pressable>
+            <Pressable onPress={() => nextScreen()} style={styles.navIcon}>
+              <MaterialIcons name="arrow-forward-ios" size={32} color="black" />
+            </Pressable>
+          </View>
         </Content>
       </Section>
     </Screen>

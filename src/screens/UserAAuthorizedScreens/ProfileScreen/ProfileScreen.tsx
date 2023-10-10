@@ -13,8 +13,8 @@ import DeleteAccountModal from './DeleteAccountModal';
 
 function ProfileScreen() {
   const dispatch = useAppDispatch();
-  const firstName = useAppSelector(state => state.auth.user.firstName);
-  
+  const firstName = useAppSelector((state) => state.auth.user.firstName);
+
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false);

@@ -21,9 +21,19 @@ function SimpleWhiteIconTextButton({ text, icon, onPress, disabled = false, styl
       ]}
       onPress={onPress}
     >
-      <View style={{ flexDirection: 'row', gap: 15, width: '100%', justifyContent: 'flex-start', alignItems: 'center' }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          gap: 15,
+          width: '100%',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+        }}
+      >
         {icon}
-        <CmTypography variant='button' style={styles.buttonText}>{text}</CmTypography>
+        <CmTypography variant="button" style={styles.buttonText}>
+          {text}
+        </CmTypography>
       </View>
     </Pressable>
   );
@@ -39,7 +49,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-
   },
   buttonPressed: {
     backgroundColor: 'lightgray',
@@ -49,7 +58,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontWeight: 'bold',
-    paddingVertical:5,
+    paddingVertical: 5,
   },
 });
 

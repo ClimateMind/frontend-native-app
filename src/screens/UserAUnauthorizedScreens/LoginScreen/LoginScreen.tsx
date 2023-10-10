@@ -28,7 +28,7 @@ function LoginScreen() {
   const [password, setPassword] = useState('');
 
   async function onLogin(token?: string) {
-    if (email === '' || password === '') {      
+    if (email === '' || password === '') {
       showErrorToast('Please enter your username and password');
       return;
     }
@@ -83,7 +83,6 @@ function LoginScreen() {
               onChangeText={setEmail}
               style={styles.input}
               placeholderTextColor={'#88999C'}
-              
             />
 
             <TextInput

@@ -1,10 +1,10 @@
-import { Pressable, StyleSheet } from "react-native";
-import { Image, View } from "react-native";
+import { Pressable, StyleSheet } from 'react-native';
+import { Image, View } from 'react-native';
 
-import { capitalizeFirstLetter } from "src/utils";
-import ClimateSolution from "src/types/Solution3";
-import { CmTypography } from "src/components";
-import Card from "src/components/Cards/Card";
+import { capitalizeFirstLetter } from 'src/utils';
+import ClimateSolution from 'src/types/Solution3';
+import { CmTypography } from 'src/components';
+import Card from 'src/components/Cards/Card';
 
 interface Props {
   solution: ClimateSolution;
@@ -14,7 +14,6 @@ interface Props {
 function SolutionsFeedCard({ solution, onLearnMore }: Props) {
   return (
     <Card>
-
       <View style={styles.headingContainer}>
         <CmTypography variant='label' style={styles.actionType}>{solution.solutionType[0].toUpperCase()} ACTION</CmTypography>
         <CmTypography variant='h3' style={styles.title}>{capitalizeFirstLetter(solution.solutionTitle)}</CmTypography>
@@ -26,7 +25,6 @@ function SolutionsFeedCard({ solution, onLearnMore }: Props) {
       <Pressable onPress={() => onLearnMore(solution)}>
         <CmTypography variant='button' style={styles.button}>MORE</CmTypography>
       </Pressable>
-
     </Card>
   );
 }

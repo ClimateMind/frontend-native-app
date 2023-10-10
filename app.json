@@ -12,9 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#B9E6E0"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "android": {
       "package": "org.climatemind.app"
     },
@@ -35,6 +33,6 @@
     },
     "experiments": {
       "tsconfigPaths": true
-    } 
+    }
   }
 }

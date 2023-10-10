@@ -54,7 +54,6 @@ function ConversationsScreen() {
                 share it, so they can take the quiz, discover your shared values, and
                 pick topics to talk about.
               </CmTypography>
-              <CmTypography variant='caption' style={styles.center}>We will send you an email when they agree to share their results with you!</CmTypography>
 
               <CmTypography variant='label' style={styles.label}>Name of recipient</CmTypography>
               <TextInput

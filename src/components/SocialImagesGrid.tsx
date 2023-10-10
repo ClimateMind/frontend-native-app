@@ -14,7 +14,7 @@ function SocialImagesGrid() {
     { key: 5, icon: <Ionicons onPress={() => openUrl('https://github.com/ClimateMind')} name="logo-github" size={24} color="white" /> },
     { key: 6, icon: <FontAwesome5 onPress={() => openUrl('https://t.me/climatemind_chat')} name="telegram-plane" size={24} color="white" /> },
   ];
-  
+
   return (
     <FlatList
       data={images}

@@ -1,7 +1,7 @@
-import { forwardRef, ReactNode } from "react";
-import { ScrollView, ScrollViewProps, View, ViewStyle } from "react-native";
+import { forwardRef, ReactNode } from 'react';
+import { ScrollView, ScrollViewProps, View, ViewStyle } from 'react-native';
 
-import Colors from "src/assets/colors";
+import Colors from 'src/assets/colors';
 
 interface Props {
   children: ReactNode;
@@ -13,14 +13,26 @@ interface Props {
 const Screen = forwardRef<ScrollView, Props>(({ children, style = {}, props = {}, view = 'ScrollView' }, ref) => {
     if (view === 'View') {
       return (
-        <View style={{ flexGrow: 1, backgroundColor: Colors.themeBright, ...style }} {...props}>
+        <View
+          style={{ flexGrow: 1, backgroundColor: Colors.themeBright, ...style }}
+          {...props}
+        >
           {children}
         </View>
       );
     }
 
     return (
-      <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: Colors.themeBright, ...style }} {...props} ref={ref} keyboardShouldPersistTaps="handled">
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+          backgroundColor: Colors.themeBright,
+          ...style,
+        }}
+        {...props}
+        ref={ref}
+        keyboardShouldPersistTaps="handled"
+      >
         {children}
       </ScrollView>
     );

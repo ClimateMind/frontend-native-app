@@ -21,7 +21,7 @@ type Props = NativeStackScreenProps<StackParams, 'PersonalValuesScreenNewUser'>;
 
 function PersonalValuesScreenNewUser({ navigation }: Props) {
   const apiClient = useApiClient();
-  const quizId = useAppSelector(state => state.auth.user.quizId);
+  const quizId = useAppSelector((state) => state.auth.user.quizId);
 
   const scrollRef = React.useRef<ScrollView | null>(null);
   const [personalValues, setPersonalValues] = React.useState<GetPersonalValues>();
@@ -73,8 +73,10 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
               // The -40 comes from the padding of the parent view (20 on each side)
               size={Dimensions.get('window').width - 40}
               maxWidth={640}
-              data={personalValues.valueScores.map(value => value.score)}
-              labels={personalValues.valueScores.map(value => value.personalValue)}
+              data={personalValues.valueScores.map((value) => value.score)}
+              labels={personalValues.valueScores.map(
+                (value) => value.personalValue
+              )}
             />
           </View>
         </Content>

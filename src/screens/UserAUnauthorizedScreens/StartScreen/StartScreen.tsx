@@ -20,7 +20,7 @@ function StartScreen({ navigation }: Props) {
   function navigateToPreQuizScreen() {
     navigation.navigate('PreQuizScreen');
   }
-  
+
   return (
     <Screen>
       <Section>
@@ -38,7 +38,7 @@ function StartScreen({ navigation }: Props) {
             Climate change affects us all. And to inspire sufficient action, we must talk about it
             much more.
           </CmTypography>
-          
+
           <CmTypography variant='body' style={styles.text}>
             Climate Mind makes it easy to have effective conversations with your friends and family.
           </CmTypography>
@@ -47,9 +47,9 @@ function StartScreen({ navigation }: Props) {
 
       <Section style={{ flexGrow: 1, backgroundColor: Colors.themeDark }}>
         <Content>
-          <CmTypography variant='body' style={styles.whiteText}>
-            We use proven social science to connect climate change to what people care about and help
-            find solutions they like.
+          <CmTypography variant="body" style={styles.whiteText}>
+            We use proven social science to connect climate change to what
+            people care about and help find solutions they like.
           </CmTypography>
 
           <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Test15: " + process.env.EXPO_PUBLIC_API_URL)}>

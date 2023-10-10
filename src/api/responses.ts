@@ -1,8 +1,8 @@
-import Alignment from "src/types/Alignment";
-import ClimateEffect2 from "src/types/ClimateEffect2";
-import ClimateEffect3 from "src/types/ClimateEffect3";
-import Solution2 from "src/types/Solution2";
-import ClimateSolution from "src/types/Solution3";
+import Alignment from 'src/types/Alignment';
+import ClimateEffect2 from 'src/types/ClimateEffect2';
+import ClimateEffect3 from 'src/types/ClimateEffect3';
+import Solution2 from 'src/types/Solution2';
+import ClimateSolution from 'src/types/Solution3';
 
 export type PostSession = {
   sessionId: string;
@@ -74,7 +74,7 @@ export type GetAllConversations = {
   consent: boolean;
   conversationTimestamp: string;
   alignmentScoresId: string;
-}
+};
 
 export type GetAlignmentScores = {
   userAName: string;
@@ -82,12 +82,12 @@ export type GetAlignmentScores = {
   overallSimilarityScore: number;
   topMatchPercent: number;
   valueAlignment: Alignment[];
-}
+};
 
 export type GetSelectedTopics = {
   climateEffects: ClimateEffect2[];
   climateSolutions: ClimateSolution[];
-}
+};
 
 export type GetSharedImpactDetails = ClimateEffect3;
 

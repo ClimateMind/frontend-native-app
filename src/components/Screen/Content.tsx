@@ -1,4 +1,4 @@
-import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 interface Props {
   children: React.ReactNode;
@@ -6,11 +6,7 @@ interface Props {
 }
 
 function Content({ children, style }: Props) {
-  return (
-    <View style={[styles.content, style]}>
-      {children}
-    </View>
-  );
+  return <View style={[styles.content, style]}>{children}</View>;
 }
 
 const styles = StyleSheet.create({

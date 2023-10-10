@@ -1,7 +1,7 @@
-import { StyleProp, ViewStyle } from "react-native";
+import { StyleProp, ViewStyle } from 'react-native';
 
-import SimpleWhiteTextButton from "src/components/SimpleWhiteTextButton";
-import useApiClient from "src/hooks/useApiClient";
+import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
+import useApiClient from 'src/hooks/useApiClient';
 
 interface Props {
   conversationId: string;
@@ -19,11 +19,11 @@ function ViewSelectedTopicsButton({ conversationId, conversationState, style, on
       updatedConversation: {
         state: 3,
       },
-    })
-    
+    });
+
     onClick();
   }
-  
+
   return (
     <SimpleWhiteTextButton
       style={style}

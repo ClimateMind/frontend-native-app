@@ -11,7 +11,6 @@ import ClimateEffect from 'src/types/ClimateEffect';
 import Solution from 'src/types/Solution';
 import Myth from 'src/types/Myth';
 
-
 const validateToken = (token: string): boolean => {
   try {
     const decodedToken: { exp: number } = jwtDecode(token);
@@ -66,9 +65,9 @@ function useApiClient() {
     return response.data;
   }
 
-  async function postScores(quizAnswers: requests.PostScores) {    
+  async function postScores(quizAnswers: requests.PostScores) {
     if (!sessionId) {
-      throw new Error('Missing sessionId')
+      throw new Error('Missing sessionId');
     }
 
     const response = await apiCall<responses.PostScores>(
@@ -85,11 +84,11 @@ function useApiClient() {
 
   async function getPersonalValues(quizId: string) {
     if (!sessionId) {
-      throw new Error('Missing sessionId')
+      throw new Error('Missing sessionId');
     }
 
     if (quizId === '') {
-      throw new Error('Missing quizId')
+      throw new Error('Missing quizId');
     }
 
     const response = await apiCall<responses.GetPersonalValues>(
@@ -97,7 +96,7 @@ function useApiClient() {
       '/personal_values?quizId=' + quizId,
       {
         'X-Session-Id': sessionId,
-      },
+      }
     );
 
     return response.data;
@@ -108,7 +107,7 @@ function useApiClient() {
       'post',
       '/register',
       {},
-      { firstName, lastName, email, password, quizId },
+      { firstName, lastName, email, password, quizId }
     );
 
     return response.data;
@@ -122,7 +121,7 @@ function useApiClient() {
         'X-Session-Id': sessionId,
         'Authorization': 'Bearer ' + user.accessToken,
       },
-      { currentPassword: password },
+      { currentPassword: password }
     );
 
     return response.data;
@@ -135,13 +134,8 @@ function useApiClient() {
       // Use the recaptcha token if it exists, otherwise skip the captcha
       ...(recaptchaToken ? { recaptchaToken } : { skipCaptcha: true }),
     };
-    
-    const response = await apiCall<responses.Login>(
-      'post',
-      '/login',
-      {},
-      body,
-    );
+
+    const response = await apiCall<responses.Login>('post', '/login', {}, body);
 
     // Store the refresh token in AsyncStorage
     const cookieHeader = response.headers['set-cookie'];
@@ -196,17 +190,17 @@ function useApiClient() {
       {
         'X-Session-Id': sessionId,
       },
-      { email },
+      { email }
     );
   }
 
   async function getClimateFeed(): Promise<ClimateEffect[]> {
     if (!sessionId) {
-      throw new Error('Missing sessionId')
+      throw new Error('Missing sessionId');
     }
 
     if (quizId === '') {
-      throw new Error('Missing quizId')
+      throw new Error('Missing quizId');
     }
 
     const response = await apiCall<{ climateEffects: ClimateEffect[] }>(
@@ -214,7 +208,7 @@ function useApiClient() {
       '/feed?quizId=' + quizId,
       {
         'X-Session-Id': sessionId,
-      },
+      }
     );
 
     return response.data.climateEffects;
@@ -222,11 +216,11 @@ function useApiClient() {
 
   async function getSolutionsFeed(): Promise<Solution[]> {
     if (!sessionId) {
-      throw new Error('Missing sessionId')
+      throw new Error('Missing sessionId');
     }
 
     if (quizId === '') {
-      throw new Error('Missing quizId')
+      throw new Error('Missing quizId');
     }
 
     const response = await apiCall<{ solutions: Solution[] }>(
@@ -234,7 +228,7 @@ function useApiClient() {
       '/solutions?quizId=' + quizId,
       {
         'X-Session-Id': sessionId,
-      },
+      }
     );
 
     return response.data.solutions;
@@ -242,7 +236,7 @@ function useApiClient() {
 
   async function getMythsFeed(): Promise<Myth[]> {
     if (!sessionId) {
-      throw new Error('Missing sessionId')
+      throw new Error('Missing sessionId');
     }
 
     const response = await apiCall<{ myths: Myth[] }>(
@@ -258,7 +252,7 @@ function useApiClient() {
 
   async function getMyth(mythIri: string) {
     if (!sessionId) {
-      throw new Error('Missing sessionId')
+      throw new Error('Missing sessionId');
     }
 
     const response = await apiCall<{ myth: Myth }>(
@@ -280,7 +274,7 @@ function useApiClient() {
         'X-Session-Id': sessionId,
         'Authorization': 'Bearer ' + user.accessToken,
       },
-      { currentPassword, newPassword, confirmPassword },
+      { currentPassword, newPassword, confirmPassword }
     );
   }
 
@@ -292,7 +286,7 @@ function useApiClient() {
         'X-Session-Id': sessionId,
         'Authorization': 'Bearer ' + user.accessToken,
       },
-      { newEmail, confirmEmail, password },
+      { newEmail, confirmEmail, password }
     );
   }
 
@@ -304,7 +298,7 @@ function useApiClient() {
         'X-Session-Id': sessionId,
         'Authorization': 'Bearer ' + user.accessToken,
       },
-      { invitedUserName },
+      { invitedUserName }
     );
 
     return response.data;
@@ -343,18 +337,18 @@ function useApiClient() {
           'X-Session-Id': sessionId,
           'Authorization': 'Bearer ' + user.accessToken,
         },
-        data.updatedConversation,
+        data.updatedConversation
       );
     } catch {}
   }
 
   async function getAlignmentScores(alignmentScoresId: string): Promise<responses.GetAlignmentScores> {
     if (!sessionId) {
-      throw new Error('Missing sessionId')
+      throw new Error('Missing sessionId');
     }
 
     if (!alignmentScoresId) {
-      throw new Error('Missing alignmentScoresId')
+      throw new Error('Missing alignmentScoresId');
     }
 
     const response = await apiCall<responses.GetAlignmentScores>(
@@ -362,19 +356,19 @@ function useApiClient() {
       '/alignment/' + alignmentScoresId,
       {
         'X-Session-Id': sessionId,
-      },
+      }
     );
 
     return response.data;
   }
-  
+
   async function getSelectedTopics(conversationId: string): Promise<responses.GetSelectedTopics> {
     if (!sessionId) {
-      throw new Error('Missing sessionId')
+      throw new Error('Missing sessionId');
     }
 
     if (!conversationId) {
-      throw new Error('Missing conversationId')
+      throw new Error('Missing conversationId');
     }
 
     const response = await apiCall<responses.GetSelectedTopics>(
@@ -382,19 +376,19 @@ function useApiClient() {
       '/conversation/' + conversationId + '/topics',
       {
         'X-Session-Id': sessionId,
-      },
+      }
     );
 
     return response.data;
-  }      
+  }
 
   async function getSharedImpactDetails(impactId: string): Promise<responses.GetSharedImpactDetails> {
     if (!sessionId) {
-      throw new Error('Missing sessionId')
+      throw new Error('Missing sessionId');
     }
 
     if (!impactId) {
-      throw new Error('Missing impactId')
+      throw new Error('Missing impactId');
     }
 
     const response = await apiCall<responses.GetSharedImpactDetails>(
@@ -402,7 +396,7 @@ function useApiClient() {
       '/alignment/shared-impact/' + impactId,
       {
         'X-Session-Id': sessionId,
-      },
+      }
     );
 
     return response.data;
@@ -410,11 +404,11 @@ function useApiClient() {
 
   async function getSharedSolutionDetails(solutionId: string): Promise<responses.GetSharedSolutionDetails> {
     if (!sessionId) {
-      throw new Error('Missing sessionId')
+      throw new Error('Missing sessionId');
     }
 
     if (!solutionId) {
-      throw new Error('Missing solutionId')
+      throw new Error('Missing solutionId');
     }
 
     const response = await apiCall<responses.GetSharedSolutionDetails>(
@@ -422,7 +416,7 @@ function useApiClient() {
       '/alignment/shared-solution/' + solutionId,
       {
         'X-Session-Id': sessionId,
-      },
+      }
     );
 
     return response.data;
@@ -450,7 +444,7 @@ function useApiClient() {
 
     createConversationInvite,
     getAllConversations,
-    deleteConversation,    
+    deleteConversation,
     putSingleConversation,
 
     getAlignmentScores,

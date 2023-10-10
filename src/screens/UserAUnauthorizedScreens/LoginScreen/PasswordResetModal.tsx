@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Modal, Pressable, StyleSheet, TextInput, View } from "react-native";
+import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
-import useApiClient from "src/hooks/useApiClient";
+import useApiClient from 'src/hooks/useApiClient';
 import { showSuccessToast, showErrorToast } from 'src/components/ToastMessages';
 import { CmTypography } from 'src/components';
 import Card from 'src/components/Cards/Card';
@@ -14,9 +14,9 @@ interface Props {
 
 function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
   const apiClient = useApiClient();
-  
+
   const [email, setEmail] = useState('');
-  
+
   function onPasswordResetRequest() {
     apiClient.postPasswordResetLink(email.trim())
       .then(() => {
@@ -30,10 +30,7 @@ function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
   }
 
   return (
-    <Modal
-      visible={show}
-      transparent={true}
-    >
+    <Modal visible={show} transparent={true}>
       <View style={styles.centerModal}>
         <Card style={{ padding: 20, width: '90%' }}>
 
@@ -44,7 +41,7 @@ function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
             keyboardType="email-address"
             autoCorrect={false}
             onChangeText={setEmail}
-              style={styles.textInput}
+            style={styles.textInput}
             placeholderTextColor={'#88999C'}
           />
 
@@ -54,7 +51,6 @@ function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
               <CmTypography variant='button' style={[styles.buttonText, { color: !email.trim() ? 'lightgray' : 'black' }]}>SUBMIT</CmTypography>
             </Pressable>
           </View>
-
         </Card>
       </View>
     </Modal>

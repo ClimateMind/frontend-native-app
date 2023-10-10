@@ -4,6 +4,6 @@ type Solution2 = {
   longDescription: string;
   solutionSources: string[];
   solutionType: string[];
-}
+};
 
-export default Solution2
+export default Solution2;

@@ -30,8 +30,8 @@ function UserAAuthorizedTabsNavigation() {
 
   return (
     <Tabs.Navigator
-      initialRouteName='ClimateFeedStack'
-      backBehavior='history'
+      initialRouteName="ClimateFeedStack"
+      backBehavior="history"
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: '#07373b',
@@ -42,11 +42,11 @@ function UserAAuthorizedTabsNavigation() {
         },
         tabBarStyle: {
           height: 55,
-        }
+        },
       }}
     >
       <Tabs.Screen
-        name='ClimateFeedStack'
+        name="ClimateFeedStack"
         component={ClimateFeedStack}
         options={{
           tabBarLabel: 'Home',
@@ -55,7 +55,7 @@ function UserAAuthorizedTabsNavigation() {
       />
 
       <Tabs.Screen
-        name='SolutionsFeedStack'
+        name="SolutionsFeedStack"
         component={SolutionsFeedStack}
         options={{
           tabBarLabel: 'Actions',
@@ -73,7 +73,7 @@ function UserAAuthorizedTabsNavigation() {
       />
 
       <Tabs.Screen
-        name='MythsFeedStack'
+        name="MythsFeedStack"
         component={MythsFeedStack}
         options={{
           tabBarLabel: 'Myths',
@@ -82,12 +82,12 @@ function UserAAuthorizedTabsNavigation() {
       />
 
       <Tabs.Screen
-        name='ProfileScreen'
+        name="ProfileScreen"
         component={ProfileScreen}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color }) => (
-            <CmTypography variant='h3' style={{ color, width: 100 }}>
+            <CmTypography variant="h3" style={{ color, width: 100 }}>
               {(user.firstName[0] + user.lastName[0]).toUpperCase()}
             </CmTypography>
           ),
@@ -95,14 +95,14 @@ function UserAAuthorizedTabsNavigation() {
       />
 
       <Tabs.Screen
-        name='PersonalValuesScreen'
+        name="PersonalValuesScreen"
         component={PersonalValuesScreen}
         options={{
           // Hide screen from tab bar
           tabBarButton: () => null,
         }}
       />
-      
+
     </Tabs.Navigator>
   );
 }

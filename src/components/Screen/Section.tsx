@@ -1,4 +1,4 @@
-import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 interface Props {
   children: React.ReactNode;
@@ -6,11 +6,7 @@ interface Props {
 }
 
 function Section({ children, style }: Props) {
-  return (
-    <View style={[styles.container, style]}>
-      {children}
-    </View>
-  );
+  return <View style={[styles.container, style]}>{children}</View>;
 }
 
 const styles = StyleSheet.create({

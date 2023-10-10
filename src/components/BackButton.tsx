@@ -1,7 +1,7 @@
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import { CmTypography } from ".";
+import { CmTypography } from '.';
 
 interface Props {
   onPress: () => void;
@@ -11,7 +11,9 @@ function BackButton({ onPress }: Props) {
   return (
     <Pressable style={styles.backButtonContainer} onPress={onPress}>
       <Ionicons name="chevron-back-outline" size={24} color="#A347FF" />
-      <CmTypography variant='button' style={styles.backButtonText}>BACK</CmTypography>
+      <CmTypography variant='button' style={styles.backButtonText}>
+        BACK
+      </CmTypography>
     </Pressable>
   );
 }

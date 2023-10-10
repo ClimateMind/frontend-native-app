@@ -8,4 +8,4 @@ type Myth = {
   faultyLogicDescription: string;
 };
 
-export default Myth
+export default Myth;

@@ -10,8 +10,8 @@ const meta: Meta<typeof CmChip> = {
 
 export const Default = {
   args: {
-    label: 'Default Chip'
-  }
-}
+    label: 'Default Chip',
+  },
+};
 
 export default meta;

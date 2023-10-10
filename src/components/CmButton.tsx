@@ -1,11 +1,11 @@
-import { Pressable, StyleProp, StyleSheet, ViewStyle } from "react-native";
-import CmTypography from "./CmTypography";
+import { Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import CmTypography from './CmTypography';
 
 interface Props {
   text: string;
   onPress?: () => void;
   color?: 'success' | 'error';
-  style?: StyleProp<ViewStyle>; 
+  style?: StyleProp<ViewStyle>;
   disabled?: boolean;
   startIcon?: React.ReactNode;
 }
@@ -24,7 +24,15 @@ function CmButton({ text, onPress = () => {}, color = 'success', style = {}, dis
       ]}
     >
       {startIcon}
-      <CmTypography variant='button' style={[styles.buttonText, startIcon !== undefined && { marginLeft: 10 }]}>{text}</CmTypography>
+      <CmTypography
+        variant="button"
+        style={[
+          styles.buttonText,
+          startIcon !== undefined && { marginLeft: 10 },
+        ]}
+      >
+        {text}
+      </CmTypography>
     </Pressable>
   );
 }

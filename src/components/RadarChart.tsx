@@ -3,21 +3,21 @@ import { View } from 'react-native';
 import Svg, { Path, Text, Circle, Line } from 'react-native-svg';
 
 type Props = {
-  data: number[],
-  size: number,
-  maxWidth?: number,
-  labels: string[],
+  data: number[];
+  size: number;
+  maxWidth?: number;
+  labels: string[];
 };
 
 type Point = {
-  x: number,
-  y: number,
+  x: number;
+  y: number;
 };
 
 type Axis = {
-  point1: Point,
-  point2: Point,
-  labelPoint: Point,
+  point1: Point;
+  point2: Point;
+  labelPoint: Point;
 };
 
 function RadarChart(props: Props) {
@@ -30,11 +30,11 @@ function RadarChart(props: Props) {
     chartSize = size;
   }
 
-  const strokeColor = "#61dafb";
+  const strokeColor = '#61dafb';
   const strokeWidth = 2;
-  const axisColor="#000";
-  const axisLabelColor="#666";
-  
+  const axisColor = '#000';
+  const axisLabelColor = '#666';
+
   const center = chartSize / 2;
   const radius = chartSize / 2 - 50;
   const angle = (2 * Math.PI) / data.length;
@@ -82,7 +82,6 @@ function RadarChart(props: Props) {
       point2: { x, y },
       labelPoint: { x: labelX, y: labelY },
     };
-
   });
 
   const webLines = [];
@@ -173,8 +172,6 @@ function RadarChart(props: Props) {
       </Svg>
     </View>
   );
-  
-
 }
 
 export default RadarChart;

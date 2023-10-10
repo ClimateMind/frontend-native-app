@@ -21,7 +21,9 @@ function SimpleWhiteTextButton({ text, onPress, disabled = false, style = {} }: 
       ]}
       onPress={onPress}
     >
-      <CmTypography variant='button' style={styles.buttonText}>{text}</CmTypography>
+      <CmTypography variant="button" style={styles.buttonText}>
+        {text}
+      </CmTypography>
     </Pressable>
   );
 }
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgray',
   },
   buttonText: {
-    flexShrink: 1, 
+    flexShrink: 1,
     flexWrap: 'wrap',
     fontWeight: 'bold',
     paddingVertical: 5,

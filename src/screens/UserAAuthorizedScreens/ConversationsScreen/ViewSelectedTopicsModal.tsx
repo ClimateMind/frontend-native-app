@@ -1,18 +1,18 @@
-import { Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
+import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import Colors from "src/assets/colors";
-import { GetAllConversations } from "src/api/responses";
-import useApiClient from "src/hooks/useApiClient";
-import { useEffect, useState } from "react";
-import ClimateEffect2 from "src/types/ClimateEffect2";
-import Solution3 from "src/types/Solution3";
-import ActionCard from "./ActionCard";
-import SolutionsFeedCard from "./SolutionCard";
-import SolutionDetailsModal from "./SolutionDetailsModal";
-import ActionDetailsModal from "./ActionDetailsModal";
-import { CmTypography } from "src/components";
-import Content from "src/components/Screen/Content";
+import Colors from 'src/assets/colors';
+import { GetAllConversations } from 'src/api/responses';
+import useApiClient from 'src/hooks/useApiClient';
+import { useEffect, useState } from 'react';
+import ClimateEffect2 from 'src/types/ClimateEffect2';
+import Solution3 from 'src/types/Solution3';
+import ActionCard from './ActionCard';
+import SolutionsFeedCard from './SolutionCard';
+import SolutionDetailsModal from './SolutionDetailsModal';
+import ActionDetailsModal from './ActionDetailsModal';
+import { CmTypography } from 'src/components';
+import Content from 'src/components/Screen/Content';
 
 interface Props {
   open: boolean;
@@ -23,26 +23,26 @@ interface Props {
 function ViewSelectedTopicsModal({ open, conversation, onClose }: Props) {
   const apiClient = useApiClient();
 
-  const [climateEffect, setClimateEffect] = useState<ClimateEffect2>()
-  const [climateSolutions, setClimateSolutions] = useState<Solution3[]>()
-  
+  const [climateEffect, setClimateEffect] = useState<ClimateEffect2>();
+  const [climateSolutions, setClimateSolutions] = useState<Solution3[]>();
+
   const [showActionDetails, setShowActionDetails] = useState(false);
-  
+
   const [solutionDetails, setSolutionDetails] = useState<Solution3>();
   const [showSolutionDetails, setShowSolutionDetails] = useState(false);
-  
+
   useEffect(() => {
     if (conversation.state < 2) return;
-    
+
     apiClient.getSelectedTopics(conversation.conversationId)
       .then(response => {
         setClimateEffect(response.climateEffects[0]);
         setClimateSolutions(response.climateSolutions);
         setSolutionDetails(response.climateSolutions[0]);
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   }, [conversation]);
-  
+
   if (!open || !climateEffect || !climateSolutions || !solutionDetails) {
     return null;
   }

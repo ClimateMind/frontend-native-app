@@ -10,20 +10,37 @@ interface Props {
   onTabChanged: (tab: number) => void;
 }
 
-function DetailsSourcesTab({ onTabChanged, detailsTabName='Details' }: Props) {
+function DetailsSourcesTab({ onTabChanged, detailsTabName = 'Details' }: Props) {
   const [selectedTab, setSelectedTab] = useState(0);
-  
+
   return (
     <View style={styles.tabBar}>
-      <Pressable style={[styles.tabButton, selectedTab === 0 ? styles.tabButtonActive : styles.tabButtonInactive ]} onPress={() => {setSelectedTab(0); onTabChanged(0)}}>
+      <Pressable
+        style={[
+          styles.tabButton,
+          selectedTab === 0 ? styles.tabButtonActive : styles.tabButtonInactive,
+        ]}
+        onPress={() => {
+          setSelectedTab(0);
+          onTabChanged(0);
+        }}
+      >
         <MaterialCommunityIcons name="clipboard-text" size={20} color="black" />
-        <CmTypography variant='label' style={{ padding: 5 }}>{detailsTabName}</CmTypography>
+        <CmTypography variant="label" style={{ padding: 5 }}>{detailsTabName}</CmTypography>
       </Pressable>
-      <Pressable style={[styles.tabButton, selectedTab === 1 ? styles.tabButtonActive : styles.tabButtonInactive ]} onPress={() => {setSelectedTab(1); onTabChanged(1)}}>
+      <Pressable
+        style={[
+          styles.tabButton,
+          selectedTab === 1 ? styles.tabButtonActive : styles.tabButtonInactive,
+        ]}
+        onPress={() => {setSelectedTab(1); onTabChanged(1);}}
+      >
         <FontAwesome name="file-text" size={20} color="black" />
-        <CmTypography variant='label' style={{ padding: 5 }}>Sources</CmTypography>
+        <CmTypography variant="label" style={{ padding: 5 }}>
+          Sources
+        </CmTypography>
       </Pressable>
-  </View>
+    </View>
   );
 }
 

@@ -15,19 +15,19 @@ export const Default = {
   args: {
     text: 'Text Button',
   },
-}
+};
 
 export const Disabled = {
   args: {
     text: 'Disabled Button',
     disabled: true,
   },
-}
+};
 
 export const WithLineBreaks = {
   args: {
     text: 'Text\nButton',
   },
-}
+};
 
 export default meta;

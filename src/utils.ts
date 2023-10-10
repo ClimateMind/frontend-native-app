@@ -1,4 +1,4 @@
-import { Alert, Linking } from "react-native";
+import { Alert, Linking } from 'react-native';
 
 async function openUrl(url: string) {
   const supported = await Linking.canOpenURL(url);

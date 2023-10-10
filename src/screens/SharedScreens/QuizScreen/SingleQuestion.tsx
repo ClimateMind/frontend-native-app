@@ -31,13 +31,15 @@ function SingleQuestion({
           marginBottom: 5,
         }}
       >
-        <CmTypography variant='h3' style={{ fontSize: 24, fontWeight: 'bold', letterSpacing: 0 }}>Q{currentQuestionIndex.toString()}</CmTypography>
-        <CmTypography variant='h4'>/{maxQuestionIndex.toString()}</CmTypography>
+        <CmTypography variant="h3" style={{ fontSize: 24, fontWeight: 'bold', letterSpacing: 0 }}>Q{currentQuestionIndex.toString()}</CmTypography>
+        <CmTypography variant="h4">/{maxQuestionIndex.toString()}</CmTypography>
       </View>
 
       <ProgressBar progress={currentQuestionIndex / maxQuestionIndex - 0.1} />
 
-      <CmTypography variant='label' style={styles.question}>{questionText}</CmTypography>
+      <CmTypography variant="label" style={styles.question}>
+        {questionText}
+      </CmTypography>
 
       <Answer onSelect={onSelect} index={1} text="Not Like Me At All" />
       <Answer onSelect={onSelect} index={2} text="Not Like me" />

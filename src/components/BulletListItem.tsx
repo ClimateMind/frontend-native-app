@@ -15,7 +15,9 @@ function BulletListItem({ children, textStyle = {} }: Props) {
 
       {/* This View with flex: 1 is a fix. Otherwise the text might be cutoff at the end of the sentence. */}
       <View style={{ flex: 1 }}>
-        <CmTypography variant='body' style={textStyle}>{children}</CmTypography>
+        <CmTypography variant="body" style={textStyle}>
+          {children}
+        </CmTypography>
       </View>
     </View>
   );

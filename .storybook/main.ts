@@ -21,11 +21,11 @@ const config: StorybookConfig = {
   },
   staticDirs: [
     { from: '../src/assets/fonts', to: 'fonts' },
-    { from : '../src/assets', to: 'assets'}
+    { from: '../src/assets', to: 'assets' },
   ],
   webpackFinal: async (config) => {
     config.resolve!.plugins = [new TsconfigPathsPlugin()];
     return config;
-  }
+  },
 };
 export default config;

@@ -9,4 +9,4 @@ type Solution = {
   solutionSpecificMythIRIs: string[];
 };
 
-export default Solution
+export default Solution;

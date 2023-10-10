@@ -15,7 +15,7 @@ import BackButton from 'src/components/BackButton';
 
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateDetailsScreen'>;
 
-function ClimateDetailsScreen({ navigation, route }: Props) {  
+function ClimateDetailsScreen({ navigation, route }: Props) {
   const climateEffect = route.params.climateEffect;
   const [selectedTab, setSelectedTab] = useState(0);
 
@@ -25,7 +25,7 @@ function ClimateDetailsScreen({ navigation, route }: Props) {
         <Content>
           <BackButton onPress={() => navigation.goBack()} />
 
-          <CmTypography variant='h3' style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</CmTypography>
+          <CmTypography variant="h3" style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</CmTypography>
           {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
 
           <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
