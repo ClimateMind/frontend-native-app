@@ -1,7 +1,7 @@
 <!-- HEADER -->
 <br />
 <div align="center">
-  <img src="./assets/cm-logo.png" alt="Logo">
+  <img src="./src/assets/cm-logo.png" alt="Logo">
 
   <h1 align="center" style="margin-top: 20px;">Climate Mind - Frontend Native App</h1>
   
