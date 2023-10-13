@@ -23,6 +23,7 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
 
   const [userBName, setUserBName] = useState<string>();
   const [topSharedValue, setTopSharedValue] = useState<Alignment>();
+  const [overallSimilarityScore, setOverallSimilarityScore] = useState<number>();
 
   useEffect(() => {
     if (conversation.state < 2) {
@@ -35,11 +36,12 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
       .then(response => {
         setUserBName(response.userBName);
         setTopSharedValue(response.valueAlignment[0]);
+        setOverallSimilarityScore(response.overallSimilarityScore)
       })
       .catch((error) => console.log(error));
   }, [conversation]);
 
-  if (!open || conversation.state <= 2 || !userBName || !topSharedValue) {
+  if (!open || conversation.state <= 2 || !userBName || !topSharedValue || !overallSimilarityScore) {
     return null;
   }
 
@@ -67,7 +69,7 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
             <PersonalValueCardSmall name={topSharedValue.name} shortDescription={topSharedValue.shortDescription} percentage={topSharedValue.score} />
 
             <CmTypography variant='body' style={styles.subheader}>Overall Similarity</CmTypography>
-            <CmTypography variant='h1' style={styles.percentage}>{topSharedValue.score.toString()}%</CmTypography>
+            <CmTypography variant='h1' style={styles.percentage}>{overallSimilarityScore.toString()}%</CmTypography>
 
             <ViewSelectedTopicsButton conversationId={conversation.conversationId} conversationState={2} style={{ marginTop: 50 }} onClick={onViewTopics} />
           </ScrollView>
