@@ -23,7 +23,7 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
 
   const [userBName, setUserBName] = useState<string>();
   const [topSharedValue, setTopSharedValue] = useState<Alignment>();
-  const [topSimilarValue, setTopSimilarValue] = useState<number>(0);
+  const [topSimilarValue, setTopSimilarValue] = useState<number>();
 
   useEffect(() => {
     if (conversation.state < 2) {
@@ -69,7 +69,7 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
             <PersonalValueCardSmall name={topSharedValue.name} shortDescription={topSharedValue.shortDescription} percentage={topSharedValue.score} />
 
             <CmTypography variant='body' style={styles.subheader}>Overall Similarity</CmTypography>
-            <CmTypography variant='h1' style={styles.percentage}>{topSimilarValue.toString()}%</CmTypography>
+            <CmTypography variant='h1' style={styles.percentage}>{topSimilarValue!.toString()}%</CmTypography>
 
             <ViewSelectedTopicsButton conversationId={conversation.conversationId} conversationState={2} style={{ marginTop: 50 }} onClick={onViewTopics} />
           </ScrollView>
