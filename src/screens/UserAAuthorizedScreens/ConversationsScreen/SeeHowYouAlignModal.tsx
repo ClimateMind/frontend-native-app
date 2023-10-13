@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Colors from 'src/assets/colors';
 import PersonalValueCardSmall from 'src/components/Cards/PersonalValueCardSmall';
 import ViewSelectedTopicsButton from './ViewSelectedTopicsButton';
-import { GetAllConversations } from 'src/api/responses';
+import { GetAllConversations,GetAlignmentScores } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
 import Alignment from 'src/types/Alignment';
 import { CmTypography } from 'src/components';
@@ -23,6 +23,7 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
 
   const [userBName, setUserBName] = useState<string>();
   const [topSharedValue, setTopSharedValue] = useState<Alignment>();
+  const [topSimilarValue, setTopSimilarValue] = useState<number>(0);
 
   useEffect(() => {
     if (conversation.state < 2) {
@@ -35,6 +36,7 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
       .then(response => {
         setUserBName(response.userBName);
         setTopSharedValue(response.valueAlignment[0]);
+        setTopSimilarValue(response.overallSimilarityScore)
       })
       .catch((error) => console.log(error));
   }, [conversation]);
@@ -67,7 +69,7 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
             <PersonalValueCardSmall name={topSharedValue.name} shortDescription={topSharedValue.shortDescription} percentage={topSharedValue.score} />
 
             <CmTypography variant='body' style={styles.subheader}>Overall Similarity</CmTypography>
-            <CmTypography variant='h1' style={styles.percentage}>{topSharedValue.score.toString()}%</CmTypography>
+            <CmTypography variant='h1' style={styles.percentage}>{topSimilarValue.toString()}%</CmTypography>
 
             <ViewSelectedTopicsButton conversationId={conversation.conversationId} conversationState={2} style={{ marginTop: 50 }} onClick={onViewTopics} />
           </ScrollView>
