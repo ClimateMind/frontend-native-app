@@ -29,7 +29,7 @@ function ConversationsScreen() {
 
     try {
       const result = await apiClient.createConversationInvite(recipient);
-      setConversationLink(process.env.WEB_URL + '/landing/' + result.conversationId);
+      setConversationLink(process.env.EXPO_PUBLIC_WEB_URL + '/landing/' + result.conversationId);
 
       setShowCopyLinkModal(true);
     } catch (e) {
