@@ -7,6 +7,7 @@ type Props = {
   onPress: () => void;
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
+
 };
 
 function SimpleWhiteTextButton({ text, onPress, disabled = false, style = {} }: Props) {
@@ -20,6 +21,7 @@ function SimpleWhiteTextButton({ text, onPress, disabled = false, style = {} }: 
         style,
       ]}
       onPress={onPress}
+      testID={"simplebtn"}
     >
       <CmTypography variant="button" style={styles.buttonText}>
         {text}

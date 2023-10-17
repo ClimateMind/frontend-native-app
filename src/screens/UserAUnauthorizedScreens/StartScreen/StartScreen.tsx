@@ -28,7 +28,7 @@ function StartScreen({ navigation }: Props) {
           <Image style={styles.image} source={require('src/assets/cm-logo.png')} />
           <CmTypography variant='h1'>Inspire others to take action!</CmTypography>
 
-          <SimpleWhiteTextButton style={styles.button} text='GET STARTED' onPress={navigateToPreQuizScreen} />
+          <SimpleWhiteTextButton style={styles.button} text='GET STARTED' onPress={navigateToPreQuizScreen}/>
 
           <Pressable onPress={navigateToLoginScreen}>
             <CmTypography variant='label' style={styles.text}>Already a member? Login here</CmTypography>
