@@ -1,5 +1,6 @@
 {
   "expo": {
+    "plugins": ["@config-plugins/detox"],
     "name": "Climate Mind",
     "owner": "climatemind",
     "slug": "climate-mind",

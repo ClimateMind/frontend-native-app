@@ -9,7 +9,9 @@
     "build:production:ios": "eas build --profile production --platform ios --clear-cache --non-interactive",
     "build:production:all": "eas build --profile production --platform all --clear-cache --non-interactive",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.18.2",
@@ -41,6 +43,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.0",
+    "@config-plugins/detox": "^6.0.0",
     "@storybook/addon-essentials": "^7.4.6",
     "@storybook/addon-interactions": "^7.4.6",
     "@storybook/addon-links": "^7.4.6",
@@ -53,6 +56,8 @@
     "@types/react": "~18.2.14",
     "@types/react-redux": "^7.1.27",
     "babel-plugin-react-native-web": "^0.19.9",
+    "detox": "^20.13.1",
+    "jest": "^29.7.0",
     "metro-react-native-babel-preset": "^0.77.0",
     "react-dom": "^18.2.0",
     "react-native-web": "^0.19.9",
