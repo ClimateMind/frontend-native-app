@@ -7,7 +7,7 @@ interface Props extends TextProps {
 }
 
 function ButtonText({ children, variant, style, ...rest }: Props) {
-  let textContent = Array.isArray(children) ? children.join(' ') : children;
+  let textContent = Array.isArray(children) ? children.map(child => child.trim()).join(' ') : children;
   textContent = textContent[0].toUpperCase() + textContent.slice(1);
 
   let textStyle: StyleProp<TextStyle>;
