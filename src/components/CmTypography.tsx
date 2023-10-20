@@ -1,15 +1,11 @@
 import { StyleSheet, StyleProp, Text, TextProps, TextStyle } from 'react-native';
 
-interface Props extends TextProps {
-  children: string | string[];
+interface Props extends React.PropsWithChildren, TextProps {
   variant: 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'body-italics' | 'button' | 'caption' | 'label' | 'overline';
   style?: StyleProp<TextStyle>;
 }
 
 function ButtonText({ children, variant, style, ...rest }: Props) {
-  let textContent = Array.isArray(children) ? children.join(' ') : children;
-  textContent = textContent[0].toUpperCase() + textContent.slice(1);
-
   let textStyle: StyleProp<TextStyle>;
 
   switch (variant) {
@@ -50,7 +46,7 @@ function ButtonText({ children, variant, style, ...rest }: Props) {
 
   return (
     <Text style={[textStyle, style]} {...rest}>
-      {textContent}
+      {children}
     </Text>
   );
 }
