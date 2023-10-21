@@ -26,10 +26,6 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
   const [overallSimilarityScore, setOverallSimilarityScore] = useState<number>();
 
   useEffect(() => {
-    if (conversation.state < 2) {
-      return;
-    }
-
     setUserBName(conversation.userB.name);
 
     apiClient.getAlignmentScores(conversation.alignmentScoresId)
@@ -41,7 +37,7 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
       .catch((error) => console.log(error));
   }, [conversation]);
 
-  if (!open || conversation.state <= 2 || !userBName || !topSharedValue || !overallSimilarityScore) {
+  if (!open || !userBName || !topSharedValue || !overallSimilarityScore) {
     return null;
   }
 
