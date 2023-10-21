@@ -24,7 +24,7 @@ function ConversationsIntroCard() {
       </>}
 
       <Pressable onPress={() => setExpanded(current => !current)} style={styles.moreLessButton}>
-        <CmTypography variant='body' style={{ letterSpacing: 1, fontWeight: 'bold' }}>{expanded ? 'LESS' : 'MORE'}</CmTypography>
+        <CmTypography variant='button' style={{ letterSpacing: 1 }}>{expanded ? 'LESS' : 'MORE'}</CmTypography>
       </Pressable>
 
     </Card>
