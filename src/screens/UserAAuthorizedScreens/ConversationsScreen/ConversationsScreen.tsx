@@ -12,7 +12,6 @@ import ConversationsDrawer from './ConversationsDrawer';
 import CopyLinkModal from './CopyLinkModal';
 import { showErrorToast } from 'src/components/ToastMessages';
 import { CmTypography } from 'src/components';
-import { Caption } from 'src/stories/CmTypography.stories';
 
 function ConversationsScreen() {
   const apiClient = useApiClient();
