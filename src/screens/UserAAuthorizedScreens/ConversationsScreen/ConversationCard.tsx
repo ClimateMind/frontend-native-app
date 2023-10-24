@@ -81,7 +81,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
       <Card style={[{ padding: 15 }, { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }]}>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <CmTypography variant='caption'>{headerText[conversationState]}</CmTypography>
+          <CmTypography variant='caption' style={{ flexShrink: 1 }}>{headerText[conversationState]}</CmTypography>
           {expanded && <Pressable onPress={copyLink}><Text>COPY LINK</Text></Pressable>}
           {!expanded &&  conversationState > 0 && conversationState < 5 && <NotifyIcon />}
         </View>

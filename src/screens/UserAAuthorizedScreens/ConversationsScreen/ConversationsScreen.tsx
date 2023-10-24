@@ -66,6 +66,7 @@ function ConversationsScreen() {
                 style={styles.input}
                 value={recipient}
                 placeholderTextColor={'#88999C'}
+                maxLength={20}
               />
               <SimpleWhiteTextButton style={styles.createLinkButton} disabled={recipient === ''} text='CREATE LINK' onPress={showModal} />
             </KeyboardAvoidingView>
