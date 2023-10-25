@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
   },
   links: {
     padding: 10,
+    alignSelf:'flex-start'
   },
   link: {
     paddingHorizontal: 20,
