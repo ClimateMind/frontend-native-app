@@ -30,16 +30,17 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     paddingVertical: 20,
+    width: '100%',
+    height: 100,
   },
   imageContainer: {
-    width: 60,
-    height: 50,
+  width:'20%',
     justifyContent: 'center',
     alignItems: 'center',
   },
   textContainer: {
     justifyContent: 'center',
-    width: '90%',
+    width: '80%',
     gap: -5,
   },
   title: {
