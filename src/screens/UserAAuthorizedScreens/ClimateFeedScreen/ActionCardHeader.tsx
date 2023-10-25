@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     width: '100%',
-    height: 100,
   },
   imageContainer: {
     width: '20%',
@@ -41,6 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '80%',
     gap: -5,
+    paddingVertical: 10,
   },
   title: {
     width: '90%',

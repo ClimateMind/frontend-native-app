@@ -32,7 +32,7 @@ function MythDetailsScreen({ navigation, route }: Props) {
             <DetailsSourcesTab detailsTabName='Flawed Logic' onTabChanged={(tab) => setSelectedTab(tab)} />
           </View>
 
-          {selectedTab === 0 && <CmTypography variant='caption' style={styles.description}>{myth.faultyLogicDescription}</CmTypography>}
+          {selectedTab === 0 && <CmTypography variant='body' style={styles.description}>{myth.faultyLogicDescription}</CmTypography>}
           {selectedTab === 1 && myth.mythSources.map(source => <CmTypography variant='label' key={source} style={styles.link}>{source}</CmTypography>)}
         </Content>
       </Section>
