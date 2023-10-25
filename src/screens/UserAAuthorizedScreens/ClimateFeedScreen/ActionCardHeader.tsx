@@ -29,7 +29,6 @@ function ActionCardHeader({ effectSolution, color = '#FDED6D' }: Props) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    paddingVertical: 20,
     width: '100%',
     height: 100,
   },
