@@ -12,13 +12,12 @@ import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
 import { CmTypography } from 'src/components';
 import BackButton from 'src/components/BackButton';
-
+import { A } from '@expo/html-elements';
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateDetailsScreen'>;
 
 function ClimateDetailsScreen({ navigation, route }: Props) {
   const climateEffect = route.params.climateEffect;
   const [selectedTab, setSelectedTab] = useState(0);
-
   return (
     <Screen style={{ backgroundColor: 'white' }}>
       <Section>
@@ -35,7 +34,7 @@ function ClimateDetailsScreen({ navigation, route }: Props) {
             {climateEffect.effectSolutions.map(solution => <View style={{ marginVertical: 20 }} key={solution.solutionTitle}><ActionCard solution={solution} /></View>)}
           </View>}
 
-          {selectedTab === 1 && climateEffect.effectSources.map(source => <View key={source} style={styles.links}><CmTypography variant='label' style={styles.link}>{source}</CmTypography></View>)}
+          {selectedTab === 1 && climateEffect.effectSources.map(source => <View key={source} style={styles.links}><CmTypography variant='label' style={styles.link}><A href={source}>{source}</A></CmTypography></View>)}
         </Content>
       </Section>
     </Screen>
@@ -60,11 +59,12 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   links: {
-    padding: 10,
-    alignSelf:'flex-start'
+    // padding: 10,
+    // alignSelf:'flex-start'
   },
   link: {
-    paddingHorizontal: 20,
+    // paddingHorizontal: 20,
+    marginTop:20,
     textDecorationLine: 'underline',
     lineHeight: 20,
   },
