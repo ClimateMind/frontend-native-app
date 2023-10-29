@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MythsFeedStackParams } from 'src/navigation/Stacks/MythsFeedStack';
 
+import { openUrl } from 'src/utils';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
 import { CmTypography } from 'src/components';
 import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
 import BackButton from 'src/components/BackButton';
-import { A } from '@expo/html-elements';
 
 type Props = NativeStackScreenProps<MythsFeedStackParams, 'MythDetailsScreen'>;
 
@@ -34,7 +34,10 @@ function MythDetailsScreen({ navigation, route }: Props) {
           </View>
 
           {selectedTab === 0 && <CmTypography variant='body' style={styles.description}>{myth.faultyLogicDescription}</CmTypography>}
-          {selectedTab === 1 && myth.mythSources.map(source => <CmTypography variant='label' key={source} style={styles.link}><A href={source}>{source}</A></CmTypography>)}
+
+          {selectedTab === 1 && myth.mythSources.map(source => <View key={source} style={styles.links}>
+            <Pressable onPress={() => openUrl(source)}><CmTypography variant='label' key={source} style={styles.link}>{source}</CmTypography></Pressable>
+          </View>)}
         </Content>
       </Section>
     </Screen>
@@ -49,7 +52,12 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     lineHeight: 20,
   },
+  links: {
+    alignSelf: 'flex-start',
+  },
   link: {
+    paddingHorizontal: 20,
+    marginTop: 20,
     textDecorationLine: 'underline',
     lineHeight: 20,
   },

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SolutionsFeedStackParams } from 'src/navigation/Stacks/SolutionsFeedStack';
 
+import { openUrl } from 'src/utils';
 import useApiClient from 'src/hooks/useApiClient';
 import Myth from 'src/types/Myth';
 import Screen from 'src/components/Screen/Screen';
@@ -14,7 +15,6 @@ import ActionCardHeader from '../ClimateFeedScreen/ActionCardHeader';
 import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
 import { CmTypography } from 'src/components';
 import BackButton from 'src/components/BackButton';
-import { A } from '@expo/html-elements';
 
 type Props = NativeStackScreenProps<SolutionsFeedStackParams, 'SolutionDetailsScreen'>;
 
@@ -55,7 +55,9 @@ function SolutionDetailsScreen({ navigation, route }: Props) {
             {myths?.map(myth => <View style={{ margin: 10 }} key={myth.iri}><MythsFeedCard myth={myth} onLearnMore={null} /></View>)}
             </View>}
 
-          {selectedTab === 1 && solution.solutionSources.map(source => <View key={source} style={{ padding: 10 }}><CmTypography variant='label' style={styles.link}><A href={source}>{source}</A></CmTypography></View>)}
+          {selectedTab === 1 && solution.solutionSources.map(source => <View key={source} style={styles.links}>
+            <Pressable onPress={() => openUrl(source)}><CmTypography variant='label' style={styles.link}>{source}</CmTypography></Pressable>
+          </View>)}
         </Content>
       </Section>
     </Screen>
@@ -73,8 +75,12 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     padding: 20,
   },
+  links: {
+    alignSelf: 'flex-start',
+  },
   link: {
     paddingHorizontal: 20,
+    marginTop: 20,
     textDecorationLine: 'underline',
     lineHeight: 20,
   },

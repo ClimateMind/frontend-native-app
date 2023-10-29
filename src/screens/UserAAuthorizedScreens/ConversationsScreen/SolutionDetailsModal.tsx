@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Image, Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
+import { openUrl } from 'src/utils';
 import Colors from 'src/assets/colors';
 import useApiClient from 'src/hooks/useApiClient';
 import Solution3 from 'src/types/Solution3';
@@ -56,7 +57,10 @@ function SolutionDetailsModal({ open, solution, onClose }: Props) {
           <DetailsSourcesTab onTabChanged={(tab) => setSelectedTab(tab)} />
 
           {selectedTab === 0 && <View><CmTypography variant='body' style={styles.text}>{solutionDetails.longDescription}</CmTypography></View>}
-          {selectedTab === 1 && solutionDetails.solutionSources.map(source => <View key={source} style={styles.links}><CmTypography variant='label' style={styles.link}>{source}</CmTypography></View>)}
+
+          {selectedTab === 1 && solutionDetails.solutionSources.map(source => <View key={source} style={styles.links}>
+            <Pressable onPress={() => openUrl(source)}><CmTypography variant='label' style={styles.link}>{source}</CmTypography></Pressable>
+          </View>)}
         </ScrollView>
       </View>
     </Modal>
@@ -87,10 +91,11 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   links: {
-    padding: 10,
+    alignSelf: 'flex-start',
   },
   link: {
     paddingHorizontal: 20,
+    marginTop: 20,
     textDecorationLine: 'underline',
     lineHeight: 20,
   },

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Image, Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import { capitalizeFirstLetter } from 'src/utils';
+import { capitalizeFirstLetter, openUrl } from 'src/utils';
 import Colors from 'src/assets/colors';
 import ClimateEffect2 from 'src/types/ClimateEffect2';
 import ClimateEffect3 from 'src/types/ClimateEffect3';
@@ -57,7 +57,9 @@ function ActionDetailsModal({ open, action, onClose }: Props) {
             <CmTypography variant='body' style={styles.text}>{actionDetails.longDescription}</CmTypography>
           </View>}
 
-          {selectedTab === 1 && actionDetails.effectSources.map(source => <View key={source} style={styles.links}><CmTypography variant='label' style={styles.link}>{source}</CmTypography></View>)}
+          {selectedTab === 1 && actionDetails.effectSources.map(source => <View key={source} style={styles.links}>
+            <Pressable onPress={() => openUrl(source)}><CmTypography variant='label' style={styles.link}>{source}</CmTypography></Pressable>
+          </View>)}
 
         </ScrollView>
       </View>
@@ -90,10 +92,11 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   links: {
-    padding: 10,
+    alignSelf: 'flex-start',
   },
   link: {
     paddingHorizontal: 20,
+    marginTop: 20,
     textDecorationLine: 'underline',
     lineHeight: 20,
   },
