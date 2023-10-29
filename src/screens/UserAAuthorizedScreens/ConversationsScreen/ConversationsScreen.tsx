@@ -54,7 +54,9 @@ function ConversationsScreen() {
                 share it, so they can take the quiz, discover your shared values, and
                 pick topics to talk about.
               </CmTypography>
-
+              <CmTypography variant="caption" style={{ textAlign: 'center' }}>
+                We will send you an email when they agree to share their results with you!
+              </CmTypography>
               <CmTypography variant='label' style={styles.label}>Name of recipient</CmTypography>
               <TextInput
                 placeholder='Try "Peter Smith" or "Mom"'
@@ -64,6 +66,7 @@ function ConversationsScreen() {
                 style={styles.input}
                 value={recipient}
                 placeholderTextColor={'#88999C'}
+                maxLength={20}
               />
               <SimpleWhiteTextButton style={styles.createLinkButton} disabled={recipient === ''} text='CREATE LINK' onPress={showModal} />
             </KeyboardAvoidingView>
