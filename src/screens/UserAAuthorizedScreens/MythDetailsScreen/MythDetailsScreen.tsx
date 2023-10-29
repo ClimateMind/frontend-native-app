@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MythsFeedStackParams } from 'src/navigation/Stacks/MythsFeedStack';
 
+import { openUrl } from 'src/utils';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
@@ -32,8 +33,11 @@ function MythDetailsScreen({ navigation, route }: Props) {
             <DetailsSourcesTab detailsTabName='Flawed Logic' onTabChanged={(tab) => setSelectedTab(tab)} />
           </View>
 
-          {selectedTab === 0 && <CmTypography variant='caption' style={styles.description}>{myth.faultyLogicDescription}</CmTypography>}
-          {selectedTab === 1 && myth.mythSources.map(source => <CmTypography variant='label' key={source} style={styles.link}>{source}</CmTypography>)}
+          {selectedTab === 0 && <CmTypography variant='body' style={styles.description}>{myth.faultyLogicDescription}</CmTypography>}
+
+          {selectedTab === 1 && myth.mythSources.map(source => <View key={source} style={styles.links}>
+            <Pressable onPress={() => openUrl(source)}><CmTypography variant='label' key={source} style={styles.link}>{source}</CmTypography></Pressable>
+          </View>)}
         </Content>
       </Section>
     </Screen>
@@ -48,7 +52,12 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     lineHeight: 20,
   },
+  links: {
+    alignSelf: 'flex-start',
+  },
   link: {
+    paddingHorizontal: 20,
+    marginTop: 20,
     textDecorationLine: 'underline',
     lineHeight: 20,
   },
