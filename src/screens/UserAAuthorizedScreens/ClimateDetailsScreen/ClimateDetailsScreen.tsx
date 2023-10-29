@@ -13,6 +13,7 @@ import Content from 'src/components/Screen/Content';
 import { CmTypography } from 'src/components';
 import BackButton from 'src/components/BackButton';
 import { A } from '@expo/html-elements';
+
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateDetailsScreen'>;
 
 function ClimateDetailsScreen({ navigation, route }: Props) {

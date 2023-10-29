@@ -14,6 +14,7 @@ import ActionCardHeader from '../ClimateFeedScreen/ActionCardHeader';
 import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
 import { CmTypography } from 'src/components';
 import BackButton from 'src/components/BackButton';
+import { A } from '@expo/html-elements';
 
 type Props = NativeStackScreenProps<SolutionsFeedStackParams, 'SolutionDetailsScreen'>;
 
@@ -54,7 +55,7 @@ function SolutionDetailsScreen({ navigation, route }: Props) {
             {myths?.map(myth => <View style={{ margin: 10 }} key={myth.iri}><MythsFeedCard myth={myth} onLearnMore={null} /></View>)}
             </View>}
 
-          {selectedTab === 1 && solution.solutionSources.map(source => <View key={source} style={{ padding: 10 }}><CmTypography variant='label' style={styles.link}>{source}</CmTypography></View>)}
+          {selectedTab === 1 && solution.solutionSources.map(source => <View key={source} style={{ padding: 10 }}><CmTypography variant='label' style={styles.link}><A href={source}>{source}</A></CmTypography></View>)}
         </Content>
       </Section>
     </Screen>

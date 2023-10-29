@@ -10,6 +10,7 @@ import Content from 'src/components/Screen/Content';
 import { CmTypography } from 'src/components';
 import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
 import BackButton from 'src/components/BackButton';
+import { A } from '@expo/html-elements';
 
 type Props = NativeStackScreenProps<MythsFeedStackParams, 'MythDetailsScreen'>;
 
@@ -33,7 +34,7 @@ function MythDetailsScreen({ navigation, route }: Props) {
           </View>
 
           {selectedTab === 0 && <CmTypography variant='body' style={styles.description}>{myth.faultyLogicDescription}</CmTypography>}
-          {selectedTab === 1 && myth.mythSources.map(source => <CmTypography variant='label' key={source} style={styles.link}>{source}</CmTypography>)}
+          {selectedTab === 1 && myth.mythSources.map(source => <CmTypography variant='label' key={source} style={styles.link}><A href={source}>{source}</A></CmTypography>)}
         </Content>
       </Section>
     </Screen>
