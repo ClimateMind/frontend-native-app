@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/CmTypography/components';
 import PersonalValueIcon from 'src/components/PersonalValueIcon';
 import Card from './Card';
 

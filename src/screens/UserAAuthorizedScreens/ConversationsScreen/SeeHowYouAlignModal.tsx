@@ -8,7 +8,7 @@ import ViewSelectedTopicsButton from './ViewSelectedTopicsButton';
 import { GetAllConversations } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
 import Alignment from 'src/types/Alignment';
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/CmTypography/components';
 import Content from 'src/components/Screen/Content';
 
 interface Props {

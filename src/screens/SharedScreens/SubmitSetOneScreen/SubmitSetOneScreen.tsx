@@ -7,7 +7,7 @@ import { useAppSelector } from 'src/store/hooks';
 
 import Screen from 'src/components/Screen/Screen';
 import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/CmTypography/components';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
 

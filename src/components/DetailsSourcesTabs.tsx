@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
-import { CmTypography } from '.';
+import { CmTypography } from '@shared/CmTypography/components';
 
 interface Props {
   detailsTabName?: string;

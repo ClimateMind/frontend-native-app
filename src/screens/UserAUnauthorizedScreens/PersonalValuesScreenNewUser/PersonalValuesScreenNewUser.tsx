@@ -15,7 +15,7 @@ import Content from 'src/components/Screen/Content';
 import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
 import PersonalValueCard from 'src/components/Cards/PersonalValueCard';
 import RadarChart from 'src/components/RadarChart';
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/CmTypography/components';
 
 type Props = NativeStackScreenProps<StackParams, 'PersonalValuesScreenNewUser'>;
 

@@ -5,10 +5,15 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "baseUrl": "./src",
+    "moduleResolution": "node",
     "paths": {
-      "src/*": ["./*"]
-    }
+      "src/*": ["./*"],
+      "@features/*": ["features/*"],
+      "@shared/*": ["shared/*"]
+    },
+    
   },
+  "include": ["src"],
   "exclude": [
     "node_modules",
     "babel.config.js",

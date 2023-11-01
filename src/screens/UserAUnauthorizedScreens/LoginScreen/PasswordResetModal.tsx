@@ -3,7 +3,7 @@ import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import useApiClient from 'src/hooks/useApiClient';
 import { showSuccessToast, showErrorToast } from 'src/components/ToastMessages';
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/CmTypography/components';
 import Card from 'src/components/Cards/Card';
 
 interface Props {

@@ -11,7 +11,7 @@ import useApiClient from 'src/hooks/useApiClient';
 import ConversationsDrawer from './ConversationsDrawer';
 import CopyLinkModal from './CopyLinkModal';
 import { showErrorToast } from 'src/components/ToastMessages';
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/CmTypography/components';
 
 function ConversationsScreen() {
   const apiClient = useApiClient();

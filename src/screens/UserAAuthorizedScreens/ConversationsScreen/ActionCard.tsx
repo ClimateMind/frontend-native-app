@@ -4,7 +4,8 @@ import { Image } from 'react-native';
 import { capitalizeFirstLetter } from 'src/utils';
 import ClimateEffect2 from 'src/types/ClimateEffect2';
 import Card from 'src/components/Cards/Card';
-import { CmChip, CmTypography } from 'src/components';
+import { CmChip } from 'src/components';
+import { CmTypography } from '@shared/CmTypography/components';
 
 interface Props {
   climateEffect: ClimateEffect2;

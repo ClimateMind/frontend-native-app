@@ -9,7 +9,7 @@ import ClimateEffect from 'src/types/ClimateEffect';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/CmTypography/components';
 import ClimateFeedCard from './ClimateFeedCard';
 import { useAppSelector } from 'src/store/hooks';
 

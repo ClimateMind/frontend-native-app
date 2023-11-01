@@ -1,6 +1,6 @@
 import { StyleSheet, ScrollView, View } from 'react-native';
 
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/CmTypography/components';
 import ProgressBar from './ProgressBar';
 import Answer from './Answer';
 

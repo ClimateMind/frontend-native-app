@@ -4,7 +4,7 @@ import { Foundation } from '@expo/vector-icons';
 
 import { capitalizeFirstLetter } from 'src/utils';
 import Solution2 from 'src/types/Solution2';
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/CmTypography/components';
 
 interface Props {
   effectSolution: Solution2;
