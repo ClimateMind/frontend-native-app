@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { logout } from 'src/store/authSlice';
-import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
 import ChangePasswordModal from './ChangePasswordModal';
 import UpdateEmailModal from './UpdateEmailModal';
 import { CmTypography, CmButton } from '@shared/components';
@@ -30,9 +29,9 @@ function ProfileScreen() {
         <Content style={{ alignItems: 'flex-start' }}>
           <CmTypography variant='h1' style={{ marginTop: 20 }}>{firstName}'s account</CmTypography>
 
-          <SimpleWhiteTextButton style={{ marginTop: 20, alignSelf: 'stretch' }} text='CHANGE PASSWORD' onPress={() => setShowPasswordModal(true)} />
-          <SimpleWhiteTextButton style={{ marginTop: 20, alignSelf: 'stretch' }} text='UPDATE EMAIL' onPress={() => setShowEmailModal(true)} />
-          <SimpleWhiteTextButton style={{ marginTop: 20, alignSelf: 'stretch' }} text='LOGOUT' onPress={() => dispatch(logout())} />
+          <CmButton style={{ marginTop: 20, alignSelf: 'stretch' }} text='CHANGE PASSWORD' onPress={() => setShowPasswordModal(true)} />
+          <CmButton style={{ marginTop: 20, alignSelf: 'stretch' }} text='UPDATE EMAIL' onPress={() => setShowEmailModal(true)} />
+          <CmButton style={{ marginTop: 20, alignSelf: 'stretch' }} text='LOGOUT' onPress={() => dispatch(logout())} />
 
           <CmButton text='DELETE ACCOUNT' color='error' style={{ marginTop: 100, alignSelf: 'stretch' }} onPress={() => setShowDeleteAccountModal(true)} />
 

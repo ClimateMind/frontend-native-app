@@ -1,6 +1,6 @@
 import { StyleProp, ViewStyle } from 'react-native';
-import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
 import useApiClient from 'src/hooks/useApiClient';
+import { CmButton } from 'src/shared/components';
 
 interface Props {
   conversationId: string;
@@ -24,7 +24,7 @@ function SeeHowYouAlignButton({ conversationId, conversationState, style, onClic
   }
 
   return (
-    <SimpleWhiteTextButton
+    <CmButton
       style={style}
       disabled={conversationState < 1}
       text="SEE HOW YOU ALIGN"

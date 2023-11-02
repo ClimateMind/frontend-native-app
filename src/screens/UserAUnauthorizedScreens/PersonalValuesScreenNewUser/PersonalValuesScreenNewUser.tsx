@@ -12,10 +12,10 @@ import { GetPersonalValues } from 'src/api/responses';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
+
 import PersonalValueCard from 'src/components/Cards/PersonalValueCard';
 import RadarChart from 'src/components/RadarChart';
-import { CmTypography } from '@shared/components';
+import { CmButton, CmTypography } from '@shared/components';
 
 type Props = NativeStackScreenProps<StackParams, 'PersonalValuesScreenNewUser'>;
 
@@ -90,7 +90,7 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
           <CmTypography variant='body' style={styles.boldText}>Communicate the realities of climate change to others</CmTypography>
           <CmTypography variant='body' style={[styles.boldText, { marginBottom: 30 }]}>Set up your account and dive into effective conversations about climate change</CmTypography>
 
-          <SimpleWhiteTextButton style={styles.button} text='DIVE IN' onPress={navigateToSignUpScreen} />
+          <CmButton style={styles.button} text='DIVE IN' onPress={navigateToSignUpScreen} />
 
           <CmTypography variant='caption' style={styles.boldText}>Not happy with your results?</CmTypography>
           <Pressable onPress={retakeQuiz}>

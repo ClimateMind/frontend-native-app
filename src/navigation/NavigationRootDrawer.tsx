@@ -7,7 +7,7 @@ import { openUrl } from 'src/utils';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { logout } from 'src/store/authSlice';
 import SocialImagesGrid from 'src/components/SocialImagesGrid';
-import SimpleWhiteIconTextButton from 'src/components/SimpleWhiteIconTextButton';
+import { CmButton } from 'src/shared/components';
 
 type Props = DrawerContentComponentProps;
 
@@ -38,11 +38,11 @@ function NavigationRootDrawer({ navigation }: Props) {
 
         {/* Login / Logout and Feedback button beneath the social images */}
         <View style={{ marginTop: 30 }}>
-          {!isLoggedIn && <SimpleWhiteIconTextButton text='LOG IN' icon={<MaterialIcons name="login" size={24} color="black" />} onPress={() => navigation.navigate('UserAUnauthorizedScreens', { screen: 'LoginScreen' })} />}
-          {isLoggedIn && <SimpleWhiteIconTextButton text='LOGOUT' icon={<MaterialIcons name="logout" size={24} color="black" />} onPress={onLogout} />}
+          {!isLoggedIn && <CmButton text='LOG IN' icon={<MaterialIcons name="login" size={24} color="black" />} onPress={() => navigation.navigate('UserAUnauthorizedScreens', { screen: 'LoginScreen' })} />}
+          {isLoggedIn && <CmButton text='LOGOUT' icon={<MaterialIcons name="logout" size={24} color="black" />} onPress={onLogout} />}
         </View>
         <View style={{ marginTop: 20 }}>
-          <SimpleWhiteIconTextButton text='FEEDBACK' icon={<MaterialIcons name="email" size={24} color="black" />} onPress={() => openUrl('mailto:hello@climatemind.org')} />
+          <CmButton text='FEEDBACK' icon={<MaterialIcons name="email" size={24} color="black" />} onPress={() => openUrl('mailto:hello@climatemind.org')} />
         </View>
       </View>
     </View>

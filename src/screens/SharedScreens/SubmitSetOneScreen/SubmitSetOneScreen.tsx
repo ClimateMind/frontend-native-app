@@ -6,8 +6,7 @@ import Colors from 'src/assets/colors';
 import { useAppSelector } from 'src/store/hooks';
 
 import Screen from 'src/components/Screen/Screen';
-import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
-import { CmTypography } from '@shared/components';
+import { CmTypography, CmButton } from '@shared/components';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
 
@@ -50,7 +49,7 @@ function SubmitSetOneScreen({ navigation }: Props) {
             questions.
           </CmTypography>
 
-          <SimpleWhiteTextButton
+          <CmButton
             style={styles.button}
             text="Continue"
             onPress={navigateToQuizScreen}
