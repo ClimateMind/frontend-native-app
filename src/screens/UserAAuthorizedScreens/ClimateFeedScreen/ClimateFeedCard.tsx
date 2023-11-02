@@ -6,7 +6,7 @@ import ActionCardHeader from './ActionCardHeader';
 
 import Card from 'src/components/Cards/Card';
 import { CmChip } from 'src/components';
-import { CmTypography } from '@shared/CmTypography/components';
+import { CmTypography } from '@shared/components';
 
 interface Props {
   climateEffect: ClimateEffect;

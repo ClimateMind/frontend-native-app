@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { CmTypography } from '@shared/CmTypography/components';
+import { CmTypography } from '@shared/components';
 
 interface Props {
   label: string;

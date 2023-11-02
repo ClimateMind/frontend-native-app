@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 
-import { CmButton } from 'src/components';
+import { CmButton } from '@shared/components';
 
 const meta: Meta<typeof CmButton> = {
   title: 'components/Buttons/CmButton',

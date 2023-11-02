@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { CmTypography } from '@shared/CmTypography/components';
+import { CmTypography } from '@shared/components';
 
 const meta: Meta<typeof CmTypography> = {
   title: 'components/CmTypography',

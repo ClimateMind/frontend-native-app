@@ -12,7 +12,7 @@ import MythsFeedStack from './Stacks/MythsFeedStack';
 import ConversationsStack from './Stacks/ConversationsStack';
 
 import { useAppSelector } from 'src/store/hooks';
-import { CmTypography } from '@shared/CmTypography/components';
+import { CmTypography } from '@shared/components';
 
 export type BottomTabsNavigationParams = {
   ProfileScreen: undefined;

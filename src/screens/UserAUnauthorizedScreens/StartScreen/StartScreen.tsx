@@ -4,7 +4,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Colors from 'src/assets/colors';
 import { StackParams } from 'src/navigation/UserAUnauthorizedStackNavigation';
 import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
-import { CmTypography } from '@shared/CmTypography/components';
+import { CmTypography } from '@shared/components';
 import { showSuccessToast } from 'src/components/ToastMessages';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';

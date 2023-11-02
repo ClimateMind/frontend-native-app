@@ -8,7 +8,7 @@ import { useAppSelector } from 'src/store/hooks';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import { CmTypography } from '@shared/CmTypography/components';
+import { CmTypography } from '@shared/components';
 import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
 
 type Props = DrawerScreenProps<RootDrawerNavigationParams, 'SubmitSetTwoScreen'>;

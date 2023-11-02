@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 
-import { CmTypography } from '@shared/CmTypography/components';
+import { CmTypography } from '@shared/components';
 import Card from 'src/components/Cards/Card';
 
 function ConversationsIntroCard() {

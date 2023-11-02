@@ -3,7 +3,7 @@ import { Image, View } from 'react-native';
 
 import { capitalizeFirstLetter } from 'src/utils';
 import Solution from 'src/types/Solution';
-import { CmTypography } from '@shared/CmTypography/components';
+import { CmTypography } from '@shared/components';
 import Card from 'src/components/Cards/Card';
 
 interface Props {

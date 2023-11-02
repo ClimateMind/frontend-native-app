@@ -2,7 +2,7 @@ import { Modal, Pressable, StyleSheet, View } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 
 import { showSuccessToast } from 'src/components/ToastMessages';
-import { CmTypography } from '@shared/CmTypography/components';
+import { CmTypography } from '@shared/components';
 import Card from 'src/components/Cards/Card';
 
 interface Props {

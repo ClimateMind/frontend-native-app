@@ -1,5 +1,5 @@
 import { Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native';
-import { CmTypography } from '@shared/CmTypography/components';
+import { CmTypography } from '@shared/components';
 
 interface Props {
   text: string;

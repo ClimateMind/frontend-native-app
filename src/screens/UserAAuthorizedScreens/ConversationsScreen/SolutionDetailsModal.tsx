@@ -9,7 +9,7 @@ import Solution3 from 'src/types/Solution3';
 import Solution2 from 'src/types/Solution2';
 import ActionCardHeader from './ActionCardHeader';
 import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
-import { CmTypography } from '@shared/CmTypography/components';
+import { CmTypography } from '@shared/components';
 
 interface Props {
   open: boolean;

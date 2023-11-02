@@ -10,7 +10,7 @@ import Myth from 'src/types/Myth';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import { CmTypography } from '@shared/CmTypography/components';
+import { CmTypography } from '@shared/components';
 import MythsFeedCard from './MythsFeedCard';
 
 type Props = NativeStackScreenProps<MythsFeedStackParams, 'MythsFeedScreen'>;
