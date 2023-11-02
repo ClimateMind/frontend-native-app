@@ -1,8 +1,7 @@
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import Solution from 'src/types/Solution';
-//this shares the actioncard header so should potentially be a shared component?
-import { ActionCardHeader } from '@features/Climate-feed/components';
+import { ActionCardHeader } from '@features/climate-feed/components';
 import { CmTypography } from '@shared/components';
 
 interface Props {
