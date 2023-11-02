@@ -1,6 +1,6 @@
 import { StyleProp, ViewStyle } from 'react-native';
-import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
 import useApiClient from 'src/hooks/useApiClient';
+import { CmButton } from '@shared/components';
 
 interface Props {
   conversationId: string;
@@ -24,7 +24,7 @@ function YesWeTalkedButton({ conversationId, conversationState, style, onClick }
   }
 
   return (
-    <SimpleWhiteTextButton
+    <CmButton
       style={style}
       disabled={conversationState < 3}
       text="YES WE TALKED"
