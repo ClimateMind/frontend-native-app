@@ -6,12 +6,11 @@ import Colors from 'src/assets/colors';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
 import useApiClient from 'src/hooks/useApiClient';
 import ConversationsDrawer from './ConversationsDrawer';
 import CopyLinkModal from './CopyLinkModal';
 import { showErrorToast } from 'src/components/ToastMessages';
-import { CmTypography } from 'src/components';
+import { CmTypography, CmButton } from '@shared/components';
 
 function ConversationsScreen() {
   const apiClient = useApiClient();
@@ -68,7 +67,7 @@ function ConversationsScreen() {
                 placeholderTextColor={'#88999C'}
                 maxLength={20}
               />
-              <SimpleWhiteTextButton style={styles.createLinkButton} disabled={recipient === ''} text='CREATE LINK' onPress={showModal} />
+              <CmButton style={styles.createLinkButton} disabled={recipient === ''} text='CREATE LINK' onPress={showModal} />
             </KeyboardAvoidingView>
 
             <Pressable onPress={() => setShowConversationsDrawer(true)} style={styles.openDrawerButton}>

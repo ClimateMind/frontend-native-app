@@ -1,7 +1,7 @@
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
-import { CmTypography } from '.';
+import { CmTypography } from '@shared/components';
 
 interface Props {
   children: string;

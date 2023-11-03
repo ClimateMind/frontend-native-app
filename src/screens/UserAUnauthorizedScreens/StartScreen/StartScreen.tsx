@@ -3,8 +3,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import Colors from 'src/assets/colors';
 import { StackParams } from 'src/navigation/UserAUnauthorizedStackNavigation';
-import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
-import { CmTypography } from 'src/components';
+import { CmTypography, CmButton } from '@shared/components';
 import { showSuccessToast } from 'src/components/ToastMessages';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
@@ -28,7 +27,7 @@ function StartScreen({ navigation }: Props) {
           <Image style={styles.image} source={require('src/assets/cm-logo.png')} />
           <CmTypography variant='h1'>Inspire others to take action!</CmTypography>
 
-          <SimpleWhiteTextButton style={styles.button} text='GET STARTED' onPress={navigateToPreQuizScreen} />
+          <CmButton style={styles.button} text='GET STARTED' onPress={navigateToPreQuizScreen} />
 
           <Pressable onPress={navigateToLoginScreen}>
             <CmTypography variant='label' style={styles.text}>Already a member? Login here</CmTypography>

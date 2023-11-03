@@ -8,10 +8,9 @@ import { login } from 'src/store/authSlice';
 import useApiClient from 'src/hooks/useApiClient';
 import useLogger from 'src/hooks/useLogger';
 
-import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
 import PasswordResetModal from './PasswordResetModal';
 import { showErrorToast } from 'src/components/ToastMessages';
-import { CmTypography } from 'src/components';
+import { CmTypography, CmButton } from '@shared/components';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
@@ -116,11 +115,11 @@ function LoginScreen() {
                   style={Platform.OS === 'ios' && { marginTop: 100 }}
                 />
 
-                <SimpleWhiteTextButton style={styles.loginButton} text="LOG IN" onPress={() => recaptcha.current?.open()} />
+                <CmButton style={styles.loginButton} text="LOG IN" onPress={() => recaptcha.current?.open()} />
               </>
             )}
 
-            {loginAttempts < 4 && <SimpleWhiteTextButton style={styles.loginButton} text="LOG IN" onPress={() => onLogin()} />}
+            {loginAttempts < 4 && <CmButton style={styles.loginButton} text="LOG IN" onPress={() => onLogin()} />}
 
             <PasswordResetModal show={showModal} onCancel={() => {setShowModal(false)}} onSubmit={() => setShowModal(false)} />
           </Content>

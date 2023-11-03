@@ -1,6 +1,6 @@
 import { Modal, Pressable, StyleSheet, View } from 'react-native';
 
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/components';
 import Card from 'src/components/Cards/Card';
 
 interface Props {

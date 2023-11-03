@@ -9,7 +9,7 @@ import useApiClient from 'src/hooks/useApiClient';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/components';
 
 interface Props {
   open: boolean;

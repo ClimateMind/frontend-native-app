@@ -11,9 +11,9 @@ import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
 import MythsFeedCard from '../MythsFeedScreen/MythsFeedCard';
-import ActionCardHeader from '../ClimateFeedScreen/ActionCardHeader';
+import { ActionCardHeader } from 'src/features/climate-feed/components';
 import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/components';
 import BackButton from 'src/components/BackButton';
 
 type Props = NativeStackScreenProps<SolutionsFeedStackParams, 'SolutionDetailsScreen'>;

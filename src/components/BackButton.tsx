@@ -1,7 +1,9 @@
 import { Pressable, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import { CmTypography } from '.';
+import { CmTypography } from '@shared/components';
+
+
 
 interface Props {
   onPress: () => void;

@@ -6,9 +6,9 @@ import { ConversationsStackParams } from 'src/navigation/Stacks/ConversationsSta
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import { CmTypography } from 'src/components';
+import { CmTypography, CmButton } from '@shared/components';
 import BulletListItem from 'src/components/BulletListItem';
-import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
+
 
 type Props = NativeStackScreenProps<ConversationsStackParams, 'ConversationsIntroScreen'>;
 
@@ -29,7 +29,7 @@ function ConversationsIntroScreen({ navigation }: Props) {
 
           <CmTypography variant='body' style={styles.marginBottom}>When you have conversations with others, you take part in a network of people around the world who are working together to find solutions.</CmTypography>
 
-          <SimpleWhiteTextButton style={styles.button} text='START TALKING WITH PEOPLE' onPress={() => { navigation.navigate('ConversationsScreen') }} />
+          <CmButton style={styles.button} text='START TALKING WITH PEOPLE' onPress={() => { navigation.navigate('ConversationsScreen') }} />
         </Content>
       </Section>
     </Screen>

@@ -6,8 +6,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StackParams } from 'src/navigation/UserAUnauthorizedStackNavigation';
 
 import Screen from 'src/components/Screen/Screen';
-import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
-import { CmTypography } from 'src/components';
+import { CmTypography, CmButton } from '@shared/components';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
 
@@ -33,7 +32,7 @@ function PreQuizScreen({ navigation }: Props) {
             Read each statement and decide how much like it you are or not. Don't worry! There's no right or wrong answers!
           </CmTypography>
 
-          <SimpleWhiteTextButton style={styles.button} text='TAKE THE QUIZ' onPress={navigateToQuizScreen} />
+          <CmButton style={styles.button} text='TAKE THE QUIZ' onPress={navigateToQuizScreen} />
         </Content>
       </Section>
 

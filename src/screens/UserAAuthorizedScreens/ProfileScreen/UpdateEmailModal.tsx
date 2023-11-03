@@ -3,7 +3,7 @@ import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import { useAppSelector } from 'src/store/hooks';
 import useApiClient from 'src/hooks/useApiClient';
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/components';
 import Card from 'src/components/Cards/Card';
 
 interface Props {

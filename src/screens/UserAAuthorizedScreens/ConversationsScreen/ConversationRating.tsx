@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import useApiClient from 'src/hooks/useApiClient';
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/components';
 
 interface Props {
   conversationId: string;

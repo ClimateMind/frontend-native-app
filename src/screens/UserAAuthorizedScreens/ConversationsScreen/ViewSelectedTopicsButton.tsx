@@ -1,6 +1,5 @@
 import { StyleProp, ViewStyle } from 'react-native';
-
-import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
+import { CmButton } from '@shared/components';
 import useApiClient from 'src/hooks/useApiClient';
 
 interface Props {
@@ -25,7 +24,7 @@ function ViewSelectedTopicsButton({ conversationId, conversationState, style, on
   }
 
   return (
-    <SimpleWhiteTextButton
+    <CmButton
       style={style}
       disabled={conversationState < 2}
       text="VIEW SELECTED TOPICS"

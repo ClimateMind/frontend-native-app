@@ -13,7 +13,7 @@ import ConversationRating from './ConversationRating';
 import CopyLinkModal from './CopyLinkModal';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/components';
 import Card from 'src/components/Cards/Card';
 import NotifyIcon from './NotifyIcon';
 

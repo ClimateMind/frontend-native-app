@@ -8,8 +8,7 @@ import { useAppSelector } from 'src/store/hooks';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import { CmTypography } from 'src/components';
-import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
+import { CmTypography, CmButton } from '@shared/components';
 
 type Props = DrawerScreenProps<RootDrawerNavigationParams, 'SubmitSetTwoScreen'>;
 
@@ -45,7 +44,7 @@ function SubmitSetTwoScreen({ navigation }: Props) {
             when making decisions.
           </CmTypography>
 
-          <SimpleWhiteTextButton
+          <CmButton
             style={styles.button}
             text="FIND OUT MY CLIMATE PERSONALITY"
             onPress={navigateToPersonalValuesScreen}

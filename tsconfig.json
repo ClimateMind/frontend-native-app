@@ -6,8 +6,10 @@
     "noUnusedParameters": true,
     "baseUrl": "./src",
     "paths": {
-      "src/*": ["./*"]
-    }
+      "src/*": ["./*"],
+      "@features/*": ["features/*"],
+      "@shared/*": ["shared/*"]
+    },
   },
   "exclude": [
     "node_modules",

@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-import { CmTypography } from 'src/components';
+import { CmTypography } from '@shared/components';
 
 interface AnswerProps {
   index: number;

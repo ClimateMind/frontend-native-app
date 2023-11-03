@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from 'react-native';
 import { AxiosError } from 'axios';
 
-import SimpleWhiteTextButton from 'src/components/SimpleWhiteTextButton';
 import useApiClient from 'src/hooks/useApiClient';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { login } from 'src/store/authSlice';
-import { CmTypography } from 'src/components';
+import { CmTypography, CmButton } from '@shared/components';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
@@ -173,7 +172,7 @@ function SignUpScreen() {
             />
             {!inputs.confirmPassword.isValid && <CmTypography variant='label' style={styles.errorText}>Passwords must match</CmTypography>}
 
-            <SimpleWhiteTextButton style={styles.button} text="CREATE ACCOUNT" onPress={submitHandler} />
+            <CmButton style={styles.button} text="CREATE ACCOUNT" onPress={submitHandler} />
           </KeyboardAvoidingView>
         </Content>
       </Section>

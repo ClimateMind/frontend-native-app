@@ -9,8 +9,8 @@ import ClimateEffect from 'src/types/ClimateEffect';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import { CmTypography } from 'src/components';
-import ClimateFeedCard from './ClimateFeedCard';
+import { CmTypography } from '@shared/components';
+import { ClimateFeedCard } from 'src/features/climate-feed/components';
 import { useAppSelector } from 'src/store/hooks';
 
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateFeedScreen'>;
