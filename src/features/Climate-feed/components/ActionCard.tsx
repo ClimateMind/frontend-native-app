@@ -1,7 +1,7 @@
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import Solution from 'src/types/Solution';
-import { ActionCardHeader } from '@features/climate-feed/components';
+import ActionCardHeader from './ActionCardHeader';
 import { CmTypography } from '@shared/components';
 
 interface Props {

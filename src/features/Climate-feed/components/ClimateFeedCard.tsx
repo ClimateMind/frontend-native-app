@@ -15,7 +15,6 @@ interface Props {
 function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
   return (
     <Card>
-
       <CmTypography variant='h3' style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</CmTypography>
       {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
 
