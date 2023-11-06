@@ -42,7 +42,7 @@
   "devDependencies": {
     "@babel/core": "^7.23.2",
     "@storybook/addon-essentials": "^7.5.1",
-    "@storybook/addon-interactions": "^7.5.1",
+    "@storybook/addon-interactions": "^7.5.2",
     "@storybook/addon-links": "^7.5.1",
     "@storybook/addon-onboarding": "^1.0.8",
     "@storybook/addon-react-native-web": "^0.0.21",
