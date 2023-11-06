@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import ClimateEffect2 from 'src/types/ClimateEffect2';
 import Solution3 from 'src/types/Solution3';
 import ActionCard from './ActionCard';
-import SolutionsFeedCard from './SolutionCard';
+import { SolutionsFeedCard } from '@features/solutions-feed/components';
 import SolutionDetailsModal from './SolutionDetailsModal';
 import ActionDetailsModal from './ActionDetailsModal';
 import { CmTypography } from '@shared/components';;
