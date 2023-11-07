@@ -3,7 +3,7 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ClimateFeedStackParams } from 'src/navigation/Stacks/ClimateFeedStack';
-import { ActionCard } from '@features/climate-feed/components';
+import { ActionCard } from '@features/climate-feed';
 import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
 
 import { capitalizeFirstLetter, openUrl } from 'src/utils';
