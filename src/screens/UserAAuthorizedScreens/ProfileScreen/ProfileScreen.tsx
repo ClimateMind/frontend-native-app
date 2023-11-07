@@ -30,32 +30,12 @@ function ProfileScreen() {
     <Screen>
       <Section>
         <Content style={{ alignItems: 'flex-start' }}>
-          <CmTypography variant="h1" style={{ marginTop: 20 }}>
-            {firstName}'s account
-          </CmTypography>
+          <CmTypography variant="h1" style={{ marginTop: 20 }}>{firstName}'s account</CmTypography>
 
-          <CmButton
-            style={{ marginTop: 20, alignSelf: 'stretch' }}
-            text="CHANGE PASSWORD"
-            onPress={() => setShowPasswordModal(true)}
-          />
-          <CmButton
-            style={{ marginTop: 20, alignSelf: 'stretch' }}
-            text="UPDATE EMAIL"
-            onPress={() => setShowEmailModal(true)}
-          />
-          <CmButton
-            style={{ marginTop: 20, alignSelf: 'stretch' }}
-            text="LOGOUT"
-            onPress={() => dispatch(logout())}
-          />
-
-          <CmButton
-            text="DELETE ACCOUNT"
-            color="error"
-            style={{ marginTop: 100, alignSelf: 'stretch' }}
-            onPress={() => setShowDeleteAccountModal(true)}
-          />
+          <CmButton text="CHANGE PASSWORD" style={{ marginTop: 20, alignSelf: 'stretch' }} onPress={() => setShowPasswordModal(true)} />
+          <CmButton text="UPDATE EMAIL" style={{ marginTop: 20, alignSelf: 'stretch' }} onPress={() => setShowEmailModal(true)} />
+          <CmButton text="LOGOUT" style={{ marginTop: 20, alignSelf: 'stretch' }} onPress={() => dispatch(logout())} />
+          <CmButton text="DELETE ACCOUNT" color="error" style={{ marginTop: 100, alignSelf: 'stretch' }} onPress={() => setShowDeleteAccountModal(true)} />
 
           {showPasswordModal && (
             <ChangePasswordModal
@@ -64,6 +44,7 @@ function ProfileScreen() {
               onSubmit={() => setShowPasswordModal(false)}
             />
           )}
+
           {showEmailModal && (
             <UpdateEmailModal
               show={showEmailModal}
@@ -71,6 +52,7 @@ function ProfileScreen() {
               onSubmit={() => setShowEmailModal(false)}
             />
           )}
+
           {showDeleteAccountModal && (
             <DeleteAccountModal
               show={showDeleteAccountModal}
