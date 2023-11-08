@@ -8,7 +8,7 @@ import { login } from 'src/store/authSlice';
 import useApiClient from 'src/hooks/useApiClient';
 import useLogger from 'src/hooks/useLogger';
 
-import PasswordResetModal from './PasswordResetModal';
+import { PasswordResetModal } from '@features/login/components';
 import { showErrorToast } from 'src/components/ToastMessages';
 import { CmTypography, CmButton } from '@shared/components';
 import Screen from 'src/components/Screen/Screen';
