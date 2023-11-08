@@ -7,8 +7,9 @@ import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
 import useApiClient from 'src/hooks/useApiClient';
-import ConversationsDrawer from './ConversationsDrawer';
-import CopyLinkModal from './CopyLinkModal';
+import { ConversationsDrawer, CopyLinkModal } from 'src/features/conversations/components'
+// import ConversationsDrawer from './ConversationsDrawer';
+// import CopyLinkModal from './CopyLinkModal';
 import { showErrorToast } from 'src/components/ToastMessages';
 import { CmTypography, CmButton } from '@shared/components';
 
