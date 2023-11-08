@@ -28,13 +28,15 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
   useEffect(() => {
     setUserBName(conversation.userB.name);
 
-    apiClient.getAlignmentScores(conversation.alignmentScoresId)
-      .then(response => {
-        setUserBName(response.userBName);
-        setTopSharedValue(response.valueAlignment[0]);
-        setOverallSimilarityScore(response.overallSimilarityScore)
-      })
-      .catch((error) => console.log(error));
+    if (conversation.alignmentScoresId) {
+      apiClient.getAlignmentScores(conversation.alignmentScoresId)
+        .then(response => {
+          setUserBName(response.userBName);
+          setTopSharedValue(response.valueAlignment[0]);
+          setOverallSimilarityScore(response.overallSimilarityScore)
+        })
+        .catch((error) => console.log(error));
+    }
   }, [conversation]);
 
   if (!open || !userBName || !topSharedValue || !overallSimilarityScore) {

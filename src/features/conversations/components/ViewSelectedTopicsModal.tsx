@@ -32,13 +32,15 @@ function ViewSelectedTopicsModal({ open, conversation, onClose }: Props) {
   const [showSolutionDetails, setShowSolutionDetails] = useState(false);
 
   useEffect(() => {
-    apiClient.getSelectedTopics(conversation.conversationId)
-      .then(response => {
-        setClimateEffect(response.climateEffects[0]);
-        setClimateSolutions(response.climateSolutions);
-        setSolutionDetails(response.climateSolutions[0]);
-      })
-      .catch((error) => console.log(error));
+    if (conversation.conversationId) {
+      apiClient.getSelectedTopics(conversation.conversationId)
+        .then(response => {
+          setClimateEffect(response.climateEffects[0]);
+          setClimateSolutions(response.climateSolutions);
+          setSolutionDetails(response.climateSolutions[0]);
+        })
+        .catch((error) => console.log(error));
+    }
   }, [conversation]);
 
   if (!open || !climateEffect || !climateSolutions || !solutionDetails) {
