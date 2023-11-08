@@ -2,13 +2,16 @@ import { useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { logout } from 'src/store/authSlice';
-import ChangePasswordModal from './ChangePasswordModal';
-import UpdateEmailModal from './UpdateEmailModal';
+
 import { CmTypography, CmButton } from '@shared/components';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import DeleteAccountModal from './DeleteAccountModal';
+import {
+  ChangePasswordModal,
+  DeleteAccountModal,
+  UpdateEmailModal,
+} from '@features/profile/components';
 
 function ProfileScreen() {
   const dispatch = useAppDispatch();
@@ -27,17 +30,36 @@ function ProfileScreen() {
     <Screen>
       <Section>
         <Content style={{ alignItems: 'flex-start' }}>
-          <CmTypography variant='h1' style={{ marginTop: 20 }}>{firstName}'s account</CmTypography>
+          <CmTypography variant="h1" style={{ marginTop: 20 }}>{firstName}'s account</CmTypography>
 
-          <CmButton style={{ marginTop: 20, alignSelf: 'stretch' }} text='CHANGE PASSWORD' onPress={() => setShowPasswordModal(true)} />
-          <CmButton style={{ marginTop: 20, alignSelf: 'stretch' }} text='UPDATE EMAIL' onPress={() => setShowEmailModal(true)} />
-          <CmButton style={{ marginTop: 20, alignSelf: 'stretch' }} text='LOGOUT' onPress={() => dispatch(logout())} />
+          <CmButton text="CHANGE PASSWORD" style={{ marginTop: 20, alignSelf: 'stretch' }} onPress={() => setShowPasswordModal(true)} />
+          <CmButton text="UPDATE EMAIL" style={{ marginTop: 20, alignSelf: 'stretch' }} onPress={() => setShowEmailModal(true)} />
+          <CmButton text="LOGOUT" style={{ marginTop: 20, alignSelf: 'stretch' }} onPress={() => dispatch(logout())} />
+          <CmButton text="DELETE ACCOUNT" color="error" style={{ marginTop: 100, alignSelf: 'stretch' }} onPress={() => setShowDeleteAccountModal(true)} />
 
-          <CmButton text='DELETE ACCOUNT' color='error' style={{ marginTop: 100, alignSelf: 'stretch' }} onPress={() => setShowDeleteAccountModal(true)} />
+          {showPasswordModal && (
+            <ChangePasswordModal
+              show={showPasswordModal}
+              onCancel={() => setShowPasswordModal(false)}
+              onSubmit={() => setShowPasswordModal(false)}
+            />
+          )}
 
-          {showPasswordModal && <ChangePasswordModal show={showPasswordModal} onCancel={() => setShowPasswordModal(false)} onSubmit={() => setShowPasswordModal(false)} />}
-          {showEmailModal && <UpdateEmailModal show={showEmailModal} onCancel={() => setShowEmailModal(false)} onSubmit={() => setShowEmailModal(false)} />}
-          {showDeleteAccountModal && <DeleteAccountModal show={showDeleteAccountModal} onCancel={() => setShowDeleteAccountModal(false)} onSubmit={deleteAccountHandler} />}
+          {showEmailModal && (
+            <UpdateEmailModal
+              show={showEmailModal}
+              onCancel={() => setShowEmailModal(false)}
+              onSubmit={() => setShowEmailModal(false)}
+            />
+          )}
+
+          {showDeleteAccountModal && (
+            <DeleteAccountModal
+              show={showDeleteAccountModal}
+              onCancel={() => setShowDeleteAccountModal(false)}
+              onSubmit={deleteAccountHandler}
+            />
+          )}
         </Content>
       </Section>
     </Screen>
