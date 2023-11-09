@@ -9,7 +9,7 @@ import { CmTypography, CmButton } from '@shared/components';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import { showErrorToast } from 'src/components/ToastMessages';
+import { showErrorToast } from '@shared/components';
 
 function SignUpScreen() {
   const apiClient = useApiClient();

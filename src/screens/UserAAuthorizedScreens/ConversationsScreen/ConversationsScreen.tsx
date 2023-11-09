@@ -8,8 +8,7 @@ import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
 import useApiClient from 'src/hooks/useApiClient';
 import { ConversationsDrawer, CopyLinkModal } from '@features/conversations/components'
-import { showErrorToast } from 'src/components/ToastMessages';
-import { CmTypography, CmButton } from '@shared/components';
+import { CmTypography, CmButton, showErrorToast  } from '@shared/components';
 
 function ConversationsScreen() {
   const apiClient = useApiClient();
