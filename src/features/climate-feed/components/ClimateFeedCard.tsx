@@ -4,8 +4,7 @@ import { capitalizeFirstLetter } from 'src/utils';
 import ClimateEffect from 'src/types/ClimateEffect';
 import ActionCardHeader from './ActionCardHeader';
 import Card from 'src/components/Cards/Card';
-import { CmChip } from 'src/components';
-import { CmTypography } from '@shared/components';
+import { CmTypography, CmChip  } from '@shared/components';
 
 interface Props {
   climateEffect: ClimateEffect;

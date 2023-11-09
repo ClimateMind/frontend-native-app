@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 
-import { CmChip } from 'src/components';
+import { CmChip } from '@shared/components';
 
 const meta: Meta<typeof CmChip> = {
   title: 'components/CmChip',
