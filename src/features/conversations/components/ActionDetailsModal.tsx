@@ -6,9 +6,8 @@ import { capitalizeFirstLetter, openUrl } from 'src/utils';
 import Colors from 'src/assets/colors';
 import ClimateEffect2 from 'src/types/ClimateEffect2';
 import ClimateEffect3 from 'src/types/ClimateEffect3';
-import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
 import useApiClient from 'src/hooks/useApiClient';
-import { CmTypography } from '@shared/components';
+import { CmTypography, DetailsSourcesTab } from '@shared/components';
 
 interface Props {
   open: boolean;

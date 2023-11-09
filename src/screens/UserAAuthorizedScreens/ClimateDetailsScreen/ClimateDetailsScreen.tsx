@@ -3,13 +3,15 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ClimateFeedStackParams } from 'src/navigation/Stacks/ClimateFeedStack';
-import { ActionCard } from '@features/climate-feed/components';
-import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
+
+import { ActionCard } from 'src/features/climate-feed/components';
+
 import { capitalizeFirstLetter, openUrl } from 'src/utils';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import { CmTypography, BackButton } from '@shared/components';
+
+import { CmTypography, DetailsSourcesTab, BackButton  } from '@shared/components';
 
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateDetailsScreen'>;
 

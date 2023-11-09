@@ -14,8 +14,7 @@ import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
 
 import PersonalValueCard from 'src/components/Cards/PersonalValueCard';
-import RadarChart from 'src/components/RadarChart';
-import { CmButton, CmTypography } from '@shared/components';
+import { CmButton, CmTypography, RadarChart } from '@shared/components';
 
 type Props = NativeStackScreenProps<StackParams, 'PersonalValuesScreenNewUser'>;
 
