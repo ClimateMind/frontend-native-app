@@ -9,7 +9,7 @@ import Content from 'src/components/Screen/Content';
 import useApiClient from 'src/hooks/useApiClient';
 import ConversationsDrawer from './ConversationsDrawer';
 import CopyLinkModal from './CopyLinkModal';
-import { showErrorToast } from 'src/components/ToastMessages';
+import { showErrorToast } from '@shared/components';
 import { CmTypography, CmButton } from '@shared/components';
 
 function ConversationsScreen() {
