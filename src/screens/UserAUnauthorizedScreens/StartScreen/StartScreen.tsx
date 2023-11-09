@@ -3,8 +3,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import Colors from 'src/assets/colors';
 import { StackParams } from 'src/navigation/UserAUnauthorizedStackNavigation';
-import { CmTypography, CmButton } from '@shared/components';
-import { showSuccessToast } from 'src/components/ToastMessages';
+import { CmTypography, CmButton, showSuccessToast } from '@shared/components';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';

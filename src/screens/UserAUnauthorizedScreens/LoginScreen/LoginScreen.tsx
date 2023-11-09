@@ -9,7 +9,7 @@ import useApiClient from 'src/hooks/useApiClient';
 import useLogger from 'src/hooks/useLogger';
 
 import PasswordResetModal from './PasswordResetModal';
-import { showErrorToast } from 'src/components/ToastMessages';
+import { showErrorToast } from '@shared/components';
 import { CmTypography, CmButton } from '@shared/components';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';

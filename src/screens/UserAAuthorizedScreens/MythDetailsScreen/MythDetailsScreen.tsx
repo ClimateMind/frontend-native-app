@@ -8,9 +8,8 @@ import { openUrl } from 'src/utils';
 import Screen from 'src/components/Screen/Screen';
 import Section from 'src/components/Screen/Section';
 import Content from 'src/components/Screen/Content';
-import { CmTypography } from '@shared/components';
+import { CmTypography, BackButton } from '@shared/components';
 import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
-import BackButton from 'src/components/BackButton';
 
 type Props = NativeStackScreenProps<MythsFeedStackParams, 'MythDetailsScreen'>;
 

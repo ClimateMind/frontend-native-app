@@ -17,3 +17,4 @@ export function showErrorToast(message: string) {
     opacity: 1,
   });
 }
+

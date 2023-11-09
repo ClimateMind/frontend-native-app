@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import useApiClient from 'src/hooks/useApiClient';
-import { showSuccessToast, showErrorToast } from 'src/components/ToastMessages';
+import { showSuccessToast, showErrorToast } from '@shared/components';
 import { CmTypography } from '@shared/components';
 import Card from 'src/components/Cards/Card';
 

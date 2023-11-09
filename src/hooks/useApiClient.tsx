@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { logout, setAuthToken } from 'src/store/authSlice';
-import { showErrorToast } from 'src/components/ToastMessages';
+import { showErrorToast } from '@shared/components';
 import * as requests from 'src/api/requests';
 import * as responses from 'src/api/responses';
 import ClimateEffect from 'src/types/ClimateEffect';
