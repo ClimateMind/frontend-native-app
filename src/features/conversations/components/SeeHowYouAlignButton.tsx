@@ -1,6 +1,6 @@
 import { StyleProp, ViewStyle } from 'react-native';
 import useApiClient from 'src/hooks/useApiClient';
-import { CmButton } from 'src/shared/components';
+import { CmButton } from '@shared/components';
 
 interface Props {
   conversationId: string;
