@@ -9,8 +9,7 @@ import Solution3 from 'src/types/Solution3';
 import Solution2 from 'src/types/Solution2';
 //should ActionCardHeader be a shared component
 import ActionCardHeader from './ActionCardHeader';
-import DetailsSourcesTab from 'src/components/DetailsSourcesTabs';
-import { CmTypography } from '@shared/components';
+import { CmTypography, DetailsSourcesTab } from '@shared/components';
 
 interface Props {
   open: boolean;
