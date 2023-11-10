@@ -10,10 +10,7 @@ import useLogger from 'src/hooks/useLogger';
 
 import PasswordResetModal from './PasswordResetModal';
 import { showErrorToast } from '@shared/components';
-import { CmTypography, CmButton } from '@shared/components';
-import Screen from 'src/components/Screen/Screen';
-import Section from 'src/components/Screen/Section';
-import Content from 'src/components/Screen/Content';
+import { CmTypography, CmButton, Screen, Section, Content } from '@shared/components';
 
 function LoginScreen() {
   const apiClient = useApiClient();

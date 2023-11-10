@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import useApiClient from 'src/hooks/useApiClient';
-import { CmTypography, showErrorToast, showSuccessToast } from '@shared/components';
-import Card from 'src/components/Cards/Card';
+import { CmTypography, showErrorToast, showSuccessToast, Card } from '@shared/components';
+
 import { AxiosError } from 'axios';
 
 interface Props {

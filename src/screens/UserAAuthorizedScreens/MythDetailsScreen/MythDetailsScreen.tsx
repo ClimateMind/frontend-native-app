@@ -5,10 +5,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MythsFeedStackParams } from 'src/navigation/Stacks/MythsFeedStack';
 
 import { openUrl } from 'src/utils';
-import Screen from 'src/components/Screen/Screen';
-import Section from 'src/components/Screen/Section';
-import Content from 'src/components/Screen/Content';
-import { CmTypography, DetailsSourcesTab, BackButton} from '@shared/components';
+import { CmTypography, DetailsSourcesTab, BackButton, Screen, Content, Section } from '@shared/components';
 
 type Props = NativeStackScreenProps<MythsFeedStackParams, 'MythDetailsScreen'>;
 

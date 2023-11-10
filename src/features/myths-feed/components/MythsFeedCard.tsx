@@ -2,8 +2,7 @@ import { Pressable, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Myth from 'src/types/Myth';
-import { CmTypography } from '@shared/components';
-import Card from 'src/components/Cards/Card';
+import { CmTypography, Card } from '@shared/components';
 
 interface Props {
   myth: Myth;

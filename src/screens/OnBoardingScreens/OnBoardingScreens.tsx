@@ -2,9 +2,7 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import Screen from 'src/components/Screen/Screen';
-import Content from 'src/components/Screen/Content';
-import Section from 'src/components/Screen/Section';
+import {Screen, Content, Section} from '@shared/components'
 
 const images = [
   require('src/assets/onboarding/onboarding1.png'),

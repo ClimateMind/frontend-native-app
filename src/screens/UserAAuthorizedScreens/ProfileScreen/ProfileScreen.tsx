@@ -3,10 +3,7 @@ import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { logout } from 'src/store/authSlice';
 
-import { CmTypography, CmButton } from '@shared/components';
-import Screen from 'src/components/Screen/Screen';
-import Section from 'src/components/Screen/Section';
-import Content from 'src/components/Screen/Content';
+import { CmTypography, CmButton, Screen, Section, Content } from '@shared/components';
 import {
   ChangePasswordModal,
   DeleteAccountModal,

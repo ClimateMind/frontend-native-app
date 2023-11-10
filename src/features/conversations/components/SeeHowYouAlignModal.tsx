@@ -3,13 +3,12 @@ import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import Colors from 'src/assets/colors';
-import PersonalValueCardSmall from 'src/components/Cards/PersonalValueCardSmall';
+
 import ViewSelectedTopicsButton from './ViewSelectedTopicsButton';
 import { GetAllConversations } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
 import Alignment from 'src/types/Alignment';
-import { CmTypography } from '@shared/components';
-import Content from 'src/components/Screen/Content';
+import { CmTypography, PersonalValueCardSmall, Content } from '@shared/components';
 
 interface Props {
   open: boolean;

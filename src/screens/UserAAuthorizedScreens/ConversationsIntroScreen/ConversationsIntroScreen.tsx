@@ -3,10 +3,7 @@ import { StyleSheet } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ConversationsStackParams } from 'src/navigation/Stacks/ConversationsStack';
 
-import Screen from 'src/components/Screen/Screen';
-import Section from 'src/components/Screen/Section';
-import Content from 'src/components/Screen/Content';
-import { CmTypography, CmButton, BulletListItem } from '@shared/components';
+import { CmTypography, CmButton, BulletListItem, Screen, Content, Section } from '@shared/components';
 
 type Props = NativeStackScreenProps<ConversationsStackParams, 'ConversationsIntroScreen'>;
 

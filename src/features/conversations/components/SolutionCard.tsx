@@ -4,7 +4,7 @@ import { Image, View } from 'react-native';
 import { capitalizeFirstLetter } from 'src/utils';
 import ClimateSolution from 'src/types/Solution3';
 import { CmTypography } from '@shared/components';
-import Card from 'src/components/Cards/Card';
+import Card from 'src/shared/components/Cards/Card';
 
 interface Props {
   solution: ClimateSolution;

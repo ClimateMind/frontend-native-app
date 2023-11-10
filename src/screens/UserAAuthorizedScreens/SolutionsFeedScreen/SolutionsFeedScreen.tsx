@@ -3,10 +3,7 @@ import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 
 import useApiClient from 'src/hooks/useApiClient';
 import Solution from 'src/types/Solution';
-import Screen from 'src/components/Screen/Screen';
-import Section from 'src/components/Screen/Section';
-import Content from 'src/components/Screen/Content';
-import { CmTypography } from '@shared/components';
+import { CmTypography, Screen, Content, Section } from '@shared/components';
 import { SolutionsFeedCard } from '@features/solutions-feed/components';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SolutionsFeedStackParams } from 'src/navigation/Stacks/SolutionsFeedStack';

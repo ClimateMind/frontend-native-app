@@ -2,7 +2,7 @@ import { Modal, Pressable, StyleSheet, View } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 
 import { CmTypography, showSuccessToast } from '@shared/components';
-import Card from 'src/components/Cards/Card';
+import Card from 'src/shared/components/Cards/Card';
 
 interface Props {
   show: boolean;

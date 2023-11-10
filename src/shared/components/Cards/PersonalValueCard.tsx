@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { CmTypography, PersonalValueIcon } from '@shared/components';
-import Card from './Card';
+import { CmTypography, PersonalValueIcon, Card} from '@shared/components';
 
 interface Props {
   nr: number;

@@ -5,10 +5,7 @@ import { RootDrawerNavigationParams } from '../../../navigation/NavigationRoot';
 import Colors from 'src/assets/colors';
 import { useAppSelector } from 'src/store/hooks';
 
-import Screen from 'src/components/Screen/Screen';
-import Section from 'src/components/Screen/Section';
-import Content from 'src/components/Screen/Content';
-import { CmTypography, CmButton } from '@shared/components';
+import { CmTypography, CmButton, Screen, Section, Content } from '@shared/components';
 
 type Props = DrawerScreenProps<RootDrawerNavigationParams, 'SubmitSetTwoScreen'>;
 

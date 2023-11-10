@@ -14,7 +14,7 @@ import CopyLinkModal from './CopyLinkModal';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
 import { CmTypography } from '@shared/components';
-import Card from 'src/components/Cards/Card';
+import Card from 'src/shared/components/Cards/Card';
 import NotifyIcon from './NotifyIcon';
 
 interface Props {

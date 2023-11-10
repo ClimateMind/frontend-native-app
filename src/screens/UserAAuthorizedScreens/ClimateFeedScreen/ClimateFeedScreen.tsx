@@ -6,10 +6,7 @@ import { ClimateFeedStackParams } from 'src/navigation/Stacks/ClimateFeedStack';
 
 import useApiClient from 'src/hooks/useApiClient';
 import ClimateEffect from 'src/types/ClimateEffect';
-import Screen from 'src/components/Screen/Screen';
-import Section from 'src/components/Screen/Section';
-import Content from 'src/components/Screen/Content';
-import { CmTypography } from '@shared/components';
+import { CmTypography, Screen, Content, Section } from '@shared/components';
 import { ClimateFeedCard } from '@features/climate-feed/components';
 import { useAppSelector } from 'src/store/hooks';
 

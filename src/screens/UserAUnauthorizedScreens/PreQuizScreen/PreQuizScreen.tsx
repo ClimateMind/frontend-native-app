@@ -5,10 +5,8 @@ import Colors from 'src/assets/colors';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StackParams } from 'src/navigation/UserAUnauthorizedStackNavigation';
 
-import Screen from 'src/components/Screen/Screen';
-import { CmTypography, CmButton } from '@shared/components';
-import Section from 'src/components/Screen/Section';
-import Content from 'src/components/Screen/Content';
+import { CmTypography, CmButton, Screen, Section, Content } from '@shared/components';
+
 
 type Props = NativeStackScreenProps<StackParams, 'PreQuizScreen'>;
 
