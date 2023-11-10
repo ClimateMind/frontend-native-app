@@ -2,9 +2,7 @@ import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import useApiClient from 'src/hooks/useApiClient';
-import { showSuccessToast, showErrorToast } from '@shared/components';
-import { CmTypography } from '@shared/components';
-import Card from 'src/shared/components/Cards/Card';
+import { showSuccessToast, showErrorToast, CmTypography, Card } from '@shared/components';
 
 interface Props {
   show: boolean;

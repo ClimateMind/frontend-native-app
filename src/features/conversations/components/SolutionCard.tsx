@@ -3,8 +3,7 @@ import { Image, View } from 'react-native';
 
 import { capitalizeFirstLetter } from 'src/utils';
 import ClimateSolution from 'src/types/Solution3';
-import { CmTypography } from '@shared/components';
-import Card from 'src/shared/components/Cards/Card';
+import { CmTypography, Card  } from '@shared/components';
 
 interface Props {
   solution: ClimateSolution;

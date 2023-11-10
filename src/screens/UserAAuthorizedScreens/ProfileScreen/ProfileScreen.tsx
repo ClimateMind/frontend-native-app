@@ -8,7 +8,7 @@ import {
   ChangePasswordModal,
   DeleteAccountModal,
   UpdateEmailModal,
-} from '@features/profile/components';
+} from '@features/auth/components';
 
 function ProfileScreen() {
   const dispatch = useAppDispatch();
