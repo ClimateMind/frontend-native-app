@@ -4,11 +4,7 @@ import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { logout } from 'src/store/authSlice';
 
 import { CmTypography, CmButton, Screen, Section, Content } from '@shared/components';
-import {
-  ChangePasswordModal,
-  DeleteAccountModal,
-  UpdateEmailModal,
-} from '@features/auth/components';
+import { ChangePasswordModal, DeleteAccountModal, UpdateEmailModal } from '@features/auth/components';
 
 function ProfileScreen() {
   const dispatch = useAppDispatch();
