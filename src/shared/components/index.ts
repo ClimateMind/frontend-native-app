@@ -15,4 +15,7 @@ export { default as PersonalValueCardSmall } from './Cards/PersonalValueCardSmal
 export { default as Content } from './Screen/Content'
 export { default as Screen } from './Screen/Screen'
 export { default as Section } from './Screen/Section'
+export { default as Answer } from './Quiz/Answer'
+export { default as ProgressBar } from './Quiz/ProgressBar'
+export { default as SingleQuestion } from './Quiz/SingleQuestion'
 

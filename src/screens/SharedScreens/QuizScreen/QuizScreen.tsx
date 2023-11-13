@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { RootDrawerNavigationParams } from '../../../navigation/NavigationRoot';
-
-import SingleQuestion from './SingleQuestion';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { addQuizAnswer } from 'src/store/quizSlice';
 import { GetQuestions } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
 import { setQuizId } from 'src/store/authSlice';
-import {Screen, Content, Section} from '@shared/components'
+import {Screen, Content, Section, SingleQuestion} from '@shared/components'
 
 type Props = DrawerScreenProps<RootDrawerNavigationParams, 'QuizScreen'>;
 
