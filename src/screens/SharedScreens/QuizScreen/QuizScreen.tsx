@@ -7,7 +7,7 @@ import { addQuizAnswer } from 'src/store/quizSlice';
 import { GetQuestions } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
 import { setQuizId } from 'src/store/authSlice';
-import {Screen, Content, Section, SingleQuestion} from '@shared/components'
+import { Screen, Content, Section, SingleQuestion } from '@shared/components'
 
 type Props = DrawerScreenProps<RootDrawerNavigationParams, 'QuizScreen'>;
 
