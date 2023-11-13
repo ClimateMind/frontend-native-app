@@ -7,10 +7,8 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import useApiClient from 'src/hooks/useApiClient';
 import { useAppSelector } from 'src/store/hooks';
 import Myth from 'src/types/Myth';
-import Screen from 'src/components/Screen/Screen';
-import Section from 'src/components/Screen/Section';
-import Content from 'src/components/Screen/Content';
-import { CmTypography } from '@shared/components';
+
+import { CmTypography, Screen, Content, Section } from '@shared/components';
 import { MythsFeedCard } from '@features/myths-feed/components';
 
 type Props = NativeStackScreenProps<MythsFeedStackParams, 'MythsFeedScreen'>;

@@ -5,10 +5,7 @@ import { RootDrawerNavigationParams } from '../../../navigation/NavigationRoot';
 import Colors from 'src/assets/colors';
 import { useAppSelector } from 'src/store/hooks';
 
-import Screen from 'src/components/Screen/Screen';
-import { CmTypography, CmButton } from '@shared/components';
-import Section from 'src/components/Screen/Section';
-import Content from 'src/components/Screen/Content';
+import { Screen, Content, Section, CmTypography, CmButton } from '@shared/components'
 
 type Props = DrawerScreenProps<RootDrawerNavigationParams, 'SubmitSetOneScreen'>;
 

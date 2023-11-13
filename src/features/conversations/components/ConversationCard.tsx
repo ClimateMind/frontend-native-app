@@ -13,8 +13,7 @@ import ConversationRating from './ConversationRating';
 import CopyLinkModal from './CopyLinkModal';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
-import { CmTypography } from '@shared/components';
-import Card from 'src/components/Cards/Card';
+import { CmTypography, Card } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
 
 interface Props {

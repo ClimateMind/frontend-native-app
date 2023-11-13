@@ -3,12 +3,9 @@ import { Dimensions, KeyboardAvoidingView, Pressable, StyleSheet, TextInput } fr
 import { AntDesign } from '@expo/vector-icons';
 
 import Colors from 'src/assets/colors';
-import Screen from 'src/components/Screen/Screen';
-import Section from 'src/components/Screen/Section';
-import Content from 'src/components/Screen/Content';
 import useApiClient from 'src/hooks/useApiClient';
 import { ConversationsDrawer, CopyLinkModal } from '@features/conversations/components'
-import { CmTypography, CmButton, showErrorToast  } from '@shared/components';
+import { CmTypography, CmButton, showErrorToast, Screen, Content, Section } from '@shared/components';
 
 function ConversationsScreen() {
   const apiClient = useApiClient();

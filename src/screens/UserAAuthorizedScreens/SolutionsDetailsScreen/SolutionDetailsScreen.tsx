@@ -7,11 +7,8 @@ import { SolutionsFeedStackParams } from 'src/navigation/Stacks/SolutionsFeedSta
 import { openUrl } from 'src/utils';
 import useApiClient from 'src/hooks/useApiClient';
 import Myth from 'src/types/Myth';
-import Screen from 'src/components/Screen/Screen';
-import Section from 'src/components/Screen/Section';
-import Content from 'src/components/Screen/Content';
 import { MythsFeedCard } from '@features/myths-feed/components';
-import { CmTypography, DetailsSourcesTab, BackButton } from '@shared/components';
+import { CmTypography, DetailsSourcesTab, BackButton, Screen, Section, Content } from '@shared/components';
 import { ActionCardHeader } from '@features/climate-feed/components';
 
 type Props = NativeStackScreenProps<SolutionsFeedStackParams, 'SolutionDetailsScreen'>;

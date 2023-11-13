@@ -6,10 +6,7 @@ import ConversationsIntroCard from './ConversationsIntroCard';
 import ConversationCard from './ConversationCard';
 import { GetAllConversations } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
-import Screen from 'src/components/Screen/Screen';
-import Section from 'src/components/Screen/Section';
-import Content from 'src/components/Screen/Content';
-import { CmTypography } from '@shared/components';
+import { Screen, Section, Content, CmTypography}from '@shared/components';
 
 interface Props {
   open: boolean;

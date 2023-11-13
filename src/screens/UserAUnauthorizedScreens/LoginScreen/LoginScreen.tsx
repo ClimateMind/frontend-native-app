@@ -8,12 +8,8 @@ import { login } from 'src/store/authSlice';
 import useApiClient from 'src/hooks/useApiClient';
 import useLogger from 'src/hooks/useLogger';
 
-import PasswordResetModal from './PasswordResetModal';
-import { showErrorToast } from '@shared/components';
-import { CmTypography, CmButton } from '@shared/components';
-import Screen from 'src/components/Screen/Screen';
-import Section from 'src/components/Screen/Section';
-import Content from 'src/components/Screen/Content';
+import { PasswordResetModal } from '@features/auth/components';
+import { CmTypography, CmButton, Screen, Section, Content, showErrorToast } from '@shared/components';
 
 function LoginScreen() {
   const apiClient = useApiClient();

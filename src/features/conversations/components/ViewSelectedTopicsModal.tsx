@@ -11,8 +11,7 @@ import ActionCard from './ActionCard';
 import SolutionsFeedCard from './SolutionCard';
 import SolutionDetailsModal from './SolutionDetailsModal';
 import ActionDetailsModal from './ActionDetailsModal';
-import { CmTypography } from '@shared/components';;
-import Content from 'src/components/Screen/Content';
+import { CmTypography, Content } from '@shared/components';;
 
 interface Props {
   open: boolean;

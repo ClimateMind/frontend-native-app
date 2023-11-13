@@ -5,11 +5,7 @@ import { AxiosError } from 'axios';
 import useApiClient from 'src/hooks/useApiClient';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { login } from 'src/store/authSlice';
-import { CmTypography, CmButton } from '@shared/components';
-import Screen from 'src/components/Screen/Screen';
-import Section from 'src/components/Screen/Section';
-import Content from 'src/components/Screen/Content';
-import { showErrorToast } from '@shared/components';
+import { CmTypography, CmButton, showErrorToast, Screen, Content, Section } from '@shared/components';
 
 function SignUpScreen() {
   const apiClient = useApiClient();
