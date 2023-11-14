@@ -6,7 +6,8 @@ import { BottomTabsNavigationParams } from 'src/navigation/UserAAuthorizedTabsNa
 import useApiClient from 'src/hooks/useApiClient';
 import { GetPersonalValues } from 'src/api/responses';
 import { useAppSelector } from 'src/store/hooks';
-import { CmTypography, RadarChart, Screen, Content, Section, PersonalValueCard } from '@shared/components';
+import { PersonalValueCard, RadarChart } from 'src/features/quiz/components';
+import { CmTypography, Screen, Content, Section } from '@shared/components';
 import { useFocusEffect } from '@react-navigation/native';
 
 type Props = BottomTabScreenProps<BottomTabsNavigationParams, 'PersonalValuesScreen'>;

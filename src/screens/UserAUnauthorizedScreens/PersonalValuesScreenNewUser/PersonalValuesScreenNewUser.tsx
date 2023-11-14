@@ -8,7 +8,8 @@ import Colors from 'src/assets/colors';
 import useApiClient from 'src/hooks/useApiClient';
 import { useAppSelector } from 'src/store/hooks';
 import { GetPersonalValues } from 'src/api/responses';
-import { CmButton, CmTypography, RadarChart, Screen, Section, Content, PersonalValueCard } from '@shared/components';
+import { PersonalValueCard, RadarChart } from 'src/features/quiz/components';
+import { CmButton, CmTypography, Screen, Section, Content } from '@shared/components';
 
 type Props = NativeStackScreenProps<StackParams, 'PersonalValuesScreenNewUser'>;
 

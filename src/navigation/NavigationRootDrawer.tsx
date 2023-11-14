@@ -6,7 +6,8 @@ import { DrawerContentComponentProps } from '@react-navigation/drawer';
 import { openUrl } from 'src/utils';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { logout } from 'src/store/authSlice';
-import { CmButton, SocialImagesGrid } from '@shared/components';
+import { CmButton } from '@shared/components';
+import SocialImagesGrid from './SocialImagesGrid';
 
 type Props = DrawerContentComponentProps;
 
