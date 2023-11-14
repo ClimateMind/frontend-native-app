@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, View } from 'react-native';
 
 import { capitalizeFirstLetter } from 'src/utils';
 import { CmTypography, PersonalValueIcon } from '@shared/components';
-import Card from './Card';
+import Card from '@shared/components/Cards/Card';
 
 interface Props {
   name: string;

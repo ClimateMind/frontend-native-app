@@ -14,3 +14,4 @@ export { default as SolutionDetailsModal } from './SolutionDetailsModal';
 export { default as ViewSelectedTopicsButton } from './ViewSelectedTopicsButton';
 export { default as ViewSelectedTopicsModal } from './ViewSelectedTopicsModal';
 export { default as YesWeTalkedButton } from './YesWeTalkedButton';
+export { default as PersonalValueCardSmall } from './PersonalValueCardSmall';
