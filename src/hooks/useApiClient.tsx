@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { logout, setAuthToken } from 'src/store/authSlice';
-import { showErrorToast } from '@shared/components';
+import { useToastMessages} from '@shared/hooks';
 import * as requests from 'src/api/requests';
 import * as responses from 'src/api/responses';
 import ClimateEffect from 'src/types/ClimateEffect';
@@ -25,6 +25,9 @@ const validateToken = (token: string): boolean => {
 };
 
 function useApiClient() {
+
+  const { showErrorToast } = useToastMessages()
+  
   const sessionId = useAppSelector((state) => state.auth.sessionId);
   const quizId = useAppSelector((state) => state.auth.user.quizId);
   const user = useAppSelector((state) => state.auth.user);

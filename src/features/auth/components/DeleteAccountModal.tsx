@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import useApiClient from 'src/hooks/useApiClient';
-import { CmTypography, showErrorToast, showSuccessToast, Card } from '@shared/components';
-
+import { CmTypography, Card } from '@shared/components';
+import { useToastMessages } from '@shared/hooks';
 import { AxiosError } from 'axios';
 
 interface Props {
@@ -13,8 +13,9 @@ interface Props {
 }
 
 function DeleteAccountModal({ show, onSubmit, onCancel }: Props) {
+  
   const apiClient = useApiClient();
-
+  const { showErrorToast, showSuccessToast } = useToastMessages()
   const [confirmPassword, setConfirmPassword] = useState('');
 
   async function submitButtonHandler() {
