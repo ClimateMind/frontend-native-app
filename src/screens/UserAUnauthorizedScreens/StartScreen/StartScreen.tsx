@@ -3,7 +3,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import Colors from 'src/assets/colors';
 import { StackParams } from 'src/navigation/UserAUnauthorizedStackNavigation';
-import { CmTypography, CmButton, showSuccessToast, Screen, Section, Content } from '@shared/components';
+import { CmTypography, CmButton, Screen, Section, Content } from '@shared/components';
 
 type Props = NativeStackScreenProps<StackParams, 'StartScreen'>;
 
@@ -47,7 +47,7 @@ function StartScreen({ navigation }: Props) {
             people care about and help find solutions they like.
           </CmTypography>
 
-          <Pressable delayLongPress={2000} onLongPress={() => showSuccessToast("Test15: " + process.env.EXPO_PUBLIC_API_URL)}>
+          <Pressable delayLongPress={5000} onLongPress={() => navigation.getParent()?.navigate('DevScreen')}>
             <Image source={require('src/assets/ConnectTheDots.png')} />
           </Pressable>
         </Content>
