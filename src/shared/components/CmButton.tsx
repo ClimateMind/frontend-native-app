@@ -8,12 +8,13 @@ interface Props {
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
   startIcon?: React.ReactNode;
+  isLoading?: boolean
 }
 
-function CmButton({ text, onPress = () => {}, color = 'success', style = {}, disabled = false, startIcon }: Props) {  
+function CmButton({ text, onPress = () => {}, color = 'success', style = {}, disabled = false, startIcon, isLoading = false }: Props) {  
   return (
     <Pressable
-      disabled={disabled}
+      disabled={isLoading || disabled}
       onPress={onPress}
       style={({ pressed }) => [
         styles.button,
