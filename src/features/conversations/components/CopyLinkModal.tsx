@@ -1,7 +1,8 @@
 import { Modal, Pressable, StyleSheet, View } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 
-import { CmTypography, showSuccessToast, Card } from '@shared/components';
+import { CmTypography, Card } from '@shared/components';
+import { useToastMessages } from 'src/shared/hooks';
 
 interface Props {
   show: boolean;
@@ -11,6 +12,8 @@ interface Props {
 }
 
 function CopyLinkModal({ show, recipient, link, onClose }: Props) {
+  const { showSuccessToast } = useToastMessages()
+  
   function copyLink() {
     Clipboard.setStringAsync(link);
     showSuccessToast('Link copied!');

@@ -5,11 +5,13 @@ import { AntDesign } from '@expo/vector-icons';
 import Colors from 'src/assets/colors';
 import useApiClient from 'src/hooks/useApiClient';
 import { ConversationsDrawer, CopyLinkModal } from '@features/conversations/components'
-import { CmTypography, CmButton, showErrorToast, Screen, Content, Section } from '@shared/components';
+import { CmTypography, CmButton, Screen, Content, Section } from '@shared/components';
+import { useToastMessages } from 'src/shared/hooks';
 
 function ConversationsScreen() {
   const apiClient = useApiClient();
   const [recipient, setRecipient] = useState('');
+  const { showErrorToast } = useToastMessages()
   const [showConversationsDrawer, setShowConversationsDrawer] = useState(false);
 
   const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);

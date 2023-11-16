@@ -5,12 +5,14 @@ import { AxiosError } from 'axios';
 import useApiClient from 'src/hooks/useApiClient';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { login } from 'src/store/authSlice';
-import { CmTypography, CmButton, showErrorToast, Screen, Content, Section } from '@shared/components';
+import { CmTypography, CmButton, Screen, Content, Section } from '@shared/components';
+import { useToastMessages } from 'src/shared/hooks';
 
 function SignUpScreen() {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
   const quizId = useAppSelector((state) => state.auth.user.quizId);
+  const { showErrorToast } = useToastMessages()
 
   const [inputs, setInputs] = useState({
     firstName: { value: '', isValid: true },

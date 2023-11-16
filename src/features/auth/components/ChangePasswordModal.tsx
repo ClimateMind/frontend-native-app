@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import useApiClient from 'src/hooks/useApiClient';
-import { CmTypography, showErrorToast, showSuccessToast } from '@shared/components';
+import { CmTypography } from '@shared/components';
+import { useToastMessages } from '@shared/hooks';
 import Card from 'src/shared/components/Cards/Card';
 
 interface Props {
@@ -12,6 +13,8 @@ interface Props {
 
 function ChangePasswordModal({ show, onSubmit, onCancel }: Props) {
   const apiClient = useApiClient();
+  
+  const { showErrorToast, showSuccessToast } = useToastMessages()
 
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');

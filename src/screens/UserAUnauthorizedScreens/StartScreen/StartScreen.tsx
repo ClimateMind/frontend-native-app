@@ -3,11 +3,14 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import Colors from 'src/assets/colors';
 import { StackParams } from 'src/navigation/UserAUnauthorizedStackNavigation';
-import { CmTypography, CmButton, showSuccessToast, Screen, Section, Content } from '@shared/components';
+import { CmTypography, CmButton, Screen, Section, Content } from '@shared/components';
+import { useToastMessages } from 'src/shared/hooks';
 
 type Props = NativeStackScreenProps<StackParams, 'StartScreen'>;
 
 function StartScreen({ navigation }: Props) {
+  const { showSuccessToast } = useToastMessages()
+
   function navigateToLoginScreen() {
     navigation.navigate('LoginScreen');
   }
