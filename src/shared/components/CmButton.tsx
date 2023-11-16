@@ -1,4 +1,4 @@
-import { Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import { ActivityIndicator, Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import CmTypography from './CmTypography';
 
 interface Props {
@@ -24,7 +24,7 @@ function CmButton({ text, onPress = () => {}, color = 'success', style = {}, dis
         style,
       ]}
     >
-      {startIcon}
+      {isLoading ? <ActivityIndicator size='large' color='black' style={{ marginTop: 100 }} /> : startIcon}
       <CmTypography
         variant="button"
         style={[
