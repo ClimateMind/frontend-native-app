@@ -9,7 +9,6 @@ import { useToastMessages } from 'src/shared/hooks';
 type Props = NativeStackScreenProps<StackParams, 'StartScreen'>;
 
 function StartScreen({ navigation }: Props) {
-
   const { showSuccessToast } = useToastMessages()
 
   function navigateToLoginScreen() {

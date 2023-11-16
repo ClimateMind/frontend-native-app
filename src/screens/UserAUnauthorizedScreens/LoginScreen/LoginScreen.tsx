@@ -12,7 +12,6 @@ import { PasswordResetModal } from '@features/auth/components';
 import { CmTypography, CmButton, Screen, Section, Content } from '@shared/components';
 import { useToastMessages } from '@shared/hooks';
 
-
 function LoginScreen() {
   const apiClient = useApiClient();
   const logger = useLogger();

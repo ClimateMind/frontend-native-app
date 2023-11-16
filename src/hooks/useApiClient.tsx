@@ -25,7 +25,6 @@ const validateToken = (token: string): boolean => {
 };
 
 function useApiClient() {
-
   const { showErrorToast } = useToastMessages()
   
   const sessionId = useAppSelector((state) => state.auth.sessionId);

@@ -12,7 +12,6 @@ interface Props {
 }
 
 function CopyLinkModal({ show, recipient, link, onClose }: Props) {
-
   const { showSuccessToast } = useToastMessages()
   
   function copyLink() {

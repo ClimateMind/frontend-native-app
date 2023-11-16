@@ -13,8 +13,8 @@ interface Props {
 }
 
 function DeleteAccountModal({ show, onSubmit, onCancel }: Props) {
-  
   const apiClient = useApiClient();
+
   const { showErrorToast, showSuccessToast } = useToastMessages()
   const [confirmPassword, setConfirmPassword] = useState('');
 

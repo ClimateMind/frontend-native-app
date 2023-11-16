@@ -1,6 +1,6 @@
 import Toast from 'react-native-root-toast';
 
-export default function useToastMessages() {
+function useToastMessages() {
   const options = {
     duration: Toast.durations.LONG,
     textColor: '#000000',
@@ -20,3 +20,5 @@ export default function useToastMessages() {
     showErrorToast,
   };
 }
+
+export default useToastMessages;
