@@ -16,7 +16,7 @@ import { useToastMessages } from '@shared/hooks';
 function LoginScreen() {
   const apiClient = useApiClient();
   const logger = useLogger();
-  const {showErrorToast} = useToastMessages()
+  const { showErrorToast } = useToastMessages()
   const dispatch = useAppDispatch();
 
   const recaptcha = useRef<RecaptchaRef>(null);
