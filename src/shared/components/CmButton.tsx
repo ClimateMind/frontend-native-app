@@ -24,7 +24,7 @@ function CmButton({ text, onPress = () => {}, color = 'success', style = {}, dis
         style,
       ]}
     >
-      {isLoading ? <ActivityIndicator size='large' color='black' style={{ marginTop: 100 }} /> : startIcon}
+      {isLoading ? <ActivityIndicator size='small' color='black'  /> : startIcon}
       <CmTypography
         variant="button"
         style={[
