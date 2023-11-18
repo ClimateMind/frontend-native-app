@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import { CmTypography } from '@shared/components';
+import CmTypography from './CmTypography';
 
 
 

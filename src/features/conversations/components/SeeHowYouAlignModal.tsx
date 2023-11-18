@@ -9,7 +9,7 @@ import { GetAllConversations } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
 import Alignment from 'src/types/Alignment';
 import { CmTypography, Content } from '@shared/components';
-import { PersonalValueCardSmall } from '@features/conversations/components';
+import PersonalValueCardSmall from './PersonalValueCardSmall';
 
 interface Props {
   open: boolean;
