@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
+import { capitalizeFirstLetter } from 'src/utils';
 import { CmTypography, PersonalValueIcon, Card} from '@shared/components';
 
 interface Props {
@@ -15,10 +16,6 @@ interface Props {
 
 function PersonalValueCard({ nr, value }: Props) {
   const [expanded, setExpanded] = useState(false);
-
-  function capitalizeFirstLetter(string: string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
 
   return (
     <Card style={{ padding: 10 }}>
