@@ -11,7 +11,7 @@ interface Props {
   isLoading?: boolean
 }
 
-function CmButton({ text, onPress = () => {}, color = 'success', style = {}, disabled = false, startIcon, isLoading = false }: Props) {  
+function CmButton({ text, onPress = () => {}, color = 'success', style = {}, disabled = false, startIcon, isLoading = true }: Props) {  
   return (
     <Pressable
       disabled={isLoading || disabled}
@@ -20,6 +20,7 @@ function CmButton({ text, onPress = () => {}, color = 'success', style = {}, dis
         styles.button,
         color === 'error' && { borderColor: '#ff0000' },
         pressed && styles.buttonPressed,
+        (disabled || isLoading) && styles.buttonDisabled,
         style,
       ]}
     >
@@ -52,6 +53,9 @@ const styles = StyleSheet.create({
   },
   buttonPressed: {
     backgroundColor: 'lightgray',
+  },
+  buttonDisabled: {
+    borderColor: 'lightgray',
   },
   buttonText: {
     paddingVertical: 5,
