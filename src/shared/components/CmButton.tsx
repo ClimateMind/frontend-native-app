@@ -1,4 +1,4 @@
-import { Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import { ActivityIndicator, Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import CmTypography from './CmTypography';
 
 interface Props {
@@ -8,27 +8,29 @@ interface Props {
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
   startIcon?: React.ReactNode;
+  isLoading?: boolean
 }
 
-function CmButton({ text, onPress = () => {}, color = 'success', style = {}, disabled = false, startIcon }: Props) {  
+function CmButton({ text, onPress = () => {}, color = 'success', style = {}, disabled = false, startIcon, isLoading = true }: Props) {  
   return (
     <Pressable
-      disabled={disabled}
+      disabled={isLoading || disabled}
       onPress={onPress}
       style={({ pressed }) => [
         styles.button,
         color === 'error' && { borderColor: '#ff0000' },
         pressed && styles.buttonPressed,
-        disabled && styles.buttonDisabled,
+        (disabled || isLoading) && styles.buttonDisabled,
         style,
       ]}
     >
-      {startIcon}
+      {isLoading ? <ActivityIndicator size='small' color='gray' style={{ marginRight: 5 }} /> : startIcon}
       <CmTypography
         variant="button"
         style={[
           styles.buttonText,
           startIcon !== undefined && { marginLeft: 10 },
+          (disabled || isLoading) && { color: 'gray' },
         ]}
       >
         {text}
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgray',
   },
   buttonDisabled: {
-    backgroundColor: 'lightgray',
+    borderColor: 'lightgray',
   },
   buttonText: {
     paddingVertical: 5,
