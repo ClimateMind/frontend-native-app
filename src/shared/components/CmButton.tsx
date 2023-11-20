@@ -11,7 +11,7 @@ interface Props {
   isLoading?: boolean
 }
 
-function CmButton({ text, onPress = () => {}, color = 'success', style = {}, disabled = false, startIcon, isLoading = true }: Props) {  
+function CmButton({ text, onPress = () => {}, color = 'success', style = {}, disabled = false, startIcon, isLoading = false }: Props) {  
   return (
     <Pressable
       disabled={isLoading || disabled}
