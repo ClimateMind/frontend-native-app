@@ -19,7 +19,7 @@ import SubmitSetTwoScreen from 'src/screens/SharedScreens/SubmitSetTwoScreen/Sub
 
 import Colors from 'src/assets/colors';
 import useApiClient from 'src/hooks/useApiClient';
-import { completeOnboarding } from 'src/features/onboarding/state/onboardingSlice';
+import { useInitOnboardingState } from 'src/features/onboarding/hooks';
 
 export type RootDrawerNavigationParams = {
   UserAUnauthorizedScreens: { screen: 'StartScreen' | 'LoginScreen' } | undefined;
@@ -36,7 +36,8 @@ function NavigationRoot() {
   const dispatch = useAppDispatch();
   const sessionId = useAppSelector((state) => state.auth.sessionId);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
-  const onboardingCompleted = useAppSelector((state) => state.onboarding.onboardingCompleted);
+
+  const { isLoading: isLoadingOnboarding, needsOnboarding } = useInitOnboardingState();
 
   useEffect(() => {
     async function isUserLoggedIn() {
@@ -57,18 +58,14 @@ function NavigationRoot() {
       }
     }
 
-    AsyncStorage.getItem('onboardingCompleted').then((result) => {
-      if (result === 'true') {
-        // Set redux state if onboarding has been completed already
-        dispatch(completeOnboarding());
-        isUserLoggedIn().then(() => SplashScreen.hideAsync());
-      } else {
-        // Otherwise, set the state to false, in case the key doesn't exist
-        AsyncStorage.setItem('onboardingCompleted', 'false');
+    if (!isLoadingOnboarding) {
+      if (needsOnboarding) {
         SplashScreen.hideAsync();
+      } else {
+        isUserLoggedIn().then(() => SplashScreen.hideAsync());
       }
-    });
-  }, []);
+    }
+  }, [isLoadingOnboarding]);
 
   useEffect(() => {
     if (!sessionId) {
@@ -79,7 +76,7 @@ function NavigationRoot() {
     }
   }, []);
 
-  if (!onboardingCompleted) {
+  if (needsOnboarding && !isLoadingOnboarding) {
     return <OnBoardingScreens />;
   }
 
