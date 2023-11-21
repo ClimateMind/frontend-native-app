@@ -80,39 +80,3 @@ export const TalkMenuButtonEvent: IAnalyticsEvent = {
   action: 'conversation',
   label: 'session_id',
 };
-
-// public postGetStartedButtonEvent(sessionId: string) {
-  //   this.postEvent(events.GetStartedButtonEvent, sessionId);
-  // }
-
-  // public postLoginButtonEvent(sessionId: string) {
-  //   this.postEvent(events.LoginButtonEvent, sessionId);
-  // }
-
-  // public postQuestionEvent(questionId: string, questionNumber: number) {
-  //   this.postEvent(events.QuestionStartEvent, `${questionId}:${questionNumber + 1}`);
-  // }
-
-  // public postQuestionnaireFinishedEvent(questionSet: number) {
-  //   this.postEvent(events.QuestionnaireFinishedEvent, questionSet.toString());
-  // }
-
-  // public postCardOpenEvent(cardIri: string) {
-  //   this.postEvent(events.CardOpenEvent, cardIri);
-  // }
-
-  // public postCardCloseEvent(cardIri: string) {
-  //   this.postEvent(events.CardCloseEvent, cardIri);
-  // }
-
-  // public postRegistrationPageOpenEvent(signUpId: string) {
-  //   this.postEvent(events.RegistrationPageOpenEvent, signUpId);
-  // }
-
-  // public postStartTalkingEvent(sessionId: string) {
-  //   this.postEvent(events.StartTalkingEvent, sessionId);
-  // }
-
-  // public postTalkMenuButtonEvent(sessionId: string) {
-  //   this.postEvent(events.TalkMenuButtonEvent, sessionId);
-  // }
