@@ -4,6 +4,7 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SolutionsFeedStackParams } from 'src/navigation/Stacks/SolutionsFeedStack';
 
+import { CardCloseEvent, CardOpenEvent, analyticsService } from 'src/services';
 import { openUrl } from 'src/utils';
 import useApiClient from 'src/hooks/useApiClient';
 import Myth from 'src/types/Myth';
@@ -31,6 +32,15 @@ function SolutionDetailsScreen({ navigation, route }: Props) {
       });
     });
   }, [solution, setMyths]);
+
+  // Track analytics events for card open and close
+  useEffect(() => {
+    analyticsService.postEvent(CardOpenEvent, solution.iri);
+
+    return () => {
+      analyticsService.postEvent(CardCloseEvent, solution.iri);
+    }
+  }, []);
 
   return (
     <Screen style={{ backgroundColor: 'white' }}>

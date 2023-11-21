@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MythsFeedStackParams } from 'src/navigation/Stacks/MythsFeedStack';
 
+import { CardCloseEvent, CardOpenEvent, analyticsService } from 'src/services';
 import { openUrl } from 'src/utils';
 import { CmTypography, DetailsSourcesTab, BackButton, Screen, Content, Section } from '@shared/components';
 
@@ -12,6 +13,15 @@ type Props = NativeStackScreenProps<MythsFeedStackParams, 'MythDetailsScreen'>;
 function MythDetailsScreen({ navigation, route }: Props) {
   const myth = route.params.myth;
   const [selectedTab, setSelectedTab] = useState(0);
+
+  // Track analytics events for card open and close
+  useEffect(() => {
+    analyticsService.postEvent(CardOpenEvent, myth.iri);
+
+    return () => {
+      analyticsService.postEvent(CardCloseEvent, myth.iri);
+    }
+  }, []);
 
   return (
     <Screen style={{ backgroundColor: 'white' }}>

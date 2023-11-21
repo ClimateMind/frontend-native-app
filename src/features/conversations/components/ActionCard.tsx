@@ -1,6 +1,7 @@
-import { Pressable, StyleSheet, View } from 'react-native';
-import { Image } from 'react-native';
+import { useEffect } from 'react';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 
+import { CardCloseEvent, CardOpenEvent, analyticsService } from 'src/services';
 import { capitalizeFirstLetter } from 'src/utils';
 import ClimateEffect2 from 'src/types/ClimateEffect2';
 import { CmTypography, CmChip, Card } from '@shared/components';
@@ -11,6 +12,15 @@ interface Props {
 }
 
 function ActionCard({ climateEffect, onLearnMore }: Props) {
+  // Track analytics events for card open and close
+  useEffect(() => {
+    analyticsService.postEvent(CardOpenEvent, climateEffect.effectId);
+
+    return () => {
+      analyticsService.postEvent(CardCloseEvent, climateEffect.effectId);
+    }
+  }, []);
+
   return (
     <Card>
 

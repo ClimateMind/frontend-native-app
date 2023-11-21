@@ -4,6 +4,7 @@ import { ActivityIndicator } from 'react-native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { RootDrawerNavigationParams } from '../../../navigation/NavigationRoot';
 
+import { QuestionStartEvent, QuestionnaireFinishedEvent, analyticsService } from 'src/services';
 import { SingleQuestion } from '@features/quiz/components';
 import { Screen, Content, Section } from '@shared/components'
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
@@ -37,7 +38,8 @@ function QuizScreen({ route, navigation }: Props) {
       })
     );
 
-    setCurrentQuestionNumber(currentQuestionNumber + 1);
+    analyticsService.postEvent(QuestionStartEvent, `${currentQuestion.id}:${currentQuestionNumber}`);
+    setCurrentQuestionNumber(current => current + 1);
   }
 
   useEffect(() => {
@@ -60,12 +62,16 @@ function QuizScreen({ route, navigation }: Props) {
     if (route.params.questionSet === 1 && currentQuestionNumber === 11) {
       setCurrentQuestionNumber(1);
       submitAnswers();
+
+      analyticsService.postEvent(QuestionnaireFinishedEvent, '1');
       navigation.navigate('SubmitSetOneScreen');
     }
 
     if (route.params.questionSet === 2 && currentQuestionNumber === 11) {
       setCurrentQuestionNumber(1);
       submitAnswers();
+
+      analyticsService.postEvent(QuestionnaireFinishedEvent, '2');
       navigation.navigate('SubmitSetTwoScreen');
     }
   }, [currentQuestionNumber]);

@@ -11,6 +11,7 @@ import SolutionsFeedStack from './Stacks/SolutionsFeedStack';
 import MythsFeedStack from './Stacks/MythsFeedStack';
 import ConversationsStack from './Stacks/ConversationsStack';
 
+import { TalkMenuButtonEvent, analyticsService } from 'src/services';
 import { useAppSelector } from 'src/store/hooks';
 import { CmTypography } from '@shared/components';
 
@@ -70,6 +71,11 @@ function UserAAuthorizedTabsNavigation() {
           tabBarLabel: 'Talk',
           tabBarIcon: ({ color }) => <Entypo name="chat" size={24} color={color} />,
         }}
+        listeners={() => ({
+          tabPress: () => {
+            analyticsService.postEvent(TalkMenuButtonEvent);
+          },
+        })}
       />
 
       <Tabs.Screen

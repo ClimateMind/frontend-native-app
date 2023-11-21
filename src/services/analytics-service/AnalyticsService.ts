@@ -17,12 +17,18 @@ export class AnalyticsService {
 
     if (!(analyticsEvent.label === 'session_id') && !value) {
       throw new Error('Value is undefined');
+    } else {
+      value = this.sessionId;
     }
 
-    axios.post(`${this._baseUrl}/analytics`, {
-      ...analyticsEvent,
-      session_id: this.sessionId,
-      value,
-    });
+    // While the backend is not ready, we will log the events to the console
+    console.log('Analytics event sent:');
+    console.log(JSON.stringify({ ...analyticsEvent, value }));
+
+    // axios.post(`${this._baseUrl}/analytics`, {
+    //   ...analyticsEvent,
+    //   session_id: this.sessionId,
+    //   value,
+    // });
   }
 }

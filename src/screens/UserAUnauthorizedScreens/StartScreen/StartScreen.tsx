@@ -1,6 +1,7 @@
 import { Image, Pressable, StyleSheet } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+import { GetStartedButtonEvent, LoginButtonEvent, analyticsService } from 'src/services';
 import Colors from 'src/assets/colors';
 import { StackParams } from 'src/navigation/UserAUnauthorizedStackNavigation';
 import { CmTypography, CmButton, Screen, Section, Content } from '@shared/components';
@@ -12,10 +13,12 @@ function StartScreen({ navigation }: Props) {
   const { showSuccessToast } = useToastMessages()
 
   function navigateToLoginScreen() {
+    analyticsService.postEvent(LoginButtonEvent);
     navigation.navigate('LoginScreen');
   }
 
   function navigateToPreQuizScreen() {
+    analyticsService.postEvent(GetStartedButtonEvent);
     navigation.navigate('PreQuizScreen');
   }
 

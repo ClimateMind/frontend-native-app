@@ -3,11 +3,17 @@ import { StyleSheet } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ConversationsStackParams } from 'src/navigation/Stacks/ConversationsStack';
 
+import { StartTalkingEvent, analyticsService } from 'src/services';
 import { CmTypography, CmButton, BulletListItem, Screen, Content, Section } from '@shared/components';
 
 type Props = NativeStackScreenProps<ConversationsStackParams, 'ConversationsIntroScreen'>;
 
 function ConversationsIntroScreen({ navigation }: Props) {
+  function navigateToConversationsScreen() {
+    analyticsService.postEvent(StartTalkingEvent);
+    navigation.navigate('ConversationsScreen');
+  }
+
   return (
     <Screen>
       <Section>
@@ -24,7 +30,7 @@ function ConversationsIntroScreen({ navigation }: Props) {
 
           <CmTypography variant='body' style={styles.marginBottom}>When you have conversations with others, you take part in a network of people around the world who are working together to find solutions.</CmTypography>
 
-          <CmButton style={styles.button} text='START TALKING WITH PEOPLE' onPress={() => { navigation.navigate('ConversationsScreen') }} />
+          <CmButton style={styles.button} text='START TALKING WITH PEOPLE' onPress={navigateToConversationsScreen} />
         </Content>
       </Section>
     </Screen>
