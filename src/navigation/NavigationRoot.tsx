@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SplashScreen from 'expo-splash-screen';
 import { Ionicons } from '@expo/vector-icons';
@@ -19,6 +19,7 @@ import SubmitSetTwoScreen from 'src/screens/SharedScreens/SubmitSetTwoScreen/Sub
 
 import Colors from 'src/assets/colors';
 import useApiClient from 'src/hooks/useApiClient';
+import { completeOnboarding } from 'src/features/onboarding/state/onboardingSlice';
 
 export type RootDrawerNavigationParams = {
   UserAUnauthorizedScreens: { screen: 'StartScreen' | 'LoginScreen' } | undefined;
@@ -35,20 +36,9 @@ function NavigationRoot() {
   const dispatch = useAppDispatch();
   const sessionId = useAppSelector((state) => state.auth.sessionId);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
-
-  const [showOnboarding, setShowOnboarding] = useState(false);
+  const onboardingCompleted = useAppSelector((state) => state.onboarding.onboardingCompleted);
 
   useEffect(() => {
-    async function firstTimeUsage() {
-      const firstTimeUsage = await AsyncStorage.getItem('firstTimeUsage');
-      if (firstTimeUsage === null) {
-        await AsyncStorage.setItem('firstTimeUsage', 'false');
-        return true;
-      }
-
-      return false;
-    }
-
     async function isUserLoggedIn() {
       // Check if the user information is stored on the device
       const accessToken = await AsyncStorage.getItem('accessToken');
@@ -67,14 +57,15 @@ function NavigationRoot() {
       }
     }
 
-    firstTimeUsage().then((result) => {
-      if (result) {
-        // If it's the first time the user opens the app, show the onboading screens
-        setShowOnboarding(true);
-        SplashScreen.hideAsync();
-      } else {
-        // Otherwise, check if the user is logged in
+    AsyncStorage.getItem('onboardingCompleted').then((result) => {
+      if (result === 'true') {
+        // Set redux state if onboarding has been completed already
+        dispatch(completeOnboarding());
         isUserLoggedIn().then(() => SplashScreen.hideAsync());
+      } else {
+        // Otherwise, set the state to false, in case the key doesn't exist
+        AsyncStorage.setItem('onboardingCompleted', 'false');
+        SplashScreen.hideAsync();
       }
     });
   }, []);
@@ -88,8 +79,8 @@ function NavigationRoot() {
     }
   }, []);
 
-  if (showOnboarding) {
-    return <OnBoardingScreens onCompleted={() => setShowOnboarding(false)} />;
+  if (!onboardingCompleted) {
+    return <OnBoardingScreens />;
   }
 
   return (
