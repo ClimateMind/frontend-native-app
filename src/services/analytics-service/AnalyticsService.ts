@@ -32,8 +32,10 @@ export class AnalyticsService {
     //   `${this._baseUrl}/analytics`,
     //   {
     //     ...analyticsEvent,
+    //     category: analyticsEvent.category + ' - placeholder',
     //     eventValue,
     //     eventTimestamp,
+    //     pageUrl: 'org.climatemind.app',
     //   },
     //   {
     //     headers: {
