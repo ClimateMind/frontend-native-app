@@ -8,9 +8,9 @@ if (!BASE_URL) {
 
 export const analyticsService = new AnalyticsService(BASE_URL);
 if (Platform.OS === 'ios') {
-  analyticsService.setSource('mobile-ios');
+  analyticsService.setPlatform('mobile-ios');
 } else if (Platform.OS === 'android') {
-  analyticsService.setSource('mobile-android');
+  analyticsService.setPlatform('mobile-android');
 }
 
 export * from './events';

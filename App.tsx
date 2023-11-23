@@ -1,6 +1,7 @@
+import { RefObject, useEffect, useRef } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { RootSiblingParent } from 'react-native-root-siblings';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, NavigationContainerRef, useNavigationContainerRef } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
 import * as NavigationBar from 'expo-navigation-bar';
 import { StatusBar } from 'expo-status-bar';
@@ -10,11 +11,15 @@ import { Provider } from 'react-redux';
 import Colors from 'src/assets/colors';
 import { store } from 'src/store/store';
 import NavigationRoot from 'src/navigation/NavigationRoot';
+import { analyticsService } from 'src/services';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
 function App() {
+  const navigationRef = useNavigationContainerRef();
+  const routeNameRef = useRef<any>();
+
   NavigationBar.setBackgroundColorAsync(Colors.themeDark);
 
   const [fontsLoaded] = useFonts({
@@ -28,12 +33,31 @@ function App() {
   if (!fontsLoaded) {
     return null;
   }
+
   return (
     <Provider store={store}>
       <RootSiblingParent>
         <SafeAreaView style={styles.safeArea}>
           <StatusBar style="light" backgroundColor={Colors.themeDark} />
-          <NavigationContainer>
+          <NavigationContainer
+            ref={navigationRef}
+            onReady={() => {
+              routeNameRef.current = navigationRef?.getCurrentRoute()?.name;
+              analyticsService.setScreenName(routeNameRef.current);
+            }}
+            onStateChange={() => {
+              const previousRouteName = routeNameRef.current;
+              const currentRouteName = navigationRef?.getCurrentRoute()?.name;
+
+              if (previousRouteName !== currentRouteName) {
+                // Save the current route name for later comparison
+                routeNameRef.current = currentRouteName;
+
+                // Replace the line below to add the tracker from a mobile analytics SDK
+                analyticsService.setScreenName(currentRouteName ?? 'undefined');
+              }
+            }}
+          >
             <NavigationRoot />
           </NavigationContainer>
         </SafeAreaView>
