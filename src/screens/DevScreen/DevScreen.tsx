@@ -1,16 +1,19 @@
-import { View } from 'react-native';
-
-import { CmTypography } from 'src/shared/components';
+import { CmButton, CmTypography, Content, Screen } from 'src/shared/components';
+import { useOnboarding } from 'src/features/onboarding/hooks';
 
 function DevScreen() {
-  return (
-    <View>
-      <CmTypography variant="h2" style={{ padding: 20 }}>
-        DevScreen
-      </CmTypography>
+  const { resetOnboarding } = useOnboarding();
 
-      {/* <CmButton onPress={onResetOnboarding} text="Reset Onboarding" /> */}
-    </View>
+  return (
+    <Screen>
+      <Content>
+        <CmTypography variant="h2" style={{ padding: 20 }}>
+          Dev Screen
+        </CmTypography>
+
+        <CmButton onPress={resetOnboarding} text="Reset Onboarding" />
+      </Content>
+    </Screen>
   );
 }
 
