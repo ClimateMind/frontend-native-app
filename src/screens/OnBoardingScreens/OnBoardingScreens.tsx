@@ -3,12 +3,14 @@ import { Pressable, StyleSheet, Text, View, Image, Dimensions } from 'react-nati
 import { MaterialIcons } from '@expo/vector-icons';
 
 import {Screen, Content, Section} from '@shared/components'
+import { useAppDispatch } from 'src/store/hooks';
+import { completeOnboarding } from 'src/features/onboarding/state/onboardingSlice';
 
 const images = [
-  require('src/assets/onboarding/onboarding1.png'),
-  require('src/assets/onboarding/onboarding2.png'),
-  require('src/assets/onboarding/onboarding3.png'),
-  require('src/assets/onboarding/onboarding4.png'),
+  require('src/features/onboarding/assets/onboarding1.png'),
+  require('src/features/onboarding/assets/onboarding2.png'),
+  require('src/features/onboarding/assets/onboarding3.png'),
+  require('src/features/onboarding/assets/onboarding4.png'),
 ];
 
 const headers = [
@@ -22,18 +24,15 @@ const texts = [
   'Start a guided conversation with a friend about climate change.',
 ];
 
-interface Props {
-  onCompleted: () => void;
-}
-
-function OnBoardingScreens({ onCompleted }: Props) {
+function OnBoardingScreens() {
+  const dispatch = useAppDispatch();
   const [currentScreen, setCurrentScreen] = useState(0);
 
   function nextScreen() {
     if (currentScreen < 3) {
       setCurrentScreen(currentScreen + 1);
     } else {
-      onCompleted();
+      dispatch(completeOnboarding());
     }
   }
 
