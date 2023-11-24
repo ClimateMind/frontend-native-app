@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SplashScreen from 'expo-splash-screen';
 import { Ionicons } from '@expo/vector-icons';
@@ -21,6 +21,7 @@ import DevScreen from 'src/screens/DevScreen/DevScreen';
 
 import Colors from 'src/assets/colors';
 import useApiClient from 'src/hooks/useApiClient';
+import { useInitOnboardingState } from 'src/features/onboarding/hooks';
 
 export type RootDrawerNavigationParams = {
   UserAUnauthorizedScreens: { screen: 'StartScreen' | 'LoginScreen' } | undefined;
@@ -39,19 +40,9 @@ function NavigationRoot() {
   const sessionId = useAppSelector((state) => state.auth.sessionId);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
-  const [showOnboarding, setShowOnboarding] = useState(false);
+  const { isLoading: isLoadingOnboarding, needsOnboarding } = useInitOnboardingState();
 
   useEffect(() => {
-    async function firstTimeUsage() {
-      const firstTimeUsage = await AsyncStorage.getItem('firstTimeUsage');
-      if (firstTimeUsage === null) {
-        await AsyncStorage.setItem('firstTimeUsage', 'false');
-        return true;
-      }
-
-      return false;
-    }
-
     async function isUserLoggedIn() {
       // Check if the user information is stored on the device
       const accessToken = await AsyncStorage.getItem('accessToken');
@@ -70,17 +61,14 @@ function NavigationRoot() {
       }
     }
 
-    firstTimeUsage().then((result) => {
-      if (result) {
-        // If it's the first time the user opens the app, show the onboading screens
-        setShowOnboarding(true);
+    if (!isLoadingOnboarding) {
+      if (needsOnboarding) {
         SplashScreen.hideAsync();
       } else {
-        // Otherwise, check if the user is logged in
         isUserLoggedIn().then(() => SplashScreen.hideAsync());
       }
-    });
-  }, []);
+    }
+  }, [isLoadingOnboarding]);
 
   useEffect(() => {
     if (!sessionId) {
@@ -91,8 +79,8 @@ function NavigationRoot() {
     }
   }, []);
 
-  if (showOnboarding) {
-    return <OnBoardingScreens onCompleted={() => setShowOnboarding(false)} />;
+  if (needsOnboarding && !isLoadingOnboarding) {
+    return <OnBoardingScreens />;
   }
 
   return (

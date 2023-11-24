@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import useApiClient from 'src/hooks/useApiClient';
-import { showSuccessToast, showErrorToast, CmTypography, Card } from '@shared/components';
-
+import { CmTypography, Card } from '@shared/components';
+import { useToastMessages } from 'src/shared/hooks';
 interface Props {
   show: boolean;
   onSubmit: () => void;
@@ -12,7 +12,7 @@ interface Props {
 
 function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
   const apiClient = useApiClient();
-
+  const { showErrorToast, showSuccessToast } = useToastMessages()
   const [email, setEmail] = useState('');
 
   function onPasswordResetRequest() {
