@@ -1,7 +1,7 @@
-import { RefObject, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { RootSiblingParent } from 'react-native-root-siblings';
-import { NavigationContainer, NavigationContainerRef, useNavigationContainerRef } from '@react-navigation/native';
+import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
 import * as NavigationBar from 'expo-navigation-bar';
 import { StatusBar } from 'expo-status-bar';
