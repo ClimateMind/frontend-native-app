@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SplashScreen from 'expo-splash-screen';
 import { Ionicons } from '@expo/vector-icons';
+import { Pressable, Text } from 'react-native';
 
 // Redux
 import { login, setSessionId } from 'src/store/authSlice';
@@ -16,6 +17,7 @@ import UserAAuthorizedTabsNavigation from './UserAAuthorizedTabsNavigation';
 import QuizScreen from 'src/screens/SharedScreens/QuizScreen/QuizScreen';
 import SubmitSetOneScreen from 'src/screens/SharedScreens/SubmitSetOneScreen/SubmitSetOneScreen';
 import SubmitSetTwoScreen from 'src/screens/SharedScreens/SubmitSetTwoScreen/SubmitSetTwoScreen';
+import DevScreen from 'src/screens/DevScreen/DevScreen';
 
 import Colors from 'src/assets/colors';
 import useApiClient from 'src/hooks/useApiClient';
@@ -27,6 +29,7 @@ export type RootDrawerNavigationParams = {
   QuizScreen: { questionSet: 1 | 2 };
   SubmitSetOneScreen: undefined;
   SubmitSetTwoScreen: undefined;
+  DevScreen: undefined;
 };
 
 const RootDrawer = createDrawerNavigator<RootDrawerNavigationParams>();
@@ -85,13 +88,16 @@ function NavigationRoot() {
       drawerContent={NavigationRootDrawer}
       screenOptions={({ navigation }) => ({
         drawerPosition: 'right',
-        title: 'Climate Mind',
-        headerTitleStyle: { fontFamily: 'nunito-bold' },
         headerStyle: { backgroundColor: Colors.themeDark },
         headerTintColor: 'white',
         headerTitleAlign: 'center',
         headerLeft: () => <Ionicons name="chevron-back" size={24} color="white" onPress={() => navigation.goBack()} style={{ padding: 10, paddingRight: 20 }} />,
         headerRight: () => <DrawerToggleButton tintColor='white' />,
+        headerTitle: () => (
+          <Pressable delayLongPress={5000} onLongPress={() => navigation.navigate('DevScreen')}>
+            <Text style={{ fontFamily: 'nunito-bold', color: 'white', fontSize: 20 }}>Climate Mind</Text>
+          </Pressable>
+        ),
       })}
     >
       {!isLoggedIn && <RootDrawer.Screen name='UserAUnauthorizedScreens' component={UserAUnauthorizedStackNavigation} />}
@@ -100,6 +106,7 @@ function NavigationRoot() {
       <RootDrawer.Screen name='QuizScreen' component={QuizScreen} />
       <RootDrawer.Screen name='SubmitSetOneScreen' component={SubmitSetOneScreen} />
       <RootDrawer.Screen name='SubmitSetTwoScreen' component={SubmitSetTwoScreen} />
+      <RootDrawer.Screen name='DevScreen' component={DevScreen} />
     </RootDrawer.Navigator>
   );
 }
