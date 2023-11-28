@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -8,6 +8,7 @@ import { ActionCard } from 'src/features/climate-feed/components';
 
 import { capitalizeFirstLetter, openUrl } from 'src/utils';
 
+import { CardCloseEvent, CardOpenEvent, analyticsService } from 'src/services';
 import { CmTypography, DetailsSourcesTab, BackButton, Screen, Section, Content } from '@shared/components';
 
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateDetailsScreen'>;
@@ -15,6 +16,16 @@ type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateDetailsScree
 function ClimateDetailsScreen({ navigation, route }: Props) {
   const climateEffect = route.params.climateEffect;
   const [selectedTab, setSelectedTab] = useState(0);
+
+  // Track analytics events for card open and close
+  useEffect(() => {
+    analyticsService.postEvent(CardOpenEvent, climateEffect.effectId);
+
+    return () => {
+      analyticsService.postEvent(CardCloseEvent, climateEffect.effectId);
+    }
+  }, []);
+
   return (
     <Screen style={{ backgroundColor: 'white' }}>
       <Section>

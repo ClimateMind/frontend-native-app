@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+import { analyticsService } from 'src/services/analytics-service';
+
 export type User = {
   accessToken: string;
   firstName: string;
@@ -70,6 +72,7 @@ export const authSlice = createSlice({
     setSessionId: (state, action: PayloadAction<string>) => {
       state.sessionId = action.payload;
       AsyncStorage.setItem('sessionId', action.payload);
+      analyticsService.setSessionId(action.payload);
     },
     setQuizId: (state, action: PayloadAction<string>) => {
       state.user.quizId = action.payload;

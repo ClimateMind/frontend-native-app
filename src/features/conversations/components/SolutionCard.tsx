@@ -1,6 +1,7 @@
-import { Pressable, StyleSheet } from 'react-native';
-import { Image, View } from 'react-native';
+import { useEffect } from 'react';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 
+import { CardCloseEvent, CardOpenEvent, analyticsService } from 'src/services';
 import { capitalizeFirstLetter } from 'src/utils';
 import ClimateSolution from 'src/types/Solution3';
 import { CmTypography, Card  } from '@shared/components';
@@ -11,6 +12,15 @@ interface Props {
 }
 
 function SolutionsFeedCard({ solution, onLearnMore }: Props) {
+  // Track analytics events for card open and close
+  useEffect(() => {
+    analyticsService.postEvent(CardOpenEvent, solution.solutionId);
+
+    return () => {
+      analyticsService.postEvent(CardCloseEvent, solution.solutionId);
+    }
+  }, []);
+
   return (
     <Card>
       <View style={styles.headingContainer}>

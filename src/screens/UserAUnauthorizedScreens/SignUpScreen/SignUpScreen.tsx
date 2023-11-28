@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from 'react-native';
 import { AxiosError } from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 import useApiClient from 'src/hooks/useApiClient';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { login } from 'src/store/authSlice';
 import { CmTypography, CmButton, Screen, Content, Section } from '@shared/components';
 import { useToastMessages } from 'src/shared/hooks';
+import { RegistrationPageOpenEvent, analyticsService } from 'src/services';
 
 function SignUpScreen() {
   const apiClient = useApiClient();
@@ -104,6 +106,11 @@ function SignUpScreen() {
         }
       });
   }
+
+  // Track analytics events for card open and close
+  useEffect(() => {
+    analyticsService.postEvent(RegistrationPageOpenEvent, uuidv4());
+  }, []);
 
   return (
     <Screen>
