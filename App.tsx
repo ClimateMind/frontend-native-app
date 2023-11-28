@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
@@ -17,6 +17,8 @@ import { analyticsService } from 'src/services';
 SplashScreen.preventAutoHideAsync();
 
 function App() {
+  const [canGoBack, setCanGoBack] = useState(false);
+
   const navigationRef = useNavigationContainerRef();
   const routeNameRef = useRef<any>();
 
@@ -43,6 +45,8 @@ function App() {
             ref={navigationRef}
             onReady={() => {
               routeNameRef.current = navigationRef?.getCurrentRoute()?.name;
+
+              setCanGoBack(navigationRef.canGoBack());
               analyticsService.setScreenName(routeNameRef.current);
             }}
             onStateChange={() => {
@@ -53,12 +57,12 @@ function App() {
                 // Save the current route name for later comparison
                 routeNameRef.current = currentRouteName;
 
-                // Replace the line below to add the tracker from a mobile analytics SDK
+                setCanGoBack(navigationRef.canGoBack());
                 analyticsService.setScreenName(currentRouteName ?? 'undefined');
               }
             }}
           >
-            <NavigationRoot />
+            <NavigationRoot canGoBack={canGoBack} />
           </NavigationContainer>
         </SafeAreaView>
       </RootSiblingParent>
