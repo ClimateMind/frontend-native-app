@@ -34,7 +34,11 @@ export type RootDrawerNavigationParams = {
 
 const RootDrawer = createDrawerNavigator<RootDrawerNavigationParams>();
 
-function NavigationRoot() {
+interface Props {
+  canGoBack: boolean;
+}
+
+function NavigationRoot({ canGoBack }: Props) {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
   const sessionId = useAppSelector((state) => state.auth.sessionId);
@@ -91,7 +95,10 @@ function NavigationRoot() {
         headerStyle: { backgroundColor: Colors.themeDark },
         headerTintColor: 'white',
         headerTitleAlign: 'center',
-        headerLeft: () => <Ionicons name="chevron-back" size={24} color="white" onPress={() => navigation.goBack()} style={{ padding: 10, paddingRight: 20 }} />,
+        headerLeft: () => {
+          if (!canGoBack) return null;
+          return <Ionicons name="chevron-back" size={24} color="white" onPress={() => navigation.goBack()} style={{ padding: 10, paddingRight: 20 }} />
+        },
         headerRight: () => <DrawerToggleButton tintColor='white' />,
         headerTitle: () => (
           <Pressable delayLongPress={5000} onLongPress={() => navigation.navigate('DevScreen')}>
