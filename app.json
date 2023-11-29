@@ -3,7 +3,7 @@
     "name": "Climate Mind",
     "owner": "climatemind",
     "slug": "climate-mind",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./src/assets/app-icon.png",
     "userInterfaceStyle": "dark",
