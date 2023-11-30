@@ -8,7 +8,7 @@ import { QuestionStartEvent, QuestionnaireFinishedEvent, analyticsService } from
 import { SingleQuestion } from '@features/quiz/components';
 import { Screen, Content, Section } from '@shared/components'
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { addQuizAnswer } from 'src/store/quizSlice';
+import { addQuizAnswer } from 'src/features/quiz/state/quizSlice';
 import { GetQuestions } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
 import { setQuizId } from 'src/store/authSlice';

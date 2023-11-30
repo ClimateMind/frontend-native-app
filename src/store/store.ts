@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import authReducer from './authSlice';
-import quizReducer from './quizSlice';
-import onboardingReducer from 'src/features/onboarding/state/onboardingSlice';
+import quizReducer from '@features/quiz/state/quizSlice';
+import onboardingReducer from '@features/onboarding/state/onboardingSlice';
 
 export const store = configureStore({
   reducer: {
