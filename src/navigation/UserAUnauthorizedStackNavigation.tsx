@@ -1,11 +1,11 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Stack screens
-import StartScreen from 'src/screens/UserAUnauthorizedScreens/StartScreen/StartScreen';
-import LoginScreen from 'src/screens/UserAUnauthorizedScreens/LoginScreen/LoginScreen';
-import PreQuizScreen from 'src/screens/UserAUnauthorizedScreens/PreQuizScreen/PreQuizScreen';
-import PersonalValuesScreenNewUser from 'src/screens/UserAUnauthorizedScreens/PersonalValuesScreenNewUser/PersonalValuesScreenNewUser';
-import SignUpScreen from 'src/screens/UserAUnauthorizedScreens/SignUpScreen/SignUpScreen';
+import StartScreen from 'src/screens/UserAUnauthorizedScreens/StartScreen';
+import LoginScreen from 'src/screens/UserAUnauthorizedScreens/LoginScreen';
+import PreQuizScreen from 'src/screens/UserAUnauthorizedScreens/PreQuizScreen';
+import PersonalValuesScreenNewUser from 'src/screens/UserAUnauthorizedScreens/PersonalValuesScreenNewUser';
+import SignUpScreen from 'src/screens/UserAUnauthorizedScreens/SignUpScreen';
 
 export type StackParams = {
   StartScreen: undefined;

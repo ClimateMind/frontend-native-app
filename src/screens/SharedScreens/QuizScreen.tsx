@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 
 import { DrawerScreenProps } from '@react-navigation/drawer';
-import { RootDrawerNavigationParams } from '../../../navigation/NavigationRoot';
+import { RootDrawerNavigationParams } from '../../navigation/NavigationRoot';
 
 import { QuestionStartEvent, QuestionnaireFinishedEvent, analyticsService } from 'src/services';
 import { SingleQuestion } from '@features/quiz/components';

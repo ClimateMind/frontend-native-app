@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import MythsFeedScreen from 'src/screens/UserAAuthorizedScreens/MythsFeedScreen/MythsFeedScreen';
-import MythDetailsScreen from 'src/screens/UserAAuthorizedScreens/MythDetailsScreen/MythDetailsScreen';
+import MythsFeedScreen from 'src/screens/UserAAuthorizedScreens/MythsFeedScreen';
+import MythDetailsScreen from 'src/screens/UserAAuthorizedScreens/MythDetailsScreen';
 import Myth from 'src/types/Myth';
 
 export type MythsFeedStackParams = {
