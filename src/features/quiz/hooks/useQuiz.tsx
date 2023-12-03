@@ -101,4 +101,3 @@ function useQuiz(route, setOne, setTwo) {
 }
 
 export default useQuiz;
-ß
