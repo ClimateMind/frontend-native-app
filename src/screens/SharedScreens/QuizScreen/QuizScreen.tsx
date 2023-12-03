@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { RootDrawerNavigationParams } from '../../../navigation/NavigationRoot';
@@ -14,7 +13,7 @@ function QuizScreen({ route, navigation }: Props) {
     navigation.navigate('SubmitSetOneScreen'),
     navigation.navigate('SubmitSetTwoScreen')
   );
-Ï
+
   return (
     <Screen style={{ backgroundColor: 'white' }}>
       <Section>

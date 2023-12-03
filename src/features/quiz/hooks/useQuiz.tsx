@@ -11,9 +11,13 @@ import {
   QuestionnaireFinishedEvent,
   analyticsService,
 } from 'src/services';
-function useQuiz(route, setOne, setTwo) {
+
+
+function useQuiz( route, setOne, setTwo ) {
   const apiClient = useApiClient();
+
   const [questionSets, setQuestionSets] = useState<GetQuestions>();
+  
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState(1);
   const quizAnswers = useAppSelector((state) => state.quiz.quizAnswers);
   const dispatch = useAppDispatch();
