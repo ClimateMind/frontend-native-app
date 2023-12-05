@@ -13,6 +13,7 @@ import {
   useSubmitAnswers,
 } from '@features/quiz/hooks';
 
+
 type Props = DrawerScreenProps<RootDrawerNavigationParams, 'QuizScreen'>;
 
 function QuizScreen({ route, navigation }: Props) {
@@ -38,13 +39,14 @@ function QuizScreen({ route, navigation }: Props) {
     navigation
   );
 
-  // If the user answered all 10 questions, he will be navigated to the next screen and we don't want to show anything
+ // If the user answered all 10 questions, he will be navigated to the next screen and we don't want to show anything
   if (
     (route.params.questionSet === 1 && currentQuestionNumber === 11) ||
     (route.params.questionSet === 2 && currentQuestionNumber === 11)
   ) {
     return null;
   }
+ 
 
   // While we are fetching the questions from the backend, show a loading spinner to the user
   if (questionSets === undefined) {

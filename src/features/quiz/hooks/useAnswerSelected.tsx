@@ -1,9 +1,7 @@
-import { Dispatch, SetStateAction } from 'react';
 import { GetQuestions } from 'src/api/responses';
 import { addQuizAnswer } from '../state/quizSlice';
 import { QuestionStartEvent, analyticsService } from 'src/services';
-
-interface Props {}
+import { SetStateAction } from 'react';
 
 function useAnswerSelected(
   route: any,
@@ -13,7 +11,7 @@ function useAnswerSelected(
     (arg0: (current: number) => number): void;
   },
   questionSets: GetQuestions | undefined,
-  dispatch: Dispatch<Props>
+   dispatch: (arg0: any) => void,
 ) {
   function answerSelected(answerId: number) {
     if (!questionSets) {
