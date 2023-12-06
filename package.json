@@ -45,7 +45,7 @@
     "@babel/core": "^7.23.5",
     "@storybook/addon-essentials": "^7.6.3",
     "@storybook/addon-interactions": "^7.6.1",
-    "@storybook/addon-links": "^7.6.1",
+    "@storybook/addon-links": "^7.6.3",
     "@storybook/addon-onboarding": "^1.0.8",
     "@storybook/addon-react-native-web": "^0.0.21",
     "@storybook/blocks": "^7.6.3",
