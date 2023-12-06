@@ -18,7 +18,7 @@ import { CmTypography } from '@shared/components';
 export type BottomTabsNavigationParams = {
   ProfileScreen: undefined;
   ClimateFeedStack: undefined;
-  SolutionsFeedStack: undefined;
+  SolutionsFeedStack: { screen: 'SolutionDetailsScreen' } | undefined;
   MythsFeedStack: undefined;
   ConversationsStack: undefined;
   PersonalValuesScreen: undefined;
