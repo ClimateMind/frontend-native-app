@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Image, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SolutionsFeedStackParams } from 'src/navigation/Stacks/SolutionsFeedStack';
@@ -18,8 +19,13 @@ function SolutionDetailsScreen({ navigation, route }: Props) {
   const apiClient = useApiClient();
   const solution = route.params.solution;
 
+  const scrollRef = useRef<ScrollView | null>(null);
   const [selectedTab, setSelectedTab] = useState(0);
   const [myths, setMyths] = useState<Myth[]>([]);
+
+  useFocusEffect(() => {
+    scrollRef.current?.scrollTo({ y: 0, animated: false });
+  });
 
   useEffect(() => {
     solution.solutionSpecificMythIRIs.forEach(async (iri) => {
@@ -43,10 +49,10 @@ function SolutionDetailsScreen({ navigation, route }: Props) {
   }, []);
 
   return (
-    <Screen style={{ backgroundColor: 'white' }}>
+    <Screen ref={scrollRef} style={{ backgroundColor: 'white' }}>
       <Section>
         <Content>
-          <BackButton onPress={() => navigation.goBack()} />
+          <BackButton onPress={() => navigation.navigate('SolutionsFeedScreen')} />
 
           <View style={{ padding: 10 }}>
             <ActionCardHeader effectSolution={solution} color='rgba(0, 0, 0, 0)' />

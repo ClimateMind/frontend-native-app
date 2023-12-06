@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from 'react-native';
 import { AxiosError } from 'axios';
+import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 
 import useApiClient from 'src/hooks/useApiClient';
