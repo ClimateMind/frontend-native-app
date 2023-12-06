@@ -1,16 +1,20 @@
-import { Image, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
-import { RootDrawerNavigationParams } from '../../../navigation/NavigationRoot';
+import { RootDrawerNavigationParams } from '../../navigation/NavigationRoot';
 
 import Colors from 'src/assets/colors';
 import { useAppSelector } from 'src/store/hooks';
 
-import { CmTypography, CmButton, Screen, Section, Content } from '@shared/components';
+import { Screen, Content, Section, CmTypography, CmButton } from '@shared/components'
 
-type Props = DrawerScreenProps<RootDrawerNavigationParams, 'SubmitSetTwoScreen'>;
+type Props = DrawerScreenProps<RootDrawerNavigationParams, 'SubmitSetOneScreen'>;
 
-function SubmitSetTwoScreen({ navigation }: Props) {
+function SubmitSetOneScreen({ navigation }: Props) {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+
+  function navigateToQuizScreen() {
+    navigation.navigate('QuizScreen', { questionSet: 2 });
+  }
 
   function navigateToPersonalValuesScreen() {
     if (isLoggedIn) {
@@ -24,27 +28,28 @@ function SubmitSetTwoScreen({ navigation }: Props) {
     <Screen>
       <Section>
         <Content style={{ justifyContent: 'center' }}>
-          <CmTypography variant="h1">Woohoo! Good Job!</CmTypography>
+          <CmTypography variant="h1">Woah! You are doing great!</CmTypography>
 
           <CmTypography variant="body" style={styles.bodyText}>
-            With the questions you just answered I can predict your Climate
-            Personality.
+            Do you want to carry on with another 10 questions or get your
+            results now?
           </CmTypography>
 
-          <Image
-            style={{ marginVertical: 30 }}
-            source={require('src/assets/reward-personalities.png')}
-          />
+          <Pressable onPress={navigateToPersonalValuesScreen}>
+            <CmTypography variant="button" style={{ textAlign: 'center' }}>
+              FIND OUT MY CLIMATE PERSONALITY
+            </CmTypography>
+          </Pressable>
 
           <CmTypography variant="body" style={styles.bodyText}>
-            This is a ranking of the top three personal values that you deploy
-            when making decisions.
+            You will get better personalised results if you complete all 20
+            questions.
           </CmTypography>
 
           <CmButton
             style={styles.button}
-            text="FIND OUT MY CLIMATE PERSONALITY"
-            onPress={navigateToPersonalValuesScreen}
+            text="Continue"
+            onPress={navigateToQuizScreen}
           />
         </Content>
       </Section>
@@ -71,4 +76,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SubmitSetTwoScreen;
+export default SubmitSetOneScreen;
