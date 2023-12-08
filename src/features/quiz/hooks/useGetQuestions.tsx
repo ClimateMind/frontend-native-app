@@ -1,13 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+import { GetQuestions } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
 
-function useGetQuestions(
-  setQuestionSets: (arg0: {
-    SetOne: { id: number; value: string; question: string }[];
-    SetTwo: { id: number; value: string; question: string }[];
-  }) => void
-) {
+function useGetQuestions() {
   const apiClient = useApiClient();
+
+  const [questionSets, setQuestionSets] = useState<GetQuestions>();
 
   useEffect(() => {
     // Fetch the questions on page load
@@ -18,6 +17,8 @@ function useGetQuestions(
       setQuestionSets({ SetOne, SetTwo });
     });
   }, []);
+
+  return { questionSets };
 }
 
 export default useGetQuestions;

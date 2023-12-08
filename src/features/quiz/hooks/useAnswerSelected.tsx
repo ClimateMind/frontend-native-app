@@ -1,39 +1,22 @@
-import { GetQuestions } from 'src/api/responses';
 import { addQuizAnswer } from '../state/quizSlice';
 import { QuestionStartEvent, analyticsService } from 'src/services';
-import { SetStateAction } from 'react';
+import { useAppDispatch } from 'src/store/hooks';
 
-function useAnswerSelected(
-  route: any,
-  currentQuestionNumber: number,
-  setCurrentQuestionNumber: {
-    (value: SetStateAction<number>): void;
-    (arg0: (current: number) => number): void;
-  },
-  questionSets: GetQuestions | undefined,
-   dispatch: (arg0: any) => void,
-) {
-  function answerSelected(answerId: number) {
-    if (!questionSets) {
-      return;
-    }
+function useAnswerSelected(questionSetNumber: number) {
+  const dispatch = useAppDispatch();
 
-    const currentQuestion = questionSets.SetOne[currentQuestionNumber - 1];
-
+  function answerSelected(questionNumber: number, questionId: number, answerId: number) {
     dispatch(
       addQuizAnswer({
-        questionSet: route.params.questionSet,
-        questionId: currentQuestion.id,
+        questionSet: questionSetNumber,
+        questionId,
         answerId,
       })
     );
 
-    analyticsService.postEvent(
-      QuestionStartEvent,
-      `${currentQuestion.id}:${currentQuestionNumber}`
-    );
-    setCurrentQuestionNumber((current: number) => current + 1);
+    analyticsService.postEvent(QuestionStartEvent, `${questionId}:${questionNumber}`);
   }
+
   return answerSelected;
 }
 
