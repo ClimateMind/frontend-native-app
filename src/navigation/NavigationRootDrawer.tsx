@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Platform } from 'react-native';
+import { Linking, StyleSheet, Text, View, Platform } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { DrawerContentComponentProps } from '@react-navigation/drawer';
 
@@ -42,7 +42,7 @@ function NavigationRootDrawer({ navigation }: Props) {
           {isLoggedIn && <CmButton text='LOGOUT' startIcon={<MaterialIcons name="logout" size={24} color="black" />} onPress={onLogout} />}
         </View>
         <View style={{ marginTop: 20 }}>
-          <CmButton text='FEEDBACK' startIcon={<MaterialIcons name="email" size={24} color="black" />} onPress={() => openUrl('mailto:hello@climatemind.org')} />
+          <CmButton text='FEEDBACK' startIcon={<MaterialIcons name="email" size={24} color="black" />} onPress={() => Linking.openURL('mailto:hello@climatemind.org')} />
         </View>
       </View>
     </View>

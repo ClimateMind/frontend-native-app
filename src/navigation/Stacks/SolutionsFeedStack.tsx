@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import SolutionsFeedScreen from 'src/screens/UserAAuthorizedScreens/SolutionsFeedScreen/SolutionsFeedScreen';
-import SolutionDetailsScreen from 'src/screens/UserAAuthorizedScreens/SolutionsDetailsScreen/SolutionDetailsScreen';
+import SolutionsFeedScreen from 'src/screens/UserAAuthorizedScreens/SolutionsFeedScreen';
+import SolutionDetailsScreen from 'src/screens/UserAAuthorizedScreens/SolutionDetailsScreen';
 import Solution from 'src/types/Solution';
 
 export type SolutionsFeedStackParams = {

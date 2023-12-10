@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 
-import { RootDrawerNavigationParams } from '../../../navigation/NavigationRoot';
+import { RootDrawerNavigationParams } from '../../navigation/NavigationRoot';
 import { Screen, Content, Section } from '@shared/components';
 import { SingleQuestion } from '@features/quiz/components';
 import { useAnswerSelected, useFinishQuiz, useGetQuestions } from '@features/quiz/hooks';

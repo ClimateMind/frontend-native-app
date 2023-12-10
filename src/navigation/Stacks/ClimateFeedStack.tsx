@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import ClimateFeedScreen from 'src/screens/UserAAuthorizedScreens/ClimateFeedScreen/ClimateFeedScreen';
-import ClimateDetailsScreen from 'src/screens/UserAAuthorizedScreens/ClimateDetailsScreen/ClimateDetailsScreen';
+import ClimateFeedScreen from 'src/screens/UserAAuthorizedScreens/ClimateFeedScreen';
+import ClimateDetailsScreen from 'src/screens/UserAAuthorizedScreens/ClimateDetailsScreen';
 import ClimateEffect from 'src/types/ClimateEffect';
 
 export type ClimateFeedStackParams = {

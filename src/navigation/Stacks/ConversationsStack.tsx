@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import ConversationsIntroScreen from 'src/screens/UserAAuthorizedScreens/ConversationsIntroScreen/ConversationsIntroScreen';
-import ConversationsScreen from 'src/screens/UserAAuthorizedScreens/ConversationsScreen/ConversationsScreen';
+import ConversationsIntroScreen from 'src/screens/UserAAuthorizedScreens/ConversationsIntroScreen';
+import ConversationsScreen from 'src/screens/UserAAuthorizedScreens/ConversationsScreen';
 
 export type ConversationsStackParams = {
   ConversationsIntroScreen: undefined;

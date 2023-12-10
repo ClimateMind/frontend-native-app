@@ -4,8 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Tab Screens
-import ProfileScreen from 'src/screens/UserAAuthorizedScreens/ProfileScreen/ProfileScreen';
-import PersonalValuesScreen from 'src/screens/UserAAuthorizedScreens/PersonalValuesScreen/PersonalValuesScreen';
+import ProfileScreen from 'src/screens/UserAAuthorizedScreens/ProfileScreen';
+import PersonalValuesScreen from 'src/screens/UserAAuthorizedScreens/PersonalValuesScreen';
 import ClimateFeedStack from './Stacks/ClimateFeedStack';
 import SolutionsFeedStack from './Stacks/SolutionsFeedStack';
 import MythsFeedStack from './Stacks/MythsFeedStack';
@@ -18,7 +18,7 @@ import { CmTypography } from '@shared/components';
 export type BottomTabsNavigationParams = {
   ProfileScreen: undefined;
   ClimateFeedStack: undefined;
-  SolutionsFeedStack: undefined;
+  SolutionsFeedStack: { screen: 'SolutionDetailsScreen' } | undefined;
   MythsFeedStack: undefined;
   ConversationsStack: undefined;
   PersonalValuesScreen: undefined;
