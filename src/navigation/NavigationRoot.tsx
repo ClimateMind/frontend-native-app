@@ -97,7 +97,7 @@ function NavigationRoot({ canGoBack }: Props) {
         headerTitleAlign: 'center',
         headerLeft: () => {
           if (!canGoBack) return null;
-          return <Ionicons name="chevron-back" size={24} color="white" onPress={() => route.name === 'QuizScreen'? navigation.navigate('PreQuizScreen'):navigation.goBack()} style={{ padding: 10, paddingRight: 20 }} />
+          return <Ionicons name="chevron-back" size={24} color="white" onPress={() => route.name === 'QuizScreen' ? navigation.navigate('PreQuizScreen') : navigation.goBack()} style={{ padding: 10, paddingRight: 20 }} />
         },
         headerRight: () => <DrawerToggleButton tintColor='white' />,
         headerTitle: () => (
