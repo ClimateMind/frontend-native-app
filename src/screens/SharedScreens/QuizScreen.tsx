@@ -10,6 +10,7 @@ import { useAnswerSelected, useFinishQuiz, useGetQuestions } from '@features/qui
 type Props = DrawerScreenProps<RootDrawerNavigationParams, 'QuizScreen'>;
 
 function QuizScreen({ route }: Props) {
+
   const questionSetNumber = route.params.questionSet;
 
   const { questionSets } = useGetQuestions();
