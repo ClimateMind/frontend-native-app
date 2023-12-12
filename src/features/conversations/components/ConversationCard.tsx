@@ -120,7 +120,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
         </View>
 
         <SeeHowYouAlignModal conversation={conversation} open={showSeeHowYouAlignModal} onClose={() => setShowSeeHowYouAlignModal(false)} onViewTopics={() => {setShowSeeHowYouAlignModal(false); setShowViewSelectedTopicsModal(true);}} />
-        <ViewSelectedTopicsModal conversation={conversation} open={showViewSelectedTopicsModal} onClose={() => setShowViewSelectedTopicsModal(false)} />
+        <ViewSelectedTopicsModal conversation={conversation} conversationState={conversationState} open={showViewSelectedTopicsModal} onClose={() => setShowViewSelectedTopicsModal(false)} />
 
         <DeleteConversationModal show={showDeleteModal} userBName={userBName} onCancel={() => setShowDeleteModal(false)} onConfirm={deleteConversation} />
 
