@@ -13,12 +13,14 @@ function ViewSelectedTopicsButton({ conversationId, conversationState, style, on
   const apiClient = useApiClient();
 
   function handleButtonClick() {
-    apiClient.putSingleConversation({
-      conversationId,
-      updatedConversation: {
-        state: 3,
-      },
-    });
+    if (conversationState < 3) {
+      apiClient.putSingleConversation({
+        conversationId,
+        updatedConversation: {
+          state: 3,
+        },
+      });
+    }
 
     onClick();
   }
