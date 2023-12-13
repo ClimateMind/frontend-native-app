@@ -20,7 +20,7 @@ function SubmitSetOneScreen({ navigation }: Props) {
     if (isLoggedIn) {
       navigation.navigate('UserAAuthorizedScreens', { screen: 'PersonalValuesScreen' });
     } else {
-      navigation.navigate('UserAUnauthorizedScreens');
+      navigation.navigate('UserAUnauthorizedScreens', { screen: 'PersonalValuesScreenNewUser' });
     }
   }
 

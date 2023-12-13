@@ -24,7 +24,7 @@ import Colors from 'src/assets/colors';
 import useApiClient from 'src/hooks/useApiClient';
 import { useInitOnboardingState } from 'src/features/onboarding/hooks';
 export type RootDrawerNavigationParams = {
-  UserAUnauthorizedScreens: { screen: 'StartScreen' | 'LoginScreen' } | undefined;
+  UserAUnauthorizedScreens: { screen: 'StartScreen' | 'LoginScreen' | 'PersonalValuesScreenNewUser' } | undefined;
   UserAAuthorizedScreens: { screen: 'PersonalValuesScreen' | 'ConversationsStack' };
   QuizScreen: { questionSet: 1 | 2 };
   SubmitSetOneScreen: undefined;
@@ -90,14 +90,14 @@ function NavigationRoot({ canGoBack }: Props) {
   return (
     <RootDrawer.Navigator
       drawerContent={NavigationRootDrawer}
-      screenOptions={({ navigation, route }) => ({
+      screenOptions={({ navigation }) => ({
         drawerPosition: 'right',
         headerStyle: { backgroundColor: Colors.themeDark },
         headerTintColor: 'white',
         headerTitleAlign: 'center',
         headerLeft: () => {
           if (!canGoBack) return null;
-          return <Ionicons name="chevron-back" size={24} color="white" onPress={() => route.name === 'QuizScreen' ? navigation.navigate('PreQuizScreen') : navigation.goBack()} style={{ padding: 10, paddingRight: 20 }} />
+          return <Ionicons name="chevron-back" size={24} color="white" onPress={navigation.goBack} style={{ padding: 10, paddingRight: 20 }} />
         },
         headerRight: () => <DrawerToggleButton tintColor='white' />,
         headerTitle: () => (
