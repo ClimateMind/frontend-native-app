@@ -1,4 +1,5 @@
 import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import Solution from 'src/types/Solution';
 import ActionCardHeader from './ActionCardHeader';
@@ -10,6 +11,15 @@ interface Props {
 }
 
 function ActionCard({ solution, color = '#FDED6D' }: Props) {
+  const navigation = useNavigation();
+
+  function navigateToSolutionDetails() {
+    navigation.getParent()?.navigate('SolutionsFeedStack', {
+      screen: 'SolutionDetailsScreen',
+      params: { solution },
+    });
+  }
+
   return (
     <View style={{ backgroundColor: color }}>
       <ActionCardHeader effectSolution={solution} />
@@ -20,7 +30,7 @@ function ActionCard({ solution, color = '#FDED6D' }: Props) {
       <CmTypography variant="body" style={styles.description}>
         {solution.shortDescription}
       </CmTypography>
-      <Pressable>
+      <Pressable onPress={navigateToSolutionDetails} >
         <CmTypography variant="button" style={styles.button}>
           LEARN MORE
         </CmTypography>

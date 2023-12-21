@@ -11,13 +11,13 @@ import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 // Navigation
 import { DrawerToggleButton, createDrawerNavigator } from '@react-navigation/drawer';
 import NavigationRootDrawer from './NavigationRootDrawer';
-import OnBoardingScreens from 'src/screens/OnBoardingScreens/OnBoardingScreens';
+import OnBoardingScreens from 'src/screens/OnBoardingScreens';
 import UserAUnauthorizedStackNavigation from './UserAUnauthorizedStackNavigation';
 import UserAAuthorizedTabsNavigation from './UserAAuthorizedTabsNavigation';
-import QuizScreen from 'src/screens/SharedScreens/QuizScreen/QuizScreen';
-import SubmitSetOneScreen from 'src/screens/SharedScreens/SubmitSetOneScreen/SubmitSetOneScreen';
-import SubmitSetTwoScreen from 'src/screens/SharedScreens/SubmitSetTwoScreen/SubmitSetTwoScreen';
-import DevScreen from 'src/screens/DevScreen/DevScreen';
+import QuizScreen from 'src/screens/SharedScreens/QuizScreen';
+import SubmitSetOneScreen from 'src/screens/SharedScreens/SubmitSetOneScreen';
+import SubmitSetTwoScreen from 'src/screens/SharedScreens/SubmitSetTwoScreen';
+import DevScreen from 'src/screens/SharedScreens/DevScreen';
 
 import Colors from 'src/assets/colors';
 import useApiClient from 'src/hooks/useApiClient';

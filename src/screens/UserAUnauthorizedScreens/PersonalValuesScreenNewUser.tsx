@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Dimensions, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -17,8 +17,8 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
   const apiClient = useApiClient();
   const quizId = useAppSelector((state) => state.auth.user.quizId);
 
-  const scrollRef = React.useRef<ScrollView | null>(null);
-  const [personalValues, setPersonalValues] = React.useState<GetPersonalValues>();
+  const scrollRef = useRef<ScrollView | null>(null);
+  const [personalValues, setPersonalValues] = useState<GetPersonalValues>();
 
   function retakeQuiz() {
     navigation.getParent()?.navigate('QuizScreen', { questionSet: 1 });
@@ -28,7 +28,7 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
     navigation.navigate('SignUpScreen');
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!quizId) {
       return;
     }

@@ -2,7 +2,7 @@ name: eas-update-production
 on:
   push:
     branches:
-      - production
+      - main
 
 jobs:
   update:

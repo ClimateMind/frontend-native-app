@@ -18,10 +18,7 @@ export const quizSlice = createSlice({
     resetQuizAnswers: (state) => {
       state.quizAnswers = { SetOne: [], SetTwo: [] };
     },
-    addQuizAnswer: (
-      state,
-      action: PayloadAction<{ questionSet: 1 | 2; questionId: number; answerId: number }>
-    ) => {
+    addQuizAnswer: (state, action: PayloadAction<{ questionSet: number; questionId: number; answerId: number }>) => {
       if (action.payload.questionSet === 1) {
         // If the question is already answered, remove it from the array
         if (state.quizAnswers.SetOne.find((x) => x.questionId === action.payload.questionId)) {
@@ -37,15 +34,15 @@ export const quizSlice = createSlice({
         });
       } else if (action.payload.questionSet === 2) {
         // If the question is already answered, remove it from the array
-        if (state.quizAnswers.SetTwo.find((x) => x.questionId === action.payload.questionId + 10)) {
+        if (state.quizAnswers.SetTwo.find((x) => x.questionId === action.payload.questionId)) {
           state.quizAnswers.SetTwo = state.quizAnswers.SetTwo.filter(
-            (x) => x.questionId !== action.payload.questionId + 10
+            (x) => x.questionId !== action.payload.questionId
           );
         }
 
         // Add the new answer to the array
         state.quizAnswers.SetTwo.push({
-          questionId: action.payload.questionId + 10,
+          questionId: action.payload.questionId,
           answerId: action.payload.answerId,
         });
       }

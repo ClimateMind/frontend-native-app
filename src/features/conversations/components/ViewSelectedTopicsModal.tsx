@@ -16,10 +16,11 @@ import { CmTypography, Content } from '@shared/components';;
 interface Props {
   open: boolean;
   conversation: GetAllConversations;
+  conversationState: number;
   onClose: () => void;
 }
 
-function ViewSelectedTopicsModal({ open, conversation, onClose }: Props) {
+function ViewSelectedTopicsModal({ open, conversation, conversationState, onClose }: Props) {
   const apiClient = useApiClient();
 
   const [climateEffect, setClimateEffect] = useState<ClimateEffect2>();
@@ -31,7 +32,7 @@ function ViewSelectedTopicsModal({ open, conversation, onClose }: Props) {
   const [showSolutionDetails, setShowSolutionDetails] = useState(false);
 
   useEffect(() => {
-    if (conversation.conversationId) {
+    if (conversation.conversationId && conversationState > 2) {
       apiClient.getSelectedTopics(conversation.conversationId)
         .then(response => {
           setClimateEffect(response.climateEffects[0]);
@@ -40,7 +41,7 @@ function ViewSelectedTopicsModal({ open, conversation, onClose }: Props) {
         })
         .catch((error) => console.log(error));
     }
-  }, [conversation]);
+  }, [conversation, conversationState]);
 
   if (!open || !climateEffect || !climateSolutions || !solutionDetails) {
     return null;
