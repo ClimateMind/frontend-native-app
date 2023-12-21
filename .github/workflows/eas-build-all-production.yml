@@ -1,7 +1,8 @@
 name: eas-build-all-production
 on:
   workflow_dispatch:
-
+  schedule:
+    - cron: '15 15 * * 2'  # Run every Tuesday at 15:15 (3.15pm)
 jobs:
   build:
     name: EAS Build All Production

@@ -12,7 +12,6 @@ type Props = NativeStackScreenProps<StackParams, 'PreQuizScreen'>;
 
 function PreQuizScreen({ navigation }: Props) {
   function navigateToQuizScreen() {
-    navigation.navigate('PersonalValuesScreenNewUser');
     navigation.getParent()?.navigate('QuizScreen', { questionSet: 1 });
   }
 
