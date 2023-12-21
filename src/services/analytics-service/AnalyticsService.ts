@@ -12,6 +12,7 @@ export class AnalyticsService {
   private _sessionId: string | undefined;
   private _platform: TPlatform | undefined;
   private _screenName: string | undefined;
+  public trackAnalytics = true;
 
   constructor(private readonly _baseUrl: string) {}
 
@@ -63,6 +64,8 @@ export class AnalyticsService {
   }
 
   public postEvent(analyticsEvent: IAnalyticsEvent, value?: string) {
+    if (!this.trackAnalytics) return;
+
     const { eventValue, eventTimestamp, pageUrl } = this.preparePostEvent(analyticsEvent, value);
 
     axios.post(
