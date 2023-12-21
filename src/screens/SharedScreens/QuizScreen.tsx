@@ -1,92 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ActivityIndicator } from 'react-native';
-
 import { DrawerScreenProps } from '@react-navigation/drawer';
-import { RootDrawerNavigationParams } from '../../navigation/NavigationRoot';
 
-import { QuestionStartEvent, QuestionnaireFinishedEvent, analyticsService } from 'src/services';
+import { RootDrawerNavigationParams } from '../../navigation/NavigationRoot';
+import { Screen, Content, Section } from '@shared/components';
 import { SingleQuestion } from '@features/quiz/components';
-import { Screen, Content, Section } from '@shared/components'
-import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { addQuizAnswer } from 'src/store/quizSlice';
-import { GetQuestions } from 'src/api/responses';
-import useApiClient from 'src/hooks/useApiClient';
-import { setQuizId } from 'src/store/authSlice';
+import { useAnswerSelected, useFinishQuiz, useGetQuestions } from '@features/quiz/hooks';
 
 type Props = DrawerScreenProps<RootDrawerNavigationParams, 'QuizScreen'>;
 
-function QuizScreen({ route, navigation }: Props) {
-  const apiClient = useApiClient();
-  const dispatch = useAppDispatch();
+function QuizScreen({ route }: Props) {
+  const questionSetNumber = route.params.questionSet;
 
-  const quizAnswers = useAppSelector((state) => state.quiz.quizAnswers);
-  const [questionSets, setQuestionSets] = useState<GetQuestions>();
+  const { questionSets } = useGetQuestions();
+  const answerSelected = useAnswerSelected(questionSetNumber);
+  const { isLoading, submitAnswers } = useFinishQuiz();
+
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState(1);
 
-  function answerSelected(answerId: number) {
-    if (!questionSets) {
-      return;
-    }
+  // If the user answered all 10 questions, we will submit the result, reset the quiz
+  // to be prepared for the next quiz take and navigate away
+  if (currentQuestionNumber === 11) {
+    setCurrentQuestionNumber(1);
+    submitAnswers(questionSetNumber);
 
-    const currentQuestion = questionSets.SetOne[currentQuestionNumber - 1];
-
-    dispatch(
-      addQuizAnswer({
-        questionSet: route.params.questionSet,
-        questionId: currentQuestion.id,
-        answerId,
-      })
-    );
-
-    analyticsService.postEvent(QuestionStartEvent, `${currentQuestion.id}:${currentQuestionNumber}`);
-    setCurrentQuestionNumber(current => current + 1);
-  }
-
-  useEffect(() => {
-    // Fetch the questions on page load
-    // and reverse them so that the last question is displayed first
-    apiClient.getQuestions().then((result) => {
-      const SetOne = result.SetOne.reverse();
-      const SetTwo = result.SetTwo.reverse();
-      setQuestionSets({ SetOne, SetTwo });
-    });
-  }, []);
-
-  useEffect(() => {
-    async function submitAnswers() {
-      const result = await apiClient.postScores(quizAnswers);
-      dispatch(setQuizId(result.quizId));
-    }
-
-    // If the user answered all 10 questions, he will be navigated to the next screen
-    if (route.params.questionSet === 1 && currentQuestionNumber === 11) {
-      setCurrentQuestionNumber(1);
-      submitAnswers();
-
-      analyticsService.postEvent(QuestionnaireFinishedEvent, '1');
-      navigation.navigate('SubmitSetOneScreen');
-    }
-
-    if (route.params.questionSet === 2 && currentQuestionNumber === 11) {
-      setCurrentQuestionNumber(1);
-      submitAnswers();
-
-      analyticsService.postEvent(QuestionnaireFinishedEvent, '2');
-      navigation.navigate('SubmitSetTwoScreen');
-    }
-  }, [currentQuestionNumber]);
-
-  // If the user answered all 10 questions, he will be navigated to the next screen and we don't want to show anything
-  if (
-    (route.params.questionSet === 1 && currentQuestionNumber === 11) ||
-    (route.params.questionSet === 2 && currentQuestionNumber === 11)
-  ) {
     return null;
   }
 
-  // While we are fetching the questions from the backend, show a loading spinner to the user
-  if (questionSets === undefined) {
-    return <ActivityIndicator size='large' color='black' style={{ marginTop: 100 }} />
+  // While we are fetching the questions from the backend
+  // or submitting the results, show a loading spinner to the user
+  if (questionSets === undefined || isLoading) {
+    return <ActivityIndicator size="large" color="black" style={{ marginTop: 100 }} />;
   }
 
   // Display the next question for the user
@@ -95,13 +39,23 @@ function QuizScreen({ route, navigation }: Props) {
       <Section>
         <Content>
           <SingleQuestion
-            currentQuestionIndex={route.params.questionSet === 1 ? currentQuestionNumber : currentQuestionNumber + 10}
-            maxQuestionIndex={route.params.questionSet === 1 ? 10 : 20}
-            question={
-              route.params.questionSet === 1 ? questionSets.SetOne[currentQuestionNumber - 1].question :
-              questionSets.SetTwo[currentQuestionNumber - 1].question
+            currentQuestionIndex={
+              questionSetNumber === 1 ? currentQuestionNumber : currentQuestionNumber + 10
             }
-            onSelect={(index) => answerSelected(index)}
+            maxQuestionIndex={questionSetNumber === 1 ? 10 : 20}
+            question={
+              questionSetNumber === 1
+                ? questionSets.SetOne[currentQuestionNumber - 1].question
+                : questionSets.SetTwo[currentQuestionNumber - 1].question
+            }
+            onSelect={(index) => {
+              const questionId = questionSetNumber === 1
+                ? questionSets.SetOne[currentQuestionNumber - 1].id
+                : questionSets.SetTwo[currentQuestionNumber - 1].id;
+
+              answerSelected(currentQuestionNumber, questionId, index);
+              setCurrentQuestionNumber((current: number) => current + 1);
+            }}
           />
         </Content>
       </Section>
