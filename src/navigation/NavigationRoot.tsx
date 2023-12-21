@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 // Navigation
 import { DrawerToggleButton, createDrawerNavigator } from '@react-navigation/drawer';
 import NavigationRootDrawer from './NavigationRootDrawer';
+
 import OnBoardingScreens from 'src/screens/OnBoardingScreens';
 import UserAUnauthorizedStackNavigation from './UserAUnauthorizedStackNavigation';
 import UserAAuthorizedTabsNavigation from './UserAAuthorizedTabsNavigation';
@@ -22,9 +23,8 @@ import DevScreen from 'src/screens/SharedScreens/DevScreen';
 import Colors from 'src/assets/colors';
 import useApiClient from 'src/hooks/useApiClient';
 import { useInitOnboardingState } from 'src/features/onboarding/hooks';
-
 export type RootDrawerNavigationParams = {
-  UserAUnauthorizedScreens: { screen: 'StartScreen' | 'LoginScreen' } | undefined;
+  UserAUnauthorizedScreens: { screen: 'StartScreen' | 'LoginScreen' | 'PersonalValuesScreenNewUser' } | undefined;
   UserAAuthorizedScreens: { screen: 'PersonalValuesScreen' | 'ConversationsStack' };
   QuizScreen: { questionSet: 1 | 2 };
   SubmitSetOneScreen: undefined;
@@ -86,7 +86,7 @@ function NavigationRoot({ canGoBack }: Props) {
   if (needsOnboarding && !isLoadingOnboarding) {
     return <OnBoardingScreens />;
   }
-
+  
   return (
     <RootDrawer.Navigator
       drawerContent={NavigationRootDrawer}
@@ -97,7 +97,7 @@ function NavigationRoot({ canGoBack }: Props) {
         headerTitleAlign: 'center',
         headerLeft: () => {
           if (!canGoBack) return null;
-          return <Ionicons name="chevron-back" size={24} color="white" onPress={() => navigation.goBack()} style={{ padding: 10, paddingRight: 20 }} />
+          return <Ionicons name="chevron-back" size={24} color="white" onPress={navigation.goBack} style={{ padding: 10, paddingRight: 20 }} />
         },
         headerRight: () => <DrawerToggleButton tintColor='white' />,
         headerTitle: () => (
