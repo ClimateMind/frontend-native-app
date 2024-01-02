@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, View, KeyboardAvoidingView, Platform } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
 
 import { GetAllConversations } from 'src/api/responses';
@@ -25,6 +26,7 @@ interface Props {
 
 function ConversationCard({ conversation, onDelete }: Props) {
   const inputRef = useRef<any>(null)
+  
   const apiClient = useApiClient();
 
   const [expanded, setExpanded] = useState(false);
@@ -81,16 +83,20 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
   
     function handleEditableField(){
-      setEditableField(true)
-
-
+      setEditableField(previousState => !previousState)
+      inputRef.current.focus()
     }
   
 
   return (
+
+    // enable toggle edit
+    //chnage icons to check for done
+    // change field and update db using putconversation api
+    // useref to focus on field
     <>
       <Card style={[{ padding: 15 }, { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }]}>
-
+    
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <CmTypography variant='caption' style={{ flexShrink: 1 }}>{headerText[conversationState]}</CmTypography>
           {expanded && <Pressable onPress={copyLink}><Text>COPY LINK</Text></Pressable>}
@@ -99,9 +105,11 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0 }}>
           {/* <CmTypography variant='h3' style={{ marginBottom: 5, textAlign: 'left' }}>{conversation.userB.name}</CmTypography> */}
-          <TextInput autoFocus editable={editableField}>{conversation.userB.name}</TextInput>
-          {expanded && <Pressable onPress={()=> setEditableField(previousState => !previousState)}>
-            <MaterialIcons name="edit" size={24} color="black" style={{ marginHorizontal: 10 }} />
+          {/* editable={editableField} */}
+          <TextInput style={{ textAlign: 'left'}} ref={inputRef}>{conversation.userB.name}</TextInput>
+          {expanded && <Pressable onPress={handleEditableField}>
+           {!editableField && <MaterialIcons name="edit" size={24} color="black" style={{ marginHorizontal: 10 }} />} 
+           {editableField && <Entypo name="check" size={24} color="black" style={{ marginHorizontal: 10 }} />} 
           </Pressable>}
         
         </View>
@@ -137,7 +145,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
         <ViewSelectedTopicsModal conversation={conversation} conversationState={conversationState} open={showViewSelectedTopicsModal} onClose={() => setShowViewSelectedTopicsModal(false)} />
 
         <DeleteConversationModal show={showDeleteModal} userBName={userBName} onCancel={() => setShowDeleteModal(false)} onConfirm={deleteConversation} />
-
+      
       </Card>
 
       <CopyLinkModal
