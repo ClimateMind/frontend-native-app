@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-// import { MaterialIcons } from '@expo/vector-icons';
+import { useEffect, useState, useRef } from 'react';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
 
 import { GetAllConversations } from 'src/api/responses';
@@ -16,12 +16,15 @@ import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
 import { CmTypography, Card } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
 
+
 interface Props {
   conversation: GetAllConversations;
   onDelete: (conversationId: string) => void;
+  
 }
 
 function ConversationCard({ conversation, onDelete }: Props) {
+  const inputRef = useRef<any>(null)
   const apiClient = useApiClient();
 
   const [expanded, setExpanded] = useState(false);
@@ -32,6 +35,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
   const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
   const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
   const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
+  const [editableField, setEditableField] = useState(false)
 
   const userBName = conversation.userB.name;
 
@@ -75,6 +79,14 @@ function ConversationCard({ conversation, onDelete }: Props) {
     setConversationState(conversation.state);
   }, [conversation.state]);
 
+  
+    function handleEditableField(){
+      setEditableField(true)
+
+
+    }
+  
+
   return (
     <>
       <Card style={[{ padding: 15 }, { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }]}>
@@ -86,10 +98,12 @@ function ConversationCard({ conversation, onDelete }: Props) {
         </View>
 
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0 }}>
-          <CmTypography variant='h3' style={{ marginBottom: 5, textAlign: 'left' }}>{conversation.userB.name}</CmTypography>
-          {expanded && <Pressable>
-            {/* <MaterialIcons name="edit" size={24} color="black" style={{ marginHorizontal: 10 }} /> */}
+          {/* <CmTypography variant='h3' style={{ marginBottom: 5, textAlign: 'left' }}>{conversation.userB.name}</CmTypography> */}
+          <TextInput autoFocus editable={editableField}>{conversation.userB.name}</TextInput>
+          {expanded && <Pressable onPress={()=> setEditableField(previousState => !previousState)}>
+            <MaterialIcons name="edit" size={24} color="black" style={{ marginHorizontal: 10 }} />
           </Pressable>}
+        
         </View>
 
         {/* For state 0, display a text that the userB has to take the quiz */}
