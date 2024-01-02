@@ -1,5 +1,13 @@
 import { useEffect, useState, useRef } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View, KeyboardAvoidingView, Platform } from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
@@ -17,27 +25,28 @@ import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
 import { CmTypography, Card } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
 
-
 interface Props {
   conversation: GetAllConversations;
   onDelete: (conversationId: string) => void;
-  
 }
 
 function ConversationCard({ conversation, onDelete }: Props) {
-  const inputRef = useRef<any>(null)
-  
+  const inputRef = useRef<any>(null);
+
   const apiClient = useApiClient();
 
   const [expanded, setExpanded] = useState(false);
-  const [conversationState, setConversationState] = useState(conversation.state);
+  const [conversationState, setConversationState] = useState(
+    conversation.state
+  );
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [conversationLink, setConversationLink] = useState('');
   const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
   const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
-  const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
-  const [editableField, setEditableField] = useState(false)
+  const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] =
+    useState(false);
+  const [editableField, setEditableField] = useState(false);
 
   const userBName = conversation.userB.name;
 
@@ -52,13 +61,18 @@ function ConversationCard({ conversation, onDelete }: Props) {
   ];
 
   function copyLink() {
-    setShowCopyLinkModal(true)
-    setConversationLink(process.env.EXPO_PUBLIC_WEB_URL + '/landing/' + conversation.conversationId);
+    setShowCopyLinkModal(true);
+    setConversationLink(
+      process.env.EXPO_PUBLIC_WEB_URL +
+        '/landing/' +
+        conversation.conversationId
+    );
   }
 
   function deleteConversation() {
-    setShowDeleteModal(false)
-    apiClient.deleteConversation(conversation.conversationId)
+    setShowDeleteModal(false);
+    apiClient
+      .deleteConversation(conversation.conversationId)
       .then(() => {
         onDelete(conversation.conversationId);
       })
@@ -81,71 +95,196 @@ function ConversationCard({ conversation, onDelete }: Props) {
     setConversationState(conversation.state);
   }, [conversation.state]);
 
+  function handleEditableField() {
+    setEditableField((previousState) => !previousState);
+  }
   
-    function handleEditableField(){
-      setEditableField(previousState => !previousState)
-      inputRef.current.focus()
-    }
-  
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [editableField]);
 
   return (
-
     // enable toggle edit
     //chnage icons to check for done
     // change field and update db using putconversation api
     // useref to focus on field
     <>
-      <Card style={[{ padding: 15 }, { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }]}>
-    
+      <Card
+        style={[
+          { padding: 15 },
+          { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' },
+        ]}
+      >
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <CmTypography variant='caption' style={{ flexShrink: 1 }}>{headerText[conversationState]}</CmTypography>
-          {expanded && <Pressable onPress={copyLink}><Text>COPY LINK</Text></Pressable>}
-          {!expanded &&  conversationState > 0 && conversationState < 5 && <NotifyIcon />}
+          <CmTypography variant="caption" style={{ flexShrink: 1 }}>
+            {headerText[conversationState]}
+          </CmTypography>
+          {expanded && (
+            <Pressable onPress={copyLink}>
+              <Text>COPY LINK</Text>
+            </Pressable>
+          )}
+          {!expanded && conversationState > 0 && conversationState < 5 && (
+            <NotifyIcon />
+          )}
         </View>
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0 }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginBottom: expanded ? 20 : 0,
+          }}
+        >
           {/* <CmTypography variant='h3' style={{ marginBottom: 5, textAlign: 'left' }}>{conversation.userB.name}</CmTypography> */}
           {/* editable={editableField} */}
-          <TextInput style={{ textAlign: 'left'}} ref={inputRef}>{conversation.userB.name}</TextInput>
-          {expanded && <Pressable onPress={handleEditableField}>
-           {!editableField && <MaterialIcons name="edit" size={24} color="black" style={{ marginHorizontal: 10 }} />} 
-           {editableField && <Entypo name="check" size={24} color="black" style={{ marginHorizontal: 10 }} />} 
-          </Pressable>}
-        
+          <TextInput
+            style={{
+              textAlign: 'center',
+              fontSize: 18,
+              lineHeight: 24.5,
+              letterSpacing: 1.6,
+              fontFamily: 'nunito-black',
+            }}
+            ref={inputRef}
+            editable={editableField}
+          >
+            {conversation.userB.name}
+          </TextInput>
+          {expanded && (
+            <Pressable onPress={handleEditableField}>
+              {!editableField && (
+                <MaterialIcons
+                  name="edit"
+                  size={24}
+                  color="black"
+                  style={{ margin: 10 }}
+                />
+              )}
+              {editableField && (
+                <Entypo
+                  name="check"
+                  size={24}
+                  color="black"
+                  style={{ margin: 10 }}
+                />
+              )}
+            </Pressable>
+          )}
         </View>
 
         {/* For state 0, display a text that the userB has to take the quiz */}
-        {expanded && conversationState === 0 && <>
-          <CmTypography variant='body' style={styles.text}>When {conversation.userB.name} is finished, we will send you an email and their results will appear here. Then you can start preparing for your chat!</CmTypography>
-          <CmTypography variant='body' style={styles.text}>If you need to resend test their link, you can access it by clicking “COPY LINK”.</CmTypography>
-        </>}
+        {expanded && conversationState === 0 && (
+          <>
+            <CmTypography variant="body" style={styles.text}>
+              When {conversation.userB.name} is finished, we will send you an
+              email and their results will appear here. Then you can start
+              preparing for your chat!
+            </CmTypography>
+            <CmTypography variant="body" style={styles.text}>
+              If you need to resend test their link, you can access it by
+              clicking “COPY LINK”.
+            </CmTypography>
+          </>
+        )}
 
         {/* For every other state, show the text and buttons the userA needs */}
-        { expanded && conversationState !== 0 && <>
-          <CmTypography variant='h4' style={styles.subheading}>1. {conversation.userB.name} took the values quiz</CmTypography>
-          <SeeHowYouAlignButton style={styles.whiteButton} conversationId={conversation.conversationId} conversationState={conversationState} onClick={() => increaseState(2)} />
-          
-          <CmTypography variant='h4' style={styles.subheading}>2. See what you can discuss with {conversation.userB.name}</CmTypography>
-          <ViewSelectedTopicsButton style={styles.whiteButton} conversationId={conversation.conversationId} conversationState={conversationState} onClick={() => increaseState(3)} />
+        {expanded && conversationState !== 0 && (
+          <>
+            <CmTypography variant="h4" style={styles.subheading}>
+              1. {conversation.userB.name} took the values quiz
+            </CmTypography>
+            <SeeHowYouAlignButton
+              style={styles.whiteButton}
+              conversationId={conversation.conversationId}
+              conversationState={conversationState}
+              onClick={() => increaseState(2)}
+            />
 
-          <CmTypography variant='h4' style={styles.subheading}>3. Have you had your conversation with {conversation.userB.name}?</CmTypography>
-          {conversationState <= 3 && <YesWeTalkedButton style={styles.whiteButton} conversationId={conversation.conversationId} conversationState={conversationState} onClick={() => increaseState(4)} />}
-          {conversationState > 3 && <ConversationRating conversationId={conversation.conversationId} initialRating={conversation.userARating} onRated={() => setConversationState(5)} />}
-        </>
-        }
-        
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
-          {expanded ? <Pressable onPress={() => setShowDeleteModal(true)} style={styles.deleteButton}><Foundation name="trash" size={24} color="#77AAAF" /></Pressable> : <View></View>}
-          <Pressable onPress={() => setExpanded(current => !current)} style={styles.moreLessButton}>
-            <CmTypography variant='button' style={{ letterSpacing: 1, paddingVertical: 3 }}>{expanded ? 'LESS' : 'MORE'}</CmTypography>
+            <CmTypography variant="h4" style={styles.subheading}>
+              2. See what you can discuss with {conversation.userB.name}
+            </CmTypography>
+            <ViewSelectedTopicsButton
+              style={styles.whiteButton}
+              conversationId={conversation.conversationId}
+              conversationState={conversationState}
+              onClick={() => increaseState(3)}
+            />
+
+            <CmTypography variant="h4" style={styles.subheading}>
+              3. Have you had your conversation with {conversation.userB.name}?
+            </CmTypography>
+            {conversationState <= 3 && (
+              <YesWeTalkedButton
+                style={styles.whiteButton}
+                conversationId={conversation.conversationId}
+                conversationState={conversationState}
+                onClick={() => increaseState(4)}
+              />
+            )}
+            {conversationState > 3 && (
+              <ConversationRating
+                conversationId={conversation.conversationId}
+                initialRating={conversation.userARating}
+                onRated={() => setConversationState(5)}
+              />
+            )}
+          </>
+        )}
+
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: 10,
+          }}
+        >
+          {expanded ? (
+            <Pressable
+              onPress={() => setShowDeleteModal(true)}
+              style={styles.deleteButton}
+            >
+              <Foundation name="trash" size={24} color="#77AAAF" />
+            </Pressable>
+          ) : (
+            <View></View>
+          )}
+          <Pressable
+            onPress={() => setExpanded((current) => !current)}
+            style={styles.moreLessButton}
+          >
+            <CmTypography
+              variant="button"
+              style={{ letterSpacing: 1, paddingVertical: 3 }}
+            >
+              {expanded ? 'LESS' : 'MORE'}
+            </CmTypography>
           </Pressable>
         </View>
 
-        <SeeHowYouAlignModal conversation={conversation} open={showSeeHowYouAlignModal} onClose={() => setShowSeeHowYouAlignModal(false)} onViewTopics={() => {setShowSeeHowYouAlignModal(false); setShowViewSelectedTopicsModal(true);}} />
-        <ViewSelectedTopicsModal conversation={conversation} conversationState={conversationState} open={showViewSelectedTopicsModal} onClose={() => setShowViewSelectedTopicsModal(false)} />
+        <SeeHowYouAlignModal
+          conversation={conversation}
+          open={showSeeHowYouAlignModal}
+          onClose={() => setShowSeeHowYouAlignModal(false)}
+          onViewTopics={() => {
+            setShowSeeHowYouAlignModal(false);
+            setShowViewSelectedTopicsModal(true);
+          }}
+        />
+        <ViewSelectedTopicsModal
+          conversation={conversation}
+          conversationState={conversationState}
+          open={showViewSelectedTopicsModal}
+          onClose={() => setShowViewSelectedTopicsModal(false)}
+        />
 
-        <DeleteConversationModal show={showDeleteModal} userBName={userBName} onCancel={() => setShowDeleteModal(false)} onConfirm={deleteConversation} />
-      
+        <DeleteConversationModal
+          show={showDeleteModal}
+          userBName={userBName}
+          onCancel={() => setShowDeleteModal(false)}
+          onConfirm={deleteConversation}
+        />
       </Card>
 
       <CopyLinkModal
