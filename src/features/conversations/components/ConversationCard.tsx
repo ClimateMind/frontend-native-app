@@ -37,7 +37,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
   const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
   const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
   const [editableField, setEditableField] = useState(false);
-  const [userBName, setuserBName] = useState(conversation.userB.name);
+  const [userBName, setUserBName] = useState(conversation.userB.name);
 
   const headerText = [
     `Invited ${userBName} to talk`,
@@ -99,6 +99,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
         },
       });
     }
+    
   }
 
   useEffect(() => {
@@ -135,11 +136,12 @@ function ConversationCard({ conversation, onDelete }: Props) {
           }}
         >
           <TextInput
-            style={styles.textInputField}
+            style={editableField ? [styles.textInputField, {borderBottomWidth:1, borderBottomColor:'black'}] : styles.textInputField}
             ref={inputRef}
             editable={editableField}
-            onChangeText={setuserBName}
+            onChangeText={setUserBName}
             value={userBName}
+            maxLength={20}
           />
 
           {expanded && (
@@ -194,7 +196,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
         {expanded && conversationState !== 0 && (
           <>
             <CmTypography variant="h4" style={styles.subheading}>
-              1. {conversation.userB.name} took the values quiz
+              1. {userBName} took the values quiz
             </CmTypography>
             <SeeHowYouAlignButton
               style={styles.whiteButton}
@@ -204,7 +206,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
             />
 
             <CmTypography variant="h4" style={styles.subheading}>
-              2. See what you can discuss with {conversation.userB.name}
+              2. See what you can discuss with {userBName}
             </CmTypography>
             <ViewSelectedTopicsButton
               style={styles.whiteButton}
@@ -214,7 +216,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
             />
 
             <CmTypography variant="h4" style={styles.subheading}>
-              3. Have you had your conversation with {conversation.userB.name}?
+              3. Have you had your conversation with {userBName}?
             </CmTypography>
             {conversationState <= 3 && (
               <YesWeTalkedButton
@@ -306,6 +308,7 @@ const styles = StyleSheet.create({
     lineHeight: 24.5,
     letterSpacing: 1.6,
     fontFamily: 'nunito-black',
+    paddingBottom:2
   },
   text: {
     marginVertical: 5,
