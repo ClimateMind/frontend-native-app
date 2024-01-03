@@ -1,15 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
-
 import { GetAllConversations } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
 import DeleteConversationModal from './DeleteConversationModal';
@@ -20,8 +13,7 @@ import ConversationRating from './ConversationRating';
 import CopyLinkModal from './CopyLinkModal';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
-import { CmTypography, Card, } from '@shared/components';
-// import showerrortoast
+import { CmTypography, Card } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
 
 interface Props {
@@ -32,10 +24,12 @@ interface Props {
 function ConversationCard({ conversation, onDelete }: Props) {
   const inputRef = useRef<any>(null);
   const apiClient = useApiClient();
-  const currentUserBName = conversation.userB.name
+  const currentUserBName = conversation.userB.name;
 
   const [expanded, setExpanded] = useState(false);
-  const [conversationState, setConversationState] = useState(conversation.state);
+  const [conversationState, setConversationState] = useState(
+    conversation.state
+  );
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [conversationLink, setConversationLink] = useState('');
@@ -91,35 +85,27 @@ function ConversationCard({ conversation, onDelete }: Props) {
   }, [conversation.state]);
 
   function handleEditableField() {
-    //toggles the boolean value
-    
-      setEditableField((previousState) => !previousState);
-    
-   
-     if(editableField && userBName === currentUserBName){
+    setEditableField((previousState) => !previousState);
+
+    if (editableField && userBName === currentUserBName) {
       setEditableField(false);
     }
 
-    if(editableField && userBName !== currentUserBName){
+    if (editableField && userBName !== currentUserBName) {
       apiClient.putSingleConversation({
-        conversationId:conversation.conversationId,
+        conversationId: conversation.conversationId,
         updatedConversation: {
-          receiverName: userBName
-        }
-      })
+          receiverName: userBName,
+        },
+      });
     }
   }
-  
+
   useEffect(() => {
     inputRef.current.focus();
   }, [editableField]);
 
   return (
-   // add a cancel icon?
-   // add cannot be empty
-   // add toast messages?
-   // modify icons to a better size
-   // create a cmtypography for the input field
     <>
       <Card
         style={[
@@ -149,41 +135,41 @@ function ConversationCard({ conversation, onDelete }: Props) {
           }}
         >
           <TextInput
-            style={{
-              textAlign: 'center',
-              fontSize: 18,
-              lineHeight: 24.5,
-              letterSpacing: 1.6,
-              fontFamily: 'nunito-black',
-            }}
+            style={styles.textInputField}
             ref={inputRef}
             editable={editableField}
             onChangeText={setuserBName}
             value={userBName}
-          
           />
-        
+
           {expanded && (
             <Pressable onPress={handleEditableField}>
               {!editableField && (
                 <MaterialIcons
                   name="edit"
-                  size={24}
+                  size={22}
                   color="black"
-                  style={{ margin: 10 }}
+                  style={{ margin: 10, alignItems: 'center' }}
                 />
               )}
-              {editableField && userBName !== currentUserBName && userBName.length > 0 && (
-                <Entypo
-                  name="check"
-                  size={24}
-                  color="black"
-                  style={{ margin: 10 }}
-                />
-              )}
+              {editableField &&
+                userBName !== currentUserBName &&
+                userBName.length > 0 && (
+                  <Entypo
+                    name="check"
+                    size={22}
+                    color="black"
+                    style={{ margin: 10, alignItems: 'center' }}
+                  />
+                )}
 
-               {editableField && userBName === currentUserBName && (
-                <Entypo name="cross" size={24} color="black"  style={{ margin: 10 }}/>
+              {editableField && userBName === currentUserBName && (
+                <Entypo
+                  name="cross"
+                  size={22}
+                  color="black"
+                  style={{ margin: 10, alignItems: 'center' }}
+                />
               )}
             </Pressable>
           )}
@@ -314,6 +300,13 @@ function ConversationCard({ conversation, onDelete }: Props) {
 }
 
 const styles = StyleSheet.create({
+  textInputField: {
+    textAlign: 'center',
+    fontSize: 18,
+    lineHeight: 24.5,
+    letterSpacing: 1.6,
+    fontFamily: 'nunito-black',
+  },
   text: {
     marginVertical: 5,
   },
