@@ -16,6 +16,8 @@ import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
 import { CmTypography, Card } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
 
+// put on keyboard return button
+
 interface Props {
   conversation: GetAllConversations;
   onDelete: (conversationId: string) => void;
@@ -35,7 +37,8 @@ function ConversationCard({ conversation, onDelete }: Props) {
   const [conversationLink, setConversationLink] = useState('');
   const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
   const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
-  const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
+  const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] =
+    useState(false);
   const [editableField, setEditableField] = useState(false);
   const [userBName, setUserBName] = useState(conversation.userB.name);
 
@@ -84,22 +87,23 @@ function ConversationCard({ conversation, onDelete }: Props) {
     setConversationState(conversation.state);
   }, [conversation.state]);
 
-  function handleEditableField() {
-    setEditableField((previousState) => !previousState);
+  function handleEditField() {
+    setEditableField(true);
+  }
 
-    if (editableField && userBName === currentUserBName) {
-      setEditableField(false);
-    }
+  function handleSaveField() {
+    setEditableField(false);
+    apiClient.putSingleConversation({
+      conversationId: conversation.conversationId,
+      updatedConversation: {
+        receiverName: userBName,
+      },
+    });
+  }
 
-    if (editableField && userBName !== currentUserBName) {
-      apiClient.putSingleConversation({
-        conversationId: conversation.conversationId,
-        updatedConversation: {
-          receiverName: userBName,
-        },
-      });
-    }
-    
+  function handleCancelField() {
+    setEditableField(false);
+    setUserBName(currentUserBName);
   }
 
   useEffect(() => {
@@ -136,7 +140,14 @@ function ConversationCard({ conversation, onDelete }: Props) {
           }}
         >
           <TextInput
-            style={editableField ? [styles.textInputField, {borderBottomWidth:1, borderBottomColor:'black'}] : styles.textInputField}
+            style={
+              editableField
+                ? [
+                    styles.textInputField,
+                    { borderBottomWidth: 1, borderBottomColor: 'black' },
+                  ]
+                : styles.textInputField
+            }
             ref={inputRef}
             editable={editableField}
             onChangeText={setUserBName}
@@ -145,35 +156,38 @@ function ConversationCard({ conversation, onDelete }: Props) {
           />
 
           {expanded && (
-            <Pressable onPress={handleEditableField}>
-              {!editableField && (
-                <MaterialIcons
-                  name="edit"
-                  size={22}
-                  color="black"
-                  style={{ margin: 10, alignItems: 'center' }}
-                />
-              )}
-              {editableField &&
-                userBName !== currentUserBName &&
-                userBName.length > 0 && (
-                  <Entypo
-                    name="check"
+            <>
+              <Pressable onPress={handleEditField}>
+                {!editableField && (
+                  <MaterialIcons
+                    name="edit"
                     size={22}
                     color="black"
                     style={{ margin: 10, alignItems: 'center' }}
                   />
                 )}
-
-              {editableField && userBName === currentUserBName && (
-                <Entypo
-                  name="cross"
-                  size={22}
-                  color="black"
-                  style={{ margin: 10, alignItems: 'center' }}
-                />
+              </Pressable>
+              {editableField && (
+                <Pressable onPress={handleSaveField}>
+                  <MaterialIcons
+                    name="check"
+                    size={22}
+                    color="black"
+                    style={{ margin: 10, alignItems: 'center' }}
+                  />
+                </Pressable>
               )}
-            </Pressable>
+              {editableField && (
+                <Pressable onPress={handleCancelField}>
+                  <MaterialIcons
+                    name="cancel"
+                    size={22}
+                    color="black"
+                    style={{ margin: 10, alignItems: 'center' }}
+                  />
+                </Pressable>
+              )}
+            </>
           )}
         </View>
 
@@ -308,7 +322,7 @@ const styles = StyleSheet.create({
     lineHeight: 24.5,
     letterSpacing: 1.6,
     fontFamily: 'nunito-black',
-    paddingBottom:2
+    paddingBottom: 2,
   },
   text: {
     marginVertical: 5,
