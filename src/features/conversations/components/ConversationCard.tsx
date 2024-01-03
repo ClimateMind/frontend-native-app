@@ -29,16 +29,13 @@ function ConversationCard({ conversation, onDelete }: Props) {
   const currentUserBName = conversation.userB.name;
 
   const [expanded, setExpanded] = useState(false);
-  const [conversationState, setConversationState] = useState(
-    conversation.state
-  );
+  const [conversationState, setConversationState] = useState(conversation.state);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [conversationLink, setConversationLink] = useState('');
   const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
   const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
-  const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] =
-    useState(false);
+  const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
   const [editableField, setEditableField] = useState(false);
   const [userBName, setUserBName] = useState(conversation.userB.name);
 
