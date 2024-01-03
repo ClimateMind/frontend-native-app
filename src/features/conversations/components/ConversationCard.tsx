@@ -179,12 +179,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
               )}
               {editableField && (
                 <Pressable onPress={handleCancelField}>
-                  <MaterialIcons
-                    name="cancel"
-                    size={22}
-                    color="black"
-                    style={{ margin: 10, alignItems: 'center' }}
-                  />
+                  <Entypo name="cross" size={24} color="black" style={{ margin: 10, alignItems: 'center' }} />
                 </Pressable>
               )}
             </>
