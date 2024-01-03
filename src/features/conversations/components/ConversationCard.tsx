@@ -32,6 +32,7 @@ interface Props {
 function ConversationCard({ conversation, onDelete }: Props) {
   const inputRef = useRef<any>(null);
   const apiClient = useApiClient();
+  const currentUserBName = conversation.userB.name
 
   const [expanded, setExpanded] = useState(false);
   const [conversationState, setConversationState] = useState(conversation.state);
@@ -90,8 +91,16 @@ function ConversationCard({ conversation, onDelete }: Props) {
   }, [conversation.state]);
 
   function handleEditableField() {
-    setEditableField((previousState) => !previousState);
-    if(editableField){
+    //toggles the boolean value
+    
+      setEditableField((previousState) => !previousState);
+    
+   
+     if(editableField && userBName === currentUserBName){
+      setEditableField(false);
+    }
+
+    if(editableField && userBName !== currentUserBName){
       apiClient.putSingleConversation({
         conversationId:conversation.conversationId,
         updatedConversation: {
@@ -106,10 +115,11 @@ function ConversationCard({ conversation, onDelete }: Props) {
   }, [editableField]);
 
   return (
-    // enable toggle edit - done
-    //chnage icons to check for done - done
-    // change field and update db using putconversation api
-    // useref to focus on field
+   // add a cancel icon?
+   // add cannot be empty
+   // add toast messages?
+   // modify icons to a better size
+   // create a cmtypography for the input field
     <>
       <Card
         style={[
@@ -150,10 +160,10 @@ function ConversationCard({ conversation, onDelete }: Props) {
             editable={editableField}
             onChangeText={setuserBName}
             value={userBName}
+          
           />
         
           {expanded && (
-            // <Pressable onPress={!editableField? handleEditableField : handleFieldSubmit}>
             <Pressable onPress={handleEditableField}>
               {!editableField && (
                 <MaterialIcons
@@ -163,13 +173,17 @@ function ConversationCard({ conversation, onDelete }: Props) {
                   style={{ margin: 10 }}
                 />
               )}
-              {editableField && (
+              {editableField && userBName !== currentUserBName && userBName.length > 0 && (
                 <Entypo
                   name="check"
                   size={24}
                   color="black"
                   style={{ margin: 10 }}
                 />
+              )}
+
+               {editableField && userBName === currentUserBName && (
+                <Entypo name="cross" size={24} color="black"  style={{ margin: 10 }}/>
               )}
             </Pressable>
           )}
