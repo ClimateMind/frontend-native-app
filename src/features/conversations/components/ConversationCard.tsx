@@ -5,8 +5,6 @@ import {
   Text,
   TextInput,
   View,
-  KeyboardAvoidingView,
-  Platform,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
@@ -22,7 +20,8 @@ import ConversationRating from './ConversationRating';
 import CopyLinkModal from './CopyLinkModal';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
-import { CmTypography, Card } from '@shared/components';
+import { CmTypography, Card, } from '@shared/components';
+// import showerrortoast
 import NotifyIcon from './NotifyIcon';
 
 interface Props {
@@ -32,23 +31,18 @@ interface Props {
 
 function ConversationCard({ conversation, onDelete }: Props) {
   const inputRef = useRef<any>(null);
-
   const apiClient = useApiClient();
 
   const [expanded, setExpanded] = useState(false);
-  const [conversationState, setConversationState] = useState(
-    conversation.state
-  );
+  const [conversationState, setConversationState] = useState(conversation.state);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [conversationLink, setConversationLink] = useState('');
   const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
   const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
-  const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] =
-    useState(false);
+  const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
   const [editableField, setEditableField] = useState(false);
-
-  const userBName = conversation.userB.name;
+  const [userBName, setuserBName] = useState(conversation.userB.name);
 
   const headerText = [
     `Invited ${userBName} to talk`,
@@ -97,6 +91,14 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
   function handleEditableField() {
     setEditableField((previousState) => !previousState);
+    if(editableField){
+      apiClient.putSingleConversation({
+        conversationId:conversation.conversationId,
+        updatedConversation: {
+          receiverName: userBName
+        }
+      })
+    }
   }
   
   useEffect(() => {
@@ -104,8 +106,8 @@ function ConversationCard({ conversation, onDelete }: Props) {
   }, [editableField]);
 
   return (
-    // enable toggle edit
-    //chnage icons to check for done
+    // enable toggle edit - done
+    //chnage icons to check for done - done
     // change field and update db using putconversation api
     // useref to focus on field
     <>
@@ -136,8 +138,6 @@ function ConversationCard({ conversation, onDelete }: Props) {
             marginBottom: expanded ? 20 : 0,
           }}
         >
-          {/* <CmTypography variant='h3' style={{ marginBottom: 5, textAlign: 'left' }}>{conversation.userB.name}</CmTypography> */}
-          {/* editable={editableField} */}
           <TextInput
             style={{
               textAlign: 'center',
@@ -148,10 +148,12 @@ function ConversationCard({ conversation, onDelete }: Props) {
             }}
             ref={inputRef}
             editable={editableField}
-          >
-            {conversation.userB.name}
-          </TextInput>
+            onChangeText={setuserBName}
+            value={userBName}
+          />
+        
           {expanded && (
+            // <Pressable onPress={!editableField? handleEditableField : handleFieldSubmit}>
             <Pressable onPress={handleEditableField}>
               {!editableField && (
                 <MaterialIcons
