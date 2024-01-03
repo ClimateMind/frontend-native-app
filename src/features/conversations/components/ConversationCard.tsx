@@ -164,7 +164,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
                   />
                 )}
               </Pressable>
-              {editableField && (
+              {editableField && userBName.length > 0 &&(
                 <Pressable onPress={handleSaveField}>
                   <MaterialIcons
                     name="check"
