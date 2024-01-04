@@ -40,7 +40,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
   const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [userBName, setUserBName] = useState(conversation.userB.name);
-  const [focus, setFocus] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   const headerText = [
     `Invited ${userBName} to talk`,
@@ -149,7 +149,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
               isEditable
                 ? [
                     styles.textInputField,
-                    { borderBottomWidth: 1, borderBottomColor:isEditable && focus ? '#37f5ac' : 'black' },
+                    { borderBottomWidth: 1, borderBottomColor: isEditable && isFocused ? '#37f5ac' : 'black' },
                   ]
               : styles.textInputField
             }
@@ -157,9 +157,9 @@ function ConversationCard({ conversation, onDelete }: Props) {
             onChangeText={setUserBName}
             value={userBName}
             maxLength={20}
-            onFocus={()=>setFocus(true)}
-            onSubmitEditing={()=>setFocus(false)}
-            onEndEditing={()=>setFocus(false)}
+            onFocus={()=>setIsFocused(true)}
+            onSubmitEditing={()=>setIsFocused(false)}
+            onEndEditing={()=>setIsFocused(false)}
           />
           {expanded && (
             <>
