@@ -5,7 +5,7 @@ interface Props extends React.PropsWithChildren, TextProps {
   style?: StyleProp<TextStyle>;
 }
 
-function ButtonText({ children, variant, style, ...rest }: Props) {
+function CmTypography({ children, variant, style, ...rest }: Props) {
   let textStyle: StyleProp<TextStyle>;
 
   switch (variant) {
@@ -117,4 +117,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ButtonText;
+export default CmTypography;

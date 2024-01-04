@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { StyleSheet } from "react-native";
 import * as Updates from 'expo-updates';
 
-import { CmButton } from "src/shared/components";
 import { useToastMessages } from "src/shared/hooks";
 
-function UpdateButton() {
+function useUpdateApp() {
   const { showSuccessToast, showErrorToast } = useToastMessages();
 
   const [buttonText, setButtonText] = useState("Update App");
@@ -34,17 +32,11 @@ function UpdateButton() {
     }
   }
 
-  return (
-    <CmButton isLoading={isLoading} onPress={updateApp} text={buttonText} style={styles.button} />
-  );
+  return {
+    isLoading,
+    updateApp,
+    buttonText,
+  }
 }
 
-const styles = StyleSheet.create({
-  button: {
-    alignSelf: "stretch",
-    marginHorizontal: 20,
-    marginBottom: 20,
-  },
-});
-
-export default UpdateButton;
+export default useUpdateApp;
