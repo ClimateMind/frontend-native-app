@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
@@ -26,8 +26,6 @@ interface Props {
 
 function ConversationCard({ conversation, onDelete }: Props) {
 
-  const inputRef = useRef<any>(null);
-
   const apiClient = useApiClient();
 
   const { showErrorToast, showSuccessToast } = useToastMessages()
@@ -44,6 +42,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
   const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
   const [editableField, setEditableField] = useState(false);
   const [userBName, setUserBName] = useState(conversation.userB.name);
+  const [focus, setFocus] = useState(false);
 
   const headerText = [
     `Invited ${userBName} to talk`,
@@ -115,7 +114,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
   }
 
   useEffect(() => {
-    inputRef.current.focus();
+    // inputRef.current.focus();
   }, [editableField]);
 
   return (
@@ -152,16 +151,17 @@ function ConversationCard({ conversation, onDelete }: Props) {
               editableField
                 ? [
                     styles.textInputField,
-                    { borderBottomWidth: 1, borderBottomColor: 'black' },
+                    { borderBottomWidth: 1, borderBottomColor:editableField && focus ? '#37f5ac' : 'grey' },
                   ]
-                : styles.textInputField
+              : styles.textInputField
             }
-            ref={inputRef}
             editable={editableField}
             onChangeText={setUserBName}
             value={userBName}
             maxLength={20}
-            onFocus={}
+            onFocus={()=>setFocus(true)}
+            onSubmitEditing={()=>setFocus(false)}
+            onEndEditing={()=>setFocus(false)}
             
           />
 
