@@ -38,6 +38,7 @@ function App() {
 
   return (
     <Provider store={store}>
+
       <RootSiblingParent>
         <SafeAreaView style={styles.safeArea}>
           <StatusBar style="light" backgroundColor={Colors.themeDark} />

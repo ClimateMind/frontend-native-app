@@ -13,11 +13,9 @@ import ConversationRating from './ConversationRating';
 import CopyLinkModal from './CopyLinkModal';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
-import { useToastMessages } from '@shared/hooks';
+import { useToastMessages } from 'src/shared/hooks';
 import { CmTypography, Card } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
-
-// put on keyboard return button
 
 interface Props {
   conversation: GetAllConversations;
@@ -28,7 +26,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
   const apiClient = useApiClient();
 
-  const { showErrorToast, showSuccessToast } = useToastMessages()
+  const {showErrorToast, showSuccessToast} = useToastMessages()
 
   const currentUserBName = conversation.userB.name;
 
@@ -40,7 +38,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
   const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
   const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
   const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
-  const [editableField, setEditableField] = useState(false);
+  const [isEditable, setIsEditable] = useState(false);
   const [userBName, setUserBName] = useState(conversation.userB.name);
   const [focus, setFocus] = useState(false);
 
@@ -90,11 +88,11 @@ function ConversationCard({ conversation, onDelete }: Props) {
   }, [conversation.state]);
 
   function handleEditField() {
-    setEditableField(true);
+    setIsEditable(true);
   }
 
   function handleSaveField() {
-    setEditableField(false);
+    setIsEditable(false);
     apiClient.putSingleConversation({
       conversationId: conversation.conversationId,
       updatedConversation: {
@@ -109,13 +107,13 @@ function ConversationCard({ conversation, onDelete }: Props) {
   }
 
   function handleCancelField() {
-    setEditableField(false);
+    setIsEditable(false);
     setUserBName(currentUserBName);
   }
 
   useEffect(() => {
     // inputRef.current.focus();
-  }, [editableField]);
+  }, [isEditable]);
 
   return (
     <>
@@ -148,27 +146,25 @@ function ConversationCard({ conversation, onDelete }: Props) {
         >
           <TextInput
             style={
-              editableField
+              isEditable
                 ? [
                     styles.textInputField,
-                    { borderBottomWidth: 1, borderBottomColor:editableField && focus ? '#37f5ac' : 'grey' },
+                    { borderBottomWidth: 1, borderBottomColor:isEditable && focus ? '#37f5ac' : 'black' },
                   ]
               : styles.textInputField
             }
-            editable={editableField}
+            editable={isEditable}
             onChangeText={setUserBName}
             value={userBName}
             maxLength={20}
             onFocus={()=>setFocus(true)}
             onSubmitEditing={()=>setFocus(false)}
             onEndEditing={()=>setFocus(false)}
-            
           />
-
           {expanded && (
             <>
               <Pressable onPress={handleEditField}>
-                {!editableField && (
+                {!isEditable && (
                   <MaterialIcons
                     name="edit"
                     size={22}
@@ -177,7 +173,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
                   />
                 )}
               </Pressable>
-              {editableField && userBName.length > 0 &&(
+              {isEditable && userBName.length > 0 &&(
                 <Pressable onPress={handleSaveField}>
                   <MaterialIcons
                     name="check"
@@ -187,7 +183,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
                   />
                 </Pressable>
               )}
-              {editableField && (
+              {isEditable && (
                 <Pressable onPress={handleCancelField}>
                   <Entypo name="cross" size={24} color="black" style={{ margin: 10, alignItems: 'center' }} />
                 </Pressable>
@@ -263,6 +259,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
             marginTop: 10,
           }}
         >
+          
           {expanded ? (
             <Pressable
               onPress={() => setShowDeleteModal(true)}
@@ -284,8 +281,9 @@ function ConversationCard({ conversation, onDelete }: Props) {
               {expanded ? 'LESS' : 'MORE'}
             </CmTypography>
           </Pressable>
+         
         </View>
-
+       
         <SeeHowYouAlignModal
           conversation={conversation}
           open={showSeeHowYouAlignModal}
