@@ -13,6 +13,7 @@ import ConversationRating from './ConversationRating';
 import CopyLinkModal from './CopyLinkModal';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
+import { useToastMessages } from '@shared/hooks';
 import { CmTypography, Card } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
 
@@ -24,8 +25,13 @@ interface Props {
 }
 
 function ConversationCard({ conversation, onDelete }: Props) {
+
   const inputRef = useRef<any>(null);
+
   const apiClient = useApiClient();
+
+  const { showErrorToast, showSuccessToast } = useToastMessages()
+
   const currentUserBName = conversation.userB.name;
 
   const [expanded, setExpanded] = useState(false);
@@ -95,6 +101,11 @@ function ConversationCard({ conversation, onDelete }: Props) {
       updatedConversation: {
         receiverName: userBName,
       },
+    }).then(() => {
+      showSuccessToast('Name changed successfully');
+      console.log('success')
+    }).catch((error) => {
+      showErrorToast(error.response.data.message ?? 'Something went wrong, please try again later');
     });
   }
 
@@ -150,6 +161,8 @@ function ConversationCard({ conversation, onDelete }: Props) {
             onChangeText={setUserBName}
             value={userBName}
             maxLength={20}
+            onFocus={}
+            
           />
 
           {expanded && (
