@@ -98,6 +98,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
   function handleSaveField() {
     setIsEditable(false);
+    if(userBName !== currentUserBName)
     apiClient
       .putSingleConversation({
         conversationId: conversation.conversationId,
