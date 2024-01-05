@@ -8,7 +8,7 @@ function useToastMessages() {
   };
 
   function showSuccessToast(message: string) {
-    Toast.show(message, { ...options, backgroundColor: '#BDFADC' });
+    Toast.show(message, { ...options, backgroundColor: '#BDFADC',position:Toast.positions.CENTER});
   }
 
   function showErrorToast(message: string) {

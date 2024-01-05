@@ -16,7 +16,9 @@ import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
 import { useToastMessages } from 'src/shared/hooks';
 import { CmTypography, Card } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
-
+// import { RootSiblingParent } from 'react-native-root-siblings';
+import Toast from 'react-native-toast-message';
+import toastConfig from '../../../../toastConfig';
 interface Props {
   conversation: GetAllConversations;
   onDelete: (conversationId: string) => void;
@@ -99,7 +101,12 @@ function ConversationCard({ conversation, onDelete }: Props) {
         receiverName: userBName,
       },
     }).then(() => {
-      showSuccessToast('Name changed successfully');
+  
+        Toast.show({
+          type: 'success',
+          text1: 'Name successfully changed'
+        });
+      // showSuccessToast('Name successfully changed')
       console.log('success')
     }).catch((error) => {
       showErrorToast(error.response.data.message ?? 'Something went wrong, please try again later');
@@ -110,19 +117,19 @@ function ConversationCard({ conversation, onDelete }: Props) {
     setIsEditable(false);
     setUserBName(currentUserBName);
   }
-
-  useEffect(() => {
-    // inputRef.current.focus();
-  }, [isEditable]);
-
+  
+  
   return (
+  
     <>
+      {/* <RootSiblingParent> */}
       <Card
         style={[
           { padding: 15 },
           { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' },
         ]}
       >
+  
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <CmTypography variant="caption" style={{ flexShrink: 1 }}>
             {headerText[conversationState]}
@@ -188,6 +195,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
                   <Entypo name="cross" size={24} color="black" style={{ margin: 10, alignItems: 'center' }} />
                 </Pressable>
               )}
+
             </>
           )}
         </View>
@@ -307,14 +315,16 @@ function ConversationCard({ conversation, onDelete }: Props) {
           onConfirm={deleteConversation}
         />
       </Card>
-
+      {/* </RootSiblingParent> */}
       <CopyLinkModal
         show={showCopyLinkModal}
         recipient={userBName}
         link={conversationLink}
         onClose={() => setShowCopyLinkModal(false)}
       />
+      <Toast config={toastConfig}/>
     </>
+   
   );
 }
 

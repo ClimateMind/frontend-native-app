@@ -7,12 +7,12 @@ import * as NavigationBar from 'expo-navigation-bar';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import { Provider } from 'react-redux';
-
 import Colors from 'src/assets/colors';
 import { store } from 'src/store/store';
 import NavigationRoot from 'src/navigation/NavigationRoot';
 import { analyticsService } from 'src/services';
-
+import toastConfig from './toastConfig';
+import Toast from 'react-native-toast-message'
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
@@ -37,8 +37,8 @@ function App() {
   }
 
   return (
+    <>
     <Provider store={store}>
-
       <RootSiblingParent>
         <SafeAreaView style={styles.safeArea}>
           <StatusBar style="light" backgroundColor={Colors.themeDark} />
@@ -68,6 +68,8 @@ function App() {
         </SafeAreaView>
       </RootSiblingParent>
     </Provider>
+     <Toast config={toastConfig}/>
+    </>
   );
 }
 

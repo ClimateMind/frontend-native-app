@@ -28,6 +28,7 @@ function ConversationsDrawer({ open, onClose }: Props) {
 
   return (
     <Modal visible={open} animationType="slide" onRequestClose={onClose}>
+      
       <Screen view="View">
         <Section>
           <Content style={{ alignItems: 'stretch', width: '100%' }}>
