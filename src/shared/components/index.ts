@@ -6,6 +6,7 @@ export { default as DetailsSourcesTab } from './DetailsSourcesTabs'
 export { default as CmTextButton } from './CmTextButton';
 export { default as CmChip } from './CmChip';
 export { default as BackButton} from './BackButton';
+export { default as CmCheckbox } from './CmCheckbox';
 export { default as Card } from './Cards/Card';
 export { default as Content } from './Screen/Content';
 export { default as Screen } from './Screen/Screen';
