@@ -1,15 +1,17 @@
 import { Pressable } from 'react-native';
-import { MaterialIcons, Entypo  } from '@expo/vector-icons';
+import { MaterialIcons, Entypo } from '@expo/vector-icons';
 
 interface Props {
   onPress: () => void;
-  name: any 
-  source:any
-  color:string
-  size:number
+  name: any;
+  source: string;
+  color: string;
+  size: number;
 }
 
 function CmIconButton({ source, onPress, size, color, name }: Props) {
+  // could create a lookup table to map to if more icon types are introduced.
+
   const IconComponent = source === 'Entypo' ? Entypo : MaterialIcons;
 
   return (
