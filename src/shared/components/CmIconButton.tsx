@@ -3,17 +3,22 @@ import { MaterialIcons, Entypo  } from '@expo/vector-icons';
 
 interface Props {
   onPress: () => void;
-  iconType: keyof typeof MaterialIcons.glyphMap;
+  name: any 
+  source:any
+  color:string
+  size:number
 }
 
-function CmIconButton({ onPress, iconType }: Props) {
+function CmIconButton({ source, onPress, size, color, name }: Props) {
+  const IconComponent = source === 'Entypo' ? Entypo : MaterialIcons;
+
   return (
     <>
       <Pressable onPress={onPress}>
-        <MaterialIcons
-          name={iconType}
-          size={22}
-          color="black"
+        <IconComponent
+          name={name}
+          size={size}
+          color={color}
           style={{ margin: 10, alignItems: 'center' }}
         />
       </Pressable>

@@ -183,19 +183,19 @@ function ConversationCard({ conversation, onDelete }: Props) {
               {!isEditable && (
                 <CmIconButton
                   onPress={handleEditField}
-                  iconType={'edit'}
+                  name={'edit'} source={'MaterialIcons'} color={'black'} size={22}                 
                 />
               )}
               {isEditable && userBName.length > 0 && (
                 <CmIconButton
                   onPress={handleSaveField}
-                  iconType={'check'}
+                  name={'check'} source={'MaterialIcons'} color={'black'} size={22} 
                 />
               )}
               {isEditable && (
                 <CmIconButton
                   onPress={handleCancelField}
-                  iconType={'cancel'}
+                  name={'cross'} source={'Entypo'} color={'black'} size={22} 
                 />
               )}
             </>
