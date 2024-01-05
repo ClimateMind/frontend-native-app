@@ -19,27 +19,30 @@ import NotifyIcon from './NotifyIcon';
 // import { RootSiblingParent } from 'react-native-root-siblings';
 import Toast from 'react-native-toast-message';
 import toastConfig from '../../../../toastConfig';
+import CmIconButton from 'src/shared/components/CmIconButton';
 interface Props {
   conversation: GetAllConversations;
   onDelete: (conversationId: string) => void;
 }
 
 function ConversationCard({ conversation, onDelete }: Props) {
-
   const apiClient = useApiClient();
 
-  const {showErrorToast, showSuccessToast} = useToastMessages()
+  const { showErrorToast, showSuccessToast } = useToastMessages();
 
   const currentUserBName = conversation.userB.name;
 
   const [expanded, setExpanded] = useState(false);
-  const [conversationState, setConversationState] = useState(conversation.state);
+  const [conversationState, setConversationState] = useState(
+    conversation.state
+  );
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [conversationLink, setConversationLink] = useState('');
   const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
   const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
-  const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
+  const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] =
+    useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [userBName, setUserBName] = useState(conversation.userB.name);
   const [isFocused, setIsFocused] = useState(false);
@@ -95,32 +98,35 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
   function handleSaveField() {
     setIsEditable(false);
-    apiClient.putSingleConversation({
-      conversationId: conversation.conversationId,
-      updatedConversation: {
-        receiverName: userBName,
-      },
-    }).then(() => {
-  
+    apiClient
+      .putSingleConversation({
+        conversationId: conversation.conversationId,
+        updatedConversation: {
+          receiverName: userBName,
+        },
+      })
+      .then(() => {
         Toast.show({
           type: 'success',
-          text1: 'Name successfully changed'
+          text1: 'Name successfully changed',
         });
-      // showSuccessToast('Name successfully changed')
-      console.log('success')
-    }).catch((error) => {
-      showErrorToast(error.response.data.message ?? 'Something went wrong, please try again later');
-    });
+        // showSuccessToast('Name successfully changed')
+        console.log('success');
+      })
+      .catch((error) => {
+        showErrorToast(
+          error.response.data.message ??
+            'Something went wrong, please try again later'
+        );
+      });
   }
 
   function handleCancelField() {
     setIsEditable(false);
     setUserBName(currentUserBName);
   }
-  
-  
+
   return (
-  
     <>
       {/* <RootSiblingParent> */}
       <Card
@@ -129,7 +135,6 @@ function ConversationCard({ conversation, onDelete }: Props) {
           { backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' },
         ]}
       >
-  
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <CmTypography variant="caption" style={{ flexShrink: 1 }}>
             {headerText[conversationState]}
@@ -156,46 +161,42 @@ function ConversationCard({ conversation, onDelete }: Props) {
               isEditable
                 ? [
                     styles.textInputField,
-                    { borderBottomWidth: 1, borderBottomColor: isEditable && isFocused ? '#37f5ac' : 'black' },
+                    {
+                      borderBottomWidth: 1,
+                      borderBottomColor:
+                        isEditable && isFocused ? '#37f5ac' : 'black',
+                    },
                   ]
-              : styles.textInputField
+                : styles.textInputField
             }
             editable={isEditable}
             onChangeText={setUserBName}
             value={userBName}
             maxLength={20}
-            onFocus={()=>setIsFocused(true)}
-            onSubmitEditing={()=>setIsFocused(false)}
-            onEndEditing={()=>setIsFocused(false)}
+            onFocus={() => setIsFocused(true)}
+            onSubmitEditing={() => setIsFocused(false)}
+            onEndEditing={() => setIsFocused(false)}
           />
           {expanded && (
             <>
-              <Pressable onPress={handleEditField}>
-                {!isEditable && (
-                  <MaterialIcons
-                    name="edit"
-                    size={22}
-                    color="black"
-                    style={{ margin: 10, alignItems: 'center' }}
-                  />
-                )}
-              </Pressable>
-              {isEditable && userBName.length > 0 &&(
-                <Pressable onPress={handleSaveField}>
-                  <MaterialIcons
-                    name="check"
-                    size={22}
-                    color="black"
-                    style={{ margin: 10, alignItems: 'center' }}
-                  />
-                </Pressable>
+              {!isEditable && (
+                <CmIconButton
+                  onPress={handleEditField}
+                  iconType={'edit'}
+                />
+              )}
+              {isEditable && userBName.length > 0 && (
+                <CmIconButton
+                  onPress={handleSaveField}
+                  iconType={'check'}
+                />
               )}
               {isEditable && (
-                <Pressable onPress={handleCancelField}>
-                  <Entypo name="cross" size={24} color="black" style={{ margin: 10, alignItems: 'center' }} />
-                </Pressable>
+                <CmIconButton
+                  onPress={handleCancelField}
+                  iconType={'cancel'}
+                />
               )}
-
             </>
           )}
         </View>
@@ -267,7 +268,6 @@ function ConversationCard({ conversation, onDelete }: Props) {
             marginTop: 10,
           }}
         >
-          
           {expanded ? (
             <Pressable
               onPress={() => setShowDeleteModal(true)}
@@ -289,9 +289,8 @@ function ConversationCard({ conversation, onDelete }: Props) {
               {expanded ? 'LESS' : 'MORE'}
             </CmTypography>
           </Pressable>
-         
         </View>
-       
+
         <SeeHowYouAlignModal
           conversation={conversation}
           open={showSeeHowYouAlignModal}
@@ -322,9 +321,8 @@ function ConversationCard({ conversation, onDelete }: Props) {
         link={conversationLink}
         onClose={() => setShowCopyLinkModal(false)}
       />
-      <Toast config={toastConfig}/>
+      <Toast config={toastConfig} />
     </>
-   
   );
 }
 
