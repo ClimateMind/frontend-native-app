@@ -11,8 +11,7 @@ import Colors from 'src/assets/colors';
 import { store } from 'src/store/store';
 import NavigationRoot from 'src/navigation/NavigationRoot';
 import { analyticsService } from 'src/services';
-import toastConfig from './toastConfig';
-import Toast from 'react-native-toast-message'
+
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
@@ -68,7 +67,6 @@ function App() {
         </SafeAreaView>
       </RootSiblingParent>
     </Provider>
-     <Toast config={toastConfig}/>
     </>
   );
 }
