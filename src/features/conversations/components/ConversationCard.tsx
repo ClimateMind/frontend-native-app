@@ -13,9 +13,8 @@ import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
 import { CmTypography, Card } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
-import Toast from 'react-native-toast-message';
-import toastConfig from '../../../../toastConfig';
 import CmIconButton from 'src/shared/components/CmIconButton';
+
 interface Props {
   conversation: GetAllConversations;
   onDelete: (conversationId: string) => void;
