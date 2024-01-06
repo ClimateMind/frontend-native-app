@@ -16,12 +16,12 @@ interface Props {
 
 function CmIconButton({ name, source, onPress, size, color }: Props) {
 
-  let iconTypes: IconTypes = {
+  const iconTypes: IconTypes = {
     Entypo: Entypo,
     MaterialIcons: MaterialIcons,
   };
 
-  let IconComponent = iconTypes[source];
+  const IconComponent = iconTypes[source];
 
   return (
     <Pressable onPress={onPress} android_ripple={{ color: 'transparent' }}>
