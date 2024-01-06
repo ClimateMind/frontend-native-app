@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Entypo } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
 import { GetAllConversations } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
@@ -13,10 +11,8 @@ import ConversationRating from './ConversationRating';
 import CopyLinkModal from './CopyLinkModal';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
-import { useToastMessages } from 'src/shared/hooks';
 import { CmTypography, Card } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
-// import { RootSiblingParent } from 'react-native-root-siblings';
 import Toast from 'react-native-toast-message';
 import toastConfig from '../../../../toastConfig';
 import CmIconButton from 'src/shared/components/CmIconButton';
@@ -28,21 +24,15 @@ interface Props {
 function ConversationCard({ conversation, onDelete }: Props) {
   const apiClient = useApiClient();
 
-  const { showErrorToast, showSuccessToast } = useToastMessages();
-
   const currentUserBName = conversation.userB.name;
 
   const [expanded, setExpanded] = useState(false);
-  const [conversationState, setConversationState] = useState(
-    conversation.state
-  );
-
+  const [conversationState, setConversationState] = useState(conversation.state);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [conversationLink, setConversationLink] = useState('');
   const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
   const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
-  const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] =
-    useState(false);
+  const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [userBName, setUserBName] = useState(conversation.userB.name);
   const [isFocused, setIsFocused] = useState(false);
@@ -107,18 +97,10 @@ function ConversationCard({ conversation, onDelete }: Props) {
         },
       })
       .then(() => {
-        Toast.show({
-          type: 'success',
-          text1: 'Name successfully changed',
-        });
-        // showSuccessToast('Name successfully changed')
         console.log('success');
       })
       .catch((error) => {
-        showErrorToast(
-          error.response.data.message ??
-            'Something went wrong, please try again later'
-        );
+        console.log(error);
       });
   }
 
@@ -129,7 +111,6 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
   return (
     <>
-      {/* <RootSiblingParent> */}
       <Card
         style={[
           { padding: 15 },
@@ -322,7 +303,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
         link={conversationLink}
         onClose={() => setShowCopyLinkModal(false)}
       />
-      <Toast config={toastConfig} />
+      
     </>
   );
 }

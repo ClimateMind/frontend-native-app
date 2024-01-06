@@ -10,8 +10,6 @@ interface Props {
 }
 
 function CmIconButton({ source, onPress, size, color, name }: Props) {
-  // could create a lookup table to map to if more icon types are introduced.
-
   const IconComponent = source === 'Entypo' ? Entypo : MaterialIcons;
 
   return (
