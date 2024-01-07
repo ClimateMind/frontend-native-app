@@ -310,10 +310,8 @@ const styles = StyleSheet.create({
   textInputField: {
     textAlign: 'center',
     fontSize: 18,
-    lineHeight: 24.5,
-    letterSpacing: 1.6,
     fontFamily: 'nunito-black',
-    paddingBottom: 2,
+    color: 'black',
   },
   text: {
     marginVertical: 5,
