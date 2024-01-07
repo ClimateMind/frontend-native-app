@@ -12,9 +12,7 @@ If applicable, add screenshots to showcase the changes visually.
 <!-- <img src="" width=300 /> -->
 
 ## Checklist
-- [ ] I have tested this code.
-- [ ] I have updated the documentation.
-- [ ] I don't add technical debt with this pr.
+- [ ] I will open the PR as a draft and will look at the 'Files Changed' tab to remove all unnecessary changes.
 
 ## Additional Comments
 Add any additional comments or notes for reviewers.
