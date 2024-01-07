@@ -103,7 +103,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0 }}>
         <TextInput
-          style={[styles.textInputField, isEditable && { borderBottomWidth: 1, borderColor: isEditable && isFocused ? '#37f5ac' : 'black' }]}
+          style={[styles.textInputField, isEditable && { padding: 0, borderBottomWidth: 1, borderColor: isEditable && isFocused ? '#37f5ac' : 'black' }]}
           editable={isEditable}
           onChangeText={setUserBName}
           value={userBName}

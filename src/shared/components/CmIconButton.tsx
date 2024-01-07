@@ -29,7 +29,7 @@ function CmIconButton({ name, source, onPress, size, color }: Props) {
         name={name}
         size={size}
         color={color}
-        style={{ margin: 10, alignItems: 'center' }}
+        style={{ marginHorizontal: 10, alignItems: 'center' }}
       />
     </Pressable>
   );
