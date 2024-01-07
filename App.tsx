@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Provider } from 'react-redux';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
@@ -6,7 +7,6 @@ import * as SplashScreen from 'expo-splash-screen';
 import * as NavigationBar from 'expo-navigation-bar';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
-import { Provider } from 'react-redux';
 
 import Colors from 'src/assets/colors';
 import { store } from 'src/store/store';
