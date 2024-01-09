@@ -27,7 +27,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
   const { setUserName: setUserBName, userName: userBName, isEditable, setIsEditable, handleSaveField, handleCancelField } = useIconButton(currentUserBName);
   const [expanded, setExpanded] = useState(false);
   const [conversationState, setConversationState] = useState(conversation.state);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const [conversationLink, setConversationLink] = useState('');
   const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
   const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
@@ -42,13 +42,13 @@ function ConversationCard({ conversation, onDelete }: Props) {
     setConversationLink(process.env.EXPO_PUBLIC_WEB_URL + '/landing/' + conversation.conversationId);
   }
 
-  function deleteConversation() {
-    setShowDeleteModal(false);
-    apiClient
-      .deleteConversation(conversation.conversationId)
-      .then(() => onDelete(conversation.conversationId))
-      .catch((error) => console.log(error));
-  }
+  // function deleteConversation() {
+  //   setShowDeleteModal(false);
+  //   apiClient
+  //     .deleteConversation(conversation.conversationId)
+  //     .then(() => onDelete(conversation.conversationId))
+  //     .catch((error) => console.log(error));
+  // }
 
   function increaseState(state: number) {
     if (state > conversationState) {
