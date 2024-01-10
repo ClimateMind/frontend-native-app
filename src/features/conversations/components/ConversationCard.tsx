@@ -23,6 +23,7 @@ interface Props {
 
 function ConversationCard({ conversation, onDelete }: Props) {
 
+
   const currentUserBName = conversation.userB.name;
   const { increaseState, conversationState, setConversationState, showSeeHowYouAlignModal, showViewSelectedTopicsModal, setShowSeeHowYouAlignModal, setShowViewSelectedTopicsModal } = useConversationState(conversation.state);
   const { deleteConversation, showDeleteModal, setShowDeleteModal } = useDeleteConversationCard(conversation.conversationId, onDelete);
@@ -71,7 +72,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
         {expanded && (
           <>
             {!isEditable && <CmIconButton onPress={() => setIsEditable(true)} name={'edit'} source={'MaterialIcons'} color={'black'} size={22} />}
-            {isEditable && userBName.length > 0 && <CmIconButton onPress={handleSaveField} name={'check'} source={'MaterialIcons'} color={'black'} size={22} />}
+            {isEditable && userBName.length > 0 && <CmIconButton onPress={()=>handleSaveField(conversation.conversationId)} name={'check'} source={'MaterialIcons'} color={'black'} size={22} />}
             {isEditable && <CmIconButton onPress={handleCancelField} name={'cross'} source={'Entypo'} color={'black'} size={22} />}
           </>
         )}
