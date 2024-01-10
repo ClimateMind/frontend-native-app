@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import useApiClient from 'src/hooks/useApiClient';
 
-function useIconButton(currentUserName: any) {
+function useIconButton(currentUserName: string) {
   const [userName, setUserName] = useState(currentUserName);
   const [isEditable, setIsEditable] = useState(false);
   const apiClient = useApiClient();
