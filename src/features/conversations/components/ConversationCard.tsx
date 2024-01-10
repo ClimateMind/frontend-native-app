@@ -12,9 +12,9 @@ import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
 import { CmTypography, Card } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
-import CmIconButton from 'src/shared/components/CmIconButton';
+import CmIconButton from '@shared/components/CmIconButton';
 import { useConversationState, useDeleteConversationCard } from '../hooks';
-import { useIconButton } from 'src/shared/hooks';
+import { useIconButton } from '@shared/hooks';
 
 interface Props {
   conversation: GetAllConversations;
@@ -23,8 +23,8 @@ interface Props {
 
 function ConversationCard({ conversation, onDelete }: Props) {
 
-
   const currentUserBName = conversation.userB.name;
+
   const { increaseState, conversationState, setConversationState, showSeeHowYouAlignModal, showViewSelectedTopicsModal, setShowSeeHowYouAlignModal, setShowViewSelectedTopicsModal } = useConversationState(conversation.state);
   const { deleteConversation, showDeleteModal, setShowDeleteModal } = useDeleteConversationCard(conversation.conversationId, onDelete);
   const { setUserName: setUserBName, userName: userBName, isEditable, setIsEditable, handleSaveField, handleCancelField } = useIconButton(currentUserBName);
