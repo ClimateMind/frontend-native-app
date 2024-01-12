@@ -6,6 +6,7 @@
 | -------- [1.Adding new developers to apple connect](#Adding-new-developers-to-apple-connect)  
 | -------- [2. Obtaining the Expo build file](#Obtaining-the-Expo-build-file)  
 | -------- [3. Delivering the build with Transporter ](#Delivering-the-build-with-Transporter)
+
 | -------- [4. Publishing the latest build with Apple Connect ](#Publishing-the-latest-build-with-Apple-Connect)  
 
 # Requirements
