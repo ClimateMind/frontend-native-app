@@ -28,10 +28,11 @@ Once signed in add the expo build file you have downloaded and select 'Add App'.
 
 # Apple Connect
 
-Now go to the connect app, login and select 'Apps'. Add the new build which should have a new version number 
+Now go to the connect app, login and select 'Apps'.  Select the ' + ' sign from the top left hand side and add the new build which should have a new version number. 
 <img width="1467" alt="add-app" src="https://github.com/ClimateMind/frontend-native-app/assets/39728053/b19d9ec1-f036-4310-943d-dfa085119191">
-
+Verify all of the information is correct and enter the reason for a new build eg 'bug fixes, new features'.
 
 # Test flight
+
 
 # Send for review
