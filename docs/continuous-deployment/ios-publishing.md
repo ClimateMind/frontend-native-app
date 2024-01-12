@@ -11,9 +11,10 @@
 1. Transporter
 2. Apple connect
 3. Apple developer Licence
+4. Valid Apple id
 
 # adding new developers to apple connect
-Once a developer account and licence has been obtained the licence holder can then proceed to login through Apple Connect https://appstoreconnect.apple.com/login
+In order to publish an app Once a developer account and licence has been obtained the licence holder can then proceed to login through Apple Connect https://appstoreconnect.apple.com/login
 
 Once logged in select  'users and access'.
 
