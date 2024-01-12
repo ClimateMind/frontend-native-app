@@ -2,7 +2,7 @@
 > **Abstract**: *This document outlines the IOS publishing process.*
 
 **Table of contents**  
-| ---- [Deployment Mechanisms with Expo](#deployment-mechanisms-with-expo)  
+| ---- [Requirements](#Requirements)  
 
 | -------- [1.Adding new developers to apple connect](#Adding-new-developers-to-apple-connect)  
 
