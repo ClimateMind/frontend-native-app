@@ -8,5 +8,6 @@
 | ---- [Our Process for Continuous Deployment](#our-process-for-continuous-deployment)  
 
 #Expo build file
+
 The expo build file can be obtained from the builds tab of the expo admin tool. 
 <img width="1456" alt="expo-admin" src="https://github.com/ClimateMind/frontend-native-app/assets/39728053/807c60a5-7dfa-4463-9329-47fcb1dc6af5">
