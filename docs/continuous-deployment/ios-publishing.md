@@ -4,7 +4,7 @@
 **Table of contents**  
 | ---- [Requirements](#Requirements)  
 
-| -------- [1.Adding new developers to apple connect](#1-Adding-new-developers-to-apple-connect)  
+| -------- [1. Adding new developers to apple connect](#1-Adding-new-developers-to-apple-connect)  
 
 | -------- [2. Obtaining the Expo build file](#2-Obtaining-the-Expo-build-file)  
 
