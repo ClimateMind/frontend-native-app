@@ -53,10 +53,10 @@ Enter the new version number for the app.
 Verify all of the information is correct and enter the reason for a new build eg 'bug fixes, new features'.
 
 
-
 ## 4.1.Test flight
 
 Before Sending for review, carry out a test flight of your app.
 
 
 ## 4.2.Send for review
+
