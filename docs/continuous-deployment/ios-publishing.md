@@ -19,7 +19,7 @@
 4. Valid Apple id.
 
 # Adding new developers to apple connect
-*** This step must be done first by the account holder Kameron Rodrigues or anyone else with appropriate permissions ***. In order to publish an app once a developer account and licence has been obtained, the account holder can then proceed to login through Apple Connect and grant access to anyone with a valid [ apple id ](https://support.apple.com/en-gb/108647) through selecting 'users and access'.
+*** This step must be done first by the account holder Kameron Rodrigues or anyone else with appropriate permissions ***. In order to publish an app once a developer account and licence has been obtained, the account holder can then proceed to login through Apple Connect and grant access to anyone with a valid [ apple id ](https://support.apple.com/en-gb/108647) through selecting 'users and access' and selecting the '+' sign.
  
 <img width="1441" alt="admin" src="https://github.com/ClimateMind/frontend-native-app/assets/39728053/4f10bfdc-20a1-41a1-ae70-903239ad4f78">
 
