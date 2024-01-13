@@ -39,11 +39,15 @@ Once signed in add the Expo build file you have downloaded and select 'Add App'.
 
 Now go to the connect app, login and select 'Apps'.  Select the ' + ' sign from the top left hand side and add the new build.
 
+
 <img width="1467" alt="add-app" src="https://github.com/ClimateMind/frontend-native-app/assets/39728053/b19d9ec1-f036-4310-943d-dfa085119191">
+
 
 Enter the new version number for the app.
 
+
 <img width="1383" alt="version" src="https://github.com/ClimateMind/frontend-native-app/assets/39728053/26edea26-a524-463d-ade0-db062eacc091">
+
 
 Verify all of the information is correct and enter the reason for a new build eg 'bug fixes, new features'.
 
