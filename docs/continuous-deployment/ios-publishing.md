@@ -14,9 +14,10 @@
 
 # Requirements
 1. Transporter App from the app store.
-2. Access to Apple connect.
-3. Access to Expo Dev.
-4. Valid Apple id.
+2. Test Flight.
+3. Access to Apple connect.
+4. Access to Expo Dev.
+5. Valid Apple id.
 
 # Adding new developers to apple connect
 *** This step must be done first by the account holder Kameron Rodrigues or anyone else with appropriate permissions ***. In order to publish an app once a developer account and licence has been obtained, the account holder can then proceed to login through Apple Connect and grant access to anyone with a valid [ apple id ](https://support.apple.com/en-gb/108647) through selecting 'users and access' and selecting the '+' sign.
@@ -54,6 +55,8 @@ Verify all of the information is correct and enter the reason for a new build eg
 
 
 ## Test flight
+
+Before Sending for review, carry out a test flight of your app.
 
 
 ## Send for review
