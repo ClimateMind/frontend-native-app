@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 function useConversationState(conversationStateNumber: number) {
-
   const [conversationState, setConversationState] = useState(conversationStateNumber);
   
   const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);

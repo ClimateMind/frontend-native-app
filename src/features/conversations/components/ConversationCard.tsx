@@ -22,11 +22,10 @@ interface Props {
 }
 
 function ConversationCard({ conversation, onDelete }: Props) {
-
   const currentUserBName = conversation.userB.name;
 
   const { increaseState, conversationState, setConversationState, showSeeHowYouAlignModal, showViewSelectedTopicsModal, setShowSeeHowYouAlignModal, setShowViewSelectedTopicsModal } = useConversationState(conversation.state);
-  const { deleteConversation, showDeleteModal, setShowDeleteModal } = useDeleteConversationCard(conversation.conversationId, onDelete);
+  const { deleteConversation, showDeleteModal, setShowDeleteModal } = useDeleteConversationCard(onDelete);
   const { setUserName: setUserBName, userName: userBName, isEditable, setIsEditable, handleSaveField, handleCancelField } = useIconButton(currentUserBName);
   const [expanded, setExpanded] = useState(false);
   const [conversationLink, setConversationLink] = useState('');
@@ -112,7 +111,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
       <SeeHowYouAlignModal conversation={conversation} open={showSeeHowYouAlignModal} onClose={() => setShowSeeHowYouAlignModal(false)} onViewTopics={() => { setShowSeeHowYouAlignModal(false); setShowViewSelectedTopicsModal(true); }} />
       <ViewSelectedTopicsModal conversation={conversation} conversationState={conversationState} open={showViewSelectedTopicsModal} onClose={() => setShowViewSelectedTopicsModal(false)} />
-      <DeleteConversationModal show={showDeleteModal} userBName={userBName} onCancel={() => setShowDeleteModal(false)} onConfirm={deleteConversation} />
+      <DeleteConversationModal show={showDeleteModal} userBName={userBName} onCancel={() => setShowDeleteModal(false)} onConfirm={() => deleteConversation(conversation.conversationId)} />
       <CopyLinkModal show={showCopyLinkModal} recipient={userBName} link={conversationLink} onClose={() => setShowCopyLinkModal(false)} />
     </Card>
   );

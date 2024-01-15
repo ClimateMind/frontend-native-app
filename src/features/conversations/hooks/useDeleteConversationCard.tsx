@@ -1,16 +1,20 @@
 import { useState } from 'react';
-import useApiClient from 'src/hooks/useApiClient';
 
-function useDeleteConversationCard(conversationId: string, onDelete: (conversationId: string) => void) {
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
+import useApiClient from 'src/hooks/useApiClient';
+import useLogger from 'src/hooks/useLogger';
+
+function useDeleteConversationCard(onDelete: (conversationId: string) => void) {
   const apiClient = useApiClient();
+  const { logError } = useLogger();
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   
-  function deleteConversation() {
+  function deleteConversation(conversationId: string) {
     setShowDeleteModal(false);
     apiClient
       .deleteConversation(conversationId)
       .then(() => onDelete(conversationId))
-      .catch((error) => console.log(error));
+      .catch((error) => logError(error));
   }
 
   return {
