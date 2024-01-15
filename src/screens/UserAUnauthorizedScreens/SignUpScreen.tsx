@@ -103,7 +103,7 @@ function SignUpScreen() {
       })
       .catch((error) => {
         if (error instanceof AxiosError) {
-          showErrorToast(error.response?.data.error ?? 'Unknow Error has occoured')
+          showErrorToast(error.response?.data.error ?? 'Unknown Error has occoured')
         }
       });
   }
