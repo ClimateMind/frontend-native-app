@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import useApiClient from 'src/hooks/useApiClient';
-import { CmTypography, Card } from '@shared/components';
+import { CmTypography, Card, CmModal } from '@shared/components';
 import { useToastMessages } from 'src/shared/hooks';
 interface Props {
   show: boolean;
@@ -28,7 +28,7 @@ function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
   }
 
   return (
-    <Modal visible={show} transparent={true}>
+    <CmModal visible={show} transparent={true}>
       <View style={styles.centerModal}>
         <Card style={{ padding: 20, width: '90%' }}>
 
@@ -51,7 +51,7 @@ function PasswordResetModal({ show, onSubmit, onCancel }: Props) {
           </View>
         </Card>
       </View>
-    </Modal>
+    </CmModal>
   );
 }
 

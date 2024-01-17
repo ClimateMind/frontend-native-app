@@ -1,18 +1,15 @@
-import Toast from 'react-native-root-toast';
+import { useAppDispatch } from "src/store/hooks";
+import { showToast } from "src/store/sharedSlice";
 
-function useToastMessages() {
-  const options = {
-    duration: Toast.durations.LONG,
-    textColor: '#000000',
-    opacity: 1,
-  };
+function useToastMessage() {
+  const dispatch = useAppDispatch();
 
   function showSuccessToast(message: string) {
-    Toast.show(message, { ...options, backgroundColor: '#BDFADC' });
+    dispatch(showToast({ message, type: 'success' }));
   }
 
   function showErrorToast(message: string) {
-    Toast.show(message, { ...options, backgroundColor: '#ED7878' });
+    dispatch(showToast({ message, type: 'error' }));
   }
 
   return {
@@ -21,4 +18,4 @@ function useToastMessages() {
   };
 }
 
-export default useToastMessages;
+export default useToastMessage;

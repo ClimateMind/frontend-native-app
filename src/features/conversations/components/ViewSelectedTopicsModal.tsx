@@ -1,4 +1,4 @@
-import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import Colors from 'src/assets/colors';
@@ -11,7 +11,7 @@ import ActionCard from './ActionCard';
 import SolutionsFeedCard from './SolutionCard';
 import SolutionDetailsModal from './SolutionDetailsModal';
 import ActionDetailsModal from './ActionDetailsModal';
-import { CmTypography, Content } from '@shared/components';;
+import { CmModal, CmTypography, Content } from '@shared/components';;
 
 interface Props {
   open: boolean;
@@ -48,7 +48,7 @@ function ViewSelectedTopicsModal({ open, conversation, conversationState, onClos
   }
 
   return (
-    <Modal
+    <CmModal
       visible={open}
       transparent={false}
       animationType="fade"
@@ -83,7 +83,7 @@ function ViewSelectedTopicsModal({ open, conversation, conversationState, onClos
 
       <ActionDetailsModal open={showActionDetails} action={climateEffect} onClose={() => setShowActionDetails(false)} />
       <SolutionDetailsModal open={showSolutionDetails} solution={solutionDetails} onClose={() => setShowSolutionDetails(false)} />
-    </Modal>
+    </CmModal>
   );
 }
 

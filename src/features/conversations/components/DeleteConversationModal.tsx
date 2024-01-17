@@ -1,6 +1,6 @@
-import { Modal, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
-import { CmTypography, Card } from '@shared/components';
+import { CmTypography, Card, CmModal } from '@shared/components';
 
 interface Props {
   show: boolean;
@@ -11,7 +11,7 @@ interface Props {
 
 function DeleteConversationModal({ show, userBName, onCancel, onConfirm }: Props) {
   return (
-    <Modal visible={show} transparent={true}>
+    <CmModal visible={show} transparent={true}>
       <View style={styles.centerModal}>
         <Card style={{ padding: 20, width: '90%' }}>
 
@@ -25,7 +25,7 @@ function DeleteConversationModal({ show, userBName, onCancel, onConfirm }: Props
 
         </Card>
       </View>
-    </Modal>
+    </CmModal>
   );
 }
 
