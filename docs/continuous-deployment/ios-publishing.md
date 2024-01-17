@@ -53,6 +53,11 @@ Verify all of the information is correct and enter the reason for a new build eg
 
 Before Sending for review, carry out a test flight of your app.
 
+section to be completed once we have a new build
+
 
 ## 4.2. Send for review
+
+
+section to be completed once we have a new build
 
