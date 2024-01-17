@@ -14,7 +14,7 @@ import { CmTypography, Card } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
 import CmIconButton from '@shared/components/CmIconButton';
 import { useConversationState, useDeleteConversationCard } from '../hooks';
-import { useIconButton } from '@shared/hooks';
+import useIconButton from '@shared/hooks/useIconButton';
 
 interface Props {
   conversation: GetAllConversations;
