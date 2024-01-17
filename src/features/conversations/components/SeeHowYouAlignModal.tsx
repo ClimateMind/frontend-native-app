@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import Colors from 'src/assets/colors';
@@ -8,7 +8,7 @@ import ViewSelectedTopicsButton from './ViewSelectedTopicsButton';
 import { GetAllConversations } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
 import Alignment from 'src/types/Alignment';
-import { CmTypography, Content } from '@shared/components';
+import { CmModal, CmTypography, Content } from '@shared/components';
 import PersonalValueCardSmall from './PersonalValueCardSmall';
 
 interface Props {
@@ -44,7 +44,7 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
   }
 
   return (
-    <Modal
+    <CmModal
       visible={open}
       transparent={false}
       animationType="fade"
@@ -73,7 +73,7 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
           </ScrollView>
         </Content>
       </View>
-    </Modal>
+    </CmModal>
   );
 }
 

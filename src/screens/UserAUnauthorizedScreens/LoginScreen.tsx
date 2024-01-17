@@ -15,7 +15,7 @@ import { useToastMessages } from '@shared/hooks';
 function LoginScreen() {
   const apiClient = useApiClient();
   const logger = useLogger();
-  const { showErrorToast } = useToastMessages()
+  const { showSuccessToast, showErrorToast } = useToastMessages()
   const dispatch = useAppDispatch();
 
   const recaptcha = useRef<RecaptchaRef>(null);
@@ -36,6 +36,7 @@ function LoginScreen() {
       const result = await apiClient.postLogin(email.trim(), password, token);
 
       if (result !== undefined) {
+        showSuccessToast(`Welcome back, ${result.user.first_name}!`);
         dispatch(
           login({
             accessToken: result.access_token,

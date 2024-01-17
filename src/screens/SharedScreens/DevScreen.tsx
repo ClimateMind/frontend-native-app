@@ -4,11 +4,13 @@ import appConfig from '../../../app.json';
 import { CmButton, CmCheckbox, CmTypography, Content, Screen } from 'src/shared/components';
 import { useOnboarding } from 'src/features/onboarding/hooks';
 import { useUpdateApp, useSkipAnalytics } from 'src/features/dev';
+import { useToastMessages } from 'src/shared/hooks';
 
 function DevScreen() {
   const { resetOnboarding } = useOnboarding();
   const { isLoading, updateApp, buttonText } = useUpdateApp();
   const { skipAnalytics, skipAnalyticsCheckboxHandler } = useSkipAnalytics();
+  const { showSuccessToast, showErrorToast } = useToastMessages();
 
   return (
     <Screen>
@@ -22,6 +24,15 @@ function DevScreen() {
 
         <View style={{ alignSelf: 'flex-start' }}>
           <CmCheckbox checked={skipAnalytics} onPress={skipAnalyticsCheckboxHandler} text="Don't track analytics events" />
+        </View>
+
+        <View style={{ flexDirection: 'row', gap: 10, marginTop: 20 }}>
+          <View style={{ flex: 1 }}>
+            <CmButton style={[styles.btn, { flex: 1 }]} onPress={() => showSuccessToast('Hello you!')} text="Show Success Toast" />
+          </View>
+          <View style={{ flex: 1 }}>
+            <CmButton onPress={() => showErrorToast('Hello you!')} text="Show Error Toast" style={styles.btn} />
+          </View>
         </View>
 
         <View style={{ flex: 1 }} />

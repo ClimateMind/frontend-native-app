@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import { useAppSelector } from 'src/store/hooks';
 import useApiClient from 'src/hooks/useApiClient';
-import { CmTypography, Card } from '@shared/components';
+import { CmTypography, Card, CmModal } from '@shared/components';
 
 interface Props {
   show: boolean;
@@ -41,7 +41,7 @@ function UpdateEmailModal({ show, onSubmit, onCancel }: Props) {
   }
 
   return (
-    <Modal visible={show} transparent={true}>
+    <CmModal visible={show} transparent={true}>
       <View style={styles.centerModal}>
         <Card style={{ padding: 20, width: '90%' }}>
 
@@ -81,7 +81,7 @@ function UpdateEmailModal({ show, onSubmit, onCancel }: Props) {
           </View>
         </Card>
       </View>
-    </Modal>
+    </CmModal>
   );
 }
 

@@ -1,7 +1,7 @@
-import { Modal, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 
-import { CmTypography, Card } from '@shared/components';
+import { CmTypography, Card, CmModal } from '@shared/components';
 import { useToastMessages } from 'src/shared/hooks';
 
 interface Props {
@@ -21,7 +21,7 @@ function CopyLinkModal({ show, recipient, link, onClose }: Props) {
   }
 
   return (
-    <Modal visible={show} animationType="fade" transparent={true}>
+    <CmModal visible={show} animationType="fade" transparent={true}>
       <View style={styles.centerModal}>
         <Card style={{ padding: 20, width: '90%' }}>
 
@@ -35,7 +35,7 @@ function CopyLinkModal({ show, recipient, link, onClose }: Props) {
 
         </Card>
       </View>
-    </Modal>
+    </CmModal>
   );
 }
 

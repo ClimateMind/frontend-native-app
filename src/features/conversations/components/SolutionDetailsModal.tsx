@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Image, Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Image, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { openUrl } from 'src/utils';
@@ -8,7 +8,7 @@ import useApiClient from 'src/hooks/useApiClient';
 import Solution3 from 'src/types/Solution3';
 import Solution2 from 'src/types/Solution2';
 import ActionCardHeader from './ActionCardHeader';
-import { CmTypography, DetailsSourcesTab } from '@shared/components';
+import { CmModal, CmTypography, DetailsSourcesTab } from '@shared/components';
 
 interface Props {
   open: boolean;
@@ -34,7 +34,7 @@ function SolutionDetailsModal({ open, solution, onClose }: Props) {
   }
 
   return (
-    <Modal
+    <CmModal
       visible={open}
       transparent={true}
       animationType="fade"
@@ -62,7 +62,7 @@ function SolutionDetailsModal({ open, solution, onClose }: Props) {
           </View>)}
         </ScrollView>
       </View>
-    </Modal>
+    </CmModal>
   );
 }
 

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Modal, Pressable, View } from 'react-native';
+import { ActivityIndicator, FlatList, Pressable, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 import ConversationsIntroCard from './ConversationsIntroCard';
 import ConversationCard from './ConversationCard';
 import { GetAllConversations } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
-import { Screen, Section, Content, CmTypography}from '@shared/components';
+import { Screen, Section, Content, CmModal, CmTypography}from '@shared/components';
 
 interface Props {
   open: boolean;
@@ -27,7 +27,7 @@ function ConversationsDrawer({ open, onClose }: Props) {
   }, [open]);
 
   return (
-    <Modal visible={open} animationType="slide" onRequestClose={onClose}>
+    <CmModal visible={open} animationType="slide" onRequestClose={onClose}>
       <Screen view="View">
         <Section>
           <Content style={{ alignItems: 'stretch', width: '100%' }}>
@@ -55,7 +55,7 @@ function ConversationsDrawer({ open, onClose }: Props) {
           </Content>
         </Section>
       </Screen>
-    </Modal>
+    </CmModal>
   );
 }
 
