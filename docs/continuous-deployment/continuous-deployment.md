@@ -13,7 +13,7 @@ Getting changes into production fast and often is an important part of software 
 There are basically two options for us to deploy changes to production, builds and updates.
 
 ### 1. Creating a New Build
-First of all, we can create a completely new build, upload it to the Google Play Store for Android and App Store for iOS [( IOS publishing process can be found here )](https://github.com/ClimateMind/frontend-native-app/blob/454-add-ios-publishing-process-to-cicd-document/docs/continuous-deployment/ios-publishing.md). Google / Apple will have to review those changes before they'll be published. The complete process can take between several hours up to a few days, so it's relatively slow.
+First of all, we can create a completely new build, upload it to the Google Play Store for Android and App Store for iOS [( IOS publishing process can be found here )](ios-publishing.md). Google / Apple will have to review those changes before they'll be published. The complete process can take between several hours up to a few days, so it's relatively slow.
 
 <p align="center">
   <img src="cd-build.drawio.png" />

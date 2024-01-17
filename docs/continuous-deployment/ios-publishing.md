@@ -3,13 +3,9 @@
 
 **Table of contents**  
 | ---- [Requirements](#Requirements)  
-
 | -------- [1. Adding new developers to apple connect](#1-Adding-new-developers-to-apple-connect)  
-
 | -------- [2. Obtaining the Expo build file](#2-Obtaining-the-Expo-build-file)  
-
-| -------- [3. Delivering the build with Transporter ](#3-Delivering-the-build-with-Transporter)
-
+| -------- [3. Delivering the build with Transporter ](#3-Delivering-the-build-with-Transporter)  
 | -------- [4. Publishing the latest build with Apple Connect ](#4-Publishing-the-latest-build-with-Apple-Connect)  
 
 # Requirements
@@ -53,10 +49,10 @@ Enter the new version number for the app.
 Verify all of the information is correct and enter the reason for a new build eg 'bug fixes, new features'.
 
 
-## 4.1.Test flight
+## 4.1. Test flight
 
 Before Sending for review, carry out a test flight of your app.
 
 
-## 4.2.Send for review
+## 4.2. Send for review
 
