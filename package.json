@@ -58,7 +58,7 @@
     "babel-plugin-react-native-web": "^0.19.9",
     "metro-react-native-babel-preset": "^0.77.0",
     "react-dom": "^18.2.0",
-    "react-native-web": "^0.19.9",
+    "react-native-web": "^0.19.10",
     "storybook": "^7.6.6",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^5.1.3"
