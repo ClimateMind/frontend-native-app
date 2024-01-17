@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Foundation } from '@expo/vector-icons';
 import { GetAllConversations } from 'src/api/responses';
-import useApiClient from 'src/hooks/useApiClient';
 import DeleteConversationModal from './DeleteConversationModal';
 import SeeHowYouAlignButton from './SeeHowYouAlignButton';
 import ViewSelectedTopicsButton from './ViewSelectedTopicsButton';
@@ -13,7 +12,9 @@ import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
 import { CmTypography, Card } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
-import CmIconButton from 'src/shared/components/CmIconButton';
+import CmIconButton from '@shared/components/CmIconButton';
+import { useConversationState, useDeleteConversationCard } from '../hooks';
+import useIconButton from '@shared/hooks/useIconButton';
 
 interface Props {
   conversation: GetAllConversations;
@@ -21,19 +22,14 @@ interface Props {
 }
 
 function ConversationCard({ conversation, onDelete }: Props) {
-  const apiClient = useApiClient();
-
   const currentUserBName = conversation.userB.name;
 
+  const { increaseState, conversationState, setConversationState, showSeeHowYouAlignModal, showViewSelectedTopicsModal, setShowSeeHowYouAlignModal, setShowViewSelectedTopicsModal } = useConversationState(conversation.state);
+  const { deleteConversation, showDeleteModal, setShowDeleteModal } = useDeleteConversationCard(onDelete);
+  const { setUserName: setUserBName, userName: userBName, isEditable, setIsEditable, handleSaveField, handleCancelField } = useIconButton(currentUserBName);
   const [expanded, setExpanded] = useState(false);
-  const [conversationState, setConversationState] = useState(conversation.state);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [conversationLink, setConversationLink] = useState('');
   const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
-  const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
-  const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
-  const [isEditable, setIsEditable] = useState(false);
-  const [userBName, setUserBName] = useState(conversation.userB.name);
   const [isFocused, setIsFocused] = useState(false);
 
   const headerText = [
@@ -50,47 +46,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
     setShowCopyLinkModal(true);
     setConversationLink(process.env.EXPO_PUBLIC_WEB_URL + '/landing/' + conversation.conversationId);
   }
-
-  function deleteConversation() {
-    setShowDeleteModal(false);
-    apiClient.deleteConversation(conversation.conversationId)
-      .then(() => onDelete(conversation.conversationId))
-      .catch((error) => console.log(error));
-  }
-
-  function increaseState(state: number) {
-    if (state > conversationState) {
-      setConversationState(state);
-    }
-
-    if (state === 2) {
-      setShowSeeHowYouAlignModal(true);
-    } else if (state === 3) {
-      setShowViewSelectedTopicsModal(true);
-    }
-  }
-
-  function handleSaveField() {
-    setIsEditable(false);
-    if(userBName !== currentUserBName) {
-      apiClient.putSingleConversation({
-        conversationId: conversation.conversationId,
-        updatedConversation: {
-          receiverName: userBName,
-        },
-      });
-    }
-  }
-
-  function handleCancelField() {
-    setIsEditable(false);
-    setUserBName(currentUserBName);
-  }
-
-  useEffect(() => {
-    setConversationState(conversation.state);
-  }, [conversation.state]);
-
+ 
   return (
     <Card style={{ padding: 15, backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -115,7 +71,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
         {expanded && (
           <>
             {!isEditable && <CmIconButton onPress={() => setIsEditable(true)} name={'edit'} source={'MaterialIcons'} color={'black'} size={22} />}
-            {isEditable && userBName.length > 0 && <CmIconButton onPress={handleSaveField} name={'check'} source={'MaterialIcons'} color={'black'} size={22} />}
+            {isEditable && userBName.length > 0 && <CmIconButton onPress={()=>handleSaveField(conversation.conversationId)} name={'check'} source={'MaterialIcons'} color={'black'} size={22} />}
             {isEditable && <CmIconButton onPress={handleCancelField} name={'cross'} source={'Entypo'} color={'black'} size={22} />}
           </>
         )}
@@ -155,7 +111,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
       <SeeHowYouAlignModal conversation={conversation} open={showSeeHowYouAlignModal} onClose={() => setShowSeeHowYouAlignModal(false)} onViewTopics={() => { setShowSeeHowYouAlignModal(false); setShowViewSelectedTopicsModal(true); }} />
       <ViewSelectedTopicsModal conversation={conversation} conversationState={conversationState} open={showViewSelectedTopicsModal} onClose={() => setShowViewSelectedTopicsModal(false)} />
-      <DeleteConversationModal show={showDeleteModal} userBName={userBName} onCancel={() => setShowDeleteModal(false)} onConfirm={deleteConversation} />
+      <DeleteConversationModal show={showDeleteModal} userBName={userBName} onCancel={() => setShowDeleteModal(false)} onConfirm={() => deleteConversation(conversation.conversationId)} />
       <CopyLinkModal show={showCopyLinkModal} recipient={userBName} link={conversationLink} onClose={() => setShowCopyLinkModal(false)} />
     </Card>
   );
