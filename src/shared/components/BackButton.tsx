@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 20,
+    marginVertical: 20
   },
   backButtonText: {
     marginLeft: 10,
