@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
 import Colors from 'src/assets/colors';
 import { GetAllConversations } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
-import { useEffect, useState } from 'react';
 import ClimateEffect2 from 'src/types/ClimateEffect2';
 import Solution3 from 'src/types/Solution3';
 import ActionCard from './ActionCard';
@@ -56,9 +56,7 @@ function ViewSelectedTopicsModal({ open, conversation, conversationState, onClos
       <View style={styles.container}>
         <Content>
           <ScrollView>
-          <View style={styles.backButtonContainer}>
-            <BackButton onPress={onClose}/>
-            </View>
+            <BackButton onPress={onClose} style={{ marginVertical: 25 }} />
 
             <CmTypography variant='h1'>Your shared feed with {conversation.userB.name}</CmTypography>
 
@@ -91,16 +89,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: Colors.themeBright,
-  },
-  backButtonContainer: {
-    alignSelf: 'flex-start',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 20,
-    paddingTop: 10,
-  },
-  backButtonText: {
-    marginLeft: 10,
   },
   text: {
     textAlign: 'center',

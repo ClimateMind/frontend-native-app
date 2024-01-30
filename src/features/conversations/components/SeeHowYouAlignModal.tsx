@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import Colors from 'src/assets/colors';
 
+import Colors from 'src/assets/colors';
 import ViewSelectedTopicsButton from './ViewSelectedTopicsButton';
 import { GetAllConversations } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
@@ -51,9 +51,7 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
       <View style={styles.container}>
         <Content>
           <ScrollView>
-            <View style={styles.backButtonContainer}>
-            <BackButton onPress={onClose}/>
-            </View>
+            <BackButton onPress={onClose} style={{ marginVertical: 25 }} />
 
             <CmTypography variant='h1'>Your shared core values!</CmTypography>
 
@@ -80,16 +78,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: Colors.themeBright,
-  },
-  backButtonContainer: {
-    alignSelf: 'flex-start',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 20,
-    paddingTop: 10,
-  },
-  backButtonText: {
-    marginLeft: 10,
   },
   subheader: {
     textAlign: 'center',
