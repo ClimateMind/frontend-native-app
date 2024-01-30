@@ -131,10 +131,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'left',
   },
-  // deleteButton: {
-  //   paddingHorizontal: 10,
-  //   paddingVertical: 5,
-  // },
   moreLessButton: {
     padding: 5,
     marginTop: 10,
