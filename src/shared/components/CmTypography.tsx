@@ -1,7 +1,7 @@
 import { StyleSheet, StyleProp, Text, TextProps, TextStyle } from 'react-native';
 
 interface Props extends React.PropsWithChildren, TextProps {
-  variant: 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'body-italics' | 'button' | 'caption' | 'label' | 'overline';
+  variant: 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'body-italics' | 'button' | 'caption' | 'label' | 'overline' | 'emoji';
   style?: StyleProp<TextStyle>;
 }
 
@@ -38,6 +38,9 @@ function CmTypography({ children, variant, style, ...rest }: Props) {
       break;
     case 'overline':
       textStyle = styles.overline;
+      break;
+    case 'emoji':
+      textStyle = styles.emoji;
       break;
     default:
       textStyle = styles.body;
@@ -114,6 +117,10 @@ const styles = StyleSheet.create({
     lineHeight: 14,
     letterSpacing: 3.2,
     textTransform: 'uppercase',
+  },
+  emoji: {
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
 

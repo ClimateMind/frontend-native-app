@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
-
+import { StyleSheet, View } from 'react-native';
 import useApiClient from 'src/hooks/useApiClient';
-import { CmTypography } from '@shared/components';
+import { CmTypography, CmEmojiButton } from '@shared/components';
 
 interface Props {
   conversationId: string;
@@ -28,16 +27,18 @@ function ConversationRating({ conversationId, initialRating, onRated }: Props) {
 
   return (
     <>
-      <CmTypography variant='h2' style={styles.title}>Yay! Go you!</CmTypography>
+      <CmTypography variant="h2" style={styles.title}>
+        Yay! Go you!
+      </CmTypography>
 
       <CmTypography variant="body">How Did it go?</CmTypography>
 
       <View style={styles.buttonContainer}>
-        <Pressable style={[styles.button, { backgroundColor: rating === 1 ? 'lightgray' : 'white'}]} onPress={() => submitRating(1)}><CmTypography variant='body'>😡</CmTypography></Pressable>
-        <Pressable style={[styles.button, { backgroundColor: rating === 2 ? 'lightgray' : 'white'}]} onPress={() => submitRating(2)}><CmTypography variant='body'>😐</CmTypography></Pressable>
-        <Pressable style={[styles.button, { backgroundColor: rating === 3 ? 'lightgray' : 'white'}]} onPress={() => submitRating(3)}><CmTypography variant='body'>🤔</CmTypography></Pressable>
-        <Pressable style={[styles.button, { backgroundColor: rating === 4 ? 'lightgray' : 'white'}]} onPress={() => submitRating(4)}><CmTypography variant='body'>😊</CmTypography></Pressable>
-        <Pressable style={[styles.button, { backgroundColor: rating === 5 ? 'lightgray' : 'white'}]} onPress={() => submitRating(5)}><CmTypography variant='body'>🥳</CmTypography></Pressable>
+        <CmEmojiButton text={'😡'} style={{ backgroundColor: rating === 1 ? 'lightgray' : 'white' }} onPress={() => submitRating(1)} />
+        <CmEmojiButton text={'😐'} style={{ backgroundColor: rating === 2 ? 'lightgray' : 'white' }} onPress={() => submitRating(2)} />
+        <CmEmojiButton text={'🤔'} style={{ backgroundColor: rating === 3 ? 'lightgray' : 'white' }} onPress={() => submitRating(3)} />
+        <CmEmojiButton text={'😊'} style={{ backgroundColor: rating === 4 ? 'lightgray' : 'white' }} onPress={() => submitRating(4)} />
+        <CmEmojiButton text={'🥳'} style={{ backgroundColor: rating === 5 ? 'lightgray' : 'white' }} onPress={() => submitRating(5)} />
       </View>
     </>
   );
@@ -53,16 +54,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
-  },
-  button: {
-    width: 50,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: '#A347FF',
-    backgroundColor: 'white',
   },
 });
 
