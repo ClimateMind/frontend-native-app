@@ -1,17 +1,16 @@
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import Colors from 'src/assets/colors';
 import { GetAllConversations } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
-import { useEffect, useState } from 'react';
 import ClimateEffect2 from 'src/types/ClimateEffect2';
 import Solution3 from 'src/types/Solution3';
 import ActionCard from './ActionCard';
 import SolutionsFeedCard from './SolutionCard';
 import SolutionDetailsModal from './SolutionDetailsModal';
 import ActionDetailsModal from './ActionDetailsModal';
-import { CmModal, CmTypography, Content } from '@shared/components';;
+import { BackButton, CmModal, CmTypography, Content } from '@shared/components';;
 
 interface Props {
   open: boolean;
@@ -57,10 +56,7 @@ function ViewSelectedTopicsModal({ open, conversation, conversationState, onClos
       <View style={styles.container}>
         <Content>
           <ScrollView>
-            <Pressable style={styles.backButtonContainer} onPress={onClose}>
-              <Ionicons name="chevron-back-outline" size={24} color="#A347FF" />
-              <CmTypography variant='button' style={styles.backButtonText}>BACK</CmTypography>
-            </Pressable>
+            <BackButton onPress={onClose} style={{ marginVertical: 25 }} />
 
             <CmTypography variant='h1'>Your shared feed with {conversation.userB.name}</CmTypography>
 
@@ -93,16 +89,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: Colors.themeBright,
-  },
-  backButtonContainer: {
-    alignSelf: 'flex-start',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 20,
-    paddingTop: 30,
-  },
-  backButtonText: {
-    marginLeft: 10,
   },
   text: {
     textAlign: 'center',
