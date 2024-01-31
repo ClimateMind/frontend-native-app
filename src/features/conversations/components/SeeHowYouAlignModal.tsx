@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import Colors from 'src/assets/colors';
-
 import ViewSelectedTopicsButton from './ViewSelectedTopicsButton';
 import { GetAllConversations } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
 import Alignment from 'src/types/Alignment';
-import { CmModal, CmTypography, Content } from '@shared/components';
+import { CmModal, CmTypography, Content, BackButton } from '@shared/components';
 import PersonalValueCardSmall from './PersonalValueCardSmall';
 
 interface Props {
@@ -53,10 +51,7 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
       <View style={styles.container}>
         <Content>
           <ScrollView>
-            <Pressable style={styles.backButtonContainer} onPress={onClose}>
-              <Ionicons name="chevron-back-outline" size={24} color="#A347FF" />
-              <CmTypography variant='button' style={styles.backButtonText}>BACK</CmTypography>
-            </Pressable>
+            <BackButton onPress={onClose} style={{ marginVertical: 25 }} />
 
             <CmTypography variant='h1'>Your shared core values!</CmTypography>
 
@@ -83,16 +78,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: Colors.themeBright,
-  },
-  backButtonContainer: {
-    alignSelf: 'flex-start',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 20,
-    paddingTop: 30,
-  },
-  backButtonText: {
-    marginLeft: 10,
   },
   subheader: {
     textAlign: 'center',
