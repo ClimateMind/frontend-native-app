@@ -32,7 +32,15 @@ function ConversationCard({ conversation, onDelete }: Props) {
   const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
-  const headerText = [`Invited ${userBName} to talk`, `Prepare to talk with ${userBName}`, `Prepare to talk with ${userBName}`, `Ready to talk with ${userBName}`, `Talked with ${userBName}`, `Talked with ${userBName}`, `Invited ${userBName} to talk`];
+  const headerText = [
+    `Invited ${userBName} to talk`, 
+    `Prepare to talk with ${userBName}`, 
+    `Prepare to talk with ${userBName}`, 
+    `Ready to talk with ${userBName}`, 
+    `Talked with ${userBName}`, 
+    `Talked with ${userBName}`, 
+    `Invited ${userBName} to talk`
+  ];
 
   function copyLink() {
     setShowCopyLinkModal(true);
