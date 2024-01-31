@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import useApiClient from 'src/hooks/useApiClient';
-import { CmTypography } from '@shared/components';
+import { CmButton, CmTypography } from '@shared/components';
 
 interface Props {
   conversationId: string;
@@ -33,11 +33,11 @@ function ConversationRating({ conversationId, initialRating, onRated }: Props) {
       <CmTypography variant="body">How Did it go?</CmTypography>
 
       <View style={styles.buttonContainer}>
-        <Pressable style={[styles.button, { backgroundColor: rating === 1 ? 'lightgray' : 'white'}]} onPress={() => submitRating(1)}><CmTypography variant='body'>😡</CmTypography></Pressable>
-        <Pressable style={[styles.button, { backgroundColor: rating === 2 ? 'lightgray' : 'white'}]} onPress={() => submitRating(2)}><CmTypography variant='body'>😐</CmTypography></Pressable>
-        <Pressable style={[styles.button, { backgroundColor: rating === 3 ? 'lightgray' : 'white'}]} onPress={() => submitRating(3)}><CmTypography variant='body'>🤔</CmTypography></Pressable>
-        <Pressable style={[styles.button, { backgroundColor: rating === 4 ? 'lightgray' : 'white'}]} onPress={() => submitRating(4)}><CmTypography variant='body'>😊</CmTypography></Pressable>
-        <Pressable style={[styles.button, { backgroundColor: rating === 5 ? 'lightgray' : 'white'}]} onPress={() => submitRating(5)}><CmTypography variant='body'>🥳</CmTypography></Pressable>
+        <CmButton text='😡' color='userb' style={{ paddingHorizontal: 7, backgroundColor: rating === 1 ? 'lightgray' : 'white'}} onPress={() => submitRating(1)} />
+        <CmButton text='😐' color='userb' style={{ paddingHorizontal: 7, backgroundColor: rating === 2 ? 'lightgray' : 'white'}} onPress={() => submitRating(2)} />
+        <CmButton text='🤔' color='userb' style={{ paddingHorizontal: 7, backgroundColor: rating === 3 ? 'lightgray' : 'white'}} onPress={() => submitRating(3)} />
+        <CmButton text='😊' color='userb' style={{ paddingHorizontal: 7, backgroundColor: rating === 4 ? 'lightgray' : 'white'}} onPress={() => submitRating(4)} />
+        <CmButton text='🥳' color='userb' style={{ paddingHorizontal: 7, backgroundColor: rating === 5 ? 'lightgray' : 'white'}} onPress={() => submitRating(5)} />
       </View>
     </>
   );
@@ -53,16 +53,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
-  },
-  button: {
-    width: 50,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: '#A347FF',
-    backgroundColor: 'white',
   },
 });
 
