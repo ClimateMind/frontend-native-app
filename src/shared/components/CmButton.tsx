@@ -4,7 +4,7 @@ import CmTypography from './CmTypography';
 interface Props {
   text: string;
   onPress?: () => void;
-  color?: 'success' | 'error';
+  color?: 'success' | 'error' | 'userb';
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
   startIcon?: React.ReactNode;
@@ -12,13 +12,26 @@ interface Props {
 }
 
 function CmButton({ text, onPress = () => {}, color = 'success', style = {}, disabled = false, startIcon, isLoading = false }: Props) {  
+  let borderColor: string;
+  switch (color) {
+    case 'error':
+      borderColor = '#FF0000';
+      break;
+    case 'userb':
+      borderColor = '#A346FF';
+      break;
+    default:
+      borderColor = '#39F5AD';
+      break;
+  }
+
   return (
     <Pressable
       disabled={isLoading || disabled}
       onPress={onPress}
       style={({ pressed }) => [
         styles.button,
-        color === 'error' && { borderColor: '#ff0000' },
+        { borderColor },
         pressed && styles.buttonPressed,
         (disabled || isLoading) && styles.buttonDisabled,
         style,
@@ -43,7 +56,6 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: 'white',
     borderRadius: 5,
-    borderColor: '#39f5ad',
     borderWidth: 1,
     minHeight: 50,
     paddingHorizontal: 20,
