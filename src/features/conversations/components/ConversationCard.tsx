@@ -59,17 +59,20 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0 }}>
         <UserBInput 
-        style={[styles.textInputField, isEditable && { padding: 0, borderBottomWidth: 1, borderColor: isEditable && isFocused ? '#37f5ac' : 'black' }]} 
-        isEditable={isEditable} 
-        onChangeText={setUserBName} 
-        value={userBName} 
-        maxLength={20} onFocus={() => setIsFocused(true)} 
-        onSubmitEditing={() => setIsFocused(false)} 
-        onEndEditing={() => setIsFocused(false)} 
-        expanded={expanded} userBName={userBName} 
-        setIsEditable={() => setIsEditable(true)} 
-        handleSaveField={() => handleSaveField(conversation.conversationId)} 
-        handleCancelField={handleCancelField} />
+          maxLength={20}
+          value={userBName} 
+          onChangeText={setUserBName} 
+          isEditable={isEditable} 
+          setIsEditable={() => setIsEditable(true)} 
+          expanded={expanded}
+          userBName={userBName} 
+          onFocus={() => setIsFocused(true)} 
+          onSubmitEditing={() => setIsFocused(false)} 
+          onEndEditing={() => setIsFocused(false)} 
+          handleCancelField={handleCancelField}
+          handleSaveField={() => handleSaveField(conversation.conversationId)} 
+          style={[styles.textInputField, isEditable && { padding: 0, borderBottomWidth: 1, borderColor: isEditable && isFocused ? '#37f5ac' : 'black' }]} 
+        />
       </View>
 
       {/* For state 0, display a text that the userB has to take the quiz */}
