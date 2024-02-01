@@ -1,9 +1,10 @@
 import { Pressable } from 'react-native';
-import { MaterialIcons, Entypo } from '@expo/vector-icons';
+import { MaterialIcons, Entypo, Foundation } from '@expo/vector-icons';
 
 interface IconTypes {
   Entypo: typeof Entypo;
   MaterialIcons: typeof MaterialIcons;
+  Foundation: typeof Foundation
 }
 
 interface Props {
@@ -19,6 +20,7 @@ function CmIconButton({ name, source, onPress, size, color }: Props) {
   const iconTypes: IconTypes = {
     Entypo: Entypo,
     MaterialIcons: MaterialIcons,
+    Foundation: Foundation
   };
 
   const IconComponent = iconTypes[source];
