@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { GetAllConversations } from 'src/api/responses';
 import DeleteConversationModal from './DeleteConversationModal';
 import SeeHowYouAlignButton from './SeeHowYouAlignButton';
@@ -9,11 +10,11 @@ import ConversationRating from './ConversationRating';
 import CopyLinkModal from './CopyLinkModal';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
-import { CmTypography, Card } from '@shared/components';
+import { CmTypography, Card, CmIconButton } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
-import CmIconButton from '@shared/components/CmIconButton';
 import { useConversationState, useDeleteConversationCard } from '../hooks';
 import useIconButton from '@shared/hooks/useIconButton';
+import UserBInput from './UserBInput';
 
 interface Props {
   conversation: GetAllConversations;
@@ -57,14 +58,23 @@ function ConversationCard({ conversation, onDelete }: Props) {
       </View>
 
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0 }}>
-        <TextInput style={[styles.textInputField, isEditable && { padding: 0, borderBottomWidth: 1, borderColor: isEditable && isFocused ? '#37f5ac' : 'black' }]} editable={isEditable} onChangeText={setUserBName} value={userBName} maxLength={20} onFocus={() => setIsFocused(true)} onSubmitEditing={() => setIsFocused(false)} onEndEditing={() => setIsFocused(false)} />
-        {expanded && (
-          <>
-            {!isEditable && <CmIconButton onPress={() => setIsEditable(true)} name={'edit'} source={'MaterialIcons'} color={'black'} size={22} />}
-            {isEditable && userBName.length > 0 && <CmIconButton onPress={() => handleSaveField(conversation.conversationId)} name={'check'} source={'MaterialIcons'} color={'black'} size={22} />}
-            {isEditable && <CmIconButton onPress={handleCancelField} name={'cross'} source={'Entypo'} color={'black'} size={22} />}
-          </>
-        )}
+
+        <UserBInput 
+          maxLength={20}
+          value={userBName} 
+          onChangeText={setUserBName} 
+          isEditable={isEditable} 
+          setIsEditable={() => setIsEditable(true)} 
+          expanded={expanded}
+          userBName={userBName} 
+          onFocus={() => setIsFocused(true)} 
+          onSubmitEditing={() => setIsFocused(false)} 
+          onEndEditing={() => setIsFocused(false)} 
+          handleCancelField={handleCancelField}
+          handleSaveField={() => handleSaveField(conversation.conversationId)} 
+          style={[styles.textInputField, isEditable && { padding: 0, borderBottomWidth: 1, borderColor: isEditable && isFocused ? '#37f5ac' : 'black' }]} 
+        />
+
       </View>
 
       {/* For state 0, display a text that the userB has to take the quiz */}
@@ -101,6 +111,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
       )}
 
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
+
         {expanded && <CmIconButton onPress={() => setShowDeleteModal(true)} name={'trash'} source={'Foundation'} color={'#77AAAF'} size={24} />}
 
         <Pressable onPress={() => setExpanded((current) => !current)} style={styles.moreLessButton}>
