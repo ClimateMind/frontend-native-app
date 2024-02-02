@@ -10,7 +10,7 @@ import ConversationRating from './ConversationRating';
 import CopyLinkModal from './CopyLinkModal';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
-import { CmTypography, Card } from '@shared/components';
+import { CmTypography, Card, CmIconButton } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
 import { useConversationState, useDeleteConversationCard } from '../hooks';
 import useIconButton from '@shared/hooks/useIconButton';
