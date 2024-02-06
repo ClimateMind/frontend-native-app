@@ -22,7 +22,7 @@ function ConversationsIntroCard() {
         <CmTypography variant='body' style={styles.text}>Motivate the other person with solutions they find attractive.</CmTypography>
       </>}
 
-      <CmButton onPress={() => setExpanded(current => !current)} style={[styles.moreLessButton, !expanded && {marginLeft:'auto'}]} text={expanded ? 'LESS' : 'MORE'}/>
+      <CmButton onPress={() => setExpanded(current => !current)} style={[styles.moreLessButton, !expanded && { marginLeft:'auto' }]} text={expanded ? 'LESS' : 'MORE'}/>
 
     </Card>
   );
