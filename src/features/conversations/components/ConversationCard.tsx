@@ -114,7 +114,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
         {expanded && <CmIconButton onPress={() => setShowDeleteModal(true)} name={'trash'} source={'Foundation'} color={'#77AAAF'} size={24} />}
 
-        <CmButton onPress={() => setExpanded(current => !current)} style={[styles.moreLessButton, !expanded && {marginLeft:'auto'}]} text={expanded ? 'LESS' : 'MORE'} />
+        <CmButton onPress={() => setExpanded(current => !current)} style={[styles.moreLessButton, !expanded && { marginLeft:'auto' }]} text={expanded ? 'LESS' : 'MORE'} />
       </View>
 
       <SeeHowYouAlignModal
