@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   moreLessButton: {
+    paddingVertical:5,
     paddingHorizontal: 0,
     marginTop: 10,
     borderWidth: 0,

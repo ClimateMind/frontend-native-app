@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   moreLessButton: {
     alignSelf: 'flex-end',
-    padding: 5,
+    paddingVertical:5,
     paddingHorizontal: 0,
     marginTop: 10,
     borderWidth: 0
