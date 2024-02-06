@@ -10,7 +10,7 @@ import ConversationRating from './ConversationRating';
 import CopyLinkModal from './CopyLinkModal';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
-import { CmTypography, Card, CmIconButton } from '@shared/components';
+import { CmTypography, Card, CmIconButton, CmButton } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
 import { useConversationState, useDeleteConversationCard } from '../hooks';
 import useIconButton from '@shared/hooks/useIconButton';
@@ -114,11 +114,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
         {expanded && <CmIconButton onPress={() => setShowDeleteModal(true)} name={'trash'} source={'Foundation'} color={'#77AAAF'} size={24} />}
 
-        <Pressable onPress={() => setExpanded((current) => !current)} style={styles.moreLessButton}>
-          <CmTypography variant="button" style={{ letterSpacing: 1, paddingVertical: 5 }}>
-            {expanded ? 'LESS' : 'MORE'}
-          </CmTypography>
-        </Pressable>
+        <CmButton onPress={() => setExpanded(current => !current)} style={[styles.moreLessButton, !expanded && {marginLeft:'auto'}]} text={expanded ? 'LESS' : 'MORE'} />
       </View>
 
       <SeeHowYouAlignModal
@@ -151,9 +147,10 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   moreLessButton: {
-    padding: 5,
+    paddingHorizontal: 0,
     marginTop: 10,
-    marginLeft: 'auto',
+    borderWidth: 0,
+    backgroundColor: 'transparent'
   },
   whiteButton: {
     marginTop: 10,
