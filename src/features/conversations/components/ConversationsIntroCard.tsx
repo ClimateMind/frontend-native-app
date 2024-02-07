@@ -22,7 +22,7 @@ function ConversationsIntroCard() {
         <CmTypography variant='body' style={styles.text}>Motivate the other person with solutions they find attractive.</CmTypography>
       </>}
 
-      <CmButton onPress={() => setExpanded(current => !current)} style={[styles.moreLessButton, !expanded && { marginLeft:'auto' }]} text={expanded ? 'LESS' : 'MORE'}/>
+      <CmButton onPress={() => setExpanded(current => !current)} style={styles.moreLessButton} text={expanded ? 'LESS' : 'MORE'}/>
 
     </Card>
   );
@@ -39,11 +39,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   moreLessButton: {
-    alignSelf: 'flex-end',
-    paddingVertical:5,
+    marginLeft: 'auto',
     paddingHorizontal: 0,
     marginTop: 10,
-    borderWidth: 0
+    borderWidth: 0,
   },
 });
 
