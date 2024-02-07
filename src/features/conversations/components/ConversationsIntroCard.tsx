@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import { CmTypography, Card } from '@shared/components';
+import { CmTypography, Card, CmButton } from '@shared/components';
 
 function ConversationsIntroCard() {
   const [expanded, setExpanded] = useState(true);
@@ -22,9 +22,7 @@ function ConversationsIntroCard() {
         <CmTypography variant='body' style={styles.text}>Motivate the other person with solutions they find attractive.</CmTypography>
       </>}
 
-      <Pressable onPress={() => setExpanded(current => !current)} style={styles.moreLessButton}>
-        <CmTypography variant='button' style={{ letterSpacing: 1 }}>{expanded ? 'LESS' : 'MORE'}</CmTypography>
-      </Pressable>
+      <CmButton onPress={() => setExpanded(current => !current)} style={styles.moreLessButton} text={expanded ? 'LESS' : 'MORE'}/>
 
     </Card>
   );
@@ -41,9 +39,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   moreLessButton: {
-    alignSelf: 'flex-end',
-    padding: 5,
+    marginLeft: 'auto',
+    paddingHorizontal: 0,
     marginTop: 10,
+    borderWidth: 0,
   },
 });
 
