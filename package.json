@@ -48,7 +48,7 @@
     "@storybook/addon-onboarding": "^1.0.10",
     "@storybook/addon-react-native-web": "^0.0.21",
     "@storybook/blocks": "^7.6.6",
-    "@storybook/react": "^7.6.6",
+    "@storybook/react": "^7.6.14",
     "@storybook/react-webpack5": "^7.6.6",
     "@storybook/testing-library": "^0.2.2",
     "@storybook/theming": "^7.6.6",
