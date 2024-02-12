@@ -14,6 +14,20 @@ interface Props {
 function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalData, setModalData] = useState<string>();
+
+
+  //2d array
+// console.log(climateFeed.map(item=>item.effectId))
+// const pValues = climateFeed.map(item=>item.relatedPersonalValues)
+// need to use this than above then can reuse in flatlist
+// const pValues = climateFeed.map(item=>[item.relatedPersonalValues, item.effectId]) 
+
+// const setOne = personalValues.SetOne.map(item=>[item.question, item.value])
+// const tooltip = pValues.map(item=>{
+// return item && setOne.filter(item2=> item.includes(item2[1]) && item2[1] + item2[0] )
+
+// const setOne = personalValues.SetOne.map(item=>({question:item.question, value: item.value}))
+// const tooltip = pValues.map(item=>item && setOne.filter(item2=>item.includes(item2.value) && item2.value + item2.question ))
   return (
     <Card>
       <CmTypography variant="h3" style={styles.title}>
@@ -40,7 +54,7 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
           
           ))}
           <Modal
-            animationType="slide"
+            animationType="fade"
             transparent={true}
             visible={modalVisible}
             onRequestClose={() => {
@@ -50,13 +64,15 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
                 <Text style={styles.modalText}>{modalData && modalData[0].toUpperCase() + modalData.slice(1)}</Text>
+
+                <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, corporis. Voluptatibus fugiat nisi rerum corporis, eaque saepe vitae molestiae et hic veniam dignissimos quas, eum voluptatum expedita doloremque odio atque!</Text>
                 <Pressable
                   style={[styles.button, styles.buttonClose]}
                   onPress={() => {
                     setModalVisible(!modalVisible);
                   }}
                 >
-                  <Text style={styles.textStyle}>x</Text>
+                  <Text style={styles.textStyle}>Close(x)</Text>
                 </Pressable>
               </View>
             </View>

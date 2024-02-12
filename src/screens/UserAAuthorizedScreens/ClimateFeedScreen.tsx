@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Modal, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ClimateFeedStackParams } from 'src/navigation/Stacks/ClimateFeedStack';
@@ -9,7 +9,7 @@ import ClimateEffect from 'src/types/ClimateEffect';
 import { CmTypography, Screen, Content, Section } from '@shared/components';
 import { ClimateFeedCard } from '@features/climate-feed/components';
 import { useAppSelector } from 'src/store/hooks';
-import { GetQuestions } from 'src/api/responses';
+import { GetPersonalValues, GetQuestions } from 'src/api/responses';
 
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateFeedScreen'>;
 
@@ -18,6 +18,8 @@ function ClimateFeedScreen({ navigation }: Props) {
   const sessionId = useAppSelector((state) => state.auth.sessionId);
   const [climateFeed, setClimateFeed] = useState<ClimateEffect[]>();
   const [personalValues, setPersonalValues] = useState<GetQuestions>();
+  const [pValues, setPValues] = useState<GetPersonalValues>();
+  const quizId = useAppSelector((state) => state.auth.user.quizId);
   
   function gotoDetailsScreen(climateEffect: ClimateEffect) {
     navigation.navigate('ClimateDetailsScreen', { climateEffect });
@@ -32,17 +34,18 @@ function ClimateFeedScreen({ navigation }: Props) {
     apiClient.getQuestions().then((result) => setPersonalValues(result));
   })
 
+  useEffect(()=>{
+    apiClient.getPersonalValues(!quizId).then((result) => setPValues(result));
+  })
+
+
+  console.log(pValues)
+
+
 
   if (climateFeed === undefined || personalValues === undefined) {
     return <ActivityIndicator size='large' color='black' style={{ marginTop: 100 }} />;
   }
-  
-//2d array
-const pValues = climateFeed.map(item=>item.relatedPersonalValues)
-const setOne = personalValues.SetOne.map(item=>[item.question, item.value])
-const tooltip = pValues.map(item=>{
-return item && setOne.filter(item2=> item.includes(item2[1]) && item2[1] + item2[0])
-  })
 
   return (
     <Screen view="View">
@@ -62,7 +65,7 @@ return item && setOne.filter(item2=> item.includes(item2[1]) && item2[1] + item2
             renderItem={(item) => (
               <View key={item.item.effectId} style={{ margin: 10 }}>
                
-                <ClimateFeedCard climateEffect={item.item} onLearnMore={gotoDetailsScreen}  description={tooltip}/>
+                <ClimateFeedCard climateEffect={item.item} onLearnMore={gotoDetailsScreen}/>
                
               </View>
             )}
