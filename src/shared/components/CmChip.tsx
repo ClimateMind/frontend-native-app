@@ -5,22 +5,31 @@ import { useState } from 'react';
 
 interface Props {
   label: string;
+  personalValueTypes:{}
+}
+
+const personalValueTypes = {
+  'benevolence':'adasdfasdasdasdas',
+
 }
 
 function CmChip({ label }: Props) {
-
-const [tooltip, setTooltip]=useState(false)
+  const [tooltip, setTooltip] = useState(false);
 
   return (
-   <View style={{ position: 'relative',}}>
-   {tooltip && <View style ={styles.tooltip} >
-    <Text style={styles.tooltipText}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae consequuntur praesentium architecto deserunt quaerat dolore alias. Expedita labore veniam eum dolore possimus, nisi id atque explicabo error quaerat temporibus. Explicabo.</Text>
-   </View>}
-   <Pressable onTouchStart={() => setTooltip(true)} onTouchEnd={() => setTooltip(false)}>
-    <CmTypography variant="body" style={styles.chip}>
-      {label}
-    </CmTypography>
-    </Pressable>
+    <View style={{ position: 'relative' }}>
+      {tooltip && (
+        <View style={styles.tooltip}>
+          <CmTypography variant="body" style={styles.tooltipText}>
+          {personalValueTypes[label]}
+          </CmTypography>
+        </View>
+      )}
+      <Pressable onTouchStart={() => setTooltip(true)} onTouchEnd={() => setTooltip(false)}>
+        <CmTypography variant="body" style={styles.chip}>
+          {label}
+        </CmTypography>
+      </Pressable>
     </View>
   );
 }
@@ -33,7 +42,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     margin: 5,
   },
-  tooltip:{
+  tooltip: {
     position: 'absolute',
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
     padding: 8,
@@ -41,7 +50,8 @@ const styles = StyleSheet.create({
     bottom: '100%',
     left: '50%',
     transform: [{ translateX: -50 }],
-    minWidth: 100,
+    minWidth: 150,
+    zIndex:10000 
   },
   tooltipText: {
     color: '#fff',
