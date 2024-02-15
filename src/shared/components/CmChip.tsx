@@ -23,11 +23,12 @@ const personalValueText = {
 };
 
 function CmChip({ label }: Props) {
-  const [tooltip, setTooltip] = useState(false);
+
+  const [showTooltip, setShowTooltip] = useState(false);
 
   return (
     <View style={{ position: 'relative' }}>
-      {tooltip && (
+      {showTooltip && (
         <View style={styles.tooltip}>
           {/* <CmTypography variant="h1" style={styles.tooltipText}>
             {label}
@@ -39,7 +40,7 @@ function CmChip({ label }: Props) {
         </View>
       )}
 
-      <Pressable onTouchStart={() => setTooltip(true)} onTouchEnd={() => setTooltip(false)}>
+      <Pressable onTouchStart={() => setShowTooltip(true)} onTouchEnd={() => setShowTooltip(false)}>
         <CmTypography variant="body" style={styles.chip}>
           {label}
         </CmTypography>
