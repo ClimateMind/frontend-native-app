@@ -9,7 +9,6 @@ import ClimateEffect from 'src/types/ClimateEffect';
 import { CmTypography, Screen, Content, Section } from '@shared/components';
 import { ClimateFeedCard } from '@features/climate-feed/components';
 import { useAppSelector } from 'src/store/hooks';
-import { GetPersonalValues, GetQuestions } from 'src/api/responses';
 
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateFeedScreen'>;
 
@@ -17,33 +16,16 @@ function ClimateFeedScreen({ navigation }: Props) {
   const apiClient = useApiClient();
   const sessionId = useAppSelector((state) => state.auth.sessionId);
   const [climateFeed, setClimateFeed] = useState<ClimateEffect[]>();
-  const [personalValues, setPersonalValues] = useState<GetQuestions>();
-  const [pValues, setPValues] = useState<GetPersonalValues>();
-  const quizId = useAppSelector((state) => state.auth.user.quizId);
-  
+
   function gotoDetailsScreen(climateEffect: ClimateEffect) {
     navigation.navigate('ClimateDetailsScreen', { climateEffect });
   }
 
   useEffect(() => {
     apiClient.getClimateFeed().then((result) => setClimateFeed(result));
-  
   }, [sessionId]);
 
-  useEffect(()=>{
-    apiClient.getQuestions().then((result) => setPersonalValues(result));
-  })
-
-  useEffect(()=>{
-    apiClient.getPersonalValues(!quizId).then((result) => setPValues(result));
-  })
-
-
-  console.log(pValues)
-
-
-
-  if (climateFeed === undefined || personalValues === undefined) {
+  if (climateFeed === undefined) {
     return <ActivityIndicator size='large' color='black' style={{ marginTop: 100 }} />;
   }
 
@@ -64,9 +46,7 @@ function ClimateFeedScreen({ navigation }: Props) {
             data={climateFeed}
             renderItem={(item) => (
               <View key={item.item.effectId} style={{ margin: 10 }}>
-               
-                <ClimateFeedCard climateEffect={item.item} onLearnMore={gotoDetailsScreen}/>
-               
+                <ClimateFeedCard climateEffect={item.item} onLearnMore={gotoDetailsScreen} />
               </View>
             )}
             keyExtractor={(item) => item.effectId}

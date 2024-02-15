@@ -1,33 +1,18 @@
-import { Image, Pressable, StyleSheet, View, Text, Modal, Alert } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { capitalizeFirstLetter } from 'src/utils';
 import ClimateEffect from 'src/types/ClimateEffect';
 import ActionCardHeader from './ActionCardHeader';
 import { CmTypography, CmChip, Card } from '@shared/components';
-import { useState } from 'react';
+
 
 interface Props {
   climateEffect: ClimateEffect;
   onLearnMore: (climateEffect: ClimateEffect) => void;
 }
-// need to find a way to map over the text
+
 function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [modalData, setModalData] = useState<string>();
 
-
-  //2d array
-// console.log(climateFeed.map(item=>item.effectId))
-// const pValues = climateFeed.map(item=>item.relatedPersonalValues)
-// need to use this than above then can reuse in flatlist
-// const pValues = climateFeed.map(item=>[item.relatedPersonalValues, item.effectId]) 
-
-// const setOne = personalValues.SetOne.map(item=>[item.question, item.value])
-// const tooltip = pValues.map(item=>{
-// return item && setOne.filter(item2=> item.includes(item2[1]) && item2[1] + item2[0] )
-
-// const setOne = personalValues.SetOne.map(item=>({question:item.question, value: item.value}))
-// const tooltip = pValues.map(item=>item && setOne.filter(item2=>item.includes(item2.value) && item2.value + item2.question ))
   return (
     <Card>
       <CmTypography variant="h3" style={styles.title}>
@@ -41,42 +26,10 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
 
       {climateEffect.relatedPersonalValues && (
         <View style={styles.chipsContainer}>
-          {climateEffect.relatedPersonalValues.map((value) => (
-              <Pressable
-            
-                onPress={() => {
-                  setModalVisible(!modalVisible);
-                  setModalData(value);
-                }}
-              >
+          {climateEffect.relatedPersonalValues.map((value) => ( 
                 <CmChip key={value} label={value} />
-              </Pressable>
-          
           ))}
-          <Modal
-            animationType="fade"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-              setModalVisible(!modalVisible);
-            }}
-          >
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                <Text style={styles.modalText}>{modalData && modalData[0].toUpperCase() + modalData.slice(1)}</Text>
-
-                <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, corporis. Voluptatibus fugiat nisi rerum corporis, eaque saepe vitae molestiae et hic veniam dignissimos quas, eum voluptatum expedita doloremque odio atque!</Text>
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => {
-                    setModalVisible(!modalVisible);
-                  }}
-                >
-                  <Text style={styles.textStyle}>Close(x)</Text>
-                </Pressable>
-              </View>
-            </View>
-          </Modal>
+          
         </View>
       )}
 
@@ -115,49 +68,8 @@ const styles = StyleSheet.create({
   chipsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    // padding: 10,
+    padding: 10,
   },
-  buttonOpen: {
-    // backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    // backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'black',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    fontSize:20
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-    fontSize:20
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderWidth:2,
-    borderColor:'#08373B',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-
 });
 
 
