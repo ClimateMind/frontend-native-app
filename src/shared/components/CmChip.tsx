@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     borderLeftWidth: 0,
     position: 'absolute',
-    bottom: '-6%',
+    bottom: '-5.5%',
     left: '50%',
   },
 });
