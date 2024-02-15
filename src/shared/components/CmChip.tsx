@@ -10,16 +10,16 @@ interface Props {
 
 // get real descriptions for types
 const personalValueText = {
-  benevolence: "It's very important to them to help the people around them. They want to care for the well-being of those around them.",
-  hedonism: 'They seek every chance they can to have fun. It is important to them to do things that give them pleasure.',
-  security: 'It is important to them that things be organized and clean. They really do not like things to be a mess.',
-  tradition: 'Religious belief or traditions are important to them. They try hard to do what their religion or family traditions require.',
-  universalism: 'They think it is important that every person in the world be treated equally. They believe everyone should have equal opportunities in life.',
-  'self-direction': "They think it's important to be interested in things. They like to be curious and to try to understand all sorts of things.",
-  conformity: 'They believe they should always show respect to their parents and to older people. It is important to them to be obedient.',
-  stimulation: 'They like to take risks. They are always looking for adventures.',
-  achievement: 'Being very successful is important to them. They like to impress other people.',
-  power: 'It is important to them to be in charge and tell others what to do. They want people to do what they say.',
+  benevolence: "Forgiving, helping, and being loyal are important to you. You likely look to preserve and improve the lives of those that share your core interests or identities.",
+  hedonism: 'Joy, pleasure and satisfaction are a big part of what drives you. From big moments to the little things, you find bliss in enjoying what you do.',
+  security: 'A feeling of safety, stability, and order is very important to you; this is true likely whether in society at large, at work, in your home, or in your relationships.',
+  tradition: 'You value protecting the traditions of your family, community, and/or culture. You likely take pride in this commitment.',
+  universalism: 'You care a great deal for the well-being of all people and life. You likely also value diversity and protecting the environment.',
+  'self-direction': "You value freedom of thought and action, preferring to come to conclusions or decisions yourself. You also likely draw great satisfaction when creating or exploring the world.",
+  conformity: 'Rule breaker? Far from it. In fact, you love nothing more than sticking by the rules and conforming to social norms.',
+  stimulation: 'You highly value excitement, challenge, and positive change. Life is likely never dull with you around.',
+  achievement: 'Success - that’s a major goal for your life. Meeting your own standards of excellence is very important to you. It propels you forward.',
+  power: 'Control freak? Maybe. But in your eyes it’s more about embracing power, holding dominance and getting the job done. You value social status and prestige.',
 };
 
 function CmChip({ label }: Props) {
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   tooltip: {
     width: 100,
-    height: 200,
+    height: 220,
     position: 'absolute',
     backgroundColor: 'rgba(255, 255, 255, 1)',
     padding: 8,
