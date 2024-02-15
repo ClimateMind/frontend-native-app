@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: 'rgba(255, 255, 255, 1)',
     padding: 8,
-    borderRadius: 4,
+    borderRadius: 10,
     borderWidth: 1,
     borderColor: 'rgb(8, 55, 59)',
     bottom: '100%',
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.21,
     shadowRadius: 6.65,
     zIndex: 10000,
+    marginBottom:15
   },
   tooltipText: {
     justifyContent: 'center',
