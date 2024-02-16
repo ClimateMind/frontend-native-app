@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Pressable } from 'react-native';
+import { StyleSheet, View, Pressable } from 'react-native';
 
 import CmTypography from './CmTypography';
 import { useState } from 'react';
@@ -10,12 +10,12 @@ interface Props {
 
 // get real descriptions for types
 const personalValueText = {
-  benevolence: "Forgiving, helping, and being loyal are important to you. You likely look to preserve and improve the lives of those that share your core interests or identities.",
+  benevolence: 'Forgiving, helping, and being loyal are important to you. You likely look to preserve and improve the lives of those that share your core interests or identities.',
   hedonism: 'Joy, pleasure and satisfaction are a big part of what drives you. From big moments to the little things, you find bliss in enjoying what you do.',
   security: 'A feeling of safety, stability, and order is very important to you; this is true likely whether in society at large, at work, in your home, or in your relationships.',
   tradition: 'You value protecting the traditions of your family, community, and/or culture. You likely take pride in this commitment.',
   universalism: 'You care a great deal for the well-being of all people and life. You likely also value diversity and protecting the environment.',
-  'self-direction': "You value freedom of thought and action, preferring to come to conclusions or decisions yourself. You also likely draw great satisfaction when creating or exploring the world.",
+  'self-direction': 'You value freedom of thought and action, preferring to come to conclusions or decisions yourself. You also likely draw great satisfaction when creating or exploring the world.',
   conformity: 'Rule breaker? Far from it. In fact, you love nothing more than sticking by the rules and conforming to social norms.',
   stimulation: 'You highly value excitement, challenge, and positive change. Life is likely never dull with you around.',
   achievement: 'Success - that’s a major goal for your life. Meeting your own standards of excellence is very important to you. It propels you forward.',
@@ -23,7 +23,6 @@ const personalValueText = {
 };
 
 function CmChip({ label }: Props) {
-
   const [showTooltip, setShowTooltip] = useState(false);
 
   return (
@@ -31,7 +30,7 @@ function CmChip({ label }: Props) {
       {showTooltip && (
         <View style={styles.tooltip}>
           <CmTypography variant="h1" style={styles.tooltipText}>
-            {label}
+            {label[0].toUpperCase() + label.slice(1)}
           </CmTypography>
           <CmTypography variant="body" style={styles.tooltipText}>
             {personalValueText[label]}
@@ -60,7 +59,9 @@ const styles = StyleSheet.create({
   tooltip: {
     position: 'absolute',
     backgroundColor: 'rgba(255, 255, 255, 1)',
-    padding: 8,
+    paddingHorizontal: 15,
+    paddingTop:5,
+    paddingBottom:15,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: 'rgb(8, 55, 59)',
@@ -77,12 +78,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.21,
     shadowRadius: 6.65,
     zIndex: 10000,
-    marginBottom:15
+    marginBottom: 15,
   },
   tooltipText: {
-    justifyContent: 'center',
+    textAlign:'left',
     color: 'black',
     fontSize: 14,
+    // paddingHorizontal: 5,
   },
   caretDown: {
     backgroundColor: 'white',
