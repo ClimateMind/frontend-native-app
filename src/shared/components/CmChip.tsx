@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     color: 'black',
     fontSize: 14,
-    // paddingHorizontal: 5,
   },
   caretDown: {
     backgroundColor: 'white',
