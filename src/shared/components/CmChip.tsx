@@ -1,7 +1,7 @@
 import { StyleSheet, View, Pressable } from 'react-native';
 
 import CmTypography from './CmTypography';
-import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useState } from 'react';
+import { useState } from 'react';
 
 interface Props {
   label: string;
