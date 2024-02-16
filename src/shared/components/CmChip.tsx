@@ -30,9 +30,9 @@ function CmChip({ label }: Props) {
     <View style={{ position: 'relative' }}>
       {showTooltip && (
         <View style={styles.tooltip}>
-          {/* <CmTypography variant="h1" style={styles.tooltipText}>
+          <CmTypography variant="h1" style={styles.tooltipText}>
             {label}
-          </CmTypography> */}
+          </CmTypography>
           <CmTypography variant="body" style={styles.tooltipText}>
             {personalValueText[label]}
           </CmTypography>
@@ -58,8 +58,6 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   tooltip: {
-    width: 100,
-    height: 220,
     position: 'absolute',
     backgroundColor: 'rgba(255, 255, 255, 1)',
     padding: 8,
@@ -96,7 +94,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     borderLeftWidth: 0,
     position: 'absolute',
-    bottom: '-5.5%',
+    bottom: -10,
     left: '50%',
   },
 });
