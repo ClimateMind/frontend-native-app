@@ -1,15 +1,13 @@
 import { StyleSheet, View, Pressable } from 'react-native';
 
 import CmTypography from './CmTypography';
-import { useState } from 'react';
+import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useState } from 'react';
 
 interface Props {
   label: string;
-  personalValueText: {};
 }
 
-// get real descriptions for types
-const personalValueText = {
+const personalValueText: { [x: string]: string } = {
   benevolence: 'Forgiving, helping, and being loyal are important to you. You likely look to preserve and improve the lives of those that share your core interests or identities.',
   hedonism: 'Joy, pleasure and satisfaction are a big part of what drives you. From big moments to the little things, you find bliss in enjoying what you do.',
   security: 'A feeling of safety, stability, and order is very important to you; this is true likely whether in society at large, at work, in your home, or in your relationships.',
@@ -60,8 +58,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: 'rgba(255, 255, 255, 1)',
     paddingHorizontal: 15,
-    paddingTop:5,
-    paddingBottom:15,
+    paddingTop: 5,
+    paddingBottom: 15,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: 'rgb(8, 55, 59)',
@@ -81,7 +79,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   tooltipText: {
-    textAlign:'left',
+    textAlign: 'left',
     color: 'black',
     fontSize: 14,
     // paddingHorizontal: 5,
