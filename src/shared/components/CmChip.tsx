@@ -53,10 +53,8 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 10,
     margin: 5,
-
   },
   tooltip: {
-  
     position: 'absolute',
     backgroundColor: 'rgba(255, 255, 255, 1)',
     paddingHorizontal: 8,
