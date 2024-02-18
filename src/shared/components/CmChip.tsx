@@ -53,11 +53,13 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 10,
     margin: 5,
+
   },
   tooltip: {
+  
     position: 'absolute',
     backgroundColor: 'rgba(255, 255, 255, 1)',
-    paddingHorizontal: 15,
+    paddingHorizontal: 8,
     paddingTop: 5,
     paddingBottom: 15,
     borderRadius: 10,
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
     bottom: '100%',
     left: '50%',
     transform: [{ translateX: -50 }],
-    minWidth: 150,
+    minWidth: 120,
     elevation: 5,
     shadowColor: '#000000',
     shadowOffset: {
@@ -75,7 +77,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.21,
     shadowRadius: 6.65,
-    zIndex: 10000,
+    zIndex: 100000,
     marginBottom: 15,
   },
   tooltipText: {

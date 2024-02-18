@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   chipsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    padding: 10,
+    paddingVertical: 10,
   },
 });
 
