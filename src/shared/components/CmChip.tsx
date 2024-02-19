@@ -1,7 +1,7 @@
-import { StyleSheet, View, Pressable, Text, Animated } from 'react-native';
+import { StyleSheet, View, Pressable, Text, Animated, Touchable, TouchableWithoutFeedback } from 'react-native';
 
 import CmTypography from './CmTypography';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface Props {
   label: string;
@@ -31,47 +31,42 @@ const personalValueText: { [x: string]: string } = {
   stimulation: 'To value: Excitement, challenge, and change.',
   achievement: 'To value: Success, meeting standards of excellence.',
   power: 'To value: Embracing power, holding dominance, social status and prestige.',
- };
+};
 
 function CmChip({ label }: Props) {
-  // const [showTooltip, setShowTooltip] = useState(true);
+  const [showTooltip, setShowTooltip] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
- 
-  const fadeIn = () => {
-    // setShowTooltip(true)
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
-  };
 
-  const fadeOut = () => {
-    // setShowTooltip(false)
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
-  };
+  // const fadeIn = () => {
+  //   setShowTooltip(true);
+  //   Animated.timing(fadeAnim, {
+  //     toValue: 1,
+  //     duration: 200,
+  //     useNativeDriver: true,
+  //   }).start();
+  // };
 
+  // const fadeOut = () => {
+  //   Animated.timing(fadeAnim, {
+  //     toValue: 0,
+  //     duration: 200,
+  //     useNativeDriver: true,
+  //   }).start(() => setShowTooltip(false));
+  // };
 
   return (
     <View style={{ position: 'relative' }}>
-     {/* commented out showTooltip && because using animation and not state */}
-        <Animated.View style={[styles.tooltip, {
-          opacity: fadeAnim,
-        }]}>
-          <CmTypography variant="h1" style={styles.tooltipText}>
-            {label[0].toUpperCase() + label.slice(1)}
-          </CmTypography>
-       <CmTypography variant={'body'}>{personalValueText[label]}</CmTypography>
-          <View style={styles.caretDown}></View>
-        </Animated.View>
-      
+      {/* commented out showTooltip && because using animation and not state */}
+     { showTooltip && <View style={styles.tooltip}>
+        <CmTypography variant="h2" style={[styles.tooltipText, {fontSize:14}]}>
+          {label[0].toUpperCase() + label.slice(1)}
+        </CmTypography>
+        <CmTypography variant={'body'} style={[styles.tooltipText, {fontSize:14}]}>{personalValueText[label]}</CmTypography>
+        <View style={styles.caretDown}></View>
+      </View>}
 
-      <Pressable onPressIn={fadeIn} onPressOut={fadeOut}>
-        <CmTypography variant="body" style={styles.chip}>
+      <Pressable onPressIn={() => setShowTooltip(true)} onPressOut={() => setShowTooltip(false)}>
+        <CmTypography variant="body" style={[styles.chip, { zIndex: 999 }]}>
           {label}
         </CmTypography>
       </Pressable>
@@ -89,9 +84,9 @@ const styles = StyleSheet.create({
   },
   tooltip: {
     position: 'absolute',
-    backgroundColor: 'rgba(255, 255, 255, 1)',
+    backgroundColor: 'rgba(186, 230, 224, 0.9)',
     paddingHorizontal: 8,
-    paddingTop: 5,
+    paddingTop: 8,
     paddingBottom: 15,
     borderRadius: 10,
     borderWidth: 1,
@@ -108,19 +103,19 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.21,
     shadowRadius: 6.65,
-    zIndex: 100000,
+    zIndex: 999,
     marginBottom: 15,
   },
   tooltipText: {
-    
-    textAlign: 'justify',
-    // color: 'black',
-    fontSize: 14,
+    textAlign: 'left',
+  
+  
   },
   caretDown: {
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(186, 230, 224,1)',
     borderRadius: 2,
     borderWidth: 1,
+    borderColor: 'rgb(8, 55, 59)',
     width: 20,
     height: 20,
     transform: [{ rotate: '45deg' }],
