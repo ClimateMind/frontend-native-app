@@ -42,7 +42,7 @@ function CmChip({ label }: Props) {
         fadeAnim,
         {
           toValue: 1,
-          duration: 500, // Adjust the duration of the fade-in animation as needed
+          duration: 500, 
           useNativeDriver: true,
         }
       ).start();
@@ -51,7 +51,7 @@ function CmChip({ label }: Props) {
         fadeAnim,
         {
           toValue: 0,
-          duration: 500, // Adjust the duration of the fade-out animation as needed
+          duration: 500,
           useNativeDriver: true,
         }
       ).start();
