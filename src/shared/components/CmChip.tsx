@@ -1,7 +1,7 @@
-import { StyleSheet, View, Pressable, Text } from 'react-native';
+import { StyleSheet, View, Pressable, Text, Animated } from 'react-native';
 
 import CmTypography from './CmTypography';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Props {
   label: string;
@@ -35,17 +35,41 @@ const personalValueText: { [x: string]: string } = {
 
 function CmChip({ label }: Props) {
   const [showTooltip, setShowTooltip] = useState(false);
+  const fadeAnim = useState(new Animated.Value(0))[0];
+  useEffect(() => {
+    if (showTooltip) {
+      Animated.timing(
+        fadeAnim,
+        {
+          toValue: 1,
+          duration: 500, // Adjust the duration of the fade-in animation as needed
+          useNativeDriver: true,
+        }
+      ).start();
+    } else {
+      Animated.timing(
+        fadeAnim,
+        {
+          toValue: 0,
+          duration: 500, // Adjust the duration of the fade-out animation as needed
+          useNativeDriver: true,
+        }
+      ).start();
+    }
+  }, [showTooltip]);
 
   return (
     <View style={{ position: 'relative' }}>
       {showTooltip && (
-        <View style={styles.tooltip}>
+        <Animated.View style={[styles.tooltip, {
+          opacity: fadeAnim,
+        }]}>
           <CmTypography variant="h1" style={styles.tooltipText}>
             {label[0].toUpperCase() + label.slice(1)}
           </CmTypography>
        <CmTypography variant={'body'}>{personalValueText[label]}</CmTypography>
           <View style={styles.caretDown}></View>
-        </View>
+        </Animated.View>
       )}
 
       <Pressable onTouchStart={() => setShowTooltip(true)} onTouchEnd={() => setShowTooltip(false)}>
