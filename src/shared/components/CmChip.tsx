@@ -1,7 +1,7 @@
 import { StyleSheet, View, Pressable, Text, Animated } from 'react-native';
 
 import CmTypography from './CmTypography';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Props {
   label: string;
@@ -34,33 +34,31 @@ const personalValueText: { [x: string]: string } = {
  };
 
 function CmChip({ label }: Props) {
-  const [showTooltip, setShowTooltip] = useState(false);
-  const fadeAnim = useState(new Animated.Value(0))[0];
-  useEffect(() => {
-    if (showTooltip) {
-      Animated.timing(
-        fadeAnim,
-        {
-          toValue: 1,
-          duration: 500, 
-          useNativeDriver: true,
-        }
-      ).start();
-    } else {
-      Animated.timing(
-        fadeAnim,
-        {
-          toValue: 0,
-          duration: 500,
-          useNativeDriver: true,
-        }
-      ).start();
-    }
-  }, [showTooltip]);
+  // const [showTooltip, setShowTooltip] = useState(true);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+ 
+  const fadeIn = () => {
+    // setShowTooltip(true)
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const fadeOut = () => {
+    // setShowTooltip(false)
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  };
+
 
   return (
     <View style={{ position: 'relative' }}>
-      {showTooltip && (
+     {/* commented out showTooltip && because using animation and not state */}
         <Animated.View style={[styles.tooltip, {
           opacity: fadeAnim,
         }]}>
@@ -70,9 +68,9 @@ function CmChip({ label }: Props) {
        <CmTypography variant={'body'}>{personalValueText[label]}</CmTypography>
           <View style={styles.caretDown}></View>
         </Animated.View>
-      )}
+      
 
-      <Pressable onTouchStart={() => setShowTooltip(true)} onTouchEnd={() => setShowTooltip(false)}>
+      <Pressable onPressIn={fadeIn} onPressOut={fadeOut}>
         <CmTypography variant="body" style={styles.chip}>
           {label}
         </CmTypography>
