@@ -37,35 +37,35 @@ function CmChip({ label }: Props) {
   const [showTooltip, setShowTooltip] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  // const fadeIn = () => {
-  //   setShowTooltip(true);
-  //   Animated.timing(fadeAnim, {
-  //     toValue: 1,
-  //     duration: 200,
-  //     useNativeDriver: true,
-  //   }).start();
-  // };
+  const fadeIn = () => {
+    setShowTooltip(true);
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+  };
 
-  // const fadeOut = () => {
-  //   Animated.timing(fadeAnim, {
-  //     toValue: 0,
-  //     duration: 200,
-  //     useNativeDriver: true,
-  //   }).start(() => setShowTooltip(false));
-  // };
+  const fadeOut = () => {
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: true,
+    }).start(() => setShowTooltip(false));
+  };
 
   return (
     <View style={{ position: 'relative' }}>
       {/* commented out showTooltip && because using animation and not state */}
-     { showTooltip && <View style={styles.tooltip}>
+     <Animated.View style={[styles.tooltip, { opacity:fadeAnim }]}>
         <CmTypography variant="h2" style={[styles.tooltipText, {fontSize:14}]}>
           {label[0].toUpperCase() + label.slice(1)}
         </CmTypography>
         <CmTypography variant={'body'} style={[styles.tooltipText, {fontSize:14}]}>{personalValueText[label]}</CmTypography>
         <View style={styles.caretDown}></View>
-      </View>}
+      </Animated.View>
 
-      <Pressable onPressIn={() => setShowTooltip(true)} onPressOut={() => setShowTooltip(false)}>
+      <Pressable onPressIn={fadeIn} onPressOut={fadeOut}>
         <CmTypography variant="body" style={[styles.chip, { zIndex: 999 }]}>
           {label}
         </CmTypography>
