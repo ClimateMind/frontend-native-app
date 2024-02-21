@@ -5,13 +5,14 @@ import { CmButton, CmCheckbox, CmTypography, Content, Screen } from 'src/shared/
 import { useOnboarding } from 'src/features/onboarding/hooks';
 import { useUpdateApp, useSkipAnalytics } from 'src/features/dev';
 import { useToastMessages } from 'src/shared/hooks';
+import { useState } from 'react';
 
 function DevScreen() {
   const { resetOnboarding } = useOnboarding();
   const { isLoading, updateApp, buttonText } = useUpdateApp();
   const { skipAnalytics, skipAnalyticsCheckboxHandler } = useSkipAnalytics();
   const { showSuccessToast, showErrorToast } = useToastMessages();
-
+  const [ShowExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
   return (
     <Screen>
       <Content style={{ padding: 20 }}>
@@ -34,9 +35,19 @@ function DevScreen() {
             <CmButton onPress={() => showErrorToast('Hello you!')} text="Show Error Toast" style={styles.btn} />
           </View>
         </View>
-
+        <View style={{ alignSelf: 'flex-start' }}>
+          <CmCheckbox checked={ShowExperimentalFeatures} onPress={() => setShowExperimentalFeatures((prevState) => !prevState)} text="Show Experimental Features" />
+        </View>
+        {ShowExperimentalFeatures && (
+          <View>
+            <CmTypography variant={'body'}>hello</CmTypography>
+          </View>
+        )}
         <View style={{ flex: 1 }} />
-        <CmTypography variant='body' style={{ marginBottom: 20 }}>Version {appConfig.expo.version}</CmTypography>
+
+        <CmTypography variant="body" style={{ marginBottom: 20 }}>
+          Version {appConfig.expo.version}
+        </CmTypography>
       </Content>
     </Screen>
   );
