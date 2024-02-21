@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 
 import appConfig from '../../../app.json';
 import { CmButton, CmCheckbox, CmTypography, Content, Screen } from 'src/shared/components';
@@ -9,6 +9,7 @@ import { useRef, useState } from 'react';
 import { ColorPicker, fromHsv } from 'react-native-color-picker';
 import Slider from '@react-native-community/slider';
 import CmToolTip from 'src/experimental/components/CmTooltip';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function DevScreen() {
   const { resetOnboarding } = useOnboarding();
@@ -16,16 +17,21 @@ function DevScreen() {
   const { skipAnalytics, skipAnalyticsCheckboxHandler } = useSkipAnalytics();
   const { showSuccessToast, showErrorToast } = useToastMessages();
   const [ShowExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
-  const [colorValue, setColorValue] = useState("#ffff")
-  const colorPickerRef = useRef(null); 
-  const cmTootipLabels =['benevolence','hedonism', 'security', 'tradition', 'universalism', 'self-direction', 'conformity', 'stimulation', 'achievement', 'stimulation']
-  
-  const handleColorSelected = (color) => { 
-    // Copy the color to the clipboard 
-   setColorValue(color); 
-    // Alert the user 
-   
-}; 
+  const [colorValue, setColorValue] = useState('#333333');
+  const [type, setType] = useState('');
+  const [textColorValue, setTextColorValue] = useState('#ffff');
+  const colorPickerRef = useRef(null);
+  const cmTootipLabels = ['benevolence', 'hedonism', 'security', 'tradition', 'universalism', 'self-direction', 'conformity', 'stimulation', 'achievement', 'stimulation'];
+
+  const handleColorSelected = (color) => {
+    if (type === 'background') {
+      setColorValue(color);
+    }
+
+    if (type === 'text') {
+      setTextColorValue(color);
+    }
+  };
 
   return (
     <Screen>
@@ -49,29 +55,34 @@ function DevScreen() {
             <CmButton onPress={() => showErrorToast('Hello you!')} text="Show Error Toast" style={styles.btn} />
           </View>
         </View>
-        
+
         <View style={{ alignSelf: 'flex-start' }}>
           <CmCheckbox checked={ShowExperimentalFeatures} onPress={() => setShowExperimentalFeatures((prevState) => !prevState)} text="Show Experimental Features" />
         </View>
-   
-        
+
         {ShowExperimentalFeatures && (
           <>
-          <View styles={styles.container}>   
-          <ColorPicker 
-          sliderComponent={Slider} 
-                ref={colorPickerRef} 
-                onColorSelected={handleColorSelected} 
-                style={styles.colorPicker}
-            />   
-          {/* <ColorPicker sliderComponent={Slider}  onColorSelected={(color) => setValue(fromHsv(color))}/>  */}
-           </View>
-          <View style={{flex:1, flexDirection:'row', flexWrap:'wrap'}}>
-            
-           {cmTootipLabels.map((value, i)=> <CmToolTip key={i + 1} label={value} backgroundColor={colorValue} />)} 
-          </View>
+            <View>
+           <SafeAreaView>
+              <ColorPicker sliderComponent={Slider} ref={colorPickerRef} onColorSelected={handleColorSelected} style={styles.colorPicker} />
+              </SafeAreaView>
+              <CmButton text={'background'} onPress={() => setType('background')}  style={{backgroundColor:type == 'background' ?'red':'white'}}/>
+              <CmButton text={'text'} onPress={() => setType('text')} style={{backgroundColor:type == 'text' ?'red':'white'}}/>
+              <CmTypography variant={'h4'} style={{ textAlign: 'center', marginBottom: 10 }}>
+                Background Color Value: {colorValue}
+              </CmTypography>
+              <CmTypography variant={'h4'} style={{ textAlign: 'center', marginBottom: 10 }}>
+                Text Color Value: {textColorValue}
+              </CmTypography>
+            </View>
+            <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
+              {cmTootipLabels.map((value, i) => (
+                <CmToolTip key={i + 1} label={value} backgroundColor={colorValue} textColor={textColorValue} />
+              ))}
+            </View>
           </>
         )}
+
         <View style={{ flex: 1 }} />
 
         <CmTypography variant="body" style={{ marginBottom: 20 }}>
@@ -87,29 +98,29 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     marginBottom: 20,
   },
-  container: { 
-    flex: 1, 
-    backgroundColor: '#f5f5f5', 
-    alignItems: 'center', 
-    justifyContent: 'center', 
-}, 
-title: { 
-    fontSize: 24, 
-    fontWeight: 'bold', 
-    marginBottom: 20, 
-}, 
-colorPicker: { 
-    width: 300, 
-    height: 500, 
-    borderRadius: 10, 
-    marginBottom: 20, 
-}, 
-input: { 
-    color: 'black', 
-    fontWeight: 'bold', 
-    fontSize: 20, 
-}, 
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  colorPicker: {
+   
+    width: 300,
+    height: 500,
+    borderRadius: 10,
+    marginBottom: 20,
+  },
+  input: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
 });
 
 export default DevScreen;
-
