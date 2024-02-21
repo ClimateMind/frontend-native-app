@@ -22,37 +22,38 @@ const personalValueText: { [x: string]: string } = {
 
 function CmToolTip({ label }: Props) {
   const [showTooltip, setShowTooltip] = useState(false);
-//   const fadeAnim = useRef(new Animated.Value(0)).current;
+  
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
-//   const fadeIn = () => {
-//     setShowTooltip(true);
-//     Animated.timing(fadeAnim, {
-//       toValue: 1,
-//       duration: 500,
-//       useNativeDriver: true,
-//     }).start();
-//   };
+  const fadeIn = () => {
+    setShowTooltip(true);
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+  };
 
-//   const fadeOut = () => {
-//     Animated.timing(fadeAnim, {
-//       toValue: 0,
-//       duration: 200,
-//       useNativeDriver: true,
-//     }).start(() => setShowTooltip(false));
-//   };
+  const fadeOut = () => {
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: true,
+    }).start(() => setShowTooltip(false));
+  };
 
   return (
     <View style={{ position: 'relative' }}>
       {/* commented out showTooltip && because using animation and not state */}
-    {showTooltip && <View style={[styles.tooltip]}>
+    {showTooltip && <Animated.View style={[styles.tooltip,{opacity:fadeAnim}]}>
         <CmTypography variant="h2" style={[styles.tooltipText, {fontSize:14}]}>
           {label[0].toUpperCase() + label.slice(1)}
         </CmTypography>
         <CmTypography variant={'body'} style={[styles.tooltipText, {fontSize:14}]}>{personalValueText[label]}</CmTypography>
         <View style={styles.caretDown}></View>
-      </View>}
-
-      <Pressable onPressIn={()=>setShowTooltip(true)} onPressOut={()=>setShowTooltip(false)}>
+      </Animated.View>}
+{/* add a color picker */}
+      <Pressable onPressIn={fadeIn} onPressOut={fadeOut}>
         <CmTypography variant="body" style={[styles.chip, { zIndex: 999 }]}>
           {label}
         </CmTypography>
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
   },
   tooltip: {
     position: 'absolute',
-    backgroundColor: 'rgba(186, 230, 224, 0.9)',
+    backgroundColor: 'rgba(51, 51, 51, 1)',
     paddingHorizontal: 8,
     paddingTop: 8,
     paddingBottom: 15,
@@ -95,11 +96,12 @@ const styles = StyleSheet.create({
   },
   tooltipText: {
     textAlign: 'left',
+    color:'white'
   
   
   },
   caretDown: {
-    backgroundColor: 'rgba(186, 230, 224,1)',
+    backgroundColor: 'rgba(51, 51, 51, 1)',
     borderRadius: 2,
     borderWidth: 1,
     borderColor: 'rgb(8, 55, 59)',
