@@ -1,24 +1,11 @@
-import { StyleSheet, View, Pressable, Text, Animated, Touchable, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Pressable, Animated } from 'react-native';
 
 import CmTypography from './CmTypography';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 interface Props {
   label: string;
 }
-
-// const personalValueText: { [x: string]: string } = {
-//   benevolence: 'Forgiving, helping, and being loyal are important to you. You likely look to preserve and improve the lives of those that share your core interests or identities.',
-//   hedonism: 'Joy, pleasure and satisfaction are a big part of what drives you. From big moments to the little things, you find bliss in enjoying what you do.',
-//   security: 'A feeling of safety, stability, and order is very important to you; this is true likely whether in society at large, at work, in your home, or in your relationships.',
-//   tradition: 'You value protecting the traditions of your family, community, and/or culture. You likely take pride in this commitment.',
-//   universalism: 'You care a great deal for the well-being of all people and life. You likely also value diversity and protecting the environment.',
-//   'self-direction': 'You value freedom of thought and action, preferring to come to conclusions or decisions yourself. You also likely draw great satisfaction when creating or exploring the world.',
-//   conformity: 'Rule breaker? Far from it. In fact, you love nothing more than sticking by the rules and conforming to social norms.',
-//   stimulation: 'You highly value excitement, challenge, and positive change. Life is likely never dull with you around.',
-//   achievement: 'Success - that’s a major goal for your life. Meeting your own standards of excellence is very important to you. It propels you forward.',
-//   power: 'Control freak? Maybe. But in your eyes it’s more about embracing power, holding dominance and getting the job done. You value social status and prestige.',
-// };
 
 const personalValueText: { [x: string]: string } = {
   benevolence: 'To value: Forgiving, helping, and being loyal, preserving and improving the lives of people that share core interests or identities.',
