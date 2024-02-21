@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   colorPicker: {
    
     width: 300,
-    height: 500,
+    height: 300,
     borderRadius: 10,
     marginBottom: 20,
   },
