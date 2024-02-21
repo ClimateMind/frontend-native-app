@@ -44,7 +44,6 @@ function CmToolTip({ label }: Props) {
 
   return (
     <View style={{ position: 'relative' }}>
-      {/* commented out showTooltip && because using animation and not state */}
     {showTooltip && <Animated.View style={[styles.tooltip,{opacity:fadeAnim}]}>
         <CmTypography variant="h2" style={[styles.tooltipText, {fontSize:14}]}>
           {label[0].toUpperCase() + label.slice(1)}
@@ -52,7 +51,7 @@ function CmToolTip({ label }: Props) {
         <CmTypography variant={'body'} style={[styles.tooltipText, {fontSize:14}]}>{personalValueText[label]}</CmTypography>
         <View style={styles.caretDown}></View>
       </Animated.View>}
-{/* add a color picker */}
+{/* add a color picker here so that Kameron can choose colors for backgrounds etc */}
       <Pressable onPressIn={fadeIn} onPressOut={fadeOut}>
         <CmTypography variant="body" style={[styles.chip, { zIndex: 999 }]}>
           {label}
