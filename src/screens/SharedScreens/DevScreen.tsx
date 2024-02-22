@@ -65,7 +65,7 @@ function DevScreen() {
                 <Panel1 />
                 {/* <HueSlider style={{margin:5}}/> */}
                 <OpacitySlider style={{margin:5}} />
-                <Swatches style={{marginTop:5}} colors={['blue', 'teal', '#D0EEEB', '#D0EEEB', '#D0EEEB','#D0EEEB']}/>
+                <Swatches style={{marginTop:5}} colors={['blue', 'teal', '#07373b', '#D0EEEB', '#D0EEEB','#D0EEEB']}/>
               </ColorPicker>
 
               <CmButton text={'background'} onPress={() => setType('background')} style={{ backgroundColor: type == 'background' ? 'red' : 'white' }} />
