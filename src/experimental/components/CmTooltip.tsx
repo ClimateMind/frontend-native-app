@@ -20,7 +20,7 @@ const personalValueText: { [x: string]: string } = {
   power: 'To value: Embracing power, holding dominance, social status and prestige.',
 };
 
-function CmToolTip({ label }: Props) {
+function CmTooltip({ label }: Props) {
   const [showTooltip, setShowTooltip] = useState(false);
   
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -44,7 +44,7 @@ function CmToolTip({ label }: Props) {
 
   return (
     <View style={{ position: 'relative' }}>
-    {showTooltip && <Animated.View style={[styles.tooltip,{opacity:fadeAnim}]}>
+      {showTooltip && <Animated.View style={[styles.tooltip,{opacity:fadeAnim}]}>
         <CmTypography variant="h2" style={[styles.tooltipText, {fontSize:14}]}>
           {label[0].toUpperCase() + label.slice(1)}
         </CmTypography>
@@ -95,9 +95,7 @@ const styles = StyleSheet.create({
   },
   tooltipText: {
     textAlign: 'left',
-    color:'white'
-  
-  
+    color: 'white',
   },
   caretDown: {
     backgroundColor: 'rgba(51, 51, 51, 1)',
@@ -115,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CmToolTip;
+export default CmTooltip;

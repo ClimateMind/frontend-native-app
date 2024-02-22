@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import appConfig from '../../../app.json';
@@ -5,17 +6,17 @@ import { CmButton, CmCheckbox, CmTypography, Content, Screen } from 'src/shared/
 import { useOnboarding } from 'src/features/onboarding/hooks';
 import { useUpdateApp, useSkipAnalytics } from 'src/features/dev';
 import { useToastMessages } from 'src/shared/hooks';
-import { useState } from 'react';
-import CmToolTip from 'src/experimental/components/CmTooltip';
+import CmTooltip from 'src/experimental/components/CmTooltip';
 
 function DevScreen() {
   const { resetOnboarding } = useOnboarding();
   const { isLoading, updateApp, buttonText } = useUpdateApp();
   const { skipAnalytics, skipAnalyticsCheckboxHandler } = useSkipAnalytics();
   const { showSuccessToast, showErrorToast } = useToastMessages();
-  const [showExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
 
+  const [showExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
   const cmTooltipLabels = ['benevolence', 'hedonism', 'security', 'tradition', 'universalism', 'self-direction', 'conformity', 'stimulation', 'achievement', 'stimulation'];
+
   return (
     <Screen>
       <Content style={{ padding: 20 }}>
@@ -42,13 +43,15 @@ function DevScreen() {
         <View style={{ alignSelf: 'flex-start' }}>
           <CmCheckbox checked={showExperimentalFeatures} onPress={() => setShowExperimentalFeatures((prevState) => !prevState)} text="Show Experimental Features" />
         </View>
+
         {showExperimentalFeatures && (
-          <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
             {cmTooltipLabels.map((value, i) => (
-              <CmToolTip key={i + 1} label={value} />
+              <CmTooltip key={i + 1} label={value} />
             ))}
           </View>
         )}
+
         <View style={{ flex: 1 }} />
 
         <CmTypography variant="body" style={{ marginBottom: 20 }}>

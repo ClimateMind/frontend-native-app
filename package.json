@@ -37,7 +37,8 @@
     "react-native-screens": "~3.22.0",
     "react-native-svg": "13.9.0",
     "react-native-webview": "13.2.2",
-    "react-redux": "^9.0.4"
+    "react-redux": "^9.0.4",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",
