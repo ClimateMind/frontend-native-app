@@ -7,7 +7,7 @@ import { useAppDispatch } from 'src/store/hooks';
 import { login } from 'src/store/authSlice';
 import useApiClient from 'src/hooks/useApiClient';
 import useLogger from 'src/hooks/useLogger';
-
+import * as SecureStore from 'expo-secure-store';
 import { PasswordResetModal } from '@features/auth/components';
 import { CmTypography, CmButton, Screen, Section, Content } from '@shared/components';
 import { useToastMessages } from '@shared/hooks';
