@@ -15,7 +15,7 @@ function DevScreen() {
   const { showSuccessToast, showErrorToast } = useToastMessages();
   const [showExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
 
-  const cmTooltipLabels =['benevolence','hedonism', 'security', 'tradition', 'universalism', 'self-direction', 'conformity', 'stimulation', 'achievement', 'stimulation']
+  const cmTooltipLabels = ['benevolence', 'hedonism', 'security', 'tradition', 'universalism', 'self-direction', 'conformity', 'stimulation', 'achievement', 'stimulation'];
   return (
     <Screen>
       <Content style={{ padding: 20 }}>
@@ -38,13 +38,15 @@ function DevScreen() {
             <CmButton onPress={() => showErrorToast('Hello you!')} text="Show Error Toast" style={styles.btn} />
           </View>
         </View>
-        
+
         <View style={{ alignSelf: 'flex-start' }}>
           <CmCheckbox checked={showExperimentalFeatures} onPress={() => setShowExperimentalFeatures((prevState) => !prevState)} text="Show Experimental Features" />
         </View>
         {showExperimentalFeatures && (
-          <View style={{flex:1, flexDirection:'row', flexWrap:'wrap'}}>
-           {cmTooltipLabels.map((value, i)=> <CmToolTip key={i+1} label={value} />)} 
+          <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
+            {cmTooltipLabels.map((value, i) => (
+              <CmToolTip key={i + 1} label={value} />
+            ))}
           </View>
         )}
         <View style={{ flex: 1 }} />
