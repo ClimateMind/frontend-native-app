@@ -5,8 +5,8 @@ import React, { useRef, useState } from 'react';
 
 interface Props {
   label: string;
-  backgroundColor:string
-  textColor:string
+  backgroundColor: string;
+  textColor: string;
 }
 
 const personalValueText: { [x: string]: string } = {
@@ -22,9 +22,9 @@ const personalValueText: { [x: string]: string } = {
   power: 'To value: Embracing power, holding dominance, social status and prestige.',
 };
 
-function CmToolTip({ label, backgroundColor, textColor}: Props) {
+function CmToolTip({ label, backgroundColor, textColor }: Props) {
   const [showTooltip, setShowTooltip] = useState(false);
-  
+
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const fadeIn = () => {
@@ -46,13 +46,17 @@ function CmToolTip({ label, backgroundColor, textColor}: Props) {
 
   return (
     <View style={{ position: 'relative' }}>
-    {showTooltip && <Animated.View style={[styles.tooltip,{opacity:fadeAnim, backgroundColor: backgroundColor}]}>
-        <CmTypography variant="h2" style={[styles.tooltipText, {fontSize:14, color:textColor}]}>
-          {label[0].toUpperCase() + label.slice(1)}
-        </CmTypography>
-        <CmTypography variant={'body'} style={[styles.tooltipText, {fontSize:14, color:textColor}]}>{personalValueText[label]}</CmTypography>
-        <View style={[styles.caretDown, {backgroundColor: backgroundColor}]}></View>
-      </Animated.View>}
+      {showTooltip && (
+        <Animated.View style={[styles.tooltip, { opacity: fadeAnim, backgroundColor: backgroundColor }]}>
+          <CmTypography variant="h2" style={[styles.tooltipText, { fontSize: 14, color: textColor }]}>
+            {label[0].toUpperCase() + label.slice(1)}
+          </CmTypography>
+          <CmTypography variant={'body'} style={[styles.tooltipText, { fontSize: 14, color: textColor }]}>
+            {personalValueText[label]}
+          </CmTypography>
+          <View style={[styles.caretDown, { backgroundColor: backgroundColor }]}></View>
+        </Animated.View>
+      )}
       <Pressable onPressIn={fadeIn} onPressOut={fadeOut}>
         <CmTypography variant="body" style={[styles.chip, { zIndex: 999 }]}>
           {label}
@@ -96,9 +100,7 @@ const styles = StyleSheet.create({
   },
   tooltipText: {
     textAlign: 'left',
-    color:'white'
-  
-  
+    color: 'white',
   },
   caretDown: {
     backgroundColor: 'rgba(51, 51, 51, 1)',

@@ -1,15 +1,13 @@
-import { Button, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import appConfig from '../../../app.json';
 import { CmButton, CmCheckbox, CmTypography, Content, Screen } from 'src/shared/components';
 import { useOnboarding } from 'src/features/onboarding/hooks';
 import { useUpdateApp, useSkipAnalytics } from 'src/features/dev';
 import { useToastMessages } from 'src/shared/hooks';
-import { useRef, useState } from 'react';
-import { ColorPicker, fromHsv } from 'react-native-color-picker';
-import Slider from '@react-native-community/slider';
+import { useState } from 'react';
+import ColorPicker, { Panel1, Swatches, Preview, OpacitySlider, HueSlider } from 'reanimated-color-picker';
 import CmToolTip from 'src/experimental/components/CmTooltip';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 function DevScreen() {
   const { resetOnboarding } = useOnboarding();
@@ -17,19 +15,18 @@ function DevScreen() {
   const { skipAnalytics, skipAnalyticsCheckboxHandler } = useSkipAnalytics();
   const { showSuccessToast, showErrorToast } = useToastMessages();
   const [ShowExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
-  const [colorValue, setColorValue] = useState('#333333');
+  const [backgroundColorValue, setBackgroundColorValue] = useState('#333333');
   const [type, setType] = useState('');
   const [textColorValue, setTextColorValue] = useState('#ffff');
-  const colorPickerRef = useRef(null);
   const cmTootipLabels = ['benevolence', 'hedonism', 'security', 'tradition', 'universalism', 'self-direction', 'conformity', 'stimulation', 'achievement', 'stimulation'];
 
-  const handleColorSelected = (color) => {
+  const handleColorSelected = (color: any) => {
     if (type === 'background') {
-      setColorValue(color);
+      setBackgroundColorValue(color.hex);
     }
 
     if (type === 'text') {
-      setTextColorValue(color);
+      setTextColorValue(color.hex);
     }
   };
 
@@ -63,21 +60,27 @@ function DevScreen() {
         {ShowExperimentalFeatures && (
           <>
             <View>
-           <SafeAreaView>
-              <ColorPicker sliderComponent={Slider} ref={colorPickerRef} onColorSelected={handleColorSelected} style={styles.colorPicker} />
-              </SafeAreaView>
-              <CmButton text={'background'} onPress={() => setType('background')}  style={{backgroundColor:type == 'background' ?'red':'white'}}/>
-              <CmButton text={'text'} onPress={() => setType('text')} style={{backgroundColor:type == 'text' ?'red':'white'}}/>
+              <ColorPicker style={{ width: '70%' }} value="red" onComplete={handleColorSelected}>
+                <Preview />
+                <Panel1 />
+                <HueSlider />
+                <OpacitySlider />
+                <Swatches />
+              </ColorPicker>
+
+              <CmButton text={'background'} onPress={() => setType('background')} style={{ backgroundColor: type == 'background' ? 'red' : 'white' }} />
+              <CmButton text={'text'} onPress={() => setType('text')} style={{ backgroundColor: type == 'text' ? 'red' : 'white' }} />
               <CmTypography variant={'h4'} style={{ textAlign: 'center', marginBottom: 10 }}>
-                Background Color Value: {colorValue}
+                Background Color Value: {backgroundColorValue}
               </CmTypography>
               <CmTypography variant={'h4'} style={{ textAlign: 'center', marginBottom: 10 }}>
                 Text Color Value: {textColorValue}
               </CmTypography>
             </View>
+            {/* Add Features to test below */}
             <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
               {cmTootipLabels.map((value, i) => (
-                <CmToolTip key={i + 1} label={value} backgroundColor={colorValue} textColor={textColorValue} />
+                <CmToolTip key={i + 1} label={value} backgroundColor={backgroundColorValue} textColor={textColorValue} />
               ))}
             </View>
           </>
@@ -110,7 +113,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   colorPicker: {
-   
     width: 300,
     height: 300,
     borderRadius: 10,
