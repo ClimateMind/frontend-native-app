@@ -60,12 +60,12 @@ function DevScreen() {
         {ShowExperimentalFeatures && (
           <>
             <View>
-              <ColorPicker style={{ width: '70%', marginTop:20 }} value="red" onComplete={handleColorSelected} >
+              <ColorPicker style={{ width: '70%', marginTop:20 }} value="#D0EEEB" onComplete={handleColorSelected} thumbColor={'#07373b'}>
                 <Preview />
                 <Panel1 />
-                <HueSlider style={{margin:5}}/>
+                {/* <HueSlider style={{margin:5}}/> */}
                 <OpacitySlider style={{margin:5}} />
-                <Swatches style={{marginTop:5}}/>
+                <Swatches style={{marginTop:5}} colors={['blue', 'teal', '#D0EEEB', '#D0EEEB', '#D0EEEB','#D0EEEB']}/>
               </ColorPicker>
 
               <CmButton text={'background'} onPress={() => setType('background')} style={{ backgroundColor: type == 'background' ? 'red' : 'white' }} />
