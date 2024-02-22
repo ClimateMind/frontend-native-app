@@ -6,7 +6,6 @@ import { useOnboarding } from 'src/features/onboarding/hooks';
 import { useUpdateApp, useSkipAnalytics } from 'src/features/dev';
 import { useToastMessages } from 'src/shared/hooks';
 import { useState } from 'react';
-import { uuid } from 'uuidv4'
 import CmToolTip from 'src/experimental/components/CmTooltip';
 
 function DevScreen() {
@@ -14,9 +13,9 @@ function DevScreen() {
   const { isLoading, updateApp, buttonText } = useUpdateApp();
   const { skipAnalytics, skipAnalyticsCheckboxHandler } = useSkipAnalytics();
   const { showSuccessToast, showErrorToast } = useToastMessages();
-  const [ShowExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
+  const [showExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
 
-  const cmTootipLabels =['benevolence','hedonism', 'security', 'tradition', 'universalism', 'self-direction', 'conformity', 'stimulation', 'achievement', 'stimulation']
+  const cmTooltipLabels =['benevolence','hedonism', 'security', 'tradition', 'universalism', 'self-direction', 'conformity', 'stimulation', 'achievement', 'stimulation']
   return (
     <Screen>
       <Content style={{ padding: 20 }}>
@@ -41,11 +40,11 @@ function DevScreen() {
         </View>
         
         <View style={{ alignSelf: 'flex-start' }}>
-          <CmCheckbox checked={ShowExperimentalFeatures} onPress={() => setShowExperimentalFeatures((prevState) => !prevState)} text="Show Experimental Features" />
+          <CmCheckbox checked={showExperimentalFeatures} onPress={() => setShowExperimentalFeatures((prevState) => !prevState)} text="Show Experimental Features" />
         </View>
-        {ShowExperimentalFeatures && (
+        {showExperimentalFeatures && (
           <View style={{flex:1, flexDirection:'row', flexWrap:'wrap'}}>
-           {cmTootipLabels.map((value, i)=> <CmToolTip key={i+1} label={value} />)} 
+           {cmTooltipLabels.map((value, i)=> <CmToolTip key={i+1} label={value} />)} 
           </View>
         )}
         <View style={{ flex: 1 }} />
