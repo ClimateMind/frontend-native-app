@@ -60,15 +60,15 @@ function DevScreen() {
         {showExperimentalFeatures && (
           <>
             <View>
-              <ColorPicker style={{ width: '70%', marginTop: 20 }} value="#D0EEEB" onComplete={handleColorSelected} thumbColor={'#07373b'}>
+              <ColorPicker style={{ width: '100%', marginTop: 20 }} value="#D0EEEB" onComplete={handleColorSelected} thumbColor={'#07373b'}>
                 <Preview />
                 <Panel1 />
-                <OpacitySlider style={{ margin: 5 }} />
-                <Swatches style={{ marginTop: 5 }} colors={['#333333', 'teal', '#07373b', '#ffffff', '#000000', '#D0EEEB']} />
+                <OpacitySlider style={{ marginTop: 10 }} />
+                <Swatches style={{ marginTop: 10 }} colors={['#333333', 'teal', '#07373b', '#ffffff', '#000000', '#D0EEEB']} />
               </ColorPicker>
 
-              <CmButton text={'background'} onPress={() => setType('background')} style={{ backgroundColor: type == 'background' ? 'red' : 'white' }} />
-              <CmButton text={'text'} onPress={() => setType('text')} style={{ backgroundColor: type == 'text' ? 'red' : 'white' }} />
+              <CmButton text={'background'} onPress={() => setType('background')} style={{ backgroundColor: type == 'background' ? 'red' : 'white', width:200, alignSelf:'center' }} />
+              <CmButton text={'text'} onPress={() => setType('text')} style={{ backgroundColor: type == 'text' ? 'red' : 'white', width:200, alignSelf:'center', marginTop:10}} />
               <CmTypography variant={'h4'} style={{ textAlign: 'left', marginVertical: 20 }}>
                 Background Color Value: {backgroundColorValue.slice(0, -2)}
               </CmTypography>
