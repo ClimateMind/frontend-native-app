@@ -6,7 +6,7 @@ import { useOnboarding } from 'src/features/onboarding/hooks';
 import { useUpdateApp, useSkipAnalytics } from 'src/features/dev';
 import { useToastMessages } from 'src/shared/hooks';
 import { useState } from 'react';
-import ColorPicker, { Swatches, Preview, BrightnessSlider } from 'reanimated-color-picker';
+import ColorPicker, { Panel1, Swatches, Preview } from 'reanimated-color-picker';
 import CmToolTip from 'src/experimental/components/CmTooltip';
 
 function DevScreen() {
@@ -15,18 +15,18 @@ function DevScreen() {
   const { skipAnalytics, skipAnalyticsCheckboxHandler } = useSkipAnalytics();
   const { showSuccessToast, showErrorToast } = useToastMessages();
   const [showExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
-  const [backgroundColorValue, setBackgroundColorValue] = useState('#333333');
+  const [backgroundColorValue, setBackgroundColorValue] = useState('#33333333');
   const [type, setType] = useState('');
-  const [textColorValue, setTextColorValue] = useState('#ffffff');
+  const [textColorValue, setTextColorValue] = useState('#ffffffff');
   const cmTooltipLabels = ['benevolence', 'hedonism', 'security', 'tradition', 'universalism', 'self-direction', 'conformity', 'stimulation', 'achievement', 'stimulation'];
 
   const handleColorSelected = (color: any) => {
     if (type === 'background') {
-      setBackgroundColorValue(color.hex.slice(0, -2));
+      setBackgroundColorValue(color.hex);
     }
 
     if (type === 'text') {
-      setTextColorValue(color.hex.slice(0, -2));
+      setTextColorValue(color.hex);
     }
   };
 
@@ -62,17 +62,18 @@ function DevScreen() {
             <View>
               <ColorPicker style={{ width: '100%', marginTop: 20 }} value="#D0EEEB" onComplete={handleColorSelected} thumbColor={'#07373b'}>
                 <Preview />
-                <BrightnessSlider style={{ marginTop: 15 }} />
-                <Swatches style={{ marginTop: 15 }} colors={['#333333', 'teal', '#07373b', '#ffffff', '#000000', '#D0EEEB']} />
+                <Panel1 />
+                {/* <OpacitySlider style={{ marginTop: 10 }} /> */}
+                <Swatches style={{ marginTop: 10 }} colors={['#333333', 'teal', '#07373b', '#ffffff', '#000000', '#D0EEEB']} />
               </ColorPicker>
 
-              <CmButton text={'background'} onPress={() => setType('background')} style={{ backgroundColor: type == 'background' ? 'teal' : 'white', minWidth: '70%', alignSelf: 'center' }} />
-              <CmButton text={'text'} onPress={() => setType('text')} style={{ backgroundColor: type == 'text' ? 'teal' : 'white', minWidth: '70%', alignSelf: 'center', marginTop: 10 }} />
+              <CmButton text={'background'} onPress={() => setType('background')} style={{ backgroundColor: type == 'background' ? 'teal' : 'white', width: 200, alignSelf: 'center' }} />
+              <CmButton text={'text'} onPress={() => setType('text')} style={{ backgroundColor: type == 'text' ? 'teal' : 'white', width: 200, alignSelf: 'center', marginTop: 10 }} />
               <CmTypography variant={'h4'} style={{ textAlign: 'left', marginVertical: 20 }}>
-                Background Color Value: {backgroundColorValue}
+                Background Color Value: {backgroundColorValue.slice(0, -2)}
               </CmTypography>
               <CmTypography variant={'h4'} style={{ textAlign: 'left', marginBottom: 20 }}>
-                Text Color Value: {textColorValue}
+                Text Color Value: {textColorValue.slice(0, -2)}
               </CmTypography>
             </View>
             {/* Add Features to test below */}
