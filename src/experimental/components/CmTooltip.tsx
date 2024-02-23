@@ -22,7 +22,7 @@ const personalValueText: { [x: string]: string } = {
 
 function CmTooltip({ label }: Props) {
   const [showTooltip, setShowTooltip] = useState(false);
-  
+
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const fadeIn = () => {
@@ -44,14 +44,17 @@ function CmTooltip({ label }: Props) {
 
   return (
     <View style={{ position: 'relative' }}>
-      {showTooltip && <Animated.View style={[styles.tooltip,{opacity:fadeAnim}]}>
-        <CmTypography variant="h2" style={[styles.tooltipText, {fontSize:14}]}>
-          {label[0].toUpperCase() + label.slice(1)}
-        </CmTypography>
-        <CmTypography variant={'body'} style={[styles.tooltipText, {fontSize:14}]}>{personalValueText[label]}</CmTypography>
-        <View style={styles.caretDown}></View>
-      </Animated.View>}
-{/* add a color picker here so that Kameron can choose colors for backgrounds etc */}
+      {showTooltip && (
+        <Animated.View style={[styles.tooltip, { opacity: fadeAnim }]}>
+          <CmTypography variant="h2" style={[styles.tooltipText, { fontSize: 13 }]}>
+            {label[0].toUpperCase() + label.slice(1)}
+          </CmTypography>
+          <CmTypography variant={'body'} style={[styles.tooltipText, { fontSize: 13 }]}>
+            {personalValueText[label]}
+          </CmTypography>
+          <View style={styles.caretDown}></View>
+        </Animated.View>
+      )}
       <Pressable onPressIn={fadeIn} onPressOut={fadeOut}>
         <CmTypography variant="body" style={[styles.chip, { zIndex: 999 }]}>
           {label}
@@ -98,15 +101,14 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   caretDown: {
-    backgroundColor: 'rgba(51, 51, 51, 1)',
-    borderRadius: 2,
-    borderWidth: 1,
-    borderColor: 'rgb(8, 55, 59)',
-    width: 20,
-    height: 20,
-    transform: [{ rotate: '45deg' }],
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
+    width: 0,
+    height: 0,
+    borderRightWidth: 10,
+    borderLeftWidth: 10,
+    borderTopWidth: 10,
+    borderRightColor: 'transparent',
+    borderLeftColor: 'transparent',
+    borderTopColor: 'rgba(51, 51, 51, 1)',
     position: 'absolute',
     bottom: -10,
     left: '45%',
