@@ -71,10 +71,10 @@ function DevScreen() {
               <CmButton text={'background'} onPress={() => setType('background')} style={{ backgroundColor: type == 'background' ? 'red' : 'white' }} />
               <CmButton text={'text'} onPress={() => setType('text')} style={{ backgroundColor: type == 'text' ? 'red' : 'white' }} />
               <CmTypography variant={'h4'} style={{ textAlign: 'left', marginVertical:20 }}>
-                Background Color Value: {backgroundColorValue}
+                Background Color Value: {backgroundColorValue.slice(0,-2)}
               </CmTypography>
               <CmTypography variant={'h4'} style={{ textAlign: 'left', marginBottom:20 }}>
-                Text Color Value: {textColorValue}
+                Text Color Value: {textColorValue.slice(0,-2)}
               </CmTypography>
             </View>
             {/* Add Features to test below */}
