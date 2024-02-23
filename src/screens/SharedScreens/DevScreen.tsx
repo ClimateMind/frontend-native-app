@@ -6,7 +6,7 @@ import { useOnboarding } from 'src/features/onboarding/hooks';
 import { useUpdateApp, useSkipAnalytics } from 'src/features/dev';
 import { useToastMessages } from 'src/shared/hooks';
 import { useState } from 'react';
-import ColorPicker, { Panel1, Swatches, Preview, OpacitySlider } from 'reanimated-color-picker';
+import ColorPicker, { Swatches, Preview, BrightnessSlider } from 'reanimated-color-picker';
 import CmToolTip from 'src/experimental/components/CmTooltip';
 
 function DevScreen() {
@@ -17,16 +17,16 @@ function DevScreen() {
   const [showExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
   const [backgroundColorValue, setBackgroundColorValue] = useState('#333333');
   const [type, setType] = useState('');
-  const [textColorValue, setTextColorValue] = useState('#ffff');
+  const [textColorValue, setTextColorValue] = useState('#ffffff');
   const cmTooltipLabels = ['benevolence', 'hedonism', 'security', 'tradition', 'universalism', 'self-direction', 'conformity', 'stimulation', 'achievement', 'stimulation'];
 
   const handleColorSelected = (color: any) => {
     if (type === 'background') {
-      setBackgroundColorValue(color.hex);
+      setBackgroundColorValue(color.hex.slice(0, -2));
     }
 
     if (type === 'text') {
-      setTextColorValue(color.hex);
+      setTextColorValue(color.hex.slice(0, -2));
     }
   };
 
@@ -62,18 +62,17 @@ function DevScreen() {
             <View>
               <ColorPicker style={{ width: '100%', marginTop: 20 }} value="#D0EEEB" onComplete={handleColorSelected} thumbColor={'#07373b'}>
                 <Preview />
-                <Panel1 />
-                <OpacitySlider style={{ marginTop: 10 }} />
-                <Swatches style={{ marginTop: 10 }} colors={['#333333', 'teal', '#07373b', '#ffffff', '#000000', '#D0EEEB']} />
+                <BrightnessSlider style={{ marginTop: 15 }} />
+                <Swatches style={{ marginTop: 15 }} colors={['#333333', 'teal', '#07373b', '#ffffff', '#000000', '#D0EEEB']} />
               </ColorPicker>
 
-              <CmButton text={'background'} onPress={() => setType('background')} style={{ backgroundColor: type == 'background' ? 'red' : 'white', width: 200, alignSelf: 'center' }} />
-              <CmButton text={'text'} onPress={() => setType('text')} style={{ backgroundColor: type == 'text' ? 'red' : 'white', width: 200, alignSelf: 'center', marginTop: 10 }} />
+              <CmButton text={'background'} onPress={() => setType('background')} style={{ backgroundColor: type == 'background' ? 'teal' : 'white', minWidth: '70%', alignSelf: 'center' }} />
+              <CmButton text={'text'} onPress={() => setType('text')} style={{ backgroundColor: type == 'text' ? 'teal' : 'white', minWidth: '70%', alignSelf: 'center', marginTop: 10 }} />
               <CmTypography variant={'h4'} style={{ textAlign: 'left', marginVertical: 20 }}>
-                Background Color Value: {backgroundColorValue.slice(0, -2)}
+                Background Color Value: {backgroundColorValue}
               </CmTypography>
               <CmTypography variant={'h4'} style={{ textAlign: 'left', marginBottom: 20 }}>
-                Text Color Value: {textColorValue.slice(0, -2)}
+                Text Color Value: {textColorValue}
               </CmTypography>
             </View>
             {/* Add Features to test below */}

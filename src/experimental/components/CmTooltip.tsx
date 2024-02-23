@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 5,
     },
+    borderBottomColor:'none',
     shadowOpacity: 0.21,
     shadowRadius: 6.65,
     zIndex: 999,
