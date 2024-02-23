@@ -63,7 +63,6 @@ function DevScreen() {
               <ColorPicker style={{ width: '70%', marginTop: 20 }} value="#D0EEEB" onComplete={handleColorSelected} thumbColor={'#07373b'}>
                 <Preview />
                 <Panel1 />
-                {/* <HueSlider style={{margin:5}}/> */}
                 <OpacitySlider style={{ margin: 5 }} />
                 <Swatches style={{ marginTop: 5 }} colors={['#333333', 'teal', '#07373b', '#ffffff', '#000000', '#D0EEEB']} />
               </ColorPicker>
