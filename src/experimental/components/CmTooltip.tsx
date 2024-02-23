@@ -47,14 +47,14 @@ function CmToolTip({ label, backgroundColor, textColor }: Props) {
   return (
     <View style={{ position: 'relative' }}>
       {showTooltip && (
-        <Animated.View style={[styles.tooltip, { opacity: fadeAnim, backgroundColor: backgroundColor }]}>
+        <Animated.View style={[styles.tooltip, { opacity: fadeAnim, backgroundColor: backgroundColor, borderWidth: backgroundColor.startsWith('#f') ? 1 : 0, borderColor: backgroundColor.startsWith('#f') ? '#d3d3d3' : 'none' }]}>
           <CmTypography variant="h2" style={[styles.tooltipText, { fontSize: 14, color: textColor }]}>
             {label[0].toUpperCase() + label.slice(1)}
           </CmTypography>
           <CmTypography variant={'body'} style={[styles.tooltipText, { fontSize: 14, color: textColor }]}>
             {personalValueText[label]}
           </CmTypography>
-          <View style={[styles.caretDown, { backgroundColor: backgroundColor }]}></View>
+          <View style={[styles.caretDown, { borderTopColor: backgroundColor}]}></View>
         </Animated.View>
       )}
       <Pressable onPressIn={fadeIn} onPressOut={fadeOut}>
@@ -103,15 +103,14 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   caretDown: {
-    backgroundColor: 'rgba(51, 51, 51, 1)',
-    borderRadius: 2,
-    borderWidth: 1,
-    borderColor: 'rgb(8, 55, 59)',
-    width: 20,
-    height: 20,
-    transform: [{ rotate: '45deg' }],
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
+    width: 0,
+    height: 0,
+    borderRightWidth: 10,
+    borderLeftWidth: 10,
+    borderTopWidth: 10,
+    borderRightColor: 'transparent',
+    borderLeftColor: 'transparent',
+    borderTopColor: 'rgba(51, 51, 51, 1)',
     position: 'absolute',
     bottom: -10,
     left: '45%',
