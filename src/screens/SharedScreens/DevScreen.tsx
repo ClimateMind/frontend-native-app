@@ -67,8 +67,8 @@ function DevScreen() {
                 <Swatches style={{ marginTop: 10 }} colors={['#333333', 'teal', '#07373b', '#ffffff', '#000000', '#D0EEEB']} />
               </ColorPicker>
 
-              <CmButton text={'background'} onPress={() => setType('background')} style={{ backgroundColor: type == 'background' ? 'red' : 'white', width:200, alignSelf:'center' }} />
-              <CmButton text={'text'} onPress={() => setType('text')} style={{ backgroundColor: type == 'text' ? 'red' : 'white', width:200, alignSelf:'center', marginTop:10}} />
+              <CmButton text={'background'} onPress={() => setType('background')} style={{ backgroundColor: type == 'background' ? 'red' : 'white', width: 200, alignSelf: 'center' }} />
+              <CmButton text={'text'} onPress={() => setType('text')} style={{ backgroundColor: type == 'text' ? 'red' : 'white', width: 200, alignSelf: 'center', marginTop: 10 }} />
               <CmTypography variant={'h4'} style={{ textAlign: 'left', marginVertical: 20 }}>
                 Background Color Value: {backgroundColorValue.slice(0, -2)}
               </CmTypography>
