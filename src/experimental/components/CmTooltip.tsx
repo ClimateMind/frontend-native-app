@@ -54,7 +54,7 @@ function CmToolTip({ label, backgroundColor, textColor }: Props) {
           <CmTypography variant={'body'} style={[styles.tooltipText, { fontSize: 14, color: textColor }]}>
             {personalValueText[label]}
           </CmTypography>
-          <View style={[styles.caretDown, { borderTopColor: backgroundColor}]}></View>
+          <View style={[styles.caretDown, { borderTopColor: backgroundColor }]}></View>
         </Animated.View>
       )}
       <Pressable onPressIn={fadeIn} onPressOut={fadeOut}>
