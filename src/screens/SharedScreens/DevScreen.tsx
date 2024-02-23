@@ -6,7 +6,7 @@ import { useOnboarding } from 'src/features/onboarding/hooks';
 import { useUpdateApp, useSkipAnalytics } from 'src/features/dev';
 import { useToastMessages } from 'src/shared/hooks';
 import { useState } from 'react';
-import ColorPicker, { Panel1, Swatches, Preview, OpacitySlider, HueSlider } from 'reanimated-color-picker';
+import ColorPicker, { Panel1, Swatches, Preview, OpacitySlider } from 'reanimated-color-picker';
 import CmToolTip from 'src/experimental/components/CmTooltip';
 
 function DevScreen() {
@@ -14,11 +14,11 @@ function DevScreen() {
   const { isLoading, updateApp, buttonText } = useUpdateApp();
   const { skipAnalytics, skipAnalyticsCheckboxHandler } = useSkipAnalytics();
   const { showSuccessToast, showErrorToast } = useToastMessages();
-  const [ShowExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
+  const [showExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
   const [backgroundColorValue, setBackgroundColorValue] = useState('#333333');
   const [type, setType] = useState('');
   const [textColorValue, setTextColorValue] = useState('#ffff');
-  const cmTootipLabels = ['benevolence', 'hedonism', 'security', 'tradition', 'universalism', 'self-direction', 'conformity', 'stimulation', 'achievement', 'stimulation'];
+  const cmTooltipLabels = ['benevolence', 'hedonism', 'security', 'tradition', 'universalism', 'self-direction', 'conformity', 'stimulation', 'achievement', 'stimulation'];
 
   const handleColorSelected = (color: any) => {
     if (type === 'background') {
@@ -54,32 +54,32 @@ function DevScreen() {
         </View>
 
         <View style={{ alignSelf: 'flex-start' }}>
-          <CmCheckbox checked={ShowExperimentalFeatures} onPress={() => setShowExperimentalFeatures((prevState) => !prevState)} text="Show Experimental Features" />
+          <CmCheckbox checked={showExperimentalFeatures} onPress={() => setShowExperimentalFeatures((prevState) => !prevState)} text="Show Experimental Features" />
         </View>
 
-        {ShowExperimentalFeatures && (
+        {showExperimentalFeatures && (
           <>
             <View>
-              <ColorPicker style={{ width: '70%', marginTop:20 }} value="#D0EEEB" onComplete={handleColorSelected} thumbColor={'#07373b'}>
+              <ColorPicker style={{ width: '70%', marginTop: 20 }} value="#D0EEEB" onComplete={handleColorSelected} thumbColor={'#07373b'}>
                 <Preview />
                 <Panel1 />
                 {/* <HueSlider style={{margin:5}}/> */}
-                <OpacitySlider style={{margin:5}} />
-                <Swatches style={{marginTop:5}} colors={['#333333', 'teal', '#07373b', '#ffffff', '#000000','#D0EEEB']}/>
+                <OpacitySlider style={{ margin: 5 }} />
+                <Swatches style={{ marginTop: 5 }} colors={['#333333', 'teal', '#07373b', '#ffffff', '#000000', '#D0EEEB']} />
               </ColorPicker>
 
               <CmButton text={'background'} onPress={() => setType('background')} style={{ backgroundColor: type == 'background' ? 'red' : 'white' }} />
               <CmButton text={'text'} onPress={() => setType('text')} style={{ backgroundColor: type == 'text' ? 'red' : 'white' }} />
-              <CmTypography variant={'h4'} style={{ textAlign: 'left', marginVertical:20 }}>
-                Background Color Value: {backgroundColorValue.slice(0,-2)}
+              <CmTypography variant={'h4'} style={{ textAlign: 'left', marginVertical: 20 }}>
+                Background Color Value: {backgroundColorValue.slice(0, -2)}
               </CmTypography>
-              <CmTypography variant={'h4'} style={{ textAlign: 'left', marginBottom:20 }}>
-                Text Color Value: {textColorValue.slice(0,-2)}
+              <CmTypography variant={'h4'} style={{ textAlign: 'left', marginBottom: 20 }}>
+                Text Color Value: {textColorValue.slice(0, -2)}
               </CmTypography>
             </View>
             {/* Add Features to test below */}
             <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
-              {cmTootipLabels.map((value, i) => (
+              {cmTooltipLabels.map((value, i) => (
                 <CmToolTip key={i + 1} label={value} backgroundColor={backgroundColorValue} textColor={textColorValue} />
               ))}
             </View>
