@@ -8,20 +8,21 @@ interface Props {
 }
 
 const personalValueText: { [x: string]: string } = {
-  benevolence: 'To value: Forgiving, helping, and being loyal, preserving and improving the lives of people that share core interests or identities.',
-  hedonism: 'To value: Joy, pleasure, and satisfaction, enjoying oneself.',
+  benevolence: 'To value: Forgiving, helping, and being loyal; preserving and improving the lives of people that share core interests or identities.',
+  hedonism: 'To value: Joy, pleasure, and satisfaction; enjoying oneself.',
   security: 'To value: A feeling of safety, stability, and order in society, at work, in home, and in relationships.',
   tradition: 'To value: Protecting the traditions of family, community, and/or culture.',
-  universalism: 'To value: Caring for the well-being of all people and life, likely also diversity and protecting the environment.',
-  'self-direction': 'To value: Freedom of thought and action, preferring to come to conclusions or decisions independently, satisfaction when creating or exploring the world.',
+  universalism: 'To value: Caring for the well-being of all people and life; likely also diversity and protecting the environment.',
+  'self-direction': 'To value: Freedom of thought and action, preferring to come to decisions independently; satisfaction when creating or exploring the world.',
   conformity: 'To value: Sticking by the rules and conforming to social norms.',
   stimulation: 'To value: Excitement, challenge, and change.',
-  achievement: 'To value: Success, meeting standards of excellence.',
-  power: 'To value: Embracing power, holding dominance, social status and prestige.',
+  achievement: 'To value: Success; meeting standards of excellence.',
+  power: 'To value: Embracing power, holding dominance; social status and prestige.',
 };
+
 function CmChip({ label }: Props) {
   const [showTooltip, setShowTooltip] = useState(false);
-  
+
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const fadeIn = () => {
@@ -40,10 +41,8 @@ function CmChip({ label }: Props) {
       useNativeDriver: true,
     }).start(() => setShowTooltip(false));
   };
-
   return (
     <View style={{ position: 'relative' }}>
-      {/* commented out showTooltip && because using animation and not state */}
     {showTooltip && <Animated.View style={[styles.tooltip,{opacity:fadeAnim}]}>
         <CmTypography variant="h2" style={[styles.tooltipText, {fontSize:14}]}>
           {label[0].toUpperCase() + label.slice(1)}
@@ -71,13 +70,17 @@ const styles = StyleSheet.create({
   },
   tooltip: {
     position: 'absolute',
-    backgroundColor: 'rgba(51, 51, 51, 1)',
+    backgroundColor: 'white',
     paddingHorizontal: 8,
     paddingTop: 8,
     paddingBottom: 15,
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'rgb(8, 55, 59)',
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderTopWidth: 1,
+    borderTopColor: '#d3d3d3',
+    borderRightColor: '#d3d3d3',
+    borderLeftColor: '#d3d3d3',
     bottom: '100%',
     left: '45%',
     transform: [{ translateX: -50 }],
@@ -95,23 +98,21 @@ const styles = StyleSheet.create({
   },
   tooltipText: {
     textAlign: 'left',
-    color:'white'
-  
-  
+    color:'black'
   },
   caretDown: {
-    backgroundColor: 'rgba(51, 51, 51, 1)',
-    borderRadius: 2,
-    borderWidth: 1,
-    borderColor: 'rgb(8, 55, 59)',
-    width: 20,
-    height: 20,
-    transform: [{ rotate: '45deg' }],
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
+    width: 0,
+    height: 0,
+    borderRightWidth: 10,
+    borderLeftWidth: 10,
+    borderTopWidth: 10,
+    borderRightColor: 'transparent',
+    borderLeftColor: 'transparent',
+    borderTopColor: 'white',
     position: 'absolute',
-    bottom: -10,
+    bottom: -9,
     left: '45%',
+    zIndex: 1000,
   },
 });
 
