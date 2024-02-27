@@ -18,7 +18,7 @@ function DevScreen() {
   const [backgroundColorValue, setBackgroundColorValue] = useState('#33333333');
   const [type, setType] = useState('');
   const [textColorValue, setTextColorValue] = useState('#ffffffff');
-  const cmTooltipLabels = ['benevolence', 'hedonism', 'security', 'tradition', 'universalism', 'self-direction', 'conformity', 'stimulation', 'achievement', 'stimulation'];
+  const cmTooltipLabels = ['benevolence', 'hedonism', 'security', 'tradition', 'universalism', 'self-direction', 'conformity', 'stimulation', 'achievement', 'power'];
 
   const handleColorSelected = (color: any) => {
     if (type === 'background') {
