@@ -43,14 +43,18 @@ function CmChip({ label }: Props) {
   };
   return (
     <View style={{ position: 'relative' }}>
-    {showTooltip && <Animated.View style={[styles.tooltip,{opacity:fadeAnim}]}>
-        <CmTypography variant="h2" style={[styles.tooltipText, {fontSize:14}]}>
-          {label[0].toUpperCase() + label.slice(1)}
-        </CmTypography>
-        <CmTypography variant={'body'} style={[styles.tooltipText, {fontSize:14}]}>{personalValueText[label]}</CmTypography>
-        <View style={styles.caretDown}></View>
-      </Animated.View>}
-{/* add a color picker */}
+      {showTooltip && (
+        <Animated.View style={[styles.tooltip, { opacity: fadeAnim }]}>
+          <CmTypography variant="h2" style={[styles.tooltipText, { fontSize: 14 }]}>
+            {label[0].toUpperCase() + label.slice(1)}
+          </CmTypography>
+          <CmTypography variant={'body'} style={[styles.tooltipText, { fontSize: 14 }]}>
+            {personalValueText[label]}
+          </CmTypography>
+          <View style={styles.caretDown}></View>
+        </Animated.View>
+      )}
+      {/* add a color picker */}
       <Pressable onPressIn={fadeIn} onPressOut={fadeOut}>
         <CmTypography variant="body" style={[styles.chip, { zIndex: 999 }]}>
           {label}
@@ -98,7 +102,7 @@ const styles = StyleSheet.create({
   },
   tooltipText: {
     textAlign: 'left',
-    color:'black'
+    color: 'black',
   },
   caretDown: {
     width: 0,

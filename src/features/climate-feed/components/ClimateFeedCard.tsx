@@ -1,10 +1,8 @@
 import { Image, Pressable, StyleSheet, View } from 'react-native';
-
 import { capitalizeFirstLetter } from 'src/utils';
 import ClimateEffect from 'src/types/ClimateEffect';
 import ActionCardHeader from './ActionCardHeader';
 import { CmTypography, CmChip, Card } from '@shared/components';
-
 
 interface Props {
   climateEffect: ClimateEffect;
@@ -12,7 +10,6 @@ interface Props {
 }
 
 function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
-
   return (
     <Card>
       <CmTypography variant="h3" style={styles.title}>
@@ -26,10 +23,9 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
 
       {climateEffect.relatedPersonalValues && (
         <View style={styles.chipsContainer}>
-          {climateEffect.relatedPersonalValues.map((value) => ( 
-                <CmChip key={value} label={value} />
+          {climateEffect.relatedPersonalValues.map((value) => (
+            <CmChip key={value} label={value} />
           ))}
-          
         </View>
       )}
 
@@ -71,8 +67,5 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 });
-
-
-
 
 export default ClimateFeedCard;
