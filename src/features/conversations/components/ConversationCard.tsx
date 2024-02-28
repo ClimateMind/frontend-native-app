@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { GetAllConversations } from 'src/api/responses';
 import DeleteConversationModal from './DeleteConversationModal';
-import YesWeTalkedButton from './YesWeTalkedButton';
 import ConversationRating from './ConversationRating';
 import CopyLinkModal from './CopyLinkModal';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
