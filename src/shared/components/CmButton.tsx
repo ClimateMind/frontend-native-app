@@ -9,6 +9,7 @@ interface Props {
   disabled?: boolean;
   startIcon?: React.ReactNode;
   isLoading?: boolean
+ 
 }
 
 function CmButton({ text, onPress = () => {}, color = 'success', style = {}, disabled = false, startIcon, isLoading = false }: Props) {  
