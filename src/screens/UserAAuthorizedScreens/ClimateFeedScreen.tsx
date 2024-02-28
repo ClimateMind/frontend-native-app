@@ -30,7 +30,7 @@ function ClimateFeedScreen({ navigation }: Props) {
   }
 
   return (
-    <Screen view="View" >
+    <Screen view="View">
       <Section style={{ paddingVertical: 0 }}>
         <Content style={{ alignItems: 'stretch' }}>
           <FlatList

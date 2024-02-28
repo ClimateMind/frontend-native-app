@@ -29,7 +29,7 @@ function CmChip({ label }: Props) {
     setShowTooltip(true);
     Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 500,
+      duration: 300,
       useNativeDriver: true,
     }).start();
   };
@@ -41,6 +41,7 @@ function CmChip({ label }: Props) {
       useNativeDriver: true,
     }).start(() => setShowTooltip(false));
   };
+
   return (
     <View style={{ position: 'relative' }}>
       {showTooltip && (
@@ -54,7 +55,7 @@ function CmChip({ label }: Props) {
           <View style={styles.caretDown}></View>
         </Animated.View>
       )}
-      {/* add a color picker */}
+
       <Pressable onPressIn={fadeIn} onPressOut={fadeOut}>
         <CmTypography variant="body" style={[styles.chip, { zIndex: 999 }]}>
           {label}
@@ -79,12 +80,9 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 15,
     borderRadius: 10,
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderTopWidth: 1,
-    borderTopColor: '#d3d3d3',
-    borderRightColor: '#d3d3d3',
-    borderLeftColor: '#d3d3d3',
+    borderColor: '#d3d3d3',
+    borderWidth: 1,
+    borderBottomWidth: 0,
     bottom: '100%',
     left: '45%',
     transform: [{ translateX: -50 }],
