@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { View } from 'react-native';
 import ColorPicker, { Panel1, Preview, Swatches } from 'reanimated-color-picker';
+
 import { CmButton, CmTypography } from 'src/shared/components';
 
 function CmColorPicker() {
@@ -20,7 +21,7 @@ function CmColorPicker() {
 
   return (
     <View>
-      <ColorPicker style={{ width: '100%', marginTop: 20 }} value="#D0EEEB" onComplete={handleColorSelected} thumbColor={'#07373b'}>
+      <ColorPicker style={{ marginTop: 20 }} value="#D0EEEB" onComplete={handleColorSelected} thumbColor={'#07373b'}>
         <Preview />
         <Panel1 />
         <Swatches style={{ marginTop: 10 }} colors={['#333333', 'teal', '#07373b', '#ffffff', '#000000', '#D0EEEB']} />

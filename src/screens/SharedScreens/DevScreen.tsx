@@ -1,12 +1,11 @@
 import { StyleSheet, View } from 'react-native';
+import { useState } from 'react';
 
 import appConfig from '../../../app.json';
 import { CmButton, CmCheckbox, CmTypography, Content, Screen } from '@shared/components';
 import { useOnboarding } from '@features/onboarding/hooks';
 import { useUpdateApp, useSkipAnalytics, CmColorPicker } from '@features/dev';
 import { useToastMessages } from '@shared/hooks';
-import { useState } from 'react';
-
 
 function DevScreen() {
   const { resetOnboarding } = useOnboarding();
@@ -14,7 +13,6 @@ function DevScreen() {
   const { skipAnalytics, skipAnalyticsCheckboxHandler } = useSkipAnalytics();
   const { showSuccessToast, showErrorToast } = useToastMessages();
   const [showExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
- 
 
   return (
     <Screen>
@@ -43,14 +41,10 @@ function DevScreen() {
           <CmCheckbox checked={showExperimentalFeatures} onPress={() => setShowExperimentalFeatures((prevState) => !prevState)} text="Show Experimental Features" />
         </View>
 
-        {showExperimentalFeatures && (
-          <>
-         <CmColorPicker />
-
-            {/* Add Features to test here*/}
-          
-          </>
-        )}
+        {showExperimentalFeatures && <>
+          <CmColorPicker />
+          {/* Add features to test here */}
+        </>}
 
         <View style={{ flex: 1 }} />
 
@@ -66,28 +60,6 @@ const styles = StyleSheet.create({
   btn: {
     alignSelf: 'stretch',
     marginBottom: 20,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  colorPicker: {
-    width: 300,
-    height: 300,
-    borderRadius: 10,
-    marginBottom: 20,
-  },
-  input: {
-    color: 'black',
-    fontWeight: 'bold',
-    fontSize: 20,
   },
 });
 
