@@ -11,6 +11,5 @@ export { default as NotifyIcon } from './NotifyIcon';
 export { default as SolutionCard } from './SolutionCard';
 export { default as SolutionDetailsModal } from './SolutionDetailsModal';
 export { default as ViewSelectedTopicsModal } from './ViewSelectedTopicsModal';
-export { default as YesWeTalkedButton } from './YesWeTalkedButton';
 export { default as PersonalValueCardSmall } from './PersonalValueCardSmall';
 export { default as UserBInput } from './UserBInput';
