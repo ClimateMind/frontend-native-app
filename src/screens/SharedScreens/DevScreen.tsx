@@ -1,13 +1,12 @@
 import { StyleSheet, View } from 'react-native';
 
 import appConfig from '../../../app.json';
-import { CmButton, CmCheckbox, CmTypography, Content, Screen } from 'src/shared/components';
-import { useOnboarding } from 'src/features/onboarding/hooks';
-import { useUpdateApp, useSkipAnalytics } from 'src/features/dev';
-import { useToastMessages } from 'src/shared/hooks';
+import { CmButton, CmCheckbox, CmTypography, Content, Screen } from '@shared/components';
+import { useOnboarding } from '@features/onboarding/hooks';
+import { useUpdateApp, useSkipAnalytics, CmColorPicker } from '@features/dev';
+import { useToastMessages } from '@shared/hooks';
 import { useState } from 'react';
-import ColorPicker, { Panel1, Swatches, Preview } from 'reanimated-color-picker';
-import CmToolTip from 'src/experimental/components/CmTooltip';
+
 
 function DevScreen() {
   const { resetOnboarding } = useOnboarding();
@@ -15,20 +14,7 @@ function DevScreen() {
   const { skipAnalytics, skipAnalyticsCheckboxHandler } = useSkipAnalytics();
   const { showSuccessToast, showErrorToast } = useToastMessages();
   const [showExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
-  const [backgroundColorValue, setBackgroundColorValue] = useState('#33333333');
-  const [type, setType] = useState('');
-  const [textColorValue, setTextColorValue] = useState('#ffffffff');
-  const cmTooltipLabels = ['benevolence', 'hedonism', 'security', 'tradition', 'universalism', 'self-direction', 'conformity', 'stimulation', 'achievement', 'power'];
-
-  const handleColorSelected = (color: any) => {
-    if (type === 'background') {
-      setBackgroundColorValue(color.hex);
-    }
-
-    if (type === 'text') {
-      setTextColorValue(color.hex);
-    }
-  };
+ 
 
   return (
     <Screen>
@@ -59,29 +45,10 @@ function DevScreen() {
 
         {showExperimentalFeatures && (
           <>
-            <View>
-              <ColorPicker style={{ width: '100%', marginTop: 20 }} value="#D0EEEB" onComplete={handleColorSelected} thumbColor={'#07373b'}>
-                <Preview />
-                <Panel1 />
-                {/* <OpacitySlider style={{ marginTop: 10 }} /> */}
-                <Swatches style={{ marginTop: 10 }} colors={['#333333', 'teal', '#07373b', '#ffffff', '#000000', '#D0EEEB']} />
-              </ColorPicker>
+         <CmColorPicker />
 
-              <CmButton text={'background'} onPress={() => setType('background')} style={{ backgroundColor: type == 'background' ? 'teal' : 'white', width: 200, alignSelf: 'center' }} />
-              <CmButton text={'text'} onPress={() => setType('text')} style={{ backgroundColor: type == 'text' ? 'teal' : 'white', width: 200, alignSelf: 'center', marginTop: 10 }} />
-              <CmTypography variant={'h4'} style={{ textAlign: 'left', marginVertical: 20 }}>
-                Background Color Value: {backgroundColorValue.slice(0, -2)}
-              </CmTypography>
-              <CmTypography variant={'h4'} style={{ textAlign: 'left', marginBottom: 20 }}>
-                Text Color Value: {textColorValue.slice(0, -2)}
-              </CmTypography>
-            </View>
-            {/* Add Features to test below */}
-            <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
-              {cmTooltipLabels.map((value, i) => (
-                <CmToolTip key={i + 1} label={value} backgroundColor={backgroundColorValue} textColor={textColorValue} />
-              ))}
-            </View>
+            {/* Add Features to test here*/}
+          
           </>
         )}
 
