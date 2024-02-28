@@ -1,16 +1,18 @@
 import { StyleSheet, View } from 'react-native';
+import { useState } from 'react';
 
 import appConfig from '../../../app.json';
-import { CmButton, CmCheckbox, CmTypography, Content, Screen } from 'src/shared/components';
-import { useOnboarding } from 'src/features/onboarding/hooks';
-import { useUpdateApp, useSkipAnalytics } from 'src/features/dev';
-import { useToastMessages } from 'src/shared/hooks';
+import { CmButton, CmCheckbox, CmTypography, Content, Screen } from '@shared/components';
+import { useOnboarding } from '@features/onboarding/hooks';
+import { useUpdateApp, useSkipAnalytics, CmColorPicker } from '@features/dev';
+import { useToastMessages } from '@shared/hooks';
 
 function DevScreen() {
   const { resetOnboarding } = useOnboarding();
   const { isLoading, updateApp, buttonText } = useUpdateApp();
   const { skipAnalytics, skipAnalyticsCheckboxHandler } = useSkipAnalytics();
   const { showSuccessToast, showErrorToast } = useToastMessages();
+  const [showExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
 
   return (
     <Screen>
@@ -35,8 +37,20 @@ function DevScreen() {
           </View>
         </View>
 
+        <View style={{ alignSelf: 'flex-start' }}>
+          <CmCheckbox checked={showExperimentalFeatures} onPress={() => setShowExperimentalFeatures((prevState) => !prevState)} text="Show Experimental Features" />
+        </View>
+
+        {showExperimentalFeatures && <>
+          <CmColorPicker />
+          {/* Add features to test here */}
+        </>}
+
         <View style={{ flex: 1 }} />
-        <CmTypography variant='body' style={{ marginBottom: 20 }}>Version {appConfig.expo.version}</CmTypography>
+
+        <CmTypography variant="body" style={{ marginBottom: 20 }}>
+          Version {appConfig.expo.version}
+        </CmTypography>
       </Content>
     </Screen>
   );
