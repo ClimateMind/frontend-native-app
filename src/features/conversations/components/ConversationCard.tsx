@@ -36,7 +36,6 @@ function ConversationCard({ conversation, onDelete }: Props) {
     setShowCopyLinkModal(true);
     setConversationLink(process.env.EXPO_PUBLIC_WEB_URL + '/landing/' + conversation.conversationId);
   }
-  console.log(conversationState);
 
   return (
     <Card style={{ padding: 15, backgroundColor: conversationState === 5 ? '#BDFADC' : 'white' }}>
