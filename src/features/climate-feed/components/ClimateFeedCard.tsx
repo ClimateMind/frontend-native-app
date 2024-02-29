@@ -1,9 +1,8 @@
 import { Image, Pressable, StyleSheet, View } from 'react-native';
-
 import { capitalizeFirstLetter } from 'src/utils';
 import ClimateEffect from 'src/types/ClimateEffect';
 import ActionCardHeader from './ActionCardHeader';
-import { CmTypography, CmChip, Card  } from '@shared/components';
+import { CmTypography, CmChip, Card } from '@shared/components';
 
 interface Props {
   climateEffect: ClimateEffect;
@@ -13,10 +12,14 @@ interface Props {
 function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
   return (
     <Card>
-      <CmTypography variant='h3' style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</CmTypography>
-      {climateEffect.imageUrl !== null && <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />}
+      <CmTypography variant="h3" style={styles.title}>
+        {capitalizeFirstLetter(climateEffect.effectTitle)}
+      </CmTypography>
+      {climateEffect.imageUrl !== null && <Image style={styles.image} source={{ uri: climateEffect.imageUrl }} />}
 
-      <CmTypography variant='body' style={styles.text}>{climateEffect.effectShortDescription}</CmTypography>
+      <CmTypography variant="body" style={styles.text}>
+        {climateEffect.effectShortDescription}
+      </CmTypography>
 
       {climateEffect.relatedPersonalValues && (
         <View style={styles.chipsContainer}>
@@ -27,11 +30,12 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
       )}
 
       <Pressable onPress={() => onLearnMore(climateEffect)}>
-        <CmTypography variant='button' style={styles.button}>LEARN MORE</CmTypography>
+        <CmTypography variant="button" style={styles.button}>
+          LEARN MORE
+        </CmTypography>
       </Pressable>
 
       <ActionCardHeader effectSolution={climateEffect.effectSolutions[0]} />
-
     </Card>
   );
 }
