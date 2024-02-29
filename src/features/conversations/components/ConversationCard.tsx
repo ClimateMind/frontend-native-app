@@ -30,7 +30,15 @@ function ConversationCard({ conversation, onDelete }: Props) {
   const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
-  const headerText = [`Invited ${userBName} to talk`, `Prepare to talk with ${userBName}`, `Prepare to talk with ${userBName}`, `Ready to talk with ${userBName}`, `Talked with ${userBName}`, `Talked with ${userBName}`, `Invited ${userBName} to talk`];
+  const headerText = [
+    `Invited ${userBName} to talk`, 
+    `Prepare to talk with ${userBName}`, 
+    `Prepare to talk with ${userBName}`, 
+    `Ready to talk with ${userBName}`, 
+    `Talked with ${userBName}`, 
+    `Talked with ${userBName}`, 
+    `Invited ${userBName} to talk`
+  ];
 
   function copyLink() {
     setShowCopyLinkModal(true);
@@ -48,7 +56,18 @@ function ConversationCard({ conversation, onDelete }: Props) {
       </View>
 
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0 }}>
-        <UserBInput maxLength={20} value={userBName} onChangeText={setUserBName} isEditable={isEditable} setIsEditable={() => setIsEditable(true)} expanded={expanded} userBName={userBName} onFocus={() => setIsFocused(true)} onSubmitEditing={() => setIsFocused(false)} onEndEditing={() => setIsFocused(false)} handleCancelField={handleCancelField} handleSaveField={() => handleSaveField(conversation.conversationId)} style={[styles.textInputField, isEditable && { padding: 0, borderBottomWidth: 1, borderColor: isEditable && isFocused ? '#37f5ac' : 'black' }]} />
+        <UserBInput 
+        maxLength={20} 
+        value={userBName} 
+        onChangeText={setUserBName} 
+        isEditable={isEditable} 
+        setIsEditable={() => setIsEditable(true)} 
+        expanded={expanded} userBName={userBName} 
+        onFocus={() => setIsFocused(true)} 
+        onSubmitEditing={() => setIsFocused(false)} 
+        onEndEditing={() => setIsFocused(false)} 
+        handleCancelField={handleCancelField} 
+        handleSaveField={() => handleSaveField(conversation.conversationId)} style={[styles.textInputField, isEditable && { padding: 0, borderBottomWidth: 1, borderColor: isEditable && isFocused ? '#37f5ac' : 'black' }]} />
       </View>
 
       {/* For state 0, display a text that the userB has to take the quiz */}
