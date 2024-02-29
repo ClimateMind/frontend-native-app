@@ -9,10 +9,10 @@ import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
 import { CmTypography, Card, CmIconButton, CmButton } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
-import { useConversationState, useDeleteConversationCard } from '../hooks';
+import { useConversationState, useDeleteConversationCard, useProgressConversationState } from '../hooks';
 import useIconButton from '@shared/hooks/useIconButton';
 import UserBInput from './UserBInput';
-import useProgressConversationState from '../hooks/useProgressConversationState';
+
 
 interface Props {
   conversation: GetAllConversations;
