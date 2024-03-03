@@ -1,18 +1,17 @@
 import { useState } from 'react';
-
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+
+import { CmTypography, Card, CmIconButton, CmButton } from '@shared/components';
+import useIconButton from '@shared/hooks/useIconButton';
 import { GetAllConversations } from 'src/api/responses';
+import { useConversationState, useDeleteConversationCard, useProgressConversationState } from '../hooks';
 import DeleteConversationModal from './DeleteConversationModal';
 import ConversationRating from './ConversationRating';
 import CopyLinkModal from './CopyLinkModal';
 import SeeHowYouAlignModal from './SeeHowYouAlignModal';
 import ViewSelectedTopicsModal from './ViewSelectedTopicsModal';
-import { CmTypography, Card, CmIconButton, CmButton } from '@shared/components';
 import NotifyIcon from './NotifyIcon';
-import { useConversationState, useDeleteConversationCard, useProgressConversationState } from '../hooks';
-import useIconButton from '@shared/hooks/useIconButton';
 import UserBInput from './UserBInput';
-
 
 interface Props {
   conversation: GetAllConversations;
@@ -21,7 +20,8 @@ interface Props {
 
 function ConversationCard({ conversation, onDelete }: Props) {
   const currentUserBName = conversation.userB.name;
-  const { handleButtonClick } = useProgressConversationState();
+
+  const { progressConversation } = useProgressConversationState();
   const { increaseState, conversationState, setConversationState, showSeeHowYouAlignModal, showViewSelectedTopicsModal, setShowSeeHowYouAlignModal, setShowViewSelectedTopicsModal } = useConversationState(conversation.state);
   const { deleteConversation, showDeleteModal, setShowDeleteModal } = useDeleteConversationCard(onDelete);
   const { setUserName: setUserBName, userName: userBName, isEditable, setIsEditable, handleSaveField, handleCancelField } = useIconButton(currentUserBName);
@@ -57,17 +57,18 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0 }}>
         <UserBInput 
-        maxLength={20} 
-        value={userBName} 
-        onChangeText={setUserBName} 
-        isEditable={isEditable} 
-        setIsEditable={() => setIsEditable(true)} 
-        expanded={expanded} userBName={userBName} 
-        onFocus={() => setIsFocused(true)} 
-        onSubmitEditing={() => setIsFocused(false)} 
-        onEndEditing={() => setIsFocused(false)} 
-        handleCancelField={handleCancelField} 
-        handleSaveField={() => handleSaveField(conversation.conversationId)} style={[styles.textInputField, isEditable && { padding: 0, borderBottomWidth: 1, borderColor: isEditable && isFocused ? '#37f5ac' : 'black' }]} />
+          maxLength={20} 
+          value={userBName} 
+          onChangeText={setUserBName} 
+          isEditable={isEditable} 
+          setIsEditable={() => setIsEditable(true)} 
+          expanded={expanded} userBName={userBName} 
+          onFocus={() => setIsFocused(true)} 
+          onSubmitEditing={() => setIsFocused(false)} 
+          onEndEditing={() => setIsFocused(false)} 
+          handleCancelField={handleCancelField} 
+          handleSaveField={() => handleSaveField(conversation.conversationId)} style={[styles.textInputField, isEditable && { padding: 0, borderBottomWidth: 1, borderColor: isEditable && isFocused ? '#37f5ac' : 'black' }]}
+        />
       </View>
 
       {/* For state 0, display a text that the userB has to take the quiz */}
@@ -89,26 +90,25 @@ function ConversationCard({ conversation, onDelete }: Props) {
             1. {userBName} took the values quiz
           </CmTypography>
 
-          <CmButton text={'SEE HOW YOU ALIGN'} style={styles.whiteButton} disabled={conversationState < 1} onPress={() => handleButtonClick(() => increaseState(2), conversation.conversationId, conversationState)} />
+          <CmButton text={'SEE HOW YOU ALIGN'} style={styles.whiteButton} disabled={conversationState < 1} onPress={() => progressConversation(() => increaseState(2), conversation.conversationId, conversationState)} />
 
           <CmTypography variant="h4" style={styles.subheading}>
             2. See what you can discuss with {userBName}
           </CmTypography>
 
-          <CmButton text={'VIEW SELECTED TOPICS'} style={styles.whiteButton} disabled={conversationState < 2} onPress={() => handleButtonClick(() => increaseState(3), conversation.conversationId, conversationState)} />
+          <CmButton text={'VIEW SELECTED TOPICS'} style={styles.whiteButton} disabled={conversationState < 2} onPress={() => progressConversation(() => increaseState(3), conversation.conversationId, conversationState)} />
 
           <CmTypography variant="h4" style={styles.subheading}>
             3. Have you had your conversation with {userBName}?
           </CmTypography>
-          {conversationState <= 3 && <CmButton text={'YES WE TALKED'} style={styles.whiteButton} disabled={conversationState < 3} onPress={() => handleButtonClick(() => increaseState(4), conversation.conversationId, conversationState)} />}
+          {conversationState <= 3 && <CmButton text={'YES WE TALKED'} style={styles.whiteButton} disabled={conversationState < 3} onPress={() => progressConversation(() => increaseState(4), conversation.conversationId, conversationState)} />}
           {conversationState > 3 && <ConversationRating conversationId={conversation.conversationId} initialRating={conversation.userARating} onRated={() => setConversationState(5)} />}
         </>
       )}
 
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
         {expanded && <CmIconButton onPress={() => setShowDeleteModal(true)} name={'trash'} source={'Foundation'} color={'#77AAAF'} size={24} />}
-
-        <CmButton onPress={() => setExpanded((current) => !current)} style={styles.moreLessButton} text={expanded ? 'LESS' : 'MORE'} />
+        <CmButton onPress={() => setExpanded(current => !current)} style={styles.moreLessButton} text={expanded ? 'LESS' : 'MORE'} />
       </View>
 
       <SeeHowYouAlignModal

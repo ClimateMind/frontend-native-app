@@ -3,8 +3,9 @@ import useApiClient from 'src/hooks/useApiClient';
 function useProgressConversationState() {
   const apiClient = useApiClient();
 
-  async function handleButtonClick(increaseState: () => void, conversationId: string, conversationState: number) {
+  async function progressConversation(increaseState: () => void, conversationId: string, conversationState: number) {
     let newConversationState;
+
     if (conversationState < 2) {
       newConversationState = 2;
     } else if (conversationState === 2) {
@@ -14,6 +15,7 @@ function useProgressConversationState() {
     } else {
       newConversationState = 5;
     }
+
     try {
       await apiClient.putSingleConversation({
         conversationId,
@@ -27,9 +29,7 @@ function useProgressConversationState() {
       console.error('Error updating conversation state:', error);
     }
   }
-  return {
-    handleButtonClick,
-  };
+  return { progressConversation };
 }
 
 export default useProgressConversationState;

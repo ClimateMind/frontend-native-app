@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
+
 import Colors from 'src/assets/colors';
 import { GetAllConversations } from 'src/api/responses';
 import useApiClient from 'src/hooks/useApiClient';
@@ -8,6 +9,7 @@ import { CmModal, CmTypography, Content, BackButton, CmButton } from '@shared/co
 import PersonalValueCardSmall from './PersonalValueCardSmall';
 import useProgressConversationState from '../hooks/useProgressConversationState';
 import { useConversationState } from '../hooks';
+
 interface Props {
   open: boolean;
   conversation: GetAllConversations;
@@ -17,8 +19,9 @@ interface Props {
 
 function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Props) {
   const apiClient = useApiClient();
+
   const { conversationState } = useConversationState(conversation.state);
-  const { handleButtonClick } = useProgressConversationState();
+  const { progressConversation } = useProgressConversationState();
   const [userBName, setUserBName] = useState<string>();
   const [topSharedValue, setTopSharedValue] = useState<Alignment>();
   const [overallSimilarityScore, setOverallSimilarityScore] = useState<number>();
@@ -27,8 +30,7 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
     setUserBName(conversation.userB.name);
 
     if (conversation.alignmentScoresId) {
-      apiClient
-        .getAlignmentScores(conversation.alignmentScoresId)
+      apiClient.getAlignmentScores(conversation.alignmentScoresId)
         .then((response) => {
           setUserBName(response.userBName);
           setTopSharedValue(response.valueAlignment[0]);
@@ -54,22 +56,19 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
             <CmTypography variant="body" style={styles.subheader}>
               How do your values align with {userBName}'s?
             </CmTypography>
+
             <CmTypography variant="body" style={styles.text}>
               Understanding your shared core values will help you identify how to tackle climate topics and solutions with friends.
             </CmTypography>
 
-            <CmTypography variant="body" style={styles.subheader}>
-              Top Shared Core Value
-            </CmTypography>
+            <CmTypography variant="body" style={styles.subheader}>Top Shared Core Value</CmTypography>
+
             <PersonalValueCardSmall name={topSharedValue.name} shortDescription={topSharedValue.shortDescription} percentage={topSharedValue.score} />
 
-            <CmTypography variant="body" style={styles.subheader}>
-              Overall Similarity
-            </CmTypography>
-            <CmTypography variant="h1" style={styles.percentage}>
-              {overallSimilarityScore.toString()}%
-            </CmTypography>
-            <CmButton text={'VIEW SELECTED TOPICS'} style={{ marginTop: 50 }} disabled={conversationState < 2} onPress={() => handleButtonClick(onViewTopics, conversation.conversationId, 2)} />
+            <CmTypography variant="body" style={styles.subheader}>Overall Similarity</CmTypography>
+            <CmTypography variant="h1" style={styles.percentage}>{overallSimilarityScore.toString()}%</CmTypography>
+
+            <CmButton text={'VIEW SELECTED TOPICS'} style={{ marginTop: 50 }} disabled={conversationState < 2} onPress={() => progressConversation(onViewTopics, conversation.conversationId, 2)} />
           </ScrollView>
         </Content>
       </View>
