@@ -3,7 +3,6 @@ import { capitalizeFirstLetter } from 'src/utils';
 import ClimateEffect from 'src/types/ClimateEffect';
 import ActionCardHeader from './ActionCardHeader';
 import { CmTypography, CmChip, Card } from '@shared/components';
-import uuid from 'react-native-uuid';
 import { useRef, useState } from 'react';
 
 interface Props {
