@@ -1,9 +1,10 @@
+import { useRef, useState } from 'react';
 import { Animated, Image, Pressable, StyleSheet, View } from 'react-native';
+
 import { capitalizeFirstLetter } from 'src/utils';
 import ClimateEffect from 'src/types/ClimateEffect';
-import ActionCardHeader from './ActionCardHeader';
 import { CmTypography, CmChip, Card } from '@shared/components';
-import { useRef, useState } from 'react';
+import ActionCardHeader from './ActionCardHeader';
 
 interface Props {
   climateEffect: ClimateEffect;
@@ -24,7 +25,6 @@ const personalValueText: { [x: string]: string } = {
 };
 
 function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
-  
   const [activeTooltipIndex, setActiveTooltipIndex] = useState<number | null>(null);
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -48,14 +48,21 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
 
   const toggleTooltip = (index: number) => {
     if (activeTooltipIndex === index) {
-    fadeOut()
+      fadeOut();
     } else {
-     fadeIn(index)
+      fadeIn(index);
     }
   };
 
+  function handleCardPress() {
+    // If no tooltip is active, then proceed to set the activeTooltipIndex to null
+    if (activeTooltipIndex !== null) {
+      fadeOut(); // This ensures tooltips are closed properly when clicking outside
+    }
+  }
+
   return (
-    <Card>
+    <Card onTouchStart={handleCardPress}>
       <CmTypography variant="h3" style={styles.title}>
         {capitalizeFirstLetter(climateEffect.effectTitle)}
       </CmTypography>
@@ -70,15 +77,15 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
           {climateEffect.relatedPersonalValues.map((value, index) => (
             <View key={value} style={{ marginRight: 10, marginBottom: 10 }}>
               {activeTooltipIndex === index && (
-                   <Animated.View style={[styles.tooltip, { opacity: fadeAnim }]}>
-                   <CmTypography variant="h2" style={[styles.tooltipText, { fontSize: 14 }]}>
-                     {value[0].toUpperCase() + value.slice(1)}
-                   </CmTypography>
-                   <CmTypography variant={'body'} style={[styles.tooltipText, { fontSize: 14 }]}>
-                     {personalValueText[value]}
-                   </CmTypography>
-                   <View style={styles.caretDown}></View>
-                 </Animated.View>
+                <Animated.View style={[styles.tooltip, { opacity: fadeAnim }]}>
+                  <CmTypography variant="h2" style={[styles.tooltipText, { fontSize: 14 }]}>
+                    {value[0].toUpperCase() + value.slice(1)}
+                  </CmTypography>
+                  <CmTypography variant={'body'} style={[styles.tooltipText, { fontSize: 14 }]}>
+                    {personalValueText[value]}
+                  </CmTypography>
+                  <View style={styles.caretDown}></View>
+                </Animated.View>
               )}
               <Pressable onPress={() => toggleTooltip(index)}>
                 <CmChip label={value} />
