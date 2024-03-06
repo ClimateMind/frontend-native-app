@@ -19,8 +19,7 @@ interface Props {
 
 function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Props) {
   const apiClient = useApiClient();
-
-  const { conversationState } = useConversationState(conversation.state);
+  const { increaseState } = useConversationState(conversation.state);
   const { progressConversation } = useProgressConversationState();
   const [userBName, setUserBName] = useState<string>();
   const [topSharedValue, setTopSharedValue] = useState<Alignment>();
@@ -30,7 +29,8 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
     setUserBName(conversation.userB.name);
 
     if (conversation.alignmentScoresId) {
-      apiClient.getAlignmentScores(conversation.alignmentScoresId)
+      apiClient
+        .getAlignmentScores(conversation.alignmentScoresId)
         .then((response) => {
           setUserBName(response.userBName);
           setTopSharedValue(response.valueAlignment[0]);
@@ -61,14 +61,20 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
               Understanding your shared core values will help you identify how to tackle climate topics and solutions with friends.
             </CmTypography>
 
-            <CmTypography variant="body" style={styles.subheader}>Top Shared Core Value</CmTypography>
+            <CmTypography variant="body" style={styles.subheader}>
+              Top Shared Core Value
+            </CmTypography>
 
             <PersonalValueCardSmall name={topSharedValue.name} shortDescription={topSharedValue.shortDescription} percentage={topSharedValue.score} />
 
-            <CmTypography variant="body" style={styles.subheader}>Overall Similarity</CmTypography>
-            <CmTypography variant="h1" style={styles.percentage}>{overallSimilarityScore.toString()}%</CmTypography>
+            <CmTypography variant="body" style={styles.subheader}>
+              Overall Similarity
+            </CmTypography>
+            <CmTypography variant="h1" style={styles.percentage}>
+              {overallSimilarityScore.toString()}%
+            </CmTypography>
 
-            <CmButton text={'VIEW SELECTED TOPICS'} style={{ marginTop: 50 }} disabled={conversationState < 2} onPress={() => progressConversation(onViewTopics, conversation.conversationId, 2)} />
+            <CmButton text={'VIEW SELECTED TOPICS'} style={{ marginTop: 50 }} onPress={() => progressConversation(() => onViewTopics(), conversation.conversationId, 2)} />
           </ScrollView>
         </Content>
       </View>
