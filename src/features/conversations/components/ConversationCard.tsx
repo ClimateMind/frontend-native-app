@@ -22,7 +22,9 @@ function ConversationCard({ conversation, onDelete }: Props) {
   const currentUserBName = conversation.userB.name;
 
   const { progressConversation } = useProgressConversationState();
-  const { increaseState, conversationState, setConversationState, showSeeHowYouAlignModal, showViewSelectedTopicsModal, setShowSeeHowYouAlignModal, setShowViewSelectedTopicsModal } = useConversationState(conversation.state);
+  const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
+  const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
+  const { increaseState, conversationState, setConversationState } = useConversationState(conversation.state, setShowSeeHowYouAlignModal, setShowViewSelectedTopicsModal);
   const { deleteConversation, showDeleteModal, setShowDeleteModal } = useDeleteConversationCard(onDelete);
   const { setUserName: setUserBName, userName: userBName, isEditable, setIsEditable, handleSaveField, handleCancelField } = useIconButton(currentUserBName);
   const [expanded, setExpanded] = useState(false);
@@ -30,15 +32,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
   const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
-  const headerText = [
-    `Invited ${userBName} to talk`, 
-    `Prepare to talk with ${userBName}`, 
-    `Prepare to talk with ${userBName}`, 
-    `Ready to talk with ${userBName}`, 
-    `Talked with ${userBName}`, 
-    `Talked with ${userBName}`, 
-    `Invited ${userBName} to talk`
-  ];
+  const headerText = [`Invited ${userBName} to talk`, `Prepare to talk with ${userBName}`, `Prepare to talk with ${userBName}`, `Ready to talk with ${userBName}`, `Talked with ${userBName}`, `Talked with ${userBName}`, `Invited ${userBName} to talk`];
 
   function copyLink() {
     setShowCopyLinkModal(true);
@@ -56,19 +50,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
       </View>
 
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: expanded ? 20 : 0 }}>
-        <UserBInput 
-          maxLength={20} 
-          value={userBName} 
-          onChangeText={setUserBName} 
-          isEditable={isEditable} 
-          setIsEditable={() => setIsEditable(true)} 
-          expanded={expanded} userBName={userBName} 
-          onFocus={() => setIsFocused(true)} 
-          onSubmitEditing={() => setIsFocused(false)} 
-          onEndEditing={() => setIsFocused(false)} 
-          handleCancelField={handleCancelField} 
-          handleSaveField={() => handleSaveField(conversation.conversationId)} style={[styles.textInputField, isEditable && { padding: 0, borderBottomWidth: 1, borderColor: isEditable && isFocused ? '#37f5ac' : 'black' }]}
-        />
+        <UserBInput maxLength={20} value={userBName} onChangeText={setUserBName} isEditable={isEditable} setIsEditable={() => setIsEditable(true)} expanded={expanded} userBName={userBName} onFocus={() => setIsFocused(true)} onSubmitEditing={() => setIsFocused(false)} onEndEditing={() => setIsFocused(false)} handleCancelField={handleCancelField} handleSaveField={() => handleSaveField(conversation.conversationId)} style={[styles.textInputField, isEditable && { padding: 0, borderBottomWidth: 1, borderColor: isEditable && isFocused ? '#37f5ac' : 'black' }]} />
       </View>
 
       {/* For state 0, display a text that the userB has to take the quiz */}
@@ -108,7 +90,7 @@ function ConversationCard({ conversation, onDelete }: Props) {
 
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
         {expanded && <CmIconButton onPress={() => setShowDeleteModal(true)} name={'trash'} source={'Foundation'} color={'#77AAAF'} size={24} />}
-        <CmButton onPress={() => setExpanded(current => !current)} style={styles.moreLessButton} text={expanded ? 'LESS' : 'MORE'} />
+        <CmButton onPress={() => setExpanded((current) => !current)} style={styles.moreLessButton} text={expanded ? 'LESS' : 'MORE'} />
       </View>
 
       <SeeHowYouAlignModal

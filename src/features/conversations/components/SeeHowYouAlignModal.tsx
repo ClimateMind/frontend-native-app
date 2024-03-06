@@ -19,7 +19,6 @@ interface Props {
 
 function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Props) {
   const apiClient = useApiClient();
-  const { increaseState } = useConversationState(conversation.state);
   const { progressConversation } = useProgressConversationState();
   const [userBName, setUserBName] = useState<string>();
   const [topSharedValue, setTopSharedValue] = useState<Alignment>();
@@ -74,7 +73,7 @@ function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Prop
               {overallSimilarityScore.toString()}%
             </CmTypography>
 
-            <CmButton text={'VIEW SELECTED TOPICS'} style={{ marginTop: 50 }} onPress={() => progressConversation(() => onViewTopics(), conversation.conversationId, 2)} />
+            <CmButton text={'VIEW SELECTED TOPICS'} style={{ marginTop: 50 }} onPress={() => progressConversation(onViewTopics, conversation.conversationId, 2)} />
           </ScrollView>
         </Content>
       </View>

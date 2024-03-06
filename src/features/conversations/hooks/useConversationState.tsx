@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
 
-function useConversationState(conversationStateNumber: number) {
+function useConversationState(conversationStateNumber: number, setShowSeeHowYouAlignModal: (args: boolean) => void, setShowViewSelectedTopicsModal: (args: boolean) => void) {
   const [conversationState, setConversationState] = useState(conversationStateNumber);
-  
-  const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
-  const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
 
   function increaseState(state: number) {
     if (state > conversationState) {
@@ -12,6 +9,7 @@ function useConversationState(conversationStateNumber: number) {
     }
 
     if (state === 2) {
+      true;
       setShowSeeHowYouAlignModal(true);
     } else if (state === 3) {
       setShowViewSelectedTopicsModal(true);
@@ -26,9 +24,7 @@ function useConversationState(conversationStateNumber: number) {
     increaseState,
     conversationState,
     setConversationState,
-    showSeeHowYouAlignModal,
     setShowSeeHowYouAlignModal,
-    showViewSelectedTopicsModal,
     setShowViewSelectedTopicsModal,
   };
 }
