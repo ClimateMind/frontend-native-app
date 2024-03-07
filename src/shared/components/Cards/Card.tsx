@@ -1,12 +1,11 @@
-import { StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View, ViewProps } from 'react-native';
 
-interface Props {
+interface Props extends ViewProps {
   children: React.ReactNode;
-  style?: ViewStyle | ViewStyle[];
 }
 
-function Card({ children, style = {} }: Props) {
-  return <View style={[styles.card, style]}>{children}</View>;
+function Card({ children, ...rest }: Props) {
+  return <View {...rest} style={[styles.card, rest.style]}>{children}</View>;
 }
 
 const styles = StyleSheet.create({
