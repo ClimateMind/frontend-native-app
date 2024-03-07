@@ -4,7 +4,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { CmTypography, Card, CmIconButton, CmButton } from '@shared/components';
 import useIconButton from '@shared/hooks/useIconButton';
 import { GetAllConversations } from 'src/api/responses';
-import { useConversationState, useDeleteConversationCard, useProgressConversationState } from '../hooks';
+import { useConversationState, useDeleteConversationCard, useProgressConversation } from '../hooks';
 import DeleteConversationModal from './DeleteConversationModal';
 import ConversationRating from './ConversationRating';
 import CopyLinkModal from './CopyLinkModal';
@@ -21,18 +21,29 @@ interface Props {
 function ConversationCard({ conversation, onDelete }: Props) {
   const currentUserBName = conversation.userB.name;
 
-  const { progressConversation } = useProgressConversationState();
+  const { progressConversation } = useProgressConversation();
+
   const [showSeeHowYouAlignModal, setShowSeeHowYouAlignModal] = useState(false);
   const [showViewSelectedTopicsModal, setShowViewSelectedTopicsModal] = useState(false);
+
   const { increaseState, conversationState, setConversationState } = useConversationState(conversation.state, setShowSeeHowYouAlignModal, setShowViewSelectedTopicsModal);
   const { deleteConversation, showDeleteModal, setShowDeleteModal } = useDeleteConversationCard(onDelete);
   const { setUserName: setUserBName, userName: userBName, isEditable, setIsEditable, handleSaveField, handleCancelField } = useIconButton(currentUserBName);
+
   const [expanded, setExpanded] = useState(false);
   const [conversationLink, setConversationLink] = useState('');
   const [showCopyLinkModal, setShowCopyLinkModal] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
-  const headerText = [`Invited ${userBName} to talk`, `Prepare to talk with ${userBName}`, `Prepare to talk with ${userBName}`, `Ready to talk with ${userBName}`, `Talked with ${userBName}`, `Talked with ${userBName}`, `Invited ${userBName} to talk`];
+  const headerText = [
+    `Invited ${userBName} to talk`,
+    `Prepare to talk with ${userBName}`,
+    `Prepare to talk with ${userBName}`,
+    `Ready to talk with ${userBName}`,
+    `Talked with ${userBName}`,
+    `Talked with ${userBName}`,
+    `Invited ${userBName} to talk`,
+  ];
 
   function copyLink() {
     setShowCopyLinkModal(true);

@@ -1,6 +1,6 @@
 import useApiClient from 'src/hooks/useApiClient';
 
-function useProgressConversationState() {
+function useProgressConversation() {
   const apiClient = useApiClient();
 
   async function progressConversation(increaseState: () => void, conversationId: string, conversationState: number) {
@@ -32,4 +32,4 @@ function useProgressConversationState() {
   return { progressConversation };
 }
 
-export default useProgressConversationState;
+export default useProgressConversation;

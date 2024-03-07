@@ -7,8 +7,7 @@ import useApiClient from 'src/hooks/useApiClient';
 import Alignment from 'src/types/Alignment';
 import { CmModal, CmTypography, Content, BackButton, CmButton } from '@shared/components';
 import PersonalValueCardSmall from './PersonalValueCardSmall';
-import useProgressConversationState from '../hooks/useProgressConversationState';
-import { useConversationState } from '../hooks';
+import { useProgressConversation } from '../hooks';
 
 interface Props {
   open: boolean;
@@ -19,7 +18,8 @@ interface Props {
 
 function SeeHowYouAlignModal({ open, conversation, onClose, onViewTopics }: Props) {
   const apiClient = useApiClient();
-  const { progressConversation } = useProgressConversationState();
+  const { progressConversation } = useProgressConversation();
+
   const [userBName, setUserBName] = useState<string>();
   const [topSharedValue, setTopSharedValue] = useState<Alignment>();
   const [overallSimilarityScore, setOverallSimilarityScore] = useState<number>();
