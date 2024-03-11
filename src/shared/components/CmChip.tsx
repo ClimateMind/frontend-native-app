@@ -7,8 +7,8 @@ interface Props {
 
 function CmChip({ label }: Props) {
   return (
-    <View style={{ position: 'relative' }}>
-      <CmTypography variant="body" style={[styles.chip, { zIndex: 999 }]}>
+    <View style={{ position: 'relative', borderRadius: 50 }}>
+      <CmTypography variant="body" style={[styles.chip, { overflow: 'hidden' }]}>
         {label}
       </CmTypography>
     </View>
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#E4FEF1',
     borderRadius: 50,
     paddingVertical: 5,
-    paddingHorizontal: 10,
+    paddingHorizontal: 25,
     margin: 5,
   },
 });
