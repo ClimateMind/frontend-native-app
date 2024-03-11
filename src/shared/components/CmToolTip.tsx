@@ -19,8 +19,6 @@ interface Props {
   fadeAnim: Animated.Value | Animated.ValueXY;
 }
 function CmToolTip({ value, fadeAnim }: Props) {
-  console.log(value);
-
   return (
     <Animated.View style={[styles.tooltip, { opacity: fadeAnim }]}>
       <CmTypography variant="h2" style={[styles.tooltipText, { fontSize: 14 }]}>
