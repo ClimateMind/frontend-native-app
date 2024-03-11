@@ -15,9 +15,8 @@ const personalValueText: { [x: string]: string } = {
 };
 
 interface Props {
-  value: any;
-  //   personalValueText: any;
-  fadeAnim: any;
+  value: string;
+  fadeAnim: Animated.Value | Animated.ValueXY;
 }
 function CmToolTip({ value, fadeAnim }: Props) {
   console.log(value);
