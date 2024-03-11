@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Animated, Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { capitalizeFirstLetter } from 'src/utils';
@@ -6,48 +6,16 @@ import ClimateEffect from 'src/types/ClimateEffect';
 import { CmTypography, CmChip, Card } from '@shared/components';
 import ActionCardHeader from './ActionCardHeader';
 import CmToolTip from '@shared/components/CmToolTip';
-
+import useCmToolTip from 'src/shared/hooks/useCmToolTip';
 interface Props {
   climateEffect: ClimateEffect;
   onLearnMore: (climateEffect: ClimateEffect) => void;
 }
 
 function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
-  const [activeTooltipIndex, setActiveTooltipIndex] = useState<number | null>(null);
-
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  const fadeIn = (index: number) => {
-    setActiveTooltipIndex(index);
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const fadeOut = () => {
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: 200,
-      useNativeDriver: true,
-    }).start(() => setActiveTooltipIndex(null));
-  };
-
-  const toggleTooltip = (index: number) => {
-    if (activeTooltipIndex === index) {
-      fadeOut();
-    } else {
-      fadeIn(index);
-    }
-  };
-
-  function handleCardPress() {
-    // If no tooltip is active, then proceed to set the activeTooltipIndex to null
-    if (activeTooltipIndex !== null) {
-      fadeOut(); // This ensures tooltips are closed properly when clicking outside
-    }
-  }
+  const { activeTooltipIndex, toggleTooltip, handleCardPress } = useCmToolTip(fadeAnim);
 
   return (
     <Card onTouchStart={handleCardPress}>
@@ -109,49 +77,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     padding: 10,
-  },
-  tooltip: {
-    position: 'absolute',
-    backgroundColor: 'white',
-    paddingHorizontal: 8,
-    paddingTop: 8,
-    paddingBottom: 15,
-    borderRadius: 20,
-    borderColor: '#d3d3d3',
-    borderWidth: 1,
-    borderBottomWidth: 0,
-    bottom: '100%',
-    left: '45%',
-    transform: [{ translateX: -50 }],
-    minWidth: 120,
-    elevation: 5,
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.21,
-    shadowRadius: 6.65,
-    zIndex: 999,
-    marginBottom: 15,
-  },
-  tooltipText: {
-    textAlign: 'left',
-    color: 'black',
-  },
-  caretDown: {
-    width: 0,
-    height: 0,
-    borderRightWidth: 10,
-    borderLeftWidth: 10,
-    borderTopWidth: 10,
-    borderRightColor: 'transparent',
-    borderLeftColor: 'transparent',
-    borderTopColor: 'white',
-    position: 'absolute',
-    bottom: -9,
-    left: '45%',
-    zIndex: 1000,
   },
 });
 
