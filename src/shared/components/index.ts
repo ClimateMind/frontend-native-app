@@ -5,6 +5,7 @@ export { default as PersonalValueIcon } from './PersonalValueIcon';
 export { default as BulletListItem } from './BulletListItem';
 export { default as DetailsSourcesTab } from './DetailsSourcesTabs'
 export { default as CmTextButton } from './CmTextButton';
+export { default as CmTooltip } from './CmTooltip';
 export { default as CmChip } from './CmChip';
 export { default as CmToast } from './CmToast';
 export { default as CmModal } from './CmModal';
