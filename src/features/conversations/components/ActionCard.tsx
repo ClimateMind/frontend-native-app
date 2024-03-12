@@ -25,7 +25,7 @@ function ActionCard({ climateEffect, onLearnMore }: Props) {
   }, []);
 
   return (
-    <Card>
+    <Card onTouchStart={handleCardPress}>
       <CmTypography variant="h3" style={styles.title}>
         {capitalizeFirstLetter(climateEffect.effectTitle)}
       </CmTypography>
