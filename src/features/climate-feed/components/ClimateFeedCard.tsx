@@ -3,10 +3,10 @@ import { Animated, Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { capitalizeFirstLetter } from 'src/utils';
 import ClimateEffect from 'src/types/ClimateEffect';
-import { CmTypography, CmChip, Card } from '@shared/components';
+import { CmTypography, CmChip, CmTooltip, Card } from '@shared/components';
+import { useCmTooltip } from '@shared/hooks';
 import ActionCardHeader from './ActionCardHeader';
-import CmToolTip from '@shared/components/CmToolTip';
-import useCmToolTip from 'src/shared/hooks/useCmToolTip';
+
 interface Props {
   climateEffect: ClimateEffect;
   onLearnMore: (climateEffect: ClimateEffect) => void;
@@ -15,7 +15,7 @@ interface Props {
 function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  const { activeTooltipIndex, toggleTooltip, handleCardPress } = useCmToolTip(fadeAnim);
+  const { activeTooltipIndex, toggleTooltip, handleCardPress } = useCmTooltip(fadeAnim);
 
   return (
     <Card onTouchStart={handleCardPress}>
@@ -32,7 +32,7 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
         <View style={styles.chipsContainer}>
           {climateEffect.relatedPersonalValues.map((value, index) => (
             <View key={value} style={{ marginRight: 10, marginBottom: 10 }}>
-              {activeTooltipIndex === index && <CmToolTip value={value} fadeAnim={fadeAnim} />}
+              {activeTooltipIndex === index && <CmTooltip value={value} fadeAnim={fadeAnim} />}
               <Pressable onPress={() => toggleTooltip(index)}>
                 <CmChip label={value} />
               </Pressable>

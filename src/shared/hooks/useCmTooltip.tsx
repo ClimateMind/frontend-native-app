@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Animated } from 'react-native';
 
-function useCmToolTip(fadeAnim: Animated.Value | Animated.ValueXY) {
+function useCmTooltip(fadeAnim: Animated.Value | Animated.ValueXY) {
   const [activeTooltipIndex, setActiveTooltipIndex] = useState<number | null>(null);
 
   const fadeIn = (index: number) => {
@@ -12,6 +12,7 @@ function useCmToolTip(fadeAnim: Animated.Value | Animated.ValueXY) {
       useNativeDriver: true,
     }).start();
   };
+
   const fadeOut = () => {
     Animated.timing(fadeAnim, {
       toValue: 0,
@@ -42,4 +43,4 @@ function useCmToolTip(fadeAnim: Animated.Value | Animated.ValueXY) {
   };
 }
 
-export default useCmToolTip;
+export default useCmTooltip;
