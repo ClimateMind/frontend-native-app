@@ -25,9 +25,11 @@ function CmTooltip({ value, fadeAnim }: Props) {
       <CmTypography variant="h2" style={[styles.tooltipText, { fontSize: 14 }]}>
         {value[0].toUpperCase() + value.slice(1)}
       </CmTypography>
+
       <CmTypography variant={'body'} style={[styles.tooltipText, { fontSize: 14 }]}>
         {personalValueText[value]}
       </CmTypography>
+
       <View style={styles.caretDown}></View>
     </Animated.View>
   );
