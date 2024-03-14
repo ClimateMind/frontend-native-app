@@ -15,6 +15,7 @@ interface Props {
 function ActionCard({ climateEffect, onLearnMore }: Props) {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const { activeTooltipIndex, toggleTooltip, handleCardPress } = useCmTooltip(fadeAnim);
+
   // Track analytics events for card open and close
   useEffect(() => {
     analyticsService.postEvent(CardOpenEvent, climateEffect.effectId);
@@ -29,7 +30,9 @@ function ActionCard({ climateEffect, onLearnMore }: Props) {
       <CmTypography variant="h3" style={styles.title}>
         {capitalizeFirstLetter(climateEffect.effectTitle)}
       </CmTypography>
+
       <Image style={styles.image} source={{ uri: climateEffect.imageUrl }} />
+
       <CmTypography variant="body" style={styles.text}>
         {climateEffect.effectShortDescription}
       </CmTypography>
