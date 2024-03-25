@@ -46,7 +46,7 @@
     "@storybook/addon-essentials": "^7.6.6",
     "@storybook/addon-interactions": "^7.6.6",
     "@storybook/addon-links": "^7.6.6",
-    "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/addon-onboarding": "^8.0.4",
     "@storybook/addon-react-native-web": "^0.0.21",
     "@storybook/blocks": "^7.6.6",
     "@storybook/react": "^7.6.6",
