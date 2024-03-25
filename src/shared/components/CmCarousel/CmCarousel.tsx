@@ -40,13 +40,17 @@ function CmCarousel({ data }: Props) {
             style={{
               flex: 1,
               justifyContent: 'flex-start',
-              marginHorizontal: 10,
+              paddingHorizontal: 20,
               borderWidth: 1,
+              marginBottom: 20,
             }}
           >
             <CmCarouselContent>{item}</CmCarouselContent>
           </View>
         )}
+        panGestureHandlerProps={{
+          activeOffsetX: [-10, 10],
+        }}
       />
     </SafeAreaView>
   );

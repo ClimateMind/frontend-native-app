@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { useState } from 'react';
 
 import appConfig from '../../../app.json';
@@ -44,7 +44,7 @@ function DevScreen() {
         </View>
 
         {showExperimentalFeatures && (
-          <View style={{ paddingHorizontal: 20 }}>
+          <ScrollView style={{}}>
             {/* <CmColorPicker /> */}
             {/* Add features to test here */}
 
@@ -61,7 +61,17 @@ function DevScreen() {
                 />,
 
                 <PersonalValueCard
-                  nr={0}
+                  nr={1}
+                  value={{
+                    id: '1',
+                    name: 'power',
+                    shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  }}
+                />,
+
+                <PersonalValueCard
+                  nr={1}
                   value={{
                     id: '1',
                     name: 'power',
@@ -83,7 +93,7 @@ function DevScreen() {
                   }}
                 />,
                 <PersonalValueCard
-                  nr={0}
+                  nr={1}
                   value={{
                     id: '1',
                     name: 'power',
@@ -105,7 +115,7 @@ function DevScreen() {
                   }}
                 />,
                 <PersonalValueCard
-                  nr={0}
+                  nr={1}
                   value={{
                     id: '1',
                     name: 'power',
@@ -115,7 +125,7 @@ function DevScreen() {
                 />,
               ]}
             />
-          </View>
+          </ScrollView>
         )}
 
         <View style={{ flex: 1 }} />
