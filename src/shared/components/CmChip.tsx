@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import CmTypography from './CmTypography';
 
 interface Props {
@@ -7,8 +7,8 @@ interface Props {
 
 function CmChip({ label }: Props) {
   return (
-    <View style={{ position: 'relative' }}>
-      <CmTypography variant="body" style={[styles.chip, { zIndex: 999 }]}>
+    <View style={{ position: 'relative', borderRadius: 50 }}>
+      <CmTypography variant="body" style={[styles.chip, Platform.OS == 'ios' && { overflow: 'hidden', borderRadius: 15 }]}>
         {label}
       </CmTypography>
     </View>

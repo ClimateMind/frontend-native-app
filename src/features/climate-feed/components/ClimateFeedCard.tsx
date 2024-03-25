@@ -1,9 +1,10 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Animated, Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { capitalizeFirstLetter } from 'src/utils';
 import ClimateEffect from 'src/types/ClimateEffect';
-import { CmTypography, CmChip, Card } from '@shared/components';
+import { CmTypography, CmChip, CmTooltip, Card } from '@shared/components';
+import { useCmTooltip } from '@shared/hooks';
 import ActionCardHeader from './ActionCardHeader';
 
 interface Props {
@@ -11,55 +12,10 @@ interface Props {
   onLearnMore: (climateEffect: ClimateEffect) => void;
 }
 
-const personalValueText: { [x: string]: string } = {
-  benevolence: 'To value: Forgiving, helping, and being loyal; preserving and improving the lives of people that share core interests or identities.',
-  hedonism: 'To value: Joy, pleasure, and satisfaction; enjoying oneself.',
-  security: 'To value: A feeling of safety, stability, and order in society, at work, in home, and in relationships.',
-  tradition: 'To value: Protecting the traditions of family, community, and/or culture.',
-  universalism: 'To value: Caring for the well-being of all people and life; likely also diversity and protecting the environment.',
-  'self-direction': 'To value: Freedom of thought and action, preferring to come to decisions independently; satisfaction when creating or exploring the world.',
-  conformity: 'To value: Sticking by the rules and conforming to social norms.',
-  stimulation: 'To value: Excitement, challenge, and change.',
-  achievement: 'To value: Success; meeting standards of excellence.',
-  power: 'To value: Embracing power, holding dominance; social status and prestige.',
-};
-
 function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
-  const [activeTooltipIndex, setActiveTooltipIndex] = useState<number | null>(null);
-
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  const fadeIn = (index: number) => {
-    setActiveTooltipIndex(index);
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const fadeOut = () => {
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: 200,
-      useNativeDriver: true,
-    }).start(() =>  setActiveTooltipIndex(null));
-  };
-
-  const toggleTooltip = (index: number) => {
-    if (activeTooltipIndex === index) {
-      fadeOut();
-    } else {
-      fadeIn(index);
-    }
-  };
-
-  function handleCardPress() {
-    // If no tooltip is active, then proceed to set the activeTooltipIndex to null
-    if (activeTooltipIndex !== null) {
-      fadeOut(); // This ensures tooltips are closed properly when clicking outside
-    }
-  }
+  const { activeTooltipIndex, toggleTooltip, handleCardPress } = useCmTooltip(fadeAnim);
 
   return (
     <Card onTouchStart={handleCardPress}>
@@ -76,17 +32,7 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
         <View style={styles.chipsContainer}>
           {climateEffect.relatedPersonalValues.map((value, index) => (
             <View key={value} style={{ marginRight: 10, marginBottom: 10 }}>
-              {activeTooltipIndex === index && (
-                <Animated.View style={[styles.tooltip, { opacity: fadeAnim }]}>
-                  <CmTypography variant="h2" style={[styles.tooltipText, { fontSize: 14 }]}>
-                    {value[0].toUpperCase() + value.slice(1)}
-                  </CmTypography>
-                  <CmTypography variant={'body'} style={[styles.tooltipText, { fontSize: 14 }]}>
-                    {personalValueText[value]}
-                  </CmTypography>
-                  <View style={styles.caretDown}></View>
-                </Animated.View>
-              )}
+              {activeTooltipIndex === index && <CmTooltip value={value} fadeAnim={fadeAnim} />}
               <Pressable onPress={() => toggleTooltip(index)}>
                 <CmChip label={value} />
               </Pressable>
@@ -131,49 +77,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     padding: 10,
-  },
-  tooltip: {
-    position: 'absolute',
-    backgroundColor: 'white',
-    paddingHorizontal: 8,
-    paddingTop: 8,
-    paddingBottom: 15,
-    borderRadius: 10,
-    borderColor: '#d3d3d3',
-    borderWidth: 1,
-    borderBottomWidth: 0,
-    bottom: '100%',
-    left: '45%',
-    transform: [{ translateX: -50 }],
-    minWidth: 120,
-    elevation: 5,
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.21,
-    shadowRadius: 6.65,
-    zIndex: 999,
-    marginBottom: 15,
-  },
-  tooltipText: {
-    textAlign: 'left',
-    color: 'black',
-  },
-  caretDown: {
-    width: 0,
-    height: 0,
-    borderRightWidth: 10,
-    borderLeftWidth: 10,
-    borderTopWidth: 10,
-    borderRightColor: 'transparent',
-    borderLeftColor: 'transparent',
-    borderTopColor: 'white',
-    position: 'absolute',
-    bottom: -9,
-    left: '45%',
-    zIndex: 1000,
   },
 });
 
