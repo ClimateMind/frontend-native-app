@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
-import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { useEffect, useRef } from 'react';
+import { Animated, Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { CardCloseEvent, CardOpenEvent, analyticsService } from 'src/services';
 import { capitalizeFirstLetter } from 'src/utils';
 import ClimateEffect2 from 'src/types/ClimateEffect2';
-import { CmTypography, CmChip, Card } from '@shared/components';
+import { CmTypography, CmChip, Card, CmTooltip } from '@shared/components';
+import { useCmTooltip } from 'src/shared/hooks';
 
 interface Props {
   climateEffect: ClimateEffect2;
@@ -12,34 +13,48 @@ interface Props {
 }
 
 function ActionCard({ climateEffect, onLearnMore }: Props) {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const { activeTooltipIndex, toggleTooltip, handleCardPress } = useCmTooltip(fadeAnim);
+
   // Track analytics events for card open and close
   useEffect(() => {
     analyticsService.postEvent(CardOpenEvent, climateEffect.effectId);
 
     return () => {
       analyticsService.postEvent(CardCloseEvent, climateEffect.effectId);
-    }
+    };
   }, []);
 
   return (
-    <Card>
+    <Card onTouchStart={handleCardPress}>
+      <CmTypography variant="h3" style={styles.title}>
+        {capitalizeFirstLetter(climateEffect.effectTitle)}
+      </CmTypography>
 
-      <CmTypography variant='h3' style={styles.title}>{capitalizeFirstLetter(climateEffect.effectTitle)}</CmTypography>
-      <Image style={styles.image} source={{uri: climateEffect.imageUrl}} />
-      <CmTypography variant='body' style={styles.text}>{climateEffect.effectShortDescription}</CmTypography>
+      <Image style={styles.image} source={{ uri: climateEffect.imageUrl }} />
+
+      <CmTypography variant="body" style={styles.text}>
+        {climateEffect.effectShortDescription}
+      </CmTypography>
 
       {climateEffect.relatedPersonalValues && (
         <View style={styles.chipsContainer}>
-          {climateEffect.relatedPersonalValues.map((value) => (
-            <CmChip key={value} label={value} />
+          {climateEffect.relatedPersonalValues.map((value, index) => (
+            <View key={value} style={{ marginRight: 10, marginBottom: 10 }}>
+              {activeTooltipIndex === index && <CmTooltip value={value} fadeAnim={fadeAnim} />}
+              <Pressable onPress={() => toggleTooltip(index)}>
+                <CmChip key={value} label={value} />
+              </Pressable>
+            </View>
           ))}
         </View>
       )}
 
       <Pressable onPress={() => onLearnMore(climateEffect)}>
-        <CmTypography variant='button' style={styles.button}>LEARN MORE</CmTypography>
+        <CmTypography variant="button" style={styles.button}>
+          LEARN MORE
+        </CmTypography>
       </Pressable>
-
     </Card>
   );
 }
