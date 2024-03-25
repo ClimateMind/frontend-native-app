@@ -12,7 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#B9E6E0"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "android": {
       "package": "org.climatemind.app"
     },
@@ -31,8 +33,8 @@
     "updates": {
       "url": "https://u.expo.dev/d3f6d39c-a2f2-412d-9434-6cb0e2739ebc"
     },
-    "experiments": {
-      "tsconfigPaths": true
-    }
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
