@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { useState } from 'react';
 
 import appConfig from '../../../app.json';
@@ -6,6 +6,8 @@ import { CmButton, CmCheckbox, CmTypography, Content, Screen } from '@shared/com
 import { useOnboarding } from '@features/onboarding/hooks';
 import { useUpdateApp, useSkipAnalytics, CmColorPicker } from '@features/dev';
 import { useToastMessages } from '@shared/hooks';
+import CmCarousel from 'src/shared/components/CmCarousel/CmCarousel';
+import { PersonalValueCard } from 'src/features/quiz/components';
 
 function DevScreen() {
   const { resetOnboarding } = useOnboarding();
@@ -41,10 +43,80 @@ function DevScreen() {
           <CmCheckbox checked={showExperimentalFeatures} onPress={() => setShowExperimentalFeatures((prevState) => !prevState)} text="Show Experimental Features" />
         </View>
 
-        {showExperimentalFeatures && <>
-          <CmColorPicker />
-          {/* Add features to test here */}
-        </>}
+        {showExperimentalFeatures && (
+          <View style={{ paddingHorizontal: 20 }}>
+            {/* <CmColorPicker /> */}
+            {/* Add features to test here */}
+
+            <CmCarousel
+              data={[
+                <PersonalValueCard
+                  nr={0}
+                  value={{
+                    id: '1',
+                    name: 'power',
+                    shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  }}
+                />,
+
+                <PersonalValueCard
+                  nr={0}
+                  value={{
+                    id: '1',
+                    name: 'power',
+                    shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  }}
+                />,
+              ]}
+            />
+            <CmCarousel
+              data={[
+                <PersonalValueCard
+                  nr={0}
+                  value={{
+                    id: '1',
+                    name: 'power',
+                    shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  }}
+                />,
+                <PersonalValueCard
+                  nr={0}
+                  value={{
+                    id: '1',
+                    name: 'power',
+                    shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  }}
+                />,
+              ]}
+            />
+            <CmCarousel
+              data={[
+                <PersonalValueCard
+                  nr={0}
+                  value={{
+                    id: '1',
+                    name: 'power',
+                    shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  }}
+                />,
+                <PersonalValueCard
+                  nr={0}
+                  value={{
+                    id: '1',
+                    name: 'power',
+                    shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  }}
+                />,
+              ]}
+            />
+          </View>
+        )}
 
         <View style={{ flex: 1 }} />
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { capitalizeFirstLetter } from 'src/utils';
-import { CmTypography, PersonalValueIcon, Card} from '@shared/components';
+import { CmTypography, PersonalValueIcon, Card } from '@shared/components';
 
 interface Props {
   nr: number;
@@ -15,6 +15,7 @@ interface Props {
 }
 
 function PersonalValueCard({ nr, value }: Props) {
+  console.log(value.name);
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -32,14 +33,9 @@ function PersonalValueCard({ nr, value }: Props) {
         {value.shortDescription}
       </CmTypography>
 
-      {expanded && (
-        <CmTypography variant="body">{value.description}</CmTypography>
-      )}
+      {expanded && <CmTypography variant="body">{value.description}</CmTypography>}
 
-      <Pressable
-        onPress={() => setExpanded((prev) => !prev)}
-        style={{ marginTop: 20 }}
-      >
+      <Pressable onPress={() => setExpanded((prev) => !prev)} style={{ marginTop: 20 }}>
         {!expanded && (
           <CmTypography variant="button" style={styles.moreLessButton}>
             MORE
