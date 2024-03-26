@@ -15,7 +15,6 @@ interface Props {
 }
 
 function PersonalValueCard({ nr, value }: Props) {
-  console.log(value.name);
   const [expanded, setExpanded] = useState(false);
 
   return (

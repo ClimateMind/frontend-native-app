@@ -78,9 +78,9 @@ function DevScreen() {
                   }}
                   climateEffect={{
                     effectId: 'R8t0oNsG3WgnupXsBVSjMHZ',
-                    effectTitle: 'increase in suicide',
+                    effectTitle: 'Related Impact - increase in suicide',
                     effectDescription: '',
-                    effectShortDescription: 'The warming air in the atmosphere is causing more heatwaves. This combined with warming days and nights is causing increases in suicide. Rising temperature and climate change are not direct motivations for suicide. Instead, temperature and climate increase the risk of suicide by affecting the likelihood that an individual situation leads to an attempt at self-harm. More people are triggered to intentionally cause their own death.',
+                    effectShortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
                     effectSolutions: [],
                     effectSources: [],
                     effectScore: 0,

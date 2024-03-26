@@ -15,7 +15,6 @@ interface Props {
 }
 
 function PersonalValueCard({ nr, value }: Props) {
-  console.log(value.name);
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -29,7 +28,7 @@ function PersonalValueCard({ nr, value }: Props) {
         <PersonalValueIcon valueName={value.name} style={styles.image} />
       </View>
 
-      <CmTypography variant="body" style={{ marginVertical: 10 }}>
+      <CmTypography variant="body" style={{ marginVertical: 10 }} ellipsizeMode={'tail'}>
         {value.shortDescription}
       </CmTypography>
 

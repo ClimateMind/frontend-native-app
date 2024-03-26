@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Animated, Image, Pressable, StyleSheet, View } from 'react-native';
+import { Animated, Dimensions, Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { capitalizeFirstLetter } from 'src/utils';
 import ClimateEffect from 'src/types/ClimateEffect';
@@ -16,17 +16,17 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
   const [expanded, setExpanded] = useState(false);
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
-
+  const { width: screenWidth } = Dimensions.get('window');
   const { activeTooltipIndex, toggleTooltip, handleCardPress } = useCmTooltip(fadeAnim);
   console.log(climateEffect.imageUrl);
   return (
-    <Card onTouchStart={handleCardPress} style={{ height: 405 }}>
-      <CmTypography variant="h3" style={styles.title}>
+    <Card onTouchStart={handleCardPress} style={{ height: 426 }}>
+      <CmTypography variant="h4" style={styles.title}>
         {capitalizeFirstLetter(climateEffect.effectTitle)}
       </CmTypography>
       {climateEffect.imageUrl !== null && <Image style={styles.image} source={{ uri: climateEffect.imageUrl }} />}
 
-      <CmTypography variant="body" style={styles.text}>
+      <CmTypography variant="body" style={styles.text} numberOfLines={3} ellipsizeMode="tail">
         {climateEffect.effectShortDescription}
       </CmTypography>
 
@@ -48,7 +48,8 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
           LEARN MORE
         </CmTypography>
       </Pressable>
-      <Pressable onPress={() => setExpanded((prev) => !prev)} style={{ marginTop: 20 }}>
+
+      {/* <Pressable onPress={() => setExpanded((prev) => !prev)} style={{ marginTop: 20 }}>
         {!expanded && (
           <CmTypography variant="button" style={styles.moreLessButton}>
             MORE
@@ -58,8 +59,8 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
           <CmTypography variant="button" style={styles.moreLessButton}>
             LESS
           </CmTypography>
-        )}
-      </Pressable>
+        )} */}
+      {/* </Pressable> */}
       {/* <ActionCardHeader effectSolution={climateEffect.effectSolutions[0]} /> */}
     </Card>
   );
@@ -71,8 +72,9 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   image: {
-    width: '100%',
-    // height: 250,
+    alignSelf: 'center',
+    width: Dimensions.get('window').width,
+    height: 200,
   },
   text: {
     letterSpacing: 1,
