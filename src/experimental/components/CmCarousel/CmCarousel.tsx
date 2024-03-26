@@ -20,6 +20,7 @@ const CmCarousel = ({ data }: Props) => {
   return (
     <View style={styles.container}>
       <ScrollView
+        scrollEventThrottle={200}
         ref={scrollViewRef}
         horizontal
         pagingEnabled
