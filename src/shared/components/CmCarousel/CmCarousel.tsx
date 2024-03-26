@@ -9,7 +9,7 @@ interface Props {
 const CmCarousel = ({ data }: Props) => {
   const scrollViewRef = useRef<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  console.log(activeIndex);
+
   const { width: screenWidth } = Dimensions.get('window');
 
   const handlePaginationPress = (index: number) => {
