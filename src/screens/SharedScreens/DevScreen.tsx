@@ -44,10 +44,9 @@ function DevScreen() {
         </View>
 
         {showExperimentalFeatures && (
-          <ScrollView style={{}}>
+          <ScrollView>
             {/* <CmColorPicker /> */}
             {/* Add features to test here */}
-
             <CmCarousel
               data={[
                 <PersonalValueCard

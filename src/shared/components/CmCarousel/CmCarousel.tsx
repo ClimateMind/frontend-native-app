@@ -1,59 +1,77 @@
-import { Dimensions, View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import Carousel from 'react-native-reanimated-carousel';
+import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useRef, useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import CmCarouselContent from './CmCarouselContent';
-import useApiClient from 'src/hooks/useApiClient';
-import { useEffect, useState } from 'react';
-import { GetPersonalValues } from 'src/api/responses';
-import { useAppSelector } from 'src/store/hooks';
+
 interface Props {
   data: React.ReactNode[];
 }
 
-function CmCarousel({ data }: Props) {
-  const quizId = useAppSelector((state) => state.auth.user.quizId);
-  const [personalValues, setPersonalValues] = useState<GetPersonalValues>();
-  const apiClient = useApiClient();
+const CmCarousel = ({ data }: Props) => {
+  const scrollViewRef = useRef<any>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  console.log(activeIndex);
+  const { width: screenWidth } = Dimensions.get('window');
 
-  useEffect(() => {
-    if (!quizId) {
-      return;
-    }
-
-    apiClient.getPersonalValues(quizId).then((result) => setPersonalValues(result));
-  }, [quizId]);
-
-  const width = Dimensions.get('window').width;
+  const handlePaginationPress = (index: number) => {
+    setActiveIndex(index);
+    if (scrollViewRef) scrollViewRef.current.scrollTo({ x: index * screenWidth, animated: true });
+  };
 
   return (
-    <SafeAreaView edges={['bottom']} style={{ flex: 1 }}>
-      <Carousel
-        loop
-        width={width}
-        height={900 / 2}
-        autoPlay={true}
-        data={data}
-        scrollAnimationDuration={7000}
-        onSnapToItem={(index) => console.log('current index:', index)}
-        renderItem={({ item }) => (
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'flex-start',
-              paddingHorizontal: 20,
-              borderWidth: 1,
-              marginBottom: 20,
-            }}
-          >
+    <View style={styles.container}>
+      <ScrollView
+        ref={scrollViewRef}
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        onScroll={(event) => {
+          const contentOffsetX = event.nativeEvent.contentOffset.x;
+          const currentIndex = Math.round(contentOffsetX / screenWidth);
+          setActiveIndex(currentIndex);
+        }}
+      >
+        {/* content of each slide*/}
+        {data?.map((item, index) => (
+          <View key={index} style={[styles.slide, { width: screenWidth }]}>
             <CmCarouselContent>{item}</CmCarouselContent>
           </View>
-        )}
-        panGestureHandlerProps={{
-          activeOffsetX: [-10, 10],
-        }}
-      />
-    </SafeAreaView>
+        ))}
+      </ScrollView>
+      <View style={styles.pagination}>
+        {data.map((_, index) => (
+          <TouchableOpacity key={index} style={[styles.paginationDot, index === activeIndex ? styles.activeDot : null]} onPress={() => handlePaginationPress(index)} />
+        ))}
+      </View>
+    </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  slide: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  pagination: {
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 10,
+  },
+  paginationDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: '#ccc',
+    margin: 5,
+  },
+  activeDot: {
+    backgroundColor: 'blue',
+  },
+});
 
 export default CmCarousel;

@@ -4,8 +4,8 @@ interface Props {
   children: React.ReactNode;
 }
 
-function CmCarouselContent({ children }: Props) {
-  return <View>{children}</View>;
+function CmCarouselContent({ children, ...rest }: Props) {
+  return <View {...rest}>{children}</View>;
 }
 
 export default CmCarouselContent;
