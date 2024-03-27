@@ -34,7 +34,7 @@ const CmCarousel = ({ data }: Props) => {
       >
         {/* content of each slide*/}
         {data?.map((item, index) => (
-          <View key={index} style={[styles.slide, { width: screenWidth }]}>
+          <View key={index} style={[styles.slide, { width: screenWidth, height: '100%' }]}>
             <CmCarouselContent>{item}</CmCarouselContent>
           </View>
         ))}
