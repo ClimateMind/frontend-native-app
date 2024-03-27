@@ -13,6 +13,8 @@ import ClimateEffect from 'src/types/ClimateEffect';
 import useApiClient from 'src/hooks/useApiClient';
 import { useAppSelector } from 'src/store/hooks';
 import { useNavigation } from '@react-navigation/native';
+import SolutionsFeedCard from 'src/experimental/components/SolutionsFeedCard';
+import Solution from 'src/types/Solution';
 
 function DevScreen() {
   const navigation = useNavigation();
@@ -22,13 +24,17 @@ function DevScreen() {
   const { showSuccessToast, showErrorToast } = useToastMessages();
   const [showExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
   const sessionId = useAppSelector((state) => state.auth.sessionId);
+  const [solutionsFeed, setSolutionsFeed] = useState<Solution[]>();
   const [climateFeed, setClimateFeed] = useState<ClimateEffect[]>();
-  console.log(climateFeed);
+  console.log(solutionsFeed);
   const apiClient = useApiClient();
   useEffect(() => {
     apiClient.getClimateFeed().then((result) => setClimateFeed(result));
   }, [sessionId]);
 
+  useEffect(() => {
+    apiClient.getSolutionsFeed().then((result) => setSolutionsFeed(result));
+  }, [sessionId]);
   return (
     <Screen>
       <Content style={{ padding: 20 }}>
@@ -78,7 +84,7 @@ function DevScreen() {
                   }}
                   climateEffect={{
                     effectId: 'R8t0oNsG3WgnupXsBVSjMHZ',
-                    effectTitle: 'Related Impact - increase in suicide',
+                    effectTitle: 'Example Related Impact - increase in suicide',
                     effectDescription: '',
                     effectShortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
                     effectSolutions: [],
@@ -92,13 +98,19 @@ function DevScreen() {
                   }}
                 />,
 
-                <PersonalValueCard
-                  nr={2}
-                  value={{
-                    id: '1',
-                    name: 'power',
+                <SolutionsFeedCard
+                  solution={{
+                    iri: '',
+                    imageUrl: 'https://i.imgur.com/toV6zMh.jpg',
+                    longDescription: '',
                     shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
-                    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                    solutionTitle: 'Example Mitigation Solution - Producing electricity via onshore wind turbines ',
+                    solutionSources: [],
+                    solutionType: 'adaptation',
+                    solutionSpecificMythIRIs: [],
+                  }}
+                  onLearnMore={function (solution: Solution): void {
+                    throw new Error('Function not implemented.');
                   }}
                 />,
               ]}
@@ -115,15 +127,16 @@ function DevScreen() {
                     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
                   }}
                 />,
+
                 <ClimateFeedCard
                   onLearnMore={function (climateEffect: ClimateEffect): void {
                     throw new Error('Function not implemented.');
                   }}
                   climateEffect={{
                     effectId: 'R8t0oNsG3WgnupXsBVSjMHZ',
-                    effectTitle: 'increase in suicide',
+                    effectTitle: 'Example Related Impact - increase in suicide',
                     effectDescription: '',
-                    effectShortDescription: 'The warming air in the atmosphere is causing more heatwaves. This combined with warming days and nights is causing increases in suicide. Rising temperature and climate change are not direct motivations for suicide. Instead, temperature and climate increase the risk of suicide by affecting the likelihood that an individual situation leads to an attempt at self-harm. More people are triggered to intentionally cause their own death.',
+                    effectShortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
                     effectSolutions: [],
                     effectSources: [],
                     effectScore: 0,
@@ -132,6 +145,22 @@ function DevScreen() {
                     isPossiblyLocal: 0,
                     effectSpecificMythIRIs: [],
                     relatedPersonalValues: undefined,
+                  }}
+                />,
+
+                <SolutionsFeedCard
+                  solution={{
+                    iri: '',
+                    imageUrl: 'https://i.imgur.com/toV6zMh.jpg',
+                    longDescription: '',
+                    shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                    solutionTitle: 'Example Mitigation Solution - Producing electricity via onshore wind turbines ',
+                    solutionSources: [],
+                    solutionType: 'adaptation',
+                    solutionSpecificMythIRIs: [],
+                  }}
+                  onLearnMore={function (solution: Solution): void {
+                    throw new Error('Function not implemented.');
                   }}
                 />,
               ]}
@@ -148,15 +177,16 @@ function DevScreen() {
                     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
                   }}
                 />,
+
                 <ClimateFeedCard
                   onLearnMore={function (climateEffect: ClimateEffect): void {
                     throw new Error('Function not implemented.');
                   }}
                   climateEffect={{
                     effectId: 'R8t0oNsG3WgnupXsBVSjMHZ',
-                    effectTitle: 'increase in suicide',
+                    effectTitle: 'Example Related Impact - increase in suicide',
                     effectDescription: '',
-                    effectShortDescription: 'The warming air in the atmosphere is causing more heatwaves. This combined with warming days and nights is causing increases in suicide. Rising temperature and climate change are not direct motivations for suicide. Instead, temperature and climate increase the risk of suicide by affecting the likelihood that an individual situation leads to an attempt at self-harm. More people are triggered to intentionally cause their own death.',
+                    effectShortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
                     effectSolutions: [],
                     effectSources: [],
                     effectScore: 0,
@@ -165,6 +195,22 @@ function DevScreen() {
                     isPossiblyLocal: 0,
                     effectSpecificMythIRIs: [],
                     relatedPersonalValues: undefined,
+                  }}
+                />,
+
+                <SolutionsFeedCard
+                  solution={{
+                    iri: '',
+                    imageUrl: 'https://i.imgur.com/toV6zMh.jpg',
+                    longDescription: '',
+                    shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                    solutionTitle: 'Example Mitigation Solution - Producing electricity via onshore wind turbines ',
+                    solutionSources: [],
+                    solutionType: 'adaptation',
+                    solutionSpecificMythIRIs: [],
+                  }}
+                  onLearnMore={function (solution: Solution): void {
+                    throw new Error('Function not implemented.');
                   }}
                 />,
               ]}
@@ -190,3 +236,6 @@ const styles = StyleSheet.create({
 });
 
 export default DevScreen;
+function setSolutionsFeed(result: Solution[]): any {
+  throw new Error('Function not implemented.');
+}

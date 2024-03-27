@@ -9,7 +9,7 @@ import { useCmTooltip } from '@shared/hooks';
 
 interface Props {
   climateEffect: ClimateEffect;
-  onLearnMore: (climateEffect: ClimateEffect) => void;
+  onLearnMore?: (climateEffect: ClimateEffect) => void;
 }
 
 function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
@@ -20,13 +20,13 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
   const { activeTooltipIndex, toggleTooltip, handleCardPress } = useCmTooltip(fadeAnim);
   console.log(climateEffect.imageUrl);
   return (
-    <Card onTouchStart={handleCardPress} style={{ height: 426 }}>
+    <Card onTouchStart={handleCardPress} style={{ height: 405 }}>
       <CmTypography variant="h4" style={styles.title}>
         {capitalizeFirstLetter(climateEffect.effectTitle)}
       </CmTypography>
       {climateEffect.imageUrl !== null && <Image style={styles.image} source={{ uri: climateEffect.imageUrl }} />}
 
-      <CmTypography variant="body" style={styles.text} numberOfLines={3} ellipsizeMode="tail">
+      <CmTypography variant="body" style={styles.text} numberOfLines={2} ellipsizeMode="tail">
         {climateEffect.effectShortDescription}
       </CmTypography>
 
@@ -43,11 +43,11 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
         </View>
       )}
 
-      <Pressable onPress={() => onLearnMore(climateEffect)}>
+      {/* <Pressable onPress={() => onLearnMore(climateEffect)}>
         <CmTypography variant="button" style={styles.button}>
           LEARN MORE
         </CmTypography>
-      </Pressable>
+      </Pressable> */}
 
       {/* <Pressable onPress={() => setExpanded((prev) => !prev)} style={{ marginTop: 20 }}>
         {!expanded && (
@@ -72,8 +72,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   image: {
-    alignSelf: 'center',
-    width: Dimensions.get('window').width,
+    // width: Dimensions.get('window').width,
     height: 200,
   },
   text: {

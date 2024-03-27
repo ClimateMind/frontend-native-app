@@ -18,7 +18,7 @@ function PersonalValueCard({ nr, value }: Props) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Card style={{ padding: 10, height: 500 }}>
+    <Card style={{ padding: 10 }}>
       <CmTypography variant="label">NO.{nr.toString()}</CmTypography>
       <CmTypography variant="h4" style={{ textAlign: 'left', fontSize: 18, paddingTop: 4 }}>
         {capitalizeFirstLetter(value.name)}
@@ -28,7 +28,7 @@ function PersonalValueCard({ nr, value }: Props) {
         <PersonalValueIcon valueName={value.name} style={styles.image} />
       </View>
 
-      <CmTypography variant="body" style={{ marginVertical: 10 }} ellipsizeMode={'tail'}>
+      <CmTypography variant="body" style={{ marginVertical: 10 }}>
         {value.shortDescription}
       </CmTypography>
 
