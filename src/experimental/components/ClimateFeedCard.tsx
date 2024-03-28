@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Animated, Dimensions, Image, Pressable, StyleSheet, View } from 'react-native';
+import { Animated, Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { capitalizeFirstLetter } from 'src/utils';
 import ClimateEffect from 'src/types/ClimateEffect';
