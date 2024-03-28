@@ -18,7 +18,7 @@ function PersonalValueCard({ nr, value }: Props) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Card style={{ padding: 10, height: !expanded ? 405 : 490 }}>
+    <Card style={{ width: '100%', padding: 10, height: !expanded ? 430 : 550 }}>
       <CmTypography variant="label">NO.{nr.toString()}</CmTypography>
       <CmTypography variant="h4" style={{ textAlign: 'left', fontSize: 18, paddingTop: 4 }}>
         {capitalizeFirstLetter(value.name)}

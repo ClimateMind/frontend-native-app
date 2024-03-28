@@ -1,5 +1,5 @@
-import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useRef, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { View, StyleSheet, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import CmCarouselContent from './CmCarouselContent';
 
 interface Props {
@@ -10,6 +10,8 @@ const CmCarousel = ({ data }: Props) => {
   const scrollViewRef = useRef<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // could have 3 states for each index with different timings for autoscroll
+
   const { width: screenWidth } = Dimensions.get('window');
 
   const handlePaginationPress = (index: number) => {
@@ -17,10 +19,22 @@ const CmCarousel = ({ data }: Props) => {
     if (scrollViewRef) scrollViewRef.current.scrollTo({ x: index * screenWidth, animated: true });
   };
 
+  useEffect(() => {
+    const intervalId = setInterval(autoScroll, 5000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const autoScroll = () => {
+    setActiveIndex((prevIndex) => {
+      const newIndex = prevIndex === data.length - 1 ? 0 : prevIndex + 1;
+      scrollViewRef.current?.scrollTo({ x: newIndex * screenWidth, animated: true });
+      return newIndex;
+    });
+  };
   return (
     <View style={styles.container}>
       <ScrollView
-        style={{ height: 500 }}
+        style={{ height: '100%' }}
         scrollEventThrottle={200}
         ref={scrollViewRef}
         horizontal
@@ -34,8 +48,11 @@ const CmCarousel = ({ data }: Props) => {
       >
         {/* content of each slide*/}
         {data?.map((item, index) => (
-          <View key={index} style={[styles.slide, { width: screenWidth, height: '100%' }]}>
-            <CmCarouselContent>{item}</CmCarouselContent>
+          <View>
+            <View key={index} style={[styles.slide, { height: '100%', width: screenWidth }]}>
+              {/* if we have 3 different index states we will need return 3 x </CmCarouselContent> and dev screen would only have one component or the 3 states could be raised up to the dev screen as an alternative */}
+              <CmCarouselContent style={{ paddingHorizontal: 20 }}>{item}</CmCarouselContent>
+            </View>
           </View>
         ))}
       </ScrollView>

@@ -1,4 +1,4 @@
-import { Dimensions, Pressable, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { Image, View } from 'react-native';
 
 import { capitalizeFirstLetter } from 'src/utils';
@@ -7,31 +7,22 @@ import { CmTypography, Card } from '@shared/components';
 
 interface Props {
   solution: Solution;
-  onLearnMore: (solution: Solution) => void;
 }
 
-function SolutionsFeedCard({ solution, onLearnMore }: Props) {
+function SolutionsFeedCard({ solution }: Props) {
   return (
-    <Card style={{ height: 405 }}>
+    <Card style={{ width: '100%', height: 430 }}>
       <View style={styles.headingContainer}>
-        <CmTypography variant="label" style={styles.actionType}>
-          {/* {solution.solutionType.toUpperCase()} ACTION */}
-        </CmTypography>
+        <CmTypography variant="label" style={styles.actionType}></CmTypography>
         <CmTypography variant="h4" style={styles.title}>
           {capitalizeFirstLetter(solution.solutionTitle)}
         </CmTypography>
       </View>
 
       {solution.imageUrl !== null && <Image style={styles.image} source={{ uri: solution.imageUrl }} />}
-      <CmTypography variant="body" style={styles.text} numberOfLines={1} ellipsizeMode="tail">
+      <CmTypography variant="body" style={styles.text} numberOfLines={4} ellipsizeMode="tail">
         {solution.shortDescription}
       </CmTypography>
-
-      {/* <Pressable onPress={() => onLearnMore(solution)}>
-        <CmTypography variant="button" style={styles.button}>
-          MORE
-        </CmTypography>
-      </Pressable> */}
     </Card>
   );
 }
