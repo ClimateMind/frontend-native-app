@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Image, View } from 'react-native';
 
 import { capitalizeFirstLetter } from 'src/utils';

@@ -1,19 +1,16 @@
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
-import { useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { useState } from 'react';
 
 import appConfig from '../../../app.json';
 import { CmButton, CmCheckbox, CmTypography, Content, Screen } from '@shared/components';
 import { useOnboarding } from '@features/onboarding/hooks';
-import { useUpdateApp, useSkipAnalytics, CmColorPicker } from '@features/dev';
+import { useUpdateApp, useSkipAnalytics } from '@features/dev';
 import { useToastMessages } from '@shared/hooks';
 import CmCarousel from 'src/experimental/components/CmCarousel/CmCarousel';
 import PersonalValueCard from 'src/experimental/components/PersonalValueCard';
 import ClimateFeedCard from 'src/experimental/components/ClimateFeedCard';
-import ClimateEffect from 'src/types/ClimateEffect';
-import useApiClient from 'src/hooks/useApiClient';
-import { useAppSelector } from 'src/store/hooks';
+
 import SolutionsFeedCard from 'src/experimental/components/SolutionsFeedCard';
-import Solution from 'src/types/Solution';
 
 function DevScreen() {
   const { resetOnboarding } = useOnboarding();
@@ -25,7 +22,6 @@ function DevScreen() {
   return (
     <Screen>
       <Content style={{ padding: 20 }}>
-        {/* <View style={{ padding: 20 }}> */}
         <CmTypography variant="h2" style={{ paddingVertical: 20 }}>
           Dev Screen
         </CmTypography>
@@ -50,7 +46,7 @@ function DevScreen() {
           <CmCheckbox checked={showExperimentalFeatures} onPress={() => setShowExperimentalFeatures((prevState) => !prevState)} text="Show Experimental Features" />
         </View>
       </Content>
-      {/* </View> */}
+
       {showExperimentalFeatures && (
         <>
           {/* <CmColorPicker /> */}
