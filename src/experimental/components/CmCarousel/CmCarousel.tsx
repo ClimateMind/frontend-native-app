@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import CmCarouselContent from './CmCarouselContent';
+import { AntDesign } from '@expo/vector-icons';
 
 interface Props {
   data: React.ReactNode[];
@@ -8,6 +9,7 @@ interface Props {
 
 const CmCarousel = ({ data }: Props) => {
   const scrollViewRef = useRef<any>(null);
+  const arrowIconRef = useRef<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   // could have 3 states for each index with different timings for autoscroll
@@ -31,6 +33,7 @@ const CmCarousel = ({ data }: Props) => {
       return newIndex;
     });
   };
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -56,6 +59,42 @@ const CmCarousel = ({ data }: Props) => {
           </View>
         ))}
       </ScrollView>
+
+      {/* arrows */}
+      <TouchableOpacity
+        style={styles.arrowRight}
+        onPress={() => {
+          console.log('click');
+          setActiveIndex((prevIndex) => {
+            let newIndex = 0;
+            if (activeIndex < 2) {
+              newIndex = prevIndex + 1;
+            }
+            scrollViewRef.current?.scrollTo({ x: newIndex * screenWidth, animated: true });
+            return newIndex;
+          });
+        }}
+      >
+        {activeIndex < 2 && <AntDesign name="rightcircle" size={30} color="black" />}
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.arrowLeft}
+        ref={arrowIconRef}
+        onPress={() => {
+          console.log('click');
+          setActiveIndex((prevIndex) => {
+            let newIndex = 0;
+            if (activeIndex > 0) {
+              newIndex = prevIndex - 1;
+            }
+            scrollViewRef.current?.scrollTo({ x: newIndex * screenWidth, animated: true });
+            return newIndex;
+          });
+        }}
+      >
+        {activeIndex > 0 && <AntDesign name="leftcircle" size={30} color="black" />}
+      </TouchableOpacity>
+
       <View style={styles.pagination}>
         {data.map((_, index) => (
           <TouchableOpacity key={index} style={[styles.paginationDot, index === activeIndex ? styles.activeDot : null]} onPress={() => handlePaginationPress(index)} />
@@ -75,6 +114,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
+  },
+  arrowRight: {
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: '50%',
+    left: '80%',
+  },
+  arrowLeft: {
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: '50%',
+    right: '80%',
   },
   pagination: {
     flexDirection: 'row',

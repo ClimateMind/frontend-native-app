@@ -21,18 +21,7 @@ function DevScreen() {
   const { skipAnalytics, skipAnalyticsCheckboxHandler } = useSkipAnalytics();
   const { showSuccessToast, showErrorToast } = useToastMessages();
   const [showExperimentalFeatures, setShowExperimentalFeatures] = useState(false);
-  const sessionId = useAppSelector((state) => state.auth.sessionId);
-  const [solutionsFeed, setSolutionsFeed] = useState<Solution[]>();
-  const [climateFeed, setClimateFeed] = useState<ClimateEffect[]>();
-  console.log(solutionsFeed);
-  const apiClient = useApiClient();
-  useEffect(() => {
-    apiClient.getClimateFeed().then((result) => setClimateFeed(result));
-  }, [sessionId]);
 
-  useEffect(() => {
-    apiClient.getSolutionsFeed().then((result) => setSolutionsFeed(result));
-  }, [sessionId]);
   return (
     <Screen>
       <Content style={{ padding: 20 }}>
