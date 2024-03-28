@@ -7,9 +7,7 @@
     "update:production:all": "eas update --channel production --platform all --clear-cache --non-interactive",
     "build:production:android": "eas build --profile production --platform android --clear-cache --non-interactive",
     "build:production:ios": "eas build --profile production --platform ios --clear-cache --non-interactive",
-    "build:production:all": "eas build --profile production --platform all --clear-cache --non-interactive",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build:production:all": "eas build --profile production --platform all --clear-cache --non-interactive"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.21.0",
@@ -44,16 +42,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",
-    "@storybook/addon-essentials": "^7.6.6",
-    "@storybook/addon-interactions": "^7.6.6",
-    "@storybook/addon-links": "^7.6.6",
-    "@storybook/addon-onboarding": "^1.0.10",
-    "@storybook/addon-react-native-web": "^0.0.21",
-    "@storybook/blocks": "^7.6.6",
-    "@storybook/react": "^7.6.6",
-    "@storybook/react-webpack5": "^7.6.6",
-    "@storybook/testing-library": "^0.2.2",
-    "@storybook/theming": "^7.6.6",
     "@types/react": "~18.2.14",
     "@types/react-redux": "^7.1.33",
     "@types/uuid": "^9.0.7",
@@ -61,7 +49,6 @@
     "metro-react-native-babel-preset": "^0.77.0",
     "react-dom": "^18.2.0",
     "react-native-web": "^0.19.10",
-    "storybook": "^7.6.6",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^5.1.3"
   }
