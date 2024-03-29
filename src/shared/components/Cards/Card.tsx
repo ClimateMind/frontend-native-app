@@ -5,7 +5,11 @@ interface Props extends ViewProps {
 }
 
 function Card({ children, ...rest }: Props) {
-  return <View {...rest} style={[styles.card, rest.style]}>{children}</View>;
+  return (
+    <View {...rest} style={[styles.card, rest.style]}>
+      {children}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

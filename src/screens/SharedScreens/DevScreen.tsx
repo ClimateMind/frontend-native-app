@@ -4,8 +4,13 @@ import { useState } from 'react';
 import appConfig from '../../../app.json';
 import { CmButton, CmCheckbox, CmTypography, Content, Screen } from '@shared/components';
 import { useOnboarding } from '@features/onboarding/hooks';
-import { useUpdateApp, useSkipAnalytics, CmColorPicker } from '@features/dev';
+import { useUpdateApp, useSkipAnalytics } from '@features/dev';
 import { useToastMessages } from '@shared/hooks';
+import CmCarousel from 'src/experimental/components/CmCarousel/CmCarousel';
+import PersonalValueCard from 'src/experimental/components/PersonalValueCard';
+import ClimateFeedCard from 'src/experimental/components/ClimateFeedCard';
+
+import SolutionsFeedCard from 'src/experimental/components/SolutionsFeedCard';
 
 function DevScreen() {
   const { resetOnboarding } = useOnboarding();
@@ -40,12 +45,146 @@ function DevScreen() {
         <View style={{ alignSelf: 'flex-start' }}>
           <CmCheckbox checked={showExperimentalFeatures} onPress={() => setShowExperimentalFeatures((prevState) => !prevState)} text="Show Experimental Features" />
         </View>
+      </Content>
 
-        {showExperimentalFeatures && <>
-          <CmColorPicker />
+      {showExperimentalFeatures && (
+        <>
+          {/* <CmColorPicker /> */}
           {/* Add features to test here */}
-        </>}
+          <CmCarousel
+            data={[
+              <PersonalValueCard
+                nr={1}
+                value={{
+                  id: '1',
+                  name: 'security',
+                  shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                }}
+              />,
 
+              <ClimateFeedCard
+                climateEffect={{
+                  effectId: 'R8t0oNsG3WgnupXsBVSjMHZ',
+                  effectTitle: 'Example Related Impact - Decrease in tourism',
+                  effectDescription: '',
+                  effectShortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  effectSolutions: [],
+                  effectSources: [],
+                  effectScore: 0,
+                  imageUrl: 'https://i.imgur.com/BZ2gRk3.jpg',
+                  actionHeadline: '',
+                  isPossiblyLocal: 0,
+                  effectSpecificMythIRIs: [],
+                  relatedPersonalValues: undefined,
+                }}
+              />,
+
+              <SolutionsFeedCard
+                solution={{
+                  iri: '',
+                  imageUrl: 'https://i.imgur.com/toV6zMh.jpg',
+                  longDescription: '',
+                  shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  solutionTitle: 'Example Mitigation Solution - Producing electricity via onshore wind turbines ',
+                  solutionSources: [],
+                  solutionType: 'adaptation',
+                  solutionSpecificMythIRIs: [],
+                }}
+              />,
+            ]}
+          />
+
+          <CmCarousel
+            data={[
+              <PersonalValueCard
+                nr={2}
+                value={{
+                  id: '1',
+                  name: 'achievement',
+                  shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                }}
+              />,
+
+              <ClimateFeedCard
+                climateEffect={{
+                  effectId: 'R8t0oNsG3WgnupXsBVSjMHZ',
+                  effectTitle: 'Example Related Impact - Increase in coral bleaching and destruction',
+                  effectDescription: '',
+                  effectShortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  effectSolutions: [],
+                  effectSources: [],
+                  effectScore: 0,
+                  imageUrl: 'https://i.imgur.com/ktZeIPJ.jpg',
+                  actionHeadline: '',
+                  isPossiblyLocal: 0,
+                  effectSpecificMythIRIs: [],
+                  relatedPersonalValues: undefined,
+                }}
+              />,
+
+              <SolutionsFeedCard
+                solution={{
+                  iri: '',
+                  imageUrl: 'https://i.imgur.com/0XBZ5Wo.jpg',
+                  longDescription: '',
+                  shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  solutionTitle: 'Example Mitigation Solution - Vote in elections ',
+                  solutionSources: [],
+                  solutionType: 'adaptation',
+                  solutionSpecificMythIRIs: [],
+                }}
+              />,
+            ]}
+          />
+
+          <CmCarousel
+            data={[
+              <PersonalValueCard
+                nr={3}
+                value={{
+                  id: '1',
+                  name: 'hedonism',
+                  shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                }}
+              />,
+
+              <ClimateFeedCard
+                climateEffect={{
+                  effectId: 'R8t0oNsG3WgnupXsBVSjMHZ',
+                  effectTitle: 'Example Related Impact - Increase in suicide',
+                  effectDescription: '',
+                  effectShortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  effectSolutions: [],
+                  effectSources: [],
+                  effectScore: 0,
+                  imageUrl: 'https://i.imgur.com/AjyIno0.jpg',
+                  actionHeadline: '',
+                  isPossiblyLocal: 0,
+                  effectSpecificMythIRIs: [],
+                  relatedPersonalValues: undefined,
+                }}
+              />,
+
+              <SolutionsFeedCard
+                solution={{
+                  iri: '',
+                  imageUrl: 'https://i.imgur.com/FrZHYSK.jpg',
+                  longDescription: '',
+                  shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus corporis libero culpa ipsum porro, nisi alias reiciendis provident molestiae eius fugiat quo molestias a rem unde hic nulla quisquam fugit',
+                  solutionTitle: 'Example Mitigation Solution - managing refrigerants better',
+                  solutionSources: [],
+                  solutionType: 'adaptation',
+                  solutionSpecificMythIRIs: [],
+                }}
+              />,
+            ]}
+          />
+        </>
+      )}
+      <Content style={{ padding: 20 }}>
         <View style={{ flex: 1 }} />
 
         <CmTypography variant="body" style={{ marginBottom: 20 }}>
