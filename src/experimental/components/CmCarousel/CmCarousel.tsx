@@ -64,7 +64,6 @@ const CmCarousel = ({ data }: Props) => {
       <TouchableOpacity
         style={styles.arrowRight}
         onPress={() => {
-          console.log('click');
           setActiveIndex((prevIndex) => {
             let newIndex = 0;
             if (activeIndex < 2) {
@@ -81,7 +80,6 @@ const CmCarousel = ({ data }: Props) => {
         style={styles.arrowLeft}
         ref={arrowIconRef}
         onPress={() => {
-          console.log('click');
           setActiveIndex((prevIndex) => {
             let newIndex = 0;
             if (activeIndex > 0) {
