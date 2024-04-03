@@ -5,8 +5,8 @@
     "promptToConfigurePushNotifications": false
   },
   "build": {
-    "production": {
-      "channel": "production",
+    "main": {
+      "channel": "main",
       "autoIncrement": true
     }
   }
