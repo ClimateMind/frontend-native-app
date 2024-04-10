@@ -31,7 +31,7 @@ function ClimateFeedCard({ climateEffect, onLearnMore }: Props) {
       {climateEffect.relatedPersonalValues && (
         <View style={styles.chipsContainer}>
           {climateEffect.relatedPersonalValues.map((value, index) => (
-            <View key={value} style={{ marginRight: 10, marginBottom: 10 }}>
+            <View key={value} style={{ marginRight: 10 }}>
               {activeTooltipIndex === index && <CmTooltip value={value} fadeAnim={fadeAnim} />}
               <Pressable onPress={() => toggleTooltip(index)}>
                 <CmChip label={value} />
