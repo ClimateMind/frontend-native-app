@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { ActivityIndicator, Animated, Dimensions, FlatList, StyleSheet, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ClimateFeedStackParams } from 'src/navigation/Stacks/ClimateFeedStack';
@@ -9,6 +9,7 @@ import ClimateEffect from 'src/types/ClimateEffect';
 import { CmTypography, Screen, Content, Section } from '@shared/components';
 import { ClimateFeedCard } from '@features/climate-feed/components';
 import { useAppSelector } from 'src/store/hooks';
+import { useCmTooltip } from 'src/shared/hooks';
 
 type Props = NativeStackScreenProps<ClimateFeedStackParams, 'ClimateFeedScreen'>;
 
@@ -16,6 +17,18 @@ function ClimateFeedScreen({ navigation }: Props) {
   const apiClient = useApiClient();
   const sessionId = useAppSelector((state) => state.auth.sessionId);
   const [climateFeed, setClimateFeed] = useState<ClimateEffect[]>();
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const { fadeOut } = useCmTooltip(fadeAnim);
+
+  const handleScroll = (event: { nativeEvent: { contentOffset: { y: number } } }) => {
+    // Set the threshold for scrolling
+    const threshold = Dimensions.get('window').height;
+    // Check if the user has scrolled beyond the threshold
+    if (event.nativeEvent.contentOffset.y > threshold) {
+      // Fade out the tooltip
+      fadeOut();
+    }
+  };
 
   function gotoDetailsScreen(climateEffect: ClimateEffect) {
     navigation.navigate('ClimateDetailsScreen', { climateEffect });
@@ -26,7 +39,7 @@ function ClimateFeedScreen({ navigation }: Props) {
   }, [sessionId]);
 
   if (climateFeed === undefined) {
-    return <ActivityIndicator size='large' color='black' style={{ marginTop: 100 }} />;
+    return <ActivityIndicator size="large" color="black" style={{ marginTop: 100 }} />;
   }
 
   return (
@@ -34,12 +47,14 @@ function ClimateFeedScreen({ navigation }: Props) {
       <Section style={{ paddingVertical: 0 }}>
         <Content style={{ alignItems: 'stretch' }}>
           <FlatList
+            onScroll={handleScroll}
             ListHeaderComponent={
               <>
-                <CmTypography variant='h1' style={styles.heading}>Explore climate change impacts</CmTypography>
-                <CmTypography variant='body' style={styles.text}>
-                  This is your personalized homepage based on your unique climate personality. Check out
-                  these articles to stay informed!
+                <CmTypography variant="h1" style={styles.heading}>
+                  Explore climate change impacts
+                </CmTypography>
+                <CmTypography variant="body" style={styles.text}>
+                  This is your personalized homepage based on your unique climate personality. Check out these articles to stay informed!
                 </CmTypography>
               </>
             }

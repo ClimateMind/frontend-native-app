@@ -40,6 +40,7 @@ function useCmTooltip(fadeAnim: Animated.Value | Animated.ValueXY) {
     activeTooltipIndex,
     toggleTooltip,
     handleCardPress,
+    fadeOut,
   };
 }
 
