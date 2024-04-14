@@ -38,9 +38,6 @@ jobs:
         run: npm ci
 
       - name: Create preview
-        # uses: expo/expo-github-action/preview@v8 does not work
-        # since update to SDK 49. The workaround below may be replaced
-        # once the action works again.
-        uses: nderscore/expo-github-action/preview@workaround
+        uses: expo/expo-github-action/preview@v8
         with:
           command: eas update --auto

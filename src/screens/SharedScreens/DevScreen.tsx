@@ -184,6 +184,7 @@ function DevScreen() {
           />
         </>
       )}
+
       <Content style={{ padding: 20 }}>
         <View style={{ flex: 1 }} />
 
