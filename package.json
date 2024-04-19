@@ -18,7 +18,7 @@
     "@reduxjs/toolkit": "^2.2.3",
     "axios": "^1.6.8",
     "expo": "~50.0.17",
-    "expo-clipboard": "~5.0.1",
+    "expo-clipboard": "~6.0.0",
     "expo-font": "~11.10.3",
     "expo-navigation-bar": "~2.8.1",
     "expo-splash-screen": "~0.26.4",
