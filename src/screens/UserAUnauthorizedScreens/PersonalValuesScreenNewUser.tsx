@@ -46,8 +46,8 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
   }
 
   return (
-    <Screen ref={scrollRef}>
-      <Section>
+    <Screen ref={scrollRef} style={{ paddingTop: 30 }}>
+      <Section style={{ backgroundColor: 'white' }}>
         <Content>
           <CmTypography variant='h1' style={styles.headlines}>This is your Climate Personality</CmTypography>
 
@@ -59,7 +59,7 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
         </Content>
       </Section>
 
-      <Section style={styles.whiteArea}>
+      <Section style={{ backgroundColor: 'white' }}>
         <Content>
           <CmTypography variant='h1' style={styles.headlines}>Your Personal Value Web</CmTypography>
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -76,7 +76,7 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
         </Content>
       </Section>
 
-      <Section>
+      <Section style={{ backgroundColor: 'white' }}>
         <Content>
           <CmTypography variant='h1' style={styles.headlines}>Get started</CmTypography>
           <CmTypography variant='body' style={styles.boldText}>Explore how climate change impacts you personally and relates to your values</CmTypography>
@@ -97,12 +97,6 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
 }
 
 const styles = StyleSheet.create({
-  blueArea: {
-    backgroundColor: Colors.themeBright,
-  },
-  whiteArea: {
-    backgroundColor: 'white',
-  },
   headlines: {
     marginVertical: 20,
   },

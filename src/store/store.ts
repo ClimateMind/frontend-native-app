@@ -3,14 +3,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import sharedReducer from './sharedSlice';
 import authReducer from './authSlice';
 import quizReducer from '@features/quiz/state/quizSlice';
-import onboardingReducer from '@features/onboarding/state/onboardingSlice';
 
 export const store = configureStore({
   reducer: {
     shared: sharedReducer,
     auth: authReducer,
     quiz: quizReducer,
-    onboarding: onboardingReducer,
   },
 });
 

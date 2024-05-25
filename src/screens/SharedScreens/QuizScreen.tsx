@@ -37,7 +37,7 @@ function QuizScreen({ route }: Props) {
   return (
     <Screen style={{ backgroundColor: 'white' }}>
       <Section>
-        <Content>
+        <Content style={{ paddingTop: 30 }}>
           <SingleQuestion
             currentQuestionIndex={
               questionSetNumber === 1 ? currentQuestionNumber : currentQuestionNumber + 10

@@ -1,7 +1,7 @@
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
 }
 

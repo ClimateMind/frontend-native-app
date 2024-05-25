@@ -1,7 +1,6 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Image, KeyboardAvoidingView, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { AxiosError } from 'axios';
-import Recaptcha, { RecaptchaRef } from 'react-native-recaptcha-that-works';
 
 import { useAppDispatch } from 'src/store/hooks';
 import { login } from 'src/store/authSlice';
@@ -9,8 +8,9 @@ import useApiClient from 'src/hooks/useApiClient';
 import useLogger from 'src/hooks/useLogger';
 
 import { PasswordResetModal } from '@features/auth/components';
-import { CmTypography, CmButton, Screen, Section, Content } from '@shared/components';
+import { CmTypography, Screen, Content } from '@shared/components';
 import { useToastMessages } from '@shared/hooks';
+import { OnboardingButton } from 'src/features/onboarding';
 
 function LoginScreen() {
   const apiClient = useApiClient();
@@ -18,22 +18,17 @@ function LoginScreen() {
   const { showSuccessToast, showErrorToast } = useToastMessages()
   const dispatch = useAppDispatch();
 
-  const recaptcha = useRef<RecaptchaRef>(null);
-  const [loginAttempts, setLoginAttempts] = useState(0);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function onLogin(token?: string) {
+  async function onLogin() {
     if (email === '' || password === '') {
       showErrorToast('Please enter your username and password');
       return;
     }
 
-    setLoginAttempts((current) => current + 1);
-
     try {
-      const result = await apiClient.postLogin(email.trim(), password, token);
+      const result = await apiClient.postLogin(email.trim(), password);
 
       if (result !== undefined) {
         showSuccessToast(`Welcome back, ${result.user.first_name}!`);
@@ -65,84 +60,68 @@ function LoginScreen() {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <Screen>
-      <Section>
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
-          <Content>
-            <Image style={styles.image} source={require("src/assets/cm-logo.png")} />
-            <CmTypography variant='h2'>Climate Mind</CmTypography>
+    <Screen style={{ backgroundColor: 'white' }}>
+      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
+        <Content style={{ paddingTop: '10%' }}>
+          <Image style={styles.logo} source={require('src/assets/cm-logo.png')} />
+          <Image style={styles.slogan} source={require('src/assets/slogan.png')} />
 
-            <CmTypography variant='body' style={styles.marginVertical}>Sign In</CmTypography>
+          <TextInput
+            placeholder="Email"
+            keyboardType="email-address"
+            autoCorrect={false}
+            onChangeText={setEmail}
+            style={[styles.input, { marginTop: 64 }]}
+            placeholderTextColor={'#88999C'}
+          />
 
-            <TextInput
-              placeholder="Email"
-              keyboardType="email-address"
-              autoCorrect={false}
-              onChangeText={setEmail}
-              style={styles.input}
-              placeholderTextColor={'#88999C'}
-            />
+          <TextInput
+            placeholder="Password"
+            secureTextEntry={true}
+            autoCorrect={false}
+            onChangeText={setPassword}
+            style={styles.input}
+            placeholderTextColor={'#88999C'}
+          />
 
-            <TextInput
-              placeholder="Password"
-              secureTextEntry={true}
-              autoCorrect={false}
-              onChangeText={setPassword}
-              style={styles.input}
-              placeholderTextColor={'#88999C'}
-            />
+          <View style={{ justifyContent: 'center' }}>
+            <CmTypography variant='body' style={{ marginTop: 47 }}>Forgot your password?</CmTypography>
+            <Pressable onPress={() => setShowModal(true)}>
+              <CmTypography variant='body' style={styles.sendResetLink}>Send reset link</CmTypography>
+            </Pressable>
+          </View>
 
-            <View style={{ flexDirection: 'row' }}>
-              <CmTypography variant='body' style={[styles.marginVertical, { marginRight: 20 }]}>Forgot your password?</CmTypography>
-              <Pressable onPress={() => setShowModal(true)} style={{ justifyContent: 'center' }} >
-                <CmTypography variant='label' style={[styles.marginVertical, { textDecorationLine: "underline" }]}>Send reset link</CmTypography>
-              </Pressable>
-            </View>
+          <OnboardingButton text='Log In' onPress={onLogin} disabled={!email || !password} style={styles.loginButton} />
 
-            {loginAttempts >= 4 && (
-              <>
-                <Recaptcha
-                  ref={recaptcha}
-                  siteKey={process.env.EXPO_BUILD_RECAPTCHA_SITE_KEY ?? ''}
-                  baseUrl={process.env.EXPO_BUILD_WEB_URL ?? ''}
-                  onVerify={(token: string) => onLogin(token)}
-                  onExpire={() => {}}
-                  size="normal"
-                  onError={(err) => {
-                    err ?? showErrorToast('Captcha did not load.');
-                  }}
-                  style={Platform.OS === 'ios' && { marginTop: 100 }}
-                />
-
-                <CmButton style={styles.loginButton} text="LOG IN" onPress={() => recaptcha.current?.open()} />
-              </>
-            )}
-
-            {loginAttempts < 4 && <CmButton style={styles.loginButton} text="LOG IN" onPress={() => onLogin()} />}
-
-            <PasswordResetModal show={showModal} onCancel={() => {setShowModal(false)}} onSubmit={() => setShowModal(false)} />
-          </Content>
-        </KeyboardAvoidingView>
-      </Section>
+          <PasswordResetModal show={showModal} onCancel={() => {setShowModal(false)}} onSubmit={() => setShowModal(false)} />
+        </Content>
+      </KeyboardAvoidingView>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  image: {
-    width: 100,
+  logo: {
+    height: 66,
+    aspectRatio: 62 / 66,
     resizeMode: 'contain',
+    marginTop: '20%',
+  },
+  slogan: {
+    height: 54,
+    aspectRatio: 234 / 54,
+    resizeMode: 'contain',
+    marginTop: 16,
   },
   loginButton: {
-    marginTop: 30,
-    marginBottom: 15,
-    minWidth: 160,
-  },
-  marginVertical: {
-    marginVertical: 30,
+    marginTop: 96,
+    paddingHorizontal: 20,
+    width: '100%',
+    maxWidth: 305,
   },
   input: {
     width: '100%',
+    maxWidth: 305,
     marginVertical: 5,
     padding: 10,
     backgroundColor: 'white',
@@ -151,6 +130,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
+  },
+  sendResetLink: {
+    textDecorationLine: "underline",
+    fontWeight: 'bold',
+    textAlign: 'center'
   },
 });
 

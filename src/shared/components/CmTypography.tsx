@@ -1,7 +1,7 @@
 import { StyleSheet, StyleProp, Text, TextProps, TextStyle } from 'react-native';
 
 interface Props extends React.PropsWithChildren, TextProps {
-  variant: 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'body-italics' | 'button' | 'caption' | 'label' | 'overline';
+  variant: 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'body-italics' | 'button' | 'onboarding-button' | 'caption' | 'label' | 'overline';
   style?: StyleProp<TextStyle>;
 }
 
@@ -29,6 +29,9 @@ function CmTypography({ children, variant, style, ...rest }: Props) {
       break;
     case 'button':
       textStyle = styles.button;
+      break;
+    case 'onboarding-button':
+      textStyle = styles.onboardingButton;
       break;
     case 'caption':
       textStyle = styles.caption;
@@ -96,6 +99,12 @@ const styles = StyleSheet.create({
     letterSpacing: 3.2,
     textAlign: 'center',
     textTransform: 'uppercase',
+  },
+  onboardingButton: {
+    fontFamily: 'nunito-bold',
+    fontSize: 16,
+    lineHeight: 22,
+    textAlign: 'center',
   },
   caption: {
     fontFamily: 'nunito',

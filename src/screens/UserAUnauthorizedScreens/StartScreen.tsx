@@ -1,89 +1,60 @@
-import { Image, Pressable, StyleSheet } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { GetStartedButtonEvent, LoginButtonEvent, analyticsService } from 'src/services';
-import Colors from 'src/assets/colors';
+import { Screen, Content } from '@shared/components';
 import { StackParams } from 'src/navigation/UserAUnauthorizedStackNavigation';
-import { CmTypography, CmButton, Screen, Section, Content } from '@shared/components';
+import { OnboardingButton } from 'src/features/onboarding';
 
 type Props = NativeStackScreenProps<StackParams, 'StartScreen'>;
 
 function StartScreen({ navigation }: Props) {
+  function navigateToOnboardingScreen() {
+    analyticsService.postEvent(GetStartedButtonEvent);
+    navigation.navigate('OnboardingScreen');
+  }
+
   function navigateToLoginScreen() {
     analyticsService.postEvent(LoginButtonEvent);
     navigation.navigate('LoginScreen');
   }
 
-  function navigateToPreQuizScreen() {
-    analyticsService.postEvent(GetStartedButtonEvent);
-    navigation.navigate('PreQuizScreen');
-  }
-
   return (
-    <Screen>
-      <Section>
-        <Content>
-          <Image style={styles.image} source={require('src/assets/cm-logo.png')} />
-          <CmTypography variant='h1'>Inspire others to take action!</CmTypography>
+    <Screen style={{ backgroundColor: 'white' }}>
+      <Content>
+        <Image style={styles.logo} source={require('src/assets/cm-logo.png')} />
+        <Image style={styles.slogan} source={require('src/assets/slogan.png')} />
 
-          <CmButton style={styles.button} text='GET STARTED' onPress={navigateToPreQuizScreen} />
+        <OnboardingButton
+          text="Get Started"
+          variant='light'
+          style={{ marginTop: 86, maxWidth: 240 }}
+          onPress={navigateToOnboardingScreen}
+        />
 
-          <Pressable onPress={navigateToLoginScreen}>
-            <CmTypography variant='label' style={styles.text}>Already a member? Login here</CmTypography>
-          </Pressable>
-
-          <CmTypography variant='body' style={styles.text}>
-            Climate change affects us all. And to inspire sufficient action, we must talk about it
-            much more.
-          </CmTypography>
-
-          <CmTypography variant='body' style={styles.text}>
-            Climate Mind makes it easy to have effective conversations with your friends and family.
-          </CmTypography>
-        </Content>
-      </Section>
-
-      <Section style={{ flexGrow: 1, backgroundColor: Colors.themeDark }}>
-        <Content>
-          <CmTypography variant="body" style={styles.whiteText}>
-            We use proven social science to connect climate change to what
-            people care about and help find solutions they like.
-          </CmTypography>
-
-          <Pressable delayLongPress={5000} onLongPress={() => navigation.getParent()?.navigate('DevScreen')}>
-            <Image source={require('src/assets/ConnectTheDots.png')} />
-          </Pressable>
-        </Content>
-      </Section>
+        <OnboardingButton
+          text="Log In"
+          variant='dark'
+          style={{ marginTop: 19, maxWidth: 240 }}
+          onPress={navigateToLoginScreen}
+        />
+      </Content>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  image: {
-    width: 100,
+  logo: {
+    height: 66,
+    aspectRatio: 62 / 66,
     resizeMode: 'contain',
+    marginTop: '60%',
   },
-  button: {
-    marginTop: 30,
-    marginBottom: 15,
-    minWidth: 160,
-  },
-  text: {
-    textAlign: 'center',
-    marginBottom: 40,
-  },
-  whiteText: {
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    marginBottom: 20,
+  slogan: {
+    height: 54,
+    aspectRatio: 234 / 54,
+    resizeMode: 'contain',
+    marginTop: 16,
   },
 });
 

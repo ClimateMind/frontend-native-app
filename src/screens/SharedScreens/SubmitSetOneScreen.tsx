@@ -25,7 +25,7 @@ function SubmitSetOneScreen({ navigation }: Props) {
   }
 
   return (
-    <Screen>
+    <Screen style={{ backgroundColor: 'white' }}>
       <Section>
         <Content style={{ justifyContent: 'center' }}>
           <CmTypography variant="h1">Woah! You are doing great!</CmTypography>

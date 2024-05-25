@@ -114,7 +114,7 @@ function SignUpScreen() {
   }, []);
 
   return (
-    <Screen>
+    <Screen style={{ backgroundColor: 'white', paddingTop: 50 }}>
       <Section>
         <Content>
           <KeyboardAvoidingView
