@@ -1,12 +1,11 @@
 import { Animated, StyleSheet, View, useWindowDimensions } from "react-native";
 
 interface Props {
-  currentIndex: number;
   totalIndices: number;
   scrollX: Animated.Value;
 }
 
-function OnboardingPaginator({ currentIndex, totalIndices, scrollX }: Props) {
+function OnboardingPaginator({ totalIndices, scrollX }: Props) {
   const { width } = useWindowDimensions();
 
   return (

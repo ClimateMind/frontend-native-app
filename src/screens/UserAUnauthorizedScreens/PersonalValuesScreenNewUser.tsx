@@ -4,7 +4,6 @@ import { useFocusEffect } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StackParams } from 'src/navigation/UserAUnauthorizedStackNavigation';
 
-import Colors from 'src/assets/colors';
 import useApiClient from 'src/hooks/useApiClient';
 import { useAppSelector } from 'src/store/hooks';
 import { GetPersonalValues } from 'src/api/responses';

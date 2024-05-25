@@ -70,7 +70,7 @@ function OnboardingScreen({ navigation }: Props) {
         </View>
 
         <OnboardingButton text={currentIndex === 3 ? 'Take the Quiz' : 'Continue'} style={{ maxWidth: 305, marginBottom: 110 }} onPress={() => scrollForwards()} />
-        <OnboardingPaginator currentIndex={currentIndex} totalIndices={slides.length} scrollX={scrollX} />
+        <OnboardingPaginator totalIndices={slides.length} scrollX={scrollX} />
       </View>
 
     </Screen>
