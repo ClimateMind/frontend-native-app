@@ -45,8 +45,8 @@ function PersonalValuesScreenNewUser({ navigation }: Props) {
   }
 
   return (
-    <Screen ref={scrollRef} style={{ paddingTop: 30 }}>
-      <Section style={{ backgroundColor: 'white' }}>
+    <Screen ref={scrollRef} style={{ paddingTop: 30, backgroundColor: 'white' }}>
+      <Section>
         <Content>
           <CmTypography variant='h1' style={styles.headlines}>This is your Climate Personality</CmTypography>
 
