@@ -47,7 +47,9 @@ function OnboardingScreen({ navigation }: Props) {
           </Pressable>
 
           <Pressable style={{ padding: 5, opacity: currentIndex === slides.length - 1 ? 0 : 1 }} onPress={() => scrollForwards(true)}>
-            <CmTypography variant="onboarding-button" style={{ textDecorationLine: 'underline', color: '#07373B' }}>Skip Tour</CmTypography>
+            <CmTypography variant="onboarding-button" style={{ textDecorationLine: 'underline', color: '#07373B' }}>
+              Skip Tour
+            </CmTypography>
           </Pressable>
         </View>
 
@@ -56,7 +58,8 @@ function OnboardingScreen({ navigation }: Props) {
             ref={slidesRef}
             data={slides}
             renderItem={({ item }) => <OnboardingItem image={item.image} text={item.text} />}
-            horizontal showsHorizontalScrollIndicator={false}
+            horizontal
+            showsHorizontalScrollIndicator={false}
             pagingEnabled
             bounces={false}
             keyExtractor={(item) => item.id}
@@ -72,7 +75,6 @@ function OnboardingScreen({ navigation }: Props) {
         <OnboardingButton text={currentIndex === 3 ? 'Take the Quiz' : 'Continue'} style={{ maxWidth: 305, marginBottom: 110 }} onPress={() => scrollForwards()} />
         <OnboardingPaginator totalIndices={slides.length} scrollX={scrollX} />
       </View>
-
     </Screen>
   );
 }
@@ -87,7 +89,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'stretch',
     marginTop: 40,
-    padding: 20,
+    paddingHorizontal: 20,
   },
 });
 
