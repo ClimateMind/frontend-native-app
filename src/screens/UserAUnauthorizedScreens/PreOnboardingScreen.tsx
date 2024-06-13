@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, StyleSheet, View, Dimensions, ScrollView } from 'react-native';
+import { Animated, StyleSheet, View, ScrollView } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StackParams } from 'src/navigation/UserAUnauthorizedStackNavigation';
 import { Screen, CmTypography } from 'src/shared/components';
