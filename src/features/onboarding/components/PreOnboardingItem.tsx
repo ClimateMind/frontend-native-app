@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   image: {
-    height: 150,
-    width: 150,
+    height: 120,
+    width: 120,
     resizeMode: 'contain',
   },
   textContainer: {

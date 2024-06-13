@@ -47,7 +47,7 @@ function PreOnboardingScreen({ navigation }: Props) {
                 {
                   opacity: itemAnims[index].fadeAnim,
                   transform: [{ translateY: itemAnims[index].translateYAnim }],
-                  marginTop: index === 0 ? 0 : 20,
+                  marginTop: index === 0 ? 40 : 10,
                 },
               ]}
             >
