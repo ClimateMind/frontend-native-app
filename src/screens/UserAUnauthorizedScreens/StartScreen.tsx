@@ -11,7 +11,7 @@ type Props = NativeStackScreenProps<StackParams, 'StartScreen'>;
 function StartScreen({ navigation }: Props) {
   function navigateToOnboardingScreen() {
     analyticsService.postEvent(GetStartedButtonEvent);
-    navigation.navigate('OnboardingScreen');
+    navigation.navigate('PreOnboardingScreen');
   }
 
   function navigateToLoginScreen() {
