@@ -15,7 +15,7 @@ import { OnboardingButton } from 'src/features/onboarding';
 function LoginScreen() {
   const apiClient = useApiClient();
   const logger = useLogger();
-  const { showSuccessToast, showErrorToast } = useToastMessages()
+  const { showSuccessToast, showErrorToast } = useToastMessages();
   const dispatch = useAppDispatch();
 
   const [email, setEmail] = useState('');
@@ -62,7 +62,7 @@ function LoginScreen() {
   return (
     <Screen style={{ backgroundColor: 'white' }}>
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
-        <Content style={{ paddingTop: '10%' }}>
+        <Content style={styles.content}>
           <Image style={styles.logo} source={require('src/assets/cm-logo.png')} />
           <Image style={styles.slogan} source={require('src/assets/slogan.png')} />
 
@@ -101,6 +101,10 @@ function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
+  content: {
+    paddingTop: '10%',
+    paddingHorizontal: '5%',
+  },
   logo: {
     height: 66,
     aspectRatio: 62 / 66,
@@ -116,11 +120,11 @@ const styles = StyleSheet.create({
   loginButton: {
     marginTop: 96,
     paddingHorizontal: 20,
-    width: '100%',
+    minWidth: 200,
     maxWidth: 305,
+    // alignSelf: 'stretch',
   },
   input: {
-    width: '100%',
     maxWidth: 305,
     marginVertical: 5,
     padding: 10,
@@ -130,6 +134,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
+    alignSelf: 'stretch',
   },
   sendResetLink: {
     textDecorationLine: "underline",
