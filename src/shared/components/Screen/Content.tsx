@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     maxWidth: 640,
     justifyContent: 'flex-start',
     alignItems: 'center',
+    width: '100%',
   },
 });
 

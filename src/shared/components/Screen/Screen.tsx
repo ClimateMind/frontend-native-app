@@ -14,7 +14,7 @@ const Screen = forwardRef<ScrollView, Props>(({ children, style = {}, props = {}
     if (view === 'View') {
       return (
         <View
-          style={{ flexGrow: 1, backgroundColor: Colors.themeBright, ...style }}
+          style={{ flexGrow: 1, backgroundColor: Colors.themeBright, ...style, alignItems: 'center' }}
           {...props}
         >
           {children}
@@ -27,6 +27,7 @@ const Screen = forwardRef<ScrollView, Props>(({ children, style = {}, props = {}
         contentContainerStyle={{
           flexGrow: 1,
           backgroundColor: Colors.themeBright,
+          alignItems: 'center',
           ...style,
         }}
         {...props}

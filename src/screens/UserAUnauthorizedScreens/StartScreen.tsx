@@ -21,7 +21,7 @@ function StartScreen({ navigation }: Props) {
 
   return (
     <Screen style={{ backgroundColor: 'white' }}>
-      <Content>
+      <Content style={{ justifyContent: 'center' }}>
         <Image style={styles.logo} source={require('src/assets/cm-logo.png')} />
         <Image style={styles.slogan} source={require('src/assets/slogan.png')} />
 
@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
     height: 66,
     aspectRatio: 62 / 66,
     resizeMode: 'contain',
-    marginTop: '60%',
   },
   slogan: {
     height: 54,
