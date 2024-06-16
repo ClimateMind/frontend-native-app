@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 import appConfig from '../../../app.json';
 import { CmButton, CmCheckbox, CmTypography, Content, Screen } from '@shared/components';
-import { useOnboarding } from '@features/onboarding/hooks';
 import { useUpdateApp, useSkipAnalytics } from '@features/dev';
 import { useToastMessages } from '@shared/hooks';
 import CmCarousel from 'src/experimental/components/CmCarousel/CmCarousel';
@@ -13,7 +12,6 @@ import ClimateFeedCard from 'src/experimental/components/ClimateFeedCard';
 import SolutionsFeedCard from 'src/experimental/components/SolutionsFeedCard';
 
 function DevScreen() {
-  const { resetOnboarding } = useOnboarding();
   const { isLoading, updateApp, buttonText } = useUpdateApp();
   const { skipAnalytics, skipAnalyticsCheckboxHandler } = useSkipAnalytics();
   const { showSuccessToast, showErrorToast } = useToastMessages();
@@ -26,7 +24,6 @@ function DevScreen() {
           Dev Screen
         </CmTypography>
 
-        <CmButton onPress={resetOnboarding} text="Reset Onboarding" style={styles.btn} />
         <CmButton isLoading={isLoading} onPress={updateApp} text={buttonText} style={styles.btn} />
 
         <View style={{ alignSelf: 'flex-start' }}>
@@ -49,7 +46,6 @@ function DevScreen() {
 
       {showExperimentalFeatures && (
         <>
-          {/* <CmColorPicker /> */}
           {/* Add features to test here */}
           <CmCarousel
             data={[
