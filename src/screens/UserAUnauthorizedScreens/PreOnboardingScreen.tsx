@@ -64,7 +64,7 @@ function PreOnboardingScreen({ navigation }: Props) {
                 },
               ]}
             >
-              <OnboardingButton text='Continue' onPress={handleContinuePress} />
+              <OnboardingButton text='Continue' onPress={handleContinuePress} style={{ marginBottom: 100 }} />
             </Animated.View>
           </View>
       </Content>
@@ -75,7 +75,6 @@ function PreOnboardingScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   screen: {
     backgroundColor: 'white',
-    flex: 1,
   },
   container: {
     width: '100%',
