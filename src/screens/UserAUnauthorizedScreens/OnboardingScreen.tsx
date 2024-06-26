@@ -42,8 +42,9 @@ function OnboardingScreen({ navigation }: Props) {
     <Screen style={{ backgroundColor: 'white' }}>
       <View style={styles.container}>
         <View style={styles.headerNavigation}>
-          <Pressable onPress={scrollBackwards} style={{ padding: 5, opacity: currentIndex === 0 ? 0 : 1 }}>
-            <AntDesign name="left" size={30} color="#07373B" style={{ transform: [{ scaleX: 0.8 }] }} />
+          <Pressable onPress={scrollBackwards} style={{ ...styles.backButton, opacity: currentIndex === 0 ? 0 : 1 }}>
+            <AntDesign name="left" size={24} color="#07373B" />
+            <CmTypography variant='button' style={{ color: '#07373B', textTransform: 'none', letterSpacing: 0 }}>Back</CmTypography>
           </Pressable>
 
           <Pressable style={{ padding: 5, opacity: currentIndex === slides.length - 1 ? 0 : 1 }} onPress={() => scrollForwards(true)}>
@@ -72,7 +73,7 @@ function OnboardingScreen({ navigation }: Props) {
           />
         </View>
 
-        <OnboardingButton text={currentIndex === 3 ? 'Take the Quiz' : 'Continue'} style={{ maxWidth: 305, marginBottom: 110 }} onPress={() => scrollForwards()} />
+        <OnboardingButton text={slides[currentIndex].continueButtonText} style={{ maxWidth: 305, marginBottom: 110, marginTop: 30 }} onPress={() => scrollForwards()} />
         <OnboardingPaginator totalIndices={slides.length} scrollX={scrollX} />
       </View>
     </Screen>
@@ -90,6 +91,12 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     marginTop: 40,
     paddingHorizontal: 20,
+  },
+  backButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 5,
+    gap: 5,
   },
 });
 

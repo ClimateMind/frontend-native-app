@@ -10,8 +10,8 @@ function OnboardingItem({ image, text }: Props) {
   const { width } = useWindowDimensions();
 
   return (
-    <View style={{ alignItems: 'center', width, paddingTop: '25%' }}>
-      <Image source={image} style={[styles.image, { width: width * 0.7, resizeMode: 'contain' }]} />
+    <View style={{ alignItems: 'center', width }}>
+      <Image source={image} style={[styles.image, { maxWidth: '85%', height: width * 0.93, resizeMode: 'contain' }]} />
 
       <View>
         <CmTypography variant="body" style={styles.text}>{text}</CmTypography>
@@ -22,7 +22,6 @@ function OnboardingItem({ image, text }: Props) {
 
 const styles = StyleSheet.create({
   image: {
-    height: '45%',
     justifyContent: 'center',
   },
   text: {
@@ -32,8 +31,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#07373B',
     marginHorizontal: 20,
-    marginTop: 60,
     maxWidth: 305,
+    marginTop: 40,
   },
 });
 
