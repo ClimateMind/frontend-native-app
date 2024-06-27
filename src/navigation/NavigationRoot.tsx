@@ -96,19 +96,19 @@ function NavigationRoot({ canGoBack }: Props) {
             },
             headerRight: () => <DrawerToggleButton tintColor='white' />,
             headerTitle: () => (
-              <Pressable delayLongPress={500} onLongPress={() => navigation.navigate('DevScreen')}>
+              <Pressable delayLongPress={5000} onLongPress={() => navigation.navigate('DevScreen')}>
                 <Text style={{ fontFamily: 'nunito-bold', color: 'white', fontSize: 20 }}>Climate Mind</Text>
               </Pressable>
             ),
           })}
         >
-        {!isLoggedIn && <RootDrawer.Screen name='UserAUnauthorizedScreens' component={UserAUnauthorizedStackNavigation} options={{ headerShown: false }} />}
-        {isLoggedIn && <RootDrawer.Screen name='UserAAuthorizedScreens' component={UserAAuthorizedTabsNavigation} options={{ headerShown: true }} />}
+          {!isLoggedIn && <RootDrawer.Screen name='UserAUnauthorizedScreens' component={UserAUnauthorizedStackNavigation} options={{ headerShown: false }} />}
+          {isLoggedIn && <RootDrawer.Screen name='UserAAuthorizedScreens' component={UserAAuthorizedTabsNavigation} options={{ headerShown: true }} />}
 
-        <RootDrawer.Screen name='QuizScreen' component={QuizScreen} options={{ headerShown: false }} />
-        <RootDrawer.Screen name='SubmitSetOneScreen' component={SubmitSetOneScreen} options={{ headerShown: false }} />
-        <RootDrawer.Screen name='SubmitSetTwoScreen' component={SubmitSetTwoScreen} options={{ headerShown: false }} />
-        <RootDrawer.Screen name='DevScreen' component={DevScreen} options={{ headerShown: false }} />
+          <RootDrawer.Screen name='QuizScreen' component={QuizScreen} options={{ headerShown: false }} />
+          <RootDrawer.Screen name='SubmitSetOneScreen' component={SubmitSetOneScreen} options={{ headerShown: false }} />
+          <RootDrawer.Screen name='SubmitSetTwoScreen' component={SubmitSetTwoScreen} options={{ headerShown: false }} />
+          <RootDrawer.Screen name='DevScreen' component={DevScreen} options={{ headerShown: false }} />
         </RootDrawer.Navigator>
 
         <CmToast />
