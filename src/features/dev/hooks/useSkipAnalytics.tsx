@@ -7,23 +7,28 @@ function useSkipAnalytics() {
   const [skipAnalytics, setSkipAnalytics] = useState(false);
 
   function skipAnalyticsCheckboxHandler() {
-    analyticsService.trackAnalytics = skipAnalytics;
-    AsyncStorage.setItem('trackAnalytics', (skipAnalytics).toString());
-    setSkipAnalytics(current => !current);
+    const newValue = !skipAnalytics;
+    analyticsService.trackAnalytics = newValue;
+    AsyncStorage.setItem('trackAnalytics', newValue.toString());
+    setSkipAnalytics(newValue);
   }
 
   useEffect(() => {
-    AsyncStorage.getItem('trackAnalytics', (value) => {
-      if (value) {
-        setSkipAnalytics(true);
-      }
-    })
+    AsyncStorage.getItem('trackAnalytics')
+      .then((value) => {
+        const isSkipAnalytics = value === 'true';
+        analyticsService.trackAnalytics = !isSkipAnalytics;
+        setSkipAnalytics(isSkipAnalytics);
+      })
+      .catch((error) => {
+        console.error('Failed to load trackAnalytics from AsyncStorage', error);
+      });
   }, []);
 
   return {
     skipAnalytics,
     skipAnalyticsCheckboxHandler,
-  }
+  };
 }
 
-export default useSkipAnalytics
+export default useSkipAnalytics;
