@@ -7,9 +7,10 @@ import { v4 as uuidv4 } from 'uuid';
 import useApiClient from 'src/hooks/useApiClient';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { login } from 'src/store/authSlice';
-import { CmTypography, CmButton, Screen, Content, Section } from '@shared/components';
+import { CmTypography, Screen, Content, Section } from '@shared/components';
 import { useToastMessages } from 'src/shared/hooks';
 import { RegistrationPageOpenEvent, analyticsService } from 'src/services';
+import { OnboardingButton } from 'src/features/onboarding';
 
 function SignUpScreen() {
   const apiClient = useApiClient();
@@ -114,7 +115,7 @@ function SignUpScreen() {
   }, []);
 
   return (
-    <Screen style={{ backgroundColor: 'white', paddingTop: 50 }}>
+    <Screen style={{ backgroundColor: 'white', paddingTop: '20%' }}>
       <Section>
         <Content>
           <KeyboardAvoidingView
@@ -123,7 +124,7 @@ function SignUpScreen() {
           >
             <View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
               <CmTypography variant='h1'>Create a Climate Mind account</CmTypography>
-              <CmTypography variant='body' style={{ marginTop: 30, marginBottom: 60, textAlign: 'center' }}>
+              <CmTypography variant='body' style={{ marginTop: 30, marginBottom: 40, textAlign: 'center' }}>
                 Save your results, see your climate topics, and start talking.
               </CmTypography>
             </View>
@@ -178,7 +179,9 @@ function SignUpScreen() {
             />
             {!inputs.confirmPassword.isValid && <CmTypography variant='label' style={styles.errorText}>Passwords must match</CmTypography>}
 
-            <CmButton style={styles.button} text="CREATE ACCOUNT" onPress={submitHandler} />
+            <View>
+              <OnboardingButton text='Create Account' onPress={submitHandler} style={styles.button} />
+            </View>
           </KeyboardAvoidingView>
         </Content>
       </Section>
@@ -207,10 +210,10 @@ const styles = StyleSheet.create({
     color: '#B0063D',
   },
   button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 30,
-    marginBottom: 15,
+    marginTop: '20%',
+    paddingHorizontal: 20,
+    minWidth: 200,
+    maxWidth: 300,
   },
 });
 

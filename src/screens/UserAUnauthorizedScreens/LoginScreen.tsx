@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { Image, KeyboardAvoidingView, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { AxiosError } from 'axios';
+import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { Image, KeyboardAvoidingView, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import { useAppDispatch } from 'src/store/hooks';
 import { login } from 'src/store/authSlice';
@@ -8,11 +9,13 @@ import useApiClient from 'src/hooks/useApiClient';
 import useLogger from 'src/hooks/useLogger';
 
 import { PasswordResetModal } from '@features/auth/components';
-import { CmTypography, Screen, Content } from '@shared/components';
+import { CmTypography, Screen, Content, BackButton } from '@shared/components';
 import { useToastMessages } from '@shared/hooks';
 import { OnboardingButton } from 'src/features/onboarding';
 
 function LoginScreen() {
+  const navigation = useNavigation();
+
   const apiClient = useApiClient();
   const logger = useLogger();
   const { showSuccessToast, showErrorToast } = useToastMessages();
@@ -61,8 +64,10 @@ function LoginScreen() {
 
   return (
     <Screen style={{ backgroundColor: 'white' }}>
-      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
+      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'padding'} style={{ width: '100%' }}>
         <Content style={styles.content}>
+          <BackButton onPress={() => navigation.goBack()} style={styles.backButton} />
+
           <Image style={styles.logo} source={require('src/assets/cm-logo.png')} />
           <Image style={styles.slogan} source={require('src/assets/slogan.png')} />
 
@@ -85,7 +90,7 @@ function LoginScreen() {
           />
 
           <View style={{ justifyContent: 'center' }}>
-            <CmTypography variant='body' style={{ marginTop: 47 }}>Forgot your password?</CmTypography>
+            <CmTypography variant='body' style={{ marginTop: 32 }}>Forgot your password?</CmTypography>
             <Pressable onPress={() => setShowModal(true)}>
               <CmTypography variant='body' style={styles.sendResetLink}>Send reset link</CmTypography>
             </Pressable>
@@ -103,7 +108,11 @@ function LoginScreen() {
 const styles = StyleSheet.create({
   content: {
     paddingTop: '10%',
-    paddingHorizontal: '5%',
+  },
+  backButton: {
+    position: 'absolute',
+    top: 50,
+    left: 10,
   },
   logo: {
     height: 66,
@@ -117,14 +126,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginTop: 16,
   },
-  loginButton: {
-    marginTop: 96,
-    paddingHorizontal: 20,
-    minWidth: 200,
-    maxWidth: 305,
-    // alignSelf: 'stretch',
-  },
   input: {
+    width: '100%',
     maxWidth: 305,
     marginVertical: 5,
     padding: 10,
@@ -134,12 +137,17 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
-    alignSelf: 'stretch',
   },
   sendResetLink: {
     textDecorationLine: "underline",
     fontWeight: 'bold',
     textAlign: 'center'
+  },
+  loginButton: {
+    marginTop: '30%',
+    paddingHorizontal: 20,
+    minWidth: 200,
+    maxWidth: 240,
   },
 });
 

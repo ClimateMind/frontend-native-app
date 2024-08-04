@@ -11,9 +11,9 @@ interface Props {
 function BackButton({ onPress, style }: Props) {
   return (
     <Pressable style={[styles.backButtonContainer, style]} onPress={onPress}>
-      <Ionicons name="chevron-back-outline" size={24} color="#A347FF" />
-      <CmTypography variant='button' style={styles.backButtonText}>
-        BACK
+      <Ionicons name="chevron-back-outline" size={24} color="#07373B" />
+      <CmTypography variant="button" style={styles.backButtonText}>
+        Back
       </CmTypography>
     </Pressable>
   );
@@ -21,15 +21,15 @@ function BackButton({ onPress, style }: Props) {
 
 const styles = StyleSheet.create({
   backButtonContainer: {
-    alignSelf: 'flex-start',
     flexDirection: 'row',
     alignItems: 'center',
-    // Padding to make the button easier to press
-    paddingVertical: 5,
-    paddingRight: 10,
+    padding: 5,
+    gap: 5,
   },
   backButtonText: {
-    marginLeft: 10,
+    color: '#07373B',
+    textTransform: 'none',
+    letterSpacing: 0,
   },
 });
 

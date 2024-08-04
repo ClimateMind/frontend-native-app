@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react';
 import { Animated, FlatList, Pressable, StyleSheet, View, ViewToken } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { AntDesign } from '@expo/vector-icons';
 
 import { StackParams } from 'src/navigation/UserAUnauthorizedStackNavigation';
-import { CmTypography, Screen } from '@shared/components';
+import { BackButton, CmTypography, Screen } from '@shared/components';
 import { OnboardingButton, OnboardingItem, OnboardingPaginator, slides } from 'src/features/onboarding';
+
 
 type Props = NativeStackScreenProps<StackParams, 'OnboardingScreen'>;
 
@@ -42,11 +42,7 @@ function OnboardingScreen({ navigation }: Props) {
     <Screen style={{ backgroundColor: 'white' }}>
       <View style={styles.container}>
         <View style={styles.headerNavigation}>
-          <Pressable onPress={scrollBackwards} style={{ ...styles.backButton, opacity: currentIndex === 0 ? 0 : 1 }}>
-            <AntDesign name="left" size={24} color="#07373B" />
-            <CmTypography variant='button' style={{ color: '#07373B', textTransform: 'none', letterSpacing: 0 }}>Back</CmTypography>
-          </Pressable>
-
+          <BackButton onPress={scrollBackwards} style={{ opacity: currentIndex === 0 ? 0 : 1 }} />
           <Pressable style={{ padding: 5, opacity: currentIndex === slides.length - 1 ? 0 : 1 }} onPress={() => scrollForwards(true)}>
             <CmTypography variant="onboarding-button" style={{ textDecorationLine: 'underline', color: '#07373B' }}>
               Skip Tour
@@ -91,12 +87,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     marginTop: 40,
     paddingHorizontal: 20,
-  },
-  backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 5,
-    gap: 5,
   },
 });
 
