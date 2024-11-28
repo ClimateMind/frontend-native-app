@@ -13,6 +13,7 @@ import { CmTypography, Screen, Content, BackButton } from '@shared/components';
 import { useToastMessages } from '@shared/hooks';
 import { OnboardingButton } from 'src/features/onboarding';
 import GoogleLogin from 'src/features/auth/components/GoogleLogin';
+import { DrawerContentComponentProps } from '@react-navigation/drawer';
 
 function LoginScreen() {
   const navigation = useNavigation();
@@ -24,8 +25,6 @@ function LoginScreen() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const quizId = useAppSelector((state) => state.auth.user.quizId);
 
   // async function loginGoogleUser(response: any) {
   //   // const quizId = quizIdA || quizIdB;

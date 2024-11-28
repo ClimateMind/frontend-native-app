@@ -16,9 +16,11 @@ import { OnboardingButton } from 'src/features/onboarding';
 import { SvgXml } from 'react-native-svg';
 import * as Svg from 'react-native-svg';
 import GoogleSvg from 'src/shared/components/GoogleSvg';
+// import { DrawerContentComponentProps } from '@react-navigation/drawer';
 
 interface GoogleLoginProps {
   buttonText: string;
+  // navigation: DrawerContentComponentProps;
 }
 
 const GoogleLogin = ({ buttonText }: GoogleLoginProps) => {
@@ -42,7 +44,7 @@ const GoogleLogin = ({ buttonText }: GoogleLoginProps) => {
         throw new Error('No response received from the server');
       }
 
-      showSuccessToast(`Welcome back, ${result.user.first_name}!`);
+      // showSuccessToast(`Welcome back, ${result.user.first_name}!`);
 
       if (result.user.quiz_id) {
         dispatch(
@@ -55,7 +57,8 @@ const GoogleLogin = ({ buttonText }: GoogleLoginProps) => {
             quizId: result.user.quiz_id,
           })
         );
-
+        // navigation.closeDrawer(); // need to work out how to close the drawer
+        showSuccessToast(`Welcome back, ${result.user.first_name}!`);
         return true;
       }
     } catch (error) {
