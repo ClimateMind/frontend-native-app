@@ -52,6 +52,23 @@ export const authSlice = createSlice({
       AsyncStorage.setItem('userId', action.payload.userId);
       AsyncStorage.setItem('quizId', action.payload.quizId);
     },
+    googleLogin: (state, action: PayloadAction<User>) => {
+      state.isLoggedIn = true;
+
+      state.user.accessToken = action.payload.accessToken;
+      state.user.firstName = action.payload.firstName;
+      state.user.lastName = action.payload.lastName;
+      state.user.email = action.payload.email;
+      state.user.userId = action.payload.userId;
+      state.user.quizId = action.payload.quizId;
+
+      AsyncStorage.setItem('accessToken', action.payload.accessToken);
+      AsyncStorage.setItem('firstName', action.payload.firstName);
+      AsyncStorage.setItem('lastName', action.payload.lastName);
+      AsyncStorage.setItem('email', action.payload.email);
+      AsyncStorage.setItem('userId', action.payload.userId);
+      AsyncStorage.setItem('quizId', action.payload.quizId);
+    }, // use googlelogin slice
     logout: (state) => {
       state.isLoggedIn = false;
 
@@ -93,9 +110,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const {
-  login, logout,
-  setSessionId, setQuizId, setAuthToken,
-  clearAll,
-} = authSlice.actions;
+export const { login, googleLogin, logout, setSessionId, setQuizId, setAuthToken, clearAll } = authSlice.actions;
 export default authSlice.reducer;

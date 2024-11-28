@@ -141,8 +141,13 @@ function useApiClient() {
   }
 
   async function postGoogleLogin(credential: string, quizId: string) {
+    console.log('credential', credential, quizId, 'quizId');
     const response = await apiCall<responses.GoogleLogin>('post', '/auth/google', {}, { credential, quizId });
-
+    const cookieHeader = response.headers['set-cookie'];
+    if (cookieHeader) {
+      const refreshToken = cookieHeader[0].split(';')[0].split('=')[1];
+      AsyncStorage.setItem('refreshToken', refreshToken);
+    }
     return response.data;
   }
 

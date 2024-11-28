@@ -1,6 +1,7 @@
 {
   "expo": {
-    "name": "Climate Mind",
+    "scheme": "org.climatemind.app",
+    "name": "climate mind",
     "owner": "climatemind",
     "slug": "climate-mind",
     "version": "1.0.6",
@@ -19,7 +20,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "org.climatemind.app"
+      "bundleIdentifier": "org.climatemind.app",
+      "infoPlist":{
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLSchemes": ["com.googleusercontent.apps.40848962667-bjo3h1kmpqm58nojfco5bpjajgji0f4u"]
+          }
+        ]
+      }
     },
     "extra": {
       "eas": {
