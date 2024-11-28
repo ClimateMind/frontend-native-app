@@ -17,7 +17,11 @@ import { SvgXml } from 'react-native-svg';
 import * as Svg from 'react-native-svg';
 import GoogleSvg from 'src/shared/components/GoogleSvg';
 
-const GoogleLogin = () => {
+interface GoogleLoginProps {
+  buttonText: string;
+}
+
+const GoogleLogin = ({ buttonText }: GoogleLoginProps) => {
   const [userInfo, setUserInfo] = useState<SignInResponse | undefined>(undefined);
   const [error, setError] = useState<string>('');
   const quizId = useAppSelector((state) => state.auth.user.quizId);
@@ -79,10 +83,7 @@ const GoogleLogin = () => {
     configureGoogleSignIn();
   }, []);
 
-  //log the userInfo to see user details
-  console.log('user id', JSON.stringify(userInfo?.data?.idToken));
   const signIn = async () => {
-    console.log('signing in');
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
@@ -96,12 +97,9 @@ const GoogleLogin = () => {
   };
   return (
     <>
-      {/* <CmButton text={'Sign In With Google'} onPress={signIn} /> */}
-
-      <OnboardingButton text="Sign In With Google" onPress={signIn} style={{ gap: 10, backgroundColor: 'white', minWidth: 200, maxWidth: 240, borderRadius: 100, borderWidth: 1, borderColor: '#07373B', paddingVertical: 10, alignItems: 'center', alignSelf: 'center', width: '100%' }}>
+      <OnboardingButton text={buttonText} onPress={signIn} style={{ gap: 10, backgroundColor: 'white', minWidth: 200, maxWidth: 240, borderRadius: 100, borderWidth: 1, borderColor: '#07373B', paddingVertical: 10, alignItems: 'center', alignSelf: 'center', width: '100%' }}>
         <GoogleSvg />
       </OnboardingButton>
-      {/* <GoogleSigninButton style={{ width: 240, height: 48, borderRadius: 30 }} size={GoogleSigninButton.Size.Wide} color={GoogleSigninButton.Color.Light} onPress={signIn} /> */}
     </>
   );
 };

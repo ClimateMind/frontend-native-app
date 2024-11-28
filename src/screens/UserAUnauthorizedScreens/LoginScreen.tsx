@@ -125,7 +125,8 @@ function LoginScreen() {
           </View>
           <View style={{ display: 'flex', flexDirection: 'column', gap: 20, alignItems: 'center', justifyContent: 'center' }}>
             <OnboardingButton text="Log In" onPress={onLogin} disabled={!email || !password} style={styles.loginButton} />
-            <GoogleLogin />
+            <View style={{ height: 1, width: 240, borderWidth: 1, borderColor: '#0000001A' }} />
+            <GoogleLogin buttonText="Sign In With Google" />
           </View>
           <PasswordResetModal
             show={showModal}
