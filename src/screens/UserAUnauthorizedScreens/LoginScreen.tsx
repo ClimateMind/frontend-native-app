@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Image, KeyboardAvoidingView, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
-import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import { useAppDispatch } from 'src/store/hooks';
 import { login } from 'src/store/authSlice';
 import useApiClient from 'src/hooks/useApiClient';
 import useLogger from 'src/hooks/useLogger';
@@ -13,7 +13,7 @@ import { CmTypography, Screen, Content, BackButton } from '@shared/components';
 import { useToastMessages } from '@shared/hooks';
 import { OnboardingButton } from 'src/features/onboarding';
 import GoogleLogin from 'src/features/auth/components/GoogleLogin';
-import { DrawerContentComponentProps } from '@react-navigation/drawer';
+// import { DrawerContentComponentProps } from '@react-navigation/drawer';
 
 function LoginScreen() {
   const navigation = useNavigation();

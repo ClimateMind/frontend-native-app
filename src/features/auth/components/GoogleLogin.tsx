@@ -1,20 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Text, StyleSheet } from 'react-native';
-
+import { useState, useEffect } from 'react';
+import { StyleSheet } from 'react-native';
 import { GOOGLE_IOS_CLIENT_ID, GOOGLE_WEB_CLIENT_ID } from '@env';
-import * as AuthSession from 'expo-auth-session';
-import { GoogleSignin, GoogleSigninButton, SignInResponse, statusCodes } from '@react-native-google-signin/google-signin';
+import { GoogleSignin, SignInResponse } from '@react-native-google-signin/google-signin';
 import { useToastMessages } from '@shared/hooks';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import useApiClient from 'src/hooks/useApiClient';
 import useLogger from 'src/hooks/useLogger';
 import { AxiosError } from 'axios';
-import { googleLogin, login } from 'src/store/authSlice';
-import { CmButton } from 'src/shared/components';
+import { googleLogin } from 'src/store/authSlice';
 import { OnboardingButton } from 'src/features/onboarding';
-import { SvgXml } from 'react-native-svg';
-import * as Svg from 'react-native-svg';
 import GoogleSvg from 'src/shared/components/GoogleSvg';
 // import { DrawerContentComponentProps } from '@react-navigation/drawer';
 
