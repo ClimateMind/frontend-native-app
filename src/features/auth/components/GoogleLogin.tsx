@@ -18,8 +18,8 @@ interface GoogleLoginProps {
 }
 
 const GoogleLogin = ({ buttonText }: GoogleLoginProps) => {
-  const [userInfo, setUserInfo] = useState<SignInResponse | undefined>(undefined);
-  const [error, setError] = useState<string>('');
+  // const [userInfo, setUserInfo] = useState<SignInResponse | undefined>(undefined);
+  // const [error, setError] = useState<string>('');
   const quizId = useAppSelector((state) => state.auth.user.quizId);
   const apiClient = useApiClient();
   const logger = useLogger();
@@ -87,10 +87,10 @@ const GoogleLogin = ({ buttonText }: GoogleLoginProps) => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       loginGoogleUser(userInfo?.data?.idToken);
-      setUserInfo(userInfo);
-      setError('');
+      // setUserInfo(userInfo);
+      // setError('');
     } catch (error: any) {
-      setError(error.message);
+      // setError(error.message);
       console.log(error.message);
     }
   };
@@ -102,51 +102,5 @@ const GoogleLogin = ({ buttonText }: GoogleLoginProps) => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  content: {
-    paddingTop: '10%',
-  },
-  backButton: {
-    position: 'absolute',
-    top: 50,
-    left: 10,
-  },
-  logo: {
-    height: 66,
-    aspectRatio: 62 / 66,
-    resizeMode: 'contain',
-    marginTop: '20%',
-  },
-  slogan: {
-    height: 54,
-    aspectRatio: 234 / 54,
-    resizeMode: 'contain',
-    marginTop: 16,
-  },
-  input: {
-    width: '100%',
-    maxWidth: 305,
-    marginVertical: 5,
-    padding: 10,
-    backgroundColor: 'white',
-    fontWeight: 'bold',
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
-  },
-  sendResetLink: {
-    textDecorationLine: 'underline',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  GoogleLoginButton: {
-    marginTop: '30%',
-    paddingHorizontal: 20,
-    minWidth: 200,
-    maxWidth: 240,
-  },
-});
 
 export default GoogleLogin;
