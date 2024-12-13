@@ -86,6 +86,8 @@ const GoogleLogin = ({ buttonText }: GoogleLoginProps) => {
     configureGoogleSignIn();
   }, []);
 
+  //sign in function
+
   const signIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
