@@ -12,6 +12,8 @@ import { PasswordResetModal } from '@features/auth/components';
 import { CmTypography, Screen, Content, BackButton } from '@shared/components';
 import { useToastMessages } from '@shared/hooks';
 import { OnboardingButton } from 'src/features/onboarding';
+import GoogleLogin from 'src/features/auth/components/GoogleLogin';
+// import { DrawerContentComponentProps } from '@react-navigation/drawer';
 
 function LoginScreen() {
   const navigation = useNavigation();
@@ -23,6 +25,41 @@ function LoginScreen() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  // async function loginGoogleUser(response: any) {
+  //   // const quizId = quizIdA || quizIdB;
+  //   try {
+  //     if (!response) {
+  //       throw new Error('No credential received from Google');
+  //     }
+
+  //     const result = await apiClient.postGoogleLogin(response.toString(), quizId);
+
+  //     showSuccessToast(`Welcome back, ${result.user.first_name}!`);
+
+  //     dispatch(
+  //       login({
+  //         accessToken: result.access_token,
+  //         firstName: result.user.first_name,
+  //         lastName: result.user.last_name,
+  //         email: result.user.email,
+  //         userId: result.user.user_uuid,
+  //         quizId: result.user.quiz_id,
+  //       })
+  //     );
+  //     return true;
+  //   } catch (error) {
+  //     if (error instanceof AxiosError) {
+  //       showErrorToast(error.response?.data.error ?? 'Unexpected Error. Please try again.');
+
+  //       if (error.response?.status === 400) {
+  //         if (error.response?.data.error) {
+  //           logger.logError('Error while logging in on the LoginScreen.tsx');
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
   async function onLogin() {
     if (email === '' || password === '') {
@@ -71,34 +108,32 @@ function LoginScreen() {
           <Image style={styles.logo} source={require('src/assets/cm-logo.png')} />
           <Image style={styles.slogan} source={require('src/assets/slogan.png')} />
 
-          <TextInput
-            placeholder="Email"
-            keyboardType="email-address"
-            autoCorrect={false}
-            onChangeText={setEmail}
-            style={[styles.input, { marginTop: 64 }]}
-            placeholderTextColor={'#88999C'}
-          />
+          <TextInput placeholder="Email" keyboardType="email-address" autoCorrect={false} onChangeText={setEmail} style={[styles.input, { marginTop: 64 }]} placeholderTextColor={'#88999C'} />
 
-          <TextInput
-            placeholder="Password"
-            secureTextEntry={true}
-            autoCorrect={false}
-            onChangeText={setPassword}
-            style={styles.input}
-            placeholderTextColor={'#88999C'}
-          />
+          <TextInput placeholder="Password" secureTextEntry={true} autoCorrect={false} onChangeText={setPassword} style={styles.input} placeholderTextColor={'#88999C'} />
 
           <View style={{ justifyContent: 'center' }}>
-            <CmTypography variant='body' style={{ marginTop: 32 }}>Forgot your password?</CmTypography>
+            <CmTypography variant="body" style={{ marginTop: 32 }}>
+              Forgot your password?
+            </CmTypography>
             <Pressable onPress={() => setShowModal(true)}>
-              <CmTypography variant='body' style={styles.sendResetLink}>Send reset link</CmTypography>
+              <CmTypography variant="body" style={styles.sendResetLink}>
+                Send reset link
+              </CmTypography>
             </Pressable>
           </View>
-
-          <OnboardingButton text='Log In' onPress={onLogin} disabled={!email || !password} style={styles.loginButton} />
-
-          <PasswordResetModal show={showModal} onCancel={() => {setShowModal(false)}} onSubmit={() => setShowModal(false)} />
+          <View style={{ display: 'flex', flexDirection: 'column', gap: 20, alignItems: 'center', justifyContent: 'center' }}>
+            <OnboardingButton text="Log In" onPress={onLogin} disabled={!email || !password} style={styles.loginButton} />
+            <View style={{ height: 1, width: 240, borderWidth: 1, borderColor: '#0000001A' }} />
+            <GoogleLogin buttonText="Sign In With Google" />
+          </View>
+          <PasswordResetModal
+            show={showModal}
+            onCancel={() => {
+              setShowModal(false);
+            }}
+            onSubmit={() => setShowModal(false)}
+          />
         </Content>
       </KeyboardAvoidingView>
     </Screen>
@@ -139,15 +174,14 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 5,
   },
   sendResetLink: {
-    textDecorationLine: "underline",
+    textDecorationLine: 'underline',
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   loginButton: {
     marginTop: '30%',
     paddingHorizontal: 20,
-    minWidth: 200,
-    maxWidth: 240,
+    minWidth: 240,
   },
 });
 

@@ -5,6 +5,14 @@
     "promptToConfigurePushNotifications": false
   },
   "build": {
+     "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m-medium",
+        "simulator": true
+      } 
+    },
     "main": {
       "channel": "main",
       "autoIncrement": true

@@ -25,8 +25,8 @@ const validateToken = (token: string): boolean => {
 };
 
 function useApiClient() {
-  const { showErrorToast } = useToastMessages()
-  
+  const { showErrorToast } = useToastMessages();
+
   const sessionId = useAppSelector((state) => state.auth.sessionId);
   const quizId = useAppSelector((state) => state.auth.user.quizId);
   const user = useAppSelector((state) => state.auth.user);
@@ -93,24 +93,15 @@ function useApiClient() {
       throw new Error('Missing quizId');
     }
 
-    const response = await apiCall<responses.GetPersonalValues>(
-      'get',
-      '/personal_values?quizId=' + quizId,
-      {
-        'X-Session-Id': sessionId,
-      }
-    );
+    const response = await apiCall<responses.GetPersonalValues>('get', '/personal_values?quizId=' + quizId, {
+      'X-Session-Id': sessionId,
+    });
 
     return response.data;
   }
 
   async function postRegister({ firstName, lastName, email, password, quizId }: requests.PostRegister) {
-    const response = await apiCall<responses.PostRegister>(
-      'post',
-      '/register',
-      {},
-      { firstName, lastName, email, password, quizId }
-    );
+    const response = await apiCall<responses.PostRegister>('post', '/register', {}, { firstName, lastName, email, password, quizId });
 
     return response.data;
   }
@@ -121,7 +112,7 @@ function useApiClient() {
       '/user-account',
       {
         'X-Session-Id': sessionId,
-        'Authorization': 'Bearer ' + user.accessToken,
+        Authorization: 'Bearer ' + user.accessToken,
       },
       { currentPassword: password }
     );
@@ -149,18 +140,25 @@ function useApiClient() {
     return response.data;
   }
 
+  async function postGoogleLogin(credential: string, quizId: string) {
+    console.log('credential', credential, quizId, 'quizId');
+    const response = await apiCall<responses.Login>('post', '/auth/google', {}, { credential, quizId });
+    const cookieHeader = response.headers['set-cookie'];
+    if (cookieHeader) {
+      const refreshToken = cookieHeader[0].split(';')[0].split('=')[1];
+      AsyncStorage.setItem('refreshToken', refreshToken);
+    }
+    return response.data;
+  }
+
   async function postRefresh() {
     const refreshToken = await AsyncStorage.getItem('refreshToken');
 
     try {
-      const response = await apiCall<{ access_token: string }>(
-        'post',
-        '/refresh',
-        {
-          'X-Session-Id': sessionId,
-          'Cookie': 'refreshToken=' + refreshToken,
-        },
-      );
+      const response = await apiCall<{ access_token: string }>('post', '/refresh', {
+        'X-Session-Id': sessionId,
+        Cookie: 'refreshToken=' + refreshToken,
+      });
 
       // Update the auth token in the store
       dispatch(setAuthToken(response.data.access_token));
@@ -205,13 +203,9 @@ function useApiClient() {
       throw new Error('Missing quizId');
     }
 
-    const response = await apiCall<{ climateEffects: ClimateEffect[] }>(
-      'get',
-      '/feed?quizId=' + quizId,
-      {
-        'X-Session-Id': sessionId,
-      }
-    );
+    const response = await apiCall<{ climateEffects: ClimateEffect[] }>('get', '/feed?quizId=' + quizId, {
+      'X-Session-Id': sessionId,
+    });
 
     return response.data.climateEffects;
   }
@@ -225,13 +219,9 @@ function useApiClient() {
       throw new Error('Missing quizId');
     }
 
-    const response = await apiCall<{ solutions: Solution[] }>(
-      'get',
-      '/solutions?quizId=' + quizId,
-      {
-        'X-Session-Id': sessionId,
-      }
-    );
+    const response = await apiCall<{ solutions: Solution[] }>('get', '/solutions?quizId=' + quizId, {
+      'X-Session-Id': sessionId,
+    });
 
     return response.data.solutions;
   }
@@ -241,13 +231,9 @@ function useApiClient() {
       throw new Error('Missing sessionId');
     }
 
-    const response = await apiCall<{ myths: Myth[] }>(
-      'get',
-      '/myths',
-      {
-        'X-Session-Id': sessionId,
-      },
-    );
+    const response = await apiCall<{ myths: Myth[] }>('get', '/myths', {
+      'X-Session-Id': sessionId,
+    });
 
     return response.data.myths;
   }
@@ -257,13 +243,9 @@ function useApiClient() {
       throw new Error('Missing sessionId');
     }
 
-    const response = await apiCall<{ myth: Myth }>(
-      'get',
-      '/myths/' + mythIri,
-      {
-        'X-Session-Id': sessionId,
-      },
-    );
+    const response = await apiCall<{ myth: Myth }>('get', '/myths/' + mythIri, {
+      'X-Session-Id': sessionId,
+    });
 
     return response.data.myth;
   }
@@ -274,7 +256,7 @@ function useApiClient() {
       '/user-account',
       {
         'X-Session-Id': sessionId,
-        'Authorization': 'Bearer ' + user.accessToken,
+        Authorization: 'Bearer ' + user.accessToken,
       },
       { currentPassword, newPassword, confirmPassword }
     );
@@ -286,7 +268,7 @@ function useApiClient() {
       '/email',
       {
         'X-Session-Id': sessionId,
-        'Authorization': 'Bearer ' + user.accessToken,
+        Authorization: 'Bearer ' + user.accessToken,
       },
       { newEmail, confirmEmail, password }
     );
@@ -298,7 +280,7 @@ function useApiClient() {
       '/conversation',
       {
         'X-Session-Id': sessionId,
-        'Authorization': 'Bearer ' + user.accessToken,
+        Authorization: 'Bearer ' + user.accessToken,
       },
       { invitedUserName }
     );
@@ -307,27 +289,19 @@ function useApiClient() {
   }
 
   async function getAllConversations() {
-    const response = await apiCall<{ conversations: responses.GetAllConversations[] }>(
-      'get',
-      '/conversations',
-      {
-        'X-Session-Id': sessionId,
-        'Authorization': 'Bearer ' + user.accessToken,
-      },
-    );
+    const response = await apiCall<{ conversations: responses.GetAllConversations[] }>('get', '/conversations', {
+      'X-Session-Id': sessionId,
+      Authorization: 'Bearer ' + user.accessToken,
+    });
 
     return response.data;
   }
 
   async function deleteConversation(conversationId: string) {
-    await apiCall(
-      'delete',
-      '/conversation/' + conversationId,
-      {
-        'X-Session-Id': sessionId,
-        'Authorization': 'Bearer ' + user.accessToken,
-      },
-    );    
+    await apiCall('delete', '/conversation/' + conversationId, {
+      'X-Session-Id': sessionId,
+      Authorization: 'Bearer ' + user.accessToken,
+    });
   }
 
   async function putSingleConversation(data: requests.PutSingleConversation) {
@@ -337,7 +311,7 @@ function useApiClient() {
         '/conversation/' + data.conversationId,
         {
           'X-Session-Id': sessionId,
-          'Authorization': 'Bearer ' + user.accessToken,
+          Authorization: 'Bearer ' + user.accessToken,
         },
         data.updatedConversation
       );
@@ -353,13 +327,9 @@ function useApiClient() {
       throw new Error('Missing alignmentScoresId');
     }
 
-    const response = await apiCall<responses.GetAlignmentScores>(
-      'get',
-      '/alignment/' + alignmentScoresId,
-      {
-        'X-Session-Id': sessionId,
-      }
-    );
+    const response = await apiCall<responses.GetAlignmentScores>('get', '/alignment/' + alignmentScoresId, {
+      'X-Session-Id': sessionId,
+    });
 
     return response.data;
   }
@@ -373,13 +343,9 @@ function useApiClient() {
       throw new Error('Missing conversationId');
     }
 
-    const response = await apiCall<responses.GetSelectedTopics>(
-      'get',
-      '/conversation/' + conversationId + '/topics',
-      {
-        'X-Session-Id': sessionId,
-      }
-    );
+    const response = await apiCall<responses.GetSelectedTopics>('get', '/conversation/' + conversationId + '/topics', {
+      'X-Session-Id': sessionId,
+    });
 
     return response.data;
   }
@@ -393,13 +359,9 @@ function useApiClient() {
       throw new Error('Missing impactId');
     }
 
-    const response = await apiCall<responses.GetSharedImpactDetails>(
-      'get',
-      '/alignment/shared-impact/' + impactId,
-      {
-        'X-Session-Id': sessionId,
-      }
-    );
+    const response = await apiCall<responses.GetSharedImpactDetails>('get', '/alignment/shared-impact/' + impactId, {
+      'X-Session-Id': sessionId,
+    });
 
     return response.data;
   }
@@ -413,13 +375,9 @@ function useApiClient() {
       throw new Error('Missing solutionId');
     }
 
-    const response = await apiCall<responses.GetSharedSolutionDetails>(
-      'get',
-      '/alignment/shared-solution/' + solutionId,
-      {
-        'X-Session-Id': sessionId,
-      }
-    );
+    const response = await apiCall<responses.GetSharedSolutionDetails>('get', '/alignment/shared-solution/' + solutionId, {
+      'X-Session-Id': sessionId,
+    });
 
     return response.data;
   }
@@ -433,6 +391,7 @@ function useApiClient() {
     postRegister,
     deleteAccount,
     postLogin,
+    postGoogleLogin,
     postRefresh,
     postPasswordResetLink,
 

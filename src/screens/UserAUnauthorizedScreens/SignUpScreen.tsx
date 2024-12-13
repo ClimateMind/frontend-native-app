@@ -11,12 +11,13 @@ import { CmTypography, Screen, Content, Section } from '@shared/components';
 import { useToastMessages } from 'src/shared/hooks';
 import { RegistrationPageOpenEvent, analyticsService } from 'src/services';
 import { OnboardingButton } from 'src/features/onboarding';
+import GoogleLogin from 'src/features/auth/components/GoogleLogin';
 
 function SignUpScreen() {
   const apiClient = useApiClient();
   const dispatch = useAppDispatch();
   const quizId = useAppSelector((state) => state.auth.user.quizId);
-  const { showErrorToast } = useToastMessages()
+  const { showErrorToast } = useToastMessages();
 
   const [inputs, setInputs] = useState({
     firstName: { value: '', isValid: true },
@@ -46,35 +47,35 @@ function SignUpScreen() {
 
     if (!firstNameIsValid) {
       setInputs((current) => {
-        return { ...current, firstName: { value: current.firstName.value, isValid: false }};
+        return { ...current, firstName: { value: current.firstName.value, isValid: false } };
       });
       formIsValid = false;
     }
 
     if (!lastNameIsValid) {
       setInputs((current) => {
-        return { ...current, lastName: { value: current.lastName.value, isValid: false }};
+        return { ...current, lastName: { value: current.lastName.value, isValid: false } };
       });
       formIsValid = false;
     }
 
     if (!emailIsValid) {
       setInputs((current) => {
-        return { ...current, email: { value: current.email.value, isValid: false }};
+        return { ...current, email: { value: current.email.value, isValid: false } };
       });
       formIsValid = false;
     }
 
     if (!passwordIsValid) {
       setInputs((current) => {
-        return { ...current, password: { value: current.password.value, isValid: false }};
+        return { ...current, password: { value: current.password.value, isValid: false } };
       });
       formIsValid = false;
     }
 
     if (!confirmPasswordIsValid) {
       setInputs((current) => {
-        return { ...current, confirmPassword: { value: current.confirmPassword.value, isValid: false }};
+        return { ...current, confirmPassword: { value: current.confirmPassword.value, isValid: false } };
       });
       formIsValid = false;
     }
@@ -85,8 +86,11 @@ function SignUpScreen() {
 
     apiClient
       .postRegister({
-        firstName: inputs.firstName.value, lastName: inputs.lastName.value,
-        email: inputs.email.value, password: inputs.password.value, quizId,
+        firstName: inputs.firstName.value,
+        lastName: inputs.lastName.value,
+        email: inputs.email.value,
+        password: inputs.password.value,
+        quizId,
       })
       .then((result) => {
         if (result !== undefined) {
@@ -104,7 +108,7 @@ function SignUpScreen() {
       })
       .catch((error) => {
         if (error instanceof AxiosError) {
-          showErrorToast(error.response?.data.error ?? 'Unknown Error has occoured')
+          showErrorToast(error.response?.data.error ?? 'Unknown Error has occoured');
         }
       });
   }
@@ -118,69 +122,53 @@ function SignUpScreen() {
     <Screen style={{ backgroundColor: 'white', paddingTop: '20%' }}>
       <Section>
         <Content>
-          <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'position' : 'padding'}
-            keyboardVerticalOffset={Platform.OS === 'ios' ? 80 : 0}
-          >
+          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'padding'} keyboardVerticalOffset={Platform.OS === 'ios' ? 80 : 0}>
             <View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-              <CmTypography variant='h1'>Create a Climate Mind account</CmTypography>
-              <CmTypography variant='body' style={{ marginTop: 30, marginBottom: 40, textAlign: 'center' }}>
+              <CmTypography variant="h1">Create a Climate Mind account</CmTypography>
+              <CmTypography variant="body" style={{ marginTop: 30, marginBottom: 40, textAlign: 'center' }}>
                 Save your results, see your climate topics, and start talking.
               </CmTypography>
             </View>
 
-            <TextInput
-              placeholderTextColor="#88999C"
-              placeholder="First Name"
-              autoCapitalize="sentences"
-              autoCorrect={false}
-              onChangeText={(value) => inputChangeHandler('firstName', value)}
-              style={[styles.input, !inputs.firstName.isValid && styles.invalidInput]}
-            />
-            {!inputs.firstName.isValid && <CmTypography variant='label' style={styles.errorText}>First Name is a required field</CmTypography>}
+            <TextInput placeholderTextColor="#88999C" placeholder="First Name" autoCapitalize="sentences" autoCorrect={false} onChangeText={(value) => inputChangeHandler('firstName', value)} style={[styles.input, !inputs.firstName.isValid && styles.invalidInput]} />
+            {!inputs.firstName.isValid && (
+              <CmTypography variant="label" style={styles.errorText}>
+                First Name is a required field
+              </CmTypography>
+            )}
 
-            <TextInput
-              placeholderTextColor="#88999C"
-              placeholder="Last Name"
-              autoCapitalize="sentences"
-              autoCorrect={false}
-              onChangeText={(value) => inputChangeHandler('lastName', value)}
-              style={[styles.input, !inputs.lastName.isValid && styles.invalidInput]}
-            />
-            {!inputs.lastName.isValid && <CmTypography variant='label' style={styles.errorText}>Last Name is a required field</CmTypography>}
+            <TextInput placeholderTextColor="#88999C" placeholder="Last Name" autoCapitalize="sentences" autoCorrect={false} onChangeText={(value) => inputChangeHandler('lastName', value)} style={[styles.input, !inputs.lastName.isValid && styles.invalidInput]} />
+            {!inputs.lastName.isValid && (
+              <CmTypography variant="label" style={styles.errorText}>
+                Last Name is a required field
+              </CmTypography>
+            )}
 
-            <TextInput
-              placeholderTextColor="#88999C"
-              placeholder="Email"
-              keyboardType="email-address"
-              autoCorrect={false}
-              onChangeText={(value) => inputChangeHandler('email', value)}
-              style={[styles.input, !inputs.email.isValid && styles.invalidInput]}
-            />
-            {!inputs.email.isValid && <CmTypography variant='label' style={styles.errorText}>Invalid email address</CmTypography>}
+            <TextInput placeholderTextColor="#88999C" placeholder="Email" keyboardType="email-address" autoCorrect={false} onChangeText={(value) => inputChangeHandler('email', value)} style={[styles.input, !inputs.email.isValid && styles.invalidInput]} />
+            {!inputs.email.isValid && (
+              <CmTypography variant="label" style={styles.errorText}>
+                Invalid email address
+              </CmTypography>
+            )}
 
-            <TextInput
-              placeholderTextColor="#88999C"
-              placeholder="Password"
-              secureTextEntry={true}
-              autoCorrect={false}
-              onChangeText={(value) => inputChangeHandler('password', value)}
-              style={[styles.input, !inputs.password.isValid && styles.invalidInput]}
-            />
-            {!inputs.password.isValid && <CmTypography variant='label' style={styles.errorText}>Invalid Password. Password must be at least 8 characters and contain one number or one special character</CmTypography>}
+            <TextInput placeholderTextColor="#88999C" placeholder="Password" secureTextEntry={true} autoCorrect={false} onChangeText={(value) => inputChangeHandler('password', value)} style={[styles.input, !inputs.password.isValid && styles.invalidInput]} />
+            {!inputs.password.isValid && (
+              <CmTypography variant="label" style={styles.errorText}>
+                Invalid Password. Password must be at least 8 characters and contain one number or one special character
+              </CmTypography>
+            )}
 
-            <TextInput
-              placeholderTextColor="#88999C"
-              placeholder="Confirm Password"
-              secureTextEntry={true}
-              autoCorrect={false}
-              onChangeText={(value) => inputChangeHandler('confirmPassword', value)}
-              style={[styles.input, !inputs.confirmPassword.isValid && styles.invalidInput]}
-            />
-            {!inputs.confirmPassword.isValid && <CmTypography variant='label' style={styles.errorText}>Passwords must match</CmTypography>}
+            <TextInput placeholderTextColor="#88999C" placeholder="Confirm Password" secureTextEntry={true} autoCorrect={false} onChangeText={(value) => inputChangeHandler('confirmPassword', value)} style={[styles.input, !inputs.confirmPassword.isValid && styles.invalidInput]} />
+            {!inputs.confirmPassword.isValid && (
+              <CmTypography variant="label" style={styles.errorText}>
+                Passwords must match
+              </CmTypography>
+            )}
 
-            <View>
-              <OnboardingButton text='Create Account' onPress={submitHandler} style={styles.button} />
+            <View style={{ display: 'flex', flexDirection: 'column', gap: 20, alignItems: 'center', justifyContent: 'center' }}>
+              <OnboardingButton text="Create Account" onPress={submitHandler} style={styles.button} />
+              <View style={{ height: 1, width: 240, borderWidth: 1, borderColor: '#0000001A' }} />
+              <GoogleLogin buttonText="Continue With Google" />
             </View>
           </KeyboardAvoidingView>
         </Content>
@@ -212,8 +200,8 @@ const styles = StyleSheet.create({
   button: {
     marginTop: '20%',
     paddingHorizontal: 20,
-    minWidth: 200,
-    maxWidth: 300,
+    minWidth: 240,
+    maxWidth: 240,
   },
 });
 
