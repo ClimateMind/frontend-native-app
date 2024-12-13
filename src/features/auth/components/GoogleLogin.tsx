@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { StyleSheet } from 'react-native';
+import { useEffect } from 'react';
+
 import { GOOGLE_IOS_CLIENT_ID, GOOGLE_WEB_CLIENT_ID } from '@env';
-import { GoogleSignin, SignInResponse } from '@react-native-google-signin/google-signin';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { useToastMessages } from '@shared/hooks';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import useApiClient from 'src/hooks/useApiClient';
